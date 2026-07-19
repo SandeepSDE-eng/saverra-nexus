@@ -14,16 +14,212 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      inquiries: {
+        Row: {
+          budget: string | null
+          city: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          project_id: string | null
+          status: string | null
+        }
+        Insert: {
+          budget?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          project_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          budget?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          project_id?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inquiries_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          amenities: string[] | null
+          bhk_options: string | null
+          builder: string | null
+          category: string
+          city: string
+          cover_image: string
+          created_at: string
+          description: string | null
+          gallery: string[] | null
+          highlights: string[] | null
+          id: string
+          is_featured: boolean | null
+          is_published: boolean | null
+          latitude: number | null
+          location: string
+          longitude: number | null
+          max_bhk: number | null
+          min_bhk: number | null
+          name: string
+          possession: string | null
+          price_display: string
+          price_numeric: number | null
+          rera_number: string | null
+          slug: string
+          status: string
+          tagline: string | null
+          updated_at: string
+        }
+        Insert: {
+          amenities?: string[] | null
+          bhk_options?: string | null
+          builder?: string | null
+          category?: string
+          city: string
+          cover_image: string
+          created_at?: string
+          description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          latitude?: number | null
+          location: string
+          longitude?: number | null
+          max_bhk?: number | null
+          min_bhk?: number | null
+          name: string
+          possession?: string | null
+          price_display: string
+          price_numeric?: number | null
+          rera_number?: string | null
+          slug: string
+          status?: string
+          tagline?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amenities?: string[] | null
+          bhk_options?: string | null
+          builder?: string | null
+          category?: string
+          city?: string
+          cover_image?: string
+          created_at?: string
+          description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          latitude?: number | null
+          location?: string
+          longitude?: number | null
+          max_bhk?: number | null
+          min_bhk?: number | null
+          name?: string
+          possession?: string | null
+          price_display?: string
+          price_numeric?: number | null
+          rera_number?: string | null
+          slug?: string
+          status?: string
+          tagline?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          avatar_url: string | null
+          city: string | null
+          created_at: string
+          id: string
+          is_published: boolean | null
+          message: string
+          name: string
+          rating: number | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean | null
+          message: string
+          name: string
+          rating?: number | null
+        }
+        Update: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_published?: boolean | null
+          message?: string
+          name?: string
+          rating?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +346,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
