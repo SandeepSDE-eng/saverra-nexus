@@ -12,6 +12,9 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { FaqSection } from "@/components/site/FaqSection";
 import { ContactSection } from "@/components/site/ContactSection";
 import { FloatingActions } from "@/components/site/FloatingActions";
+import { LeadPopup } from "@/components/site/LeadPopup";
+import { InteractiveMap } from "@/components/site/InteractiveMap";
+
 
 export const Route = createFileRoute("/")({ component: Home });
 
