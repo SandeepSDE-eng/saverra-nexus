@@ -30,12 +30,15 @@ function Home() {
         <Amenities />
         <FloorPlans />
         <EmiCalculator />
+        <InteractiveMap />
         <Testimonials />
         <FaqSection />
         <ContactSection />
       </main>
       <SiteFooter />
       <FloatingActions />
+      <LeadPopup />
     </div>
+
   );
 }
