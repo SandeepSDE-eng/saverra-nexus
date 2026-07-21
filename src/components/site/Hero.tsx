@@ -1,8 +1,28 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CalendarCheck } from "lucide-react";
+import { ArrowRight, CalendarCheck, MapPin } from "lucide-react";
 import { SearchFilters } from "./SearchFilters";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useCallback } from "react";
+
+const PREMIUM_PROJECTS = [
+  { id: 1, name: "f Residences", location: "Ghatkopar East", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80" },
+  { id: 2, name: "Spenta Alta Vista", location: "Chembur", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" },
+  { id: 3, name: "Wadhwa Atmosphere", location: "Mulund West", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80" },
+  { id: 4, name: "Neelkanth Regent", location: "Ghatkopar East", image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80" },
+];
 
 export function Hero() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(scrollNext, 3000);
+    return () => clearInterval(interval);
+  }, [emblaApi, scrollNext]);
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="relative">
@@ -56,7 +76,36 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:col-span-5 lg:block" />
+          <div className="hidden lg:col-span-5 lg:block">
+            <div className="h-full w-full flex flex-col justify-center animate-fade-left">
+              <div className="mb-4 flex items-center justify-between text-white/80">
+                <h3 className="text-sm font-semibold tracking-wide uppercase">Featured Premium Projects</h3>
+                <div className="flex gap-2">
+                  <div className="size-2 rounded-full bg-gold/40"></div>
+                  <div className="size-2 rounded-full bg-gold"></div>
+                  <div className="size-2 rounded-full bg-gold/40"></div>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 shadow-2xl" ref={emblaRef}>
+                <div className="flex touch-pan-y">
+                  {PREMIUM_PROJECTS.map((project) => (
+                    <div key={project.id} className="min-w-0 flex-[0_0_100%] pl-4 first:pl-0">
+                      <div className="group relative h-80 w-full overflow-hidden rounded-xl">
+                        <img src={project.image} alt={project.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/90 via-[color:var(--navy-deep)]/20 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 p-5">
+                          <h4 className="font-display text-2xl font-bold text-white">{project.name}</h4>
+                          <p className="mt-1 flex items-center gap-1 text-sm text-gold">
+                            <MapPin className="size-4" /> {project.location}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Search filters overlap */}

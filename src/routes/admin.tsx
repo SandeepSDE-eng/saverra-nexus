@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { LayoutDashboard, Building2, MessageSquare, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, MessageSquare, LogOut, Webhook, BarChart3 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
@@ -38,6 +38,8 @@ function AdminLayout() {
   const nav = [
     { href: "/admin/projects", label: "Projects", icon: Building2 },
     { href: "/admin/inquiries", label: "Inquiries", icon: MessageSquare },
+    { href: "/admin/integrations", label: "Integrations", icon: Webhook },
+    { href: "/admin/marketing", label: "Marketing", icon: BarChart3 },
   ];
 
   const signOut = async () => {

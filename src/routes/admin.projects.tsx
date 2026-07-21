@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,72 @@ function AdminProjects() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Project | null>(null);
   const [form, setForm] = useState<ProjectForm>(empty);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const generateAI = async () => {
+    if (!form.name || !form.location) {
+      toast.error("Please enter Project Name and Location first.");
+      return;
+    }
+    setIsGenerating(true);
+    
+    const hooks = [
+      `Welcome to ${form.name}, an iconic landmark redefining luxury living in ${form.location}.`,
+      `Discover the pinnacle of elegance at ${form.name}, beautifully situated in the vibrant heart of ${form.location}.`,
+      `Experience a lifestyle beyond compare at ${form.name}, a premium sanctuary located in ${form.location}.`,
+      `${form.name} in ${form.location} presents a rare opportunity to own a masterpiece of modern architecture.`
+    ];
+    
+    const bodies = [
+      `Designed for those with impeccable taste, this property offers world-class amenities and breathtaking panoramic views.`,
+      `Every inch of this development has been meticulously crafted to offer unparalleled comfort, blending tranquility with urban convenience.`,
+      `Boasting state-of-the-art facilities, lush green landscapes, and exclusive clubhouses, it sets a new benchmark for premium real estate.`,
+      `With spacious layouts, abundant natural light, and premium fittings, it promises a living experience that is both lavish and serene.`
+    ];
+    
+    const closings = [
+      `Step into your dream home today and embrace a future of limitless possibilities.`,
+      `This is not just a residence; it is a statement of your success and refined lifestyle.`,
+      `Secure your piece of paradise and elevate your everyday living to extraordinary heights.`,
+      `Don't miss the chance to be part of this exclusive community of forward-thinkers.`
+    ];
+
+    const taglines = [
+      `Ultimate Luxury in ${form.location}`,
+      `Redefining Elegance at ${form.name}`,
+      `Your Dream Home Awaits in ${form.location}`,
+      `Premium Living, Perfected.`
+    ];
+
+    const allAmenities = [
+      "Infinity Pool, Clubhouse, 24/7 Security",
+      "Gymnasium, Landscaped Gardens, Smart Home Features",
+      "Spa, Kids Play Area, Jogging Track, Rooftop Lounge",
+      "Concierge Service, Vastu Compliant, High-Speed Elevators"
+    ];
+
+    const allHighlights = [
+      "Premium Location, Vastu Compliant, High-Speed Elevators, Smart Home Features",
+      "100% Power Backup, Earth-quake Resistant, Italian Marble Flooring",
+      "Exclusive Sky Lounge, Private Pools, Multi-tier Security",
+      "Close to Metro Station, Top Schools nearby, High Rental Yield"
+    ];
+
+    const randomPick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+
+    // Simulate AI generation delay
+    setTimeout(() => {
+      setForm((s) => ({
+        ...s,
+        description: `${randomPick(hooks)} ${randomPick(bodies)} ${randomPick(closings)}`,
+        tagline: randomPick(taglines),
+        amenities: randomPick(allAmenities),
+        highlights: randomPick(allHighlights)
+      }));
+      setIsGenerating(false);
+      toast.success("AI generated a unique premium description!");
+    }, 1500);
+  };
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["admin", "projects"],
@@ -207,7 +273,15 @@ function AdminProjects() {
             <div className="sm:col-span-2"><Label>Gallery URLs (comma-separated)</Label><Textarea value={form.gallery as any ?? ""} onChange={(e) => set("gallery")(e.target.value)} rows={2} className="mt-1" /></div>
             <div className="sm:col-span-2"><Label>Amenities (comma-separated)</Label><Textarea value={form.amenities as any ?? ""} onChange={(e) => set("amenities")(e.target.value)} rows={2} className="mt-1" /></div>
             <div className="sm:col-span-2"><Label>Highlights (comma-separated)</Label><Textarea value={form.highlights as any ?? ""} onChange={(e) => set("highlights")(e.target.value)} rows={2} className="mt-1" /></div>
-            <div className="sm:col-span-2"><Label>Description</Label><Textarea rows={4} value={form.description ?? ""} onChange={(e) => set("description")(e.target.value)} className="mt-1" /></div>
+            <div className="sm:col-span-2">
+              <div className="flex items-center justify-between mb-1">
+                <Label>Description</Label>
+                <Button type="button" variant="outline" size="sm" className="h-7 text-xs bg-purple-50 text-purple-600 border-purple-200 hover:bg-purple-100 hover:text-purple-700" onClick={generateAI} disabled={isGenerating}>
+                  <Sparkles className="size-3 mr-1" /> {isGenerating ? "Generating..." : "AI Auto-Fill"}
+                </Button>
+              </div>
+              <Textarea rows={4} value={form.description ?? ""} onChange={(e) => set("description")(e.target.value)} />
+            </div>
             <div className="flex items-center gap-3 sm:col-span-2">
               <label className="flex items-center gap-2 text-sm">
                 <input type="checkbox" checked={!!form.is_published} onChange={(e) => set("is_published")(e.target.checked)} /> Published (visible on site)

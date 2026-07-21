@@ -32,22 +32,24 @@ export function FloatingActions() {
 
   return (
     <>
-      <div className="pointer-events-none fixed bottom-6 right-4 z-40 flex flex-col items-end gap-3 sm:right-6">
+      <div className="pointer-events-none fixed bottom-[100px] right-4 z-40 flex flex-col items-end gap-3 sm:right-6">
         {actions.map((a) => (
           <button
             key={a.label}
             onClick={a.onClick}
-            className={`pointer-events-auto group flex items-center gap-2 rounded-full ${a.cls} pl-3 pr-4 py-2.5 shadow-lg transition-all hover:scale-105`}
+            className={`pointer-events-auto group flex h-12 flex-row-reverse items-center overflow-hidden whitespace-nowrap rounded-full ${a.cls} px-3.5 shadow-xl border border-white/10 transition-all duration-300 max-w-[48px] hover:max-w-[200px] hover:px-5`}
             aria-label={a.label}
           >
-            <a.icon className="size-4" />
-            <span className="hidden text-xs font-semibold sm:inline">{a.label}</span>
+            <a.icon className="size-5 shrink-0" />
+            <span className="pr-3 text-sm font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              {a.label}
+            </span>
           </button>
         ))}
         {show && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="pointer-events-auto grid size-11 place-items-center rounded-full bg-foreground/85 text-background shadow-lg transition hover:bg-primary"
+            className="pointer-events-auto grid size-12 place-items-center rounded-full bg-background border border-border/50 text-foreground shadow-xl transition-all hover:bg-muted"
             aria-label="Back to top"
           >
             <ArrowUp className="size-5" />

@@ -74,7 +74,7 @@ export function LeadPopup() {
       role="dialog"
       aria-modal="true"
     >
-      <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-gold/40 bg-card shadow-2xl">
+      <div className="relative w-[calc(100%-2rem)] max-w-sm overflow-hidden rounded-2xl border border-gold/40 bg-card shadow-2xl mx-auto">
         <button
           onClick={close}
           aria-label="Close"
@@ -84,38 +84,38 @@ export function LeadPopup() {
         </button>
 
         {/* Banner */}
-        <div className="relative bg-gradient-to-br from-[color:var(--navy-deep)] to-primary p-6 pb-8 text-white">
+        <div className="relative bg-gradient-to-br from-[color:var(--navy-deep)] to-primary p-5 pb-6 text-white">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-gold/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-gold">
             <Sparkles className="size-3" /> Exclusive Offer
           </div>
-          <h3 className="mt-3 font-display text-2xl font-bold leading-tight sm:text-3xl">
+          <h3 className="mt-3 font-display text-xl font-bold leading-tight sm:text-2xl">
             Get <span className="gold-text">Priority Access</span> to New Launches
           </h3>
-          <p className="mt-1.5 text-sm text-white/80">
+          <p className="mt-1.5 text-xs text-white/80">
             Pre-launch pricing · Free site visit · Instant brochure — share your details.
           </p>
         </div>
 
-        <form onSubmit={onSubmit} className="space-y-3 p-6 pt-5">
+        <form onSubmit={onSubmit} className="space-y-3 p-5 pt-4">
           <div>
-            <Label className="text-xs">Full name*</Label>
-            <Input required value={form.name} onChange={set("name")} className="mt-1 h-11" placeholder="Your name" />
+            <Label className="text-[11px]">Full name*</Label>
+            <Input required value={form.name} onChange={set("name")} className="mt-1 h-9 text-sm" placeholder="Your name" />
           </div>
           <div>
-            <Label className="text-xs">Phone number*</Label>
-            <Input required type="tel" value={form.phone} onChange={set("phone")} className="mt-1 h-11" placeholder="+91 98xxx xxxxx" />
+            <Label className="text-[11px]">Phone number*</Label>
+            <Input required type="tel" value={form.phone} onChange={set("phone")} className="mt-1 h-9 text-sm" placeholder="+91 98xxx xxxxx" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs">City</Label>
-              <Input value={form.city} onChange={set("city")} className="mt-1 h-11" placeholder="Mumbai" />
+              <Label className="text-[11px]">City</Label>
+              <Input value={form.city} onChange={set("city")} className="mt-1 h-9 text-sm" placeholder="Mumbai" />
             </div>
             <div>
-              <Label className="text-xs">Budget</Label>
-              <Input value={form.budget} onChange={set("budget")} className="mt-1 h-11" placeholder="₹1–2 Cr" />
+              <Label className="text-[11px]">Budget</Label>
+              <Input value={form.budget} onChange={set("budget")} className="mt-1 h-9 text-sm" placeholder="₹1–2 Cr" />
             </div>
           </div>
-          <Button type="submit" variant="gold" size="lg" className="mt-2 w-full" disabled={submitting}>
+          <Button type="submit" variant="gold" className="mt-2 w-full h-10 text-sm" disabled={submitting}>
             {submitting ? "Sending…" : "Get Instant Callback"}
           </Button>
           <p className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-muted-foreground">

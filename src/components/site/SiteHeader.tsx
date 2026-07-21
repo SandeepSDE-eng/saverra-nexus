@@ -3,64 +3,78 @@ import { Phone, Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const NAV = [
-  { href: "/#home", label: "Home" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#amenities", label: "Amenities" },
-  { href: "/#neighborhood", label: "Neighborhood" },
-  { href: "/#emi", label: "Financing" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/#contact", label: "Contact" },
-];
+import { features } from "@/config/features";
+
+const getNavLinks = () => {
+  const links = [
+    { href: "/#home", label: "Home" },
+  ];
+  
+  if (features.showAboutUs) {
+    links.push({ href: "/about", label: "About Us" });
+  }
+
+  links.push(
+    { href: "/#projects", label: "Projects" },
+    { href: "/#amenities", label: "Amenities" },
+    { href: "/#neighborhood", label: "Neighborhood" },
+    { href: "/#emi", label: "Financing" },
+    { href: "/#faq", label: "FAQ" },
+    { href: "/#contact", label: "Contact" },
+  );
+  
+  return links;
+};
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/40 bg-background/85 backdrop-blur-2xl shadow-sm">
       {/* announcement bar */}
-      <div className="hidden bg-[color:var(--navy-deep)] text-white sm:block">
-        <div className="container-luxe flex h-9 items-center justify-between text-[11px]">
-          <div className="flex items-center gap-4 opacity-90">
-            <span className="inline-flex items-center gap-1.5"><Shield className="size-3 text-gold" /> RERA Registered</span>
+      <div className="hidden bg-gradient-to-r from-[color:var(--navy-deep)] via-[#0a192f] to-[color:var(--navy-deep)] text-white sm:block border-b border-gold/20">
+        <div className="container-luxe flex h-10 items-center justify-between text-[11px] font-medium tracking-wide">
+          <div className="flex items-center gap-5 opacity-90">
+            <span className="inline-flex items-center gap-1.5"><Shield className="size-3.5 text-gold" /> RERA Registered</span>
             <span className="hidden md:inline">Transparent Deals</span>
             <span className="hidden md:inline">Trusted by 5000+ Families</span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="tel:+919876543210" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100">
-              <Phone className="size-3" /> +91 98765 43210
+          <div className="flex items-center gap-6">
+            <a href="tel:+919876543210" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
+              <Phone className="size-3.5 text-gold" /> +91 98765 43210
             </a>
-            <a href="#contact" className="rounded-sm bg-gold px-3 py-1 font-semibold text-[color:var(--navy-deep)] hover:brightness-110">
+            <a href="#contact" className="rounded bg-gradient-to-r from-gold to-yellow-600 px-4 py-1.5 font-bold text-[color:var(--navy-deep)] shadow-md transition-all hover:scale-105 hover:shadow-lg">
               Schedule Site Visit
             </a>
           </div>
         </div>
       </div>
 
-      <div className="container-luxe flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="grid size-11 shrink-0 place-items-center rounded-md bg-gradient-to-br from-primary to-[color:var(--navy-deep)] text-gold shadow-md">
-            <span className="font-display text-lg font-bold">S</span>
+      <div className="container-luxe flex h-24 items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="grid size-12 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-primary to-[color:var(--navy-deep)] text-gold shadow-md transition-transform duration-500 group-hover:rotate-6">
+            <span className="font-display text-xl font-bold">S</span>
           </div>
           <div className="leading-tight">
-            <div className="font-display text-xl font-bold tracking-wide text-primary">SAVERRA</div>
-            <div className="text-[9px] font-medium tracking-[0.28em] text-muted-foreground">A REAL ESTATE FIRM</div>
+            <div className="font-display text-2xl font-bold tracking-wide text-primary">SAVERRA</div>
+            <div className="text-[10px] font-semibold tracking-[0.3em] text-muted-foreground">A REAL ESTATE FIRM</div>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
-          {NAV.map((n) => (
+        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
+          {getNavLinks().map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="relative text-[13px] font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="group relative px-1 py-2 text-[13px] lg:text-[14px] font-medium text-foreground/80 transition-colors hover:text-primary"
             >
               {n.label}
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button variant="gold" size="default" asChild>
+          <Button className="bg-[color:var(--navy-deep)] text-white hover:bg-primary shadow-luxury rounded-full px-6 transition-all duration-300 hover:scale-105" asChild>
             <a href="#contact">Download Brochure</a>
           </Button>
         </div>
@@ -77,7 +91,7 @@ export function SiteHeader() {
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
           <div className="container-luxe flex flex-col py-4">
-            {NAV.map((n) => (
+            {getNavLinks().map((n) => (
               <a
                 key={n.href}
                 href={n.href}
