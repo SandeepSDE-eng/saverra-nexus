@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({ component: Home });
 // 🚧 DEVELOPMENT MODE TOGGLE
 // Set this to 'true' to SHOW the actual landing page.
 // Set this to 'false' to HIDE the landing page and show a premium "Coming Soon" screen to the client.
-const SHOW_WEBSITE = false;
+const SHOW_WEBSITE = true;
 
 function Home() {
   if (!SHOW_WEBSITE) {

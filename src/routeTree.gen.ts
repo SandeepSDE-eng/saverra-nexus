@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminFloorPlansRouteImport } from './routes/admin.floor-plans'
 import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
 import { Route as AdminIntegrationsRouteImport } from './routes/admin.integrations'
 import { Route as AdminMarketingRouteImport } from './routes/admin.marketing'
@@ -43,6 +44,11 @@ const AuthRoute = AuthRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFloorPlansRoute = AdminFloorPlansRouteImport.update({
+  id: '/floor-plans',
+  path: '/floor-plans',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminInquiriesRoute = AdminInquiriesRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
+  '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
+  '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/auth'
+    | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/auth'
+    | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -190,6 +202,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/floor-plans': {
+      id: '/admin/floor-plans'
+      path: '/floor-plans'
+      fullPath: '/admin/floor-plans'
+      preLoaderRoute: typeof AdminFloorPlansRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/inquiries': {
       id: '/admin/inquiries'
       path: '/inquiries'
@@ -229,6 +248,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminFloorPlansRoute: typeof AdminFloorPlansRoute
   AdminInquiriesRoute: typeof AdminInquiriesRoute
   AdminIntegrationsRoute: typeof AdminIntegrationsRoute
   AdminMarketingRoute: typeof AdminMarketingRoute
@@ -237,6 +257,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminFloorPlansRoute: AdminFloorPlansRoute,
   AdminInquiriesRoute: AdminInquiriesRoute,
   AdminIntegrationsRoute: AdminIntegrationsRoute,
   AdminMarketingRoute: AdminMarketingRoute,

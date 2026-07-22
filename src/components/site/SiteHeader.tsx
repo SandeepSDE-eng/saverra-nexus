@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Logo } from "./Logo";
 
 import { features } from "@/config/features";
 
@@ -48,15 +49,14 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
-
       <div className="container-luxe flex h-24 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="grid size-12 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-primary to-[color:var(--navy-deep)] text-gold shadow-md transition-transform duration-500 group-hover:rotate-6">
-            <span className="font-display text-xl font-bold">S</span>
+        <Link to="/" className="flex items-center gap-4 group">
+          <div className="text-[color:var(--navy-deep)] transition-transform duration-500 group-hover:scale-105">
+            <Logo className="h-12 w-9" />
           </div>
-          <div className="leading-tight">
-            <div className="font-display text-2xl font-bold tracking-wide text-primary">SAVERRA</div>
-            <div className="text-[10px] font-semibold tracking-[0.3em] text-muted-foreground">A REAL ESTATE FIRM</div>
+          <div className="leading-[1.15] flex flex-col justify-center">
+            <div className="font-display text-2xl font-semibold tracking-[0.2em] text-[color:var(--navy-deep)]">SAVERRA</div>
+            <div className="text-[0.6rem] font-semibold tracking-[0.25em] text-muted-foreground uppercase">A Real Estate Firm</div>
           </div>
         </Link>
 

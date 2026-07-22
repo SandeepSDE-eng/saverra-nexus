@@ -173,6 +173,23 @@ function AdminProjects() {
 
   const set = (k: keyof ProjectForm) => (v: any) => setForm((s) => ({ ...s, [k]: v }));
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, field: "cover_image" | "gallery") => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    
+    if (field === "cover_image") {
+      const url = URL.createObjectURL(files[0]);
+      setForm(s => ({ ...s, cover_image: url }));
+      toast.success("Cover image uploaded locally!");
+    } else {
+      const urls = Array.from(files).map(f => URL.createObjectURL(f));
+      const existing = typeof form.gallery === "string" ? form.gallery : (form.gallery?.join(", ") || "");
+      const newGallery = existing ? `${existing}, ${urls.join(", ")}` : urls.join(", ");
+      setForm(s => ({ ...s, gallery: newGallery as any }));
+      toast.success(`${files.length} images added to gallery locally!`);
+    }
+  };
+
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -269,8 +286,29 @@ function AdminProjects() {
             <div><Label>Price (display)*</Label><Input required value={form.price_display ?? ""} onChange={(e) => set("price_display")(e.target.value)} placeholder="₹ 1.75 Cr*" className="mt-1" /></div>
             <div><Label>Possession</Label><Input value={form.possession ?? ""} onChange={(e) => set("possession")(e.target.value)} placeholder="Dec 2026" className="mt-1" /></div>
             <div><Label>RERA Number</Label><Input value={form.rera_number ?? ""} onChange={(e) => set("rera_number")(e.target.value)} className="mt-1" /></div>
-            <div className="sm:col-span-2"><Label>Cover Image URL*</Label><Input required value={form.cover_image ?? ""} onChange={(e) => set("cover_image")(e.target.value)} placeholder="https://…" className="mt-1" /></div>
-            <div className="sm:col-span-2"><Label>Gallery URLs (comma-separated)</Label><Textarea value={form.gallery as any ?? ""} onChange={(e) => set("gallery")(e.target.value)} rows={2} className="mt-1" /></div>
+            
+            <div className="sm:col-span-2">
+              <Label>Cover Image (Upload or URL)*</Label>
+              <div className="flex gap-2 mt-1">
+                <Input required value={form.cover_image ?? ""} onChange={(e) => set("cover_image")(e.target.value)} placeholder="https://…" className="flex-1" />
+                <div className="relative">
+                  <Input type="file" accept="image/*" onChange={(e) => handleFileUpload(e, "cover_image")} className="absolute inset-0 opacity-0 cursor-pointer w-28" title="Upload Image" />
+                  <Button type="button" variant="outline" className="w-28 pointer-events-none">Upload File</Button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="sm:col-span-2">
+              <Label>Gallery Images (Upload or URLs comma-separated)</Label>
+              <div className="flex gap-2 mt-1 items-start">
+                <Textarea value={form.gallery as any ?? ""} onChange={(e) => set("gallery")(e.target.value)} rows={2} className="flex-1" />
+                <div className="relative h-[54px]">
+                  <Input type="file" accept="image/*" multiple onChange={(e) => handleFileUpload(e, "gallery")} className="absolute inset-0 opacity-0 cursor-pointer w-28 h-full" title="Upload Images" />
+                  <Button type="button" variant="outline" className="w-28 h-[54px] pointer-events-none whitespace-normal leading-tight">Upload Files</Button>
+                </div>
+              </div>
+            </div>
+            
             <div className="sm:col-span-2"><Label>Amenities (comma-separated)</Label><Textarea value={form.amenities as any ?? ""} onChange={(e) => set("amenities")(e.target.value)} rows={2} className="mt-1" /></div>
             <div className="sm:col-span-2"><Label>Highlights (comma-separated)</Label><Textarea value={form.highlights as any ?? ""} onChange={(e) => set("highlights")(e.target.value)} rows={2} className="mt-1" /></div>
             <div className="sm:col-span-2">

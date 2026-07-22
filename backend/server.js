@@ -110,6 +110,60 @@ app.get('/api/campaigns', async (req, res) => {
   }
 });
 
+// --- FLOOR PLANS ---
+app.get('/api/floor-plans', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM floor_plans WHERE is_published = TRUE');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/admin/floor-plans', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM floor_plans');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/floor-plans', async (req, res) => {
+  const { type_key, label, area, features, image_url, is_published } = req.body;
+  try {
+    const [result] = await pool.query(
+      'INSERT INTO floor_plans (type_key, label, area, features, image_url, is_published) VALUES (?, ?, ?, ?, ?, ?)',
+      [type_key, label, area, JSON.stringify(features), image_url, is_published !== false]
+    );
+    res.status(201).json({ id: result.insertId, message: 'Floor plan created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/floor-plans/:id', async (req, res) => {
+  const { type_key, label, area, features, image_url, is_published } = req.body;
+  try {
+    await pool.query(
+      'UPDATE floor_plans SET type_key = ?, label = ?, area = ?, features = ?, image_url = ?, is_published = ? WHERE id = ?',
+      [type_key, label, area, JSON.stringify(features), image_url, is_published, req.params.id]
+    );
+    res.json({ message: 'Floor plan updated successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/floor-plans/:id', async (req, res) => {
+  try {
+    await pool.query('DELETE FROM floor_plans WHERE id = ?', [req.params.id]);
+    res.json({ message: 'Floor plan deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // --- REAL ESTATE AI CHATBOT ---
 app.post('/api/chat', async (req, res) => {
   const { messages } = req.body;

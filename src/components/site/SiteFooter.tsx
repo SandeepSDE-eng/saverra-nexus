@@ -1,18 +1,19 @@
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { Logo } from "./Logo";
 
 export function SiteFooter() {
   return (
     <footer className="mt-24 bg-[color:var(--navy-deep)] text-white/85">
       <div className="container-luxe grid grid-cols-1 gap-10 py-14 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <div className="grid size-11 place-items-center rounded-md bg-white/10 text-gold">
-              <span className="font-display text-lg font-bold">S</span>
+          <div className="flex items-center gap-4 group cursor-default">
+            <div className="text-gold transition-transform duration-500 group-hover:scale-105">
+              <Logo className="h-10 w-[1.875rem]" />
             </div>
-            <div className="leading-tight">
-              <div className="font-display text-xl font-bold tracking-wide text-white">SAVERRA</div>
-              <div className="text-[9px] tracking-[0.28em] text-white/60">A REAL ESTATE FIRM</div>
+            <div className="leading-[1.15] flex flex-col justify-center">
+              <div className="font-display text-2xl font-semibold tracking-[0.2em] text-white">SAVERRA</div>
+              <div className="text-[0.6rem] font-semibold tracking-[0.25em] text-white/60 uppercase">A Real Estate Firm</div>
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
@@ -58,9 +59,12 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-luxe flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/55 sm:flex-row">
+        <div className="container-luxe flex flex-col items-center justify-between gap-4 py-5 text-xs text-white/55 sm:flex-row sm:gap-2">
           <p>© {new Date().getFullYear()} SAVERRA Real Estate. All rights reserved.</p>
-          <p>RERA Reg: P51900012345 · Privacy · Terms · Sitemap</p>
+          <div className="flex flex-col items-center gap-1 sm:items-end">
+            <p>RERA Reg: P51900012345 · Privacy · Terms · Sitemap</p>
+            <p className="text-[10px] text-white/30 uppercase tracking-widest mt-1">Developed by SandeepYadav</p>
+          </div>
         </div>
       </div>
     </footer>

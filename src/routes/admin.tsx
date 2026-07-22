@@ -37,6 +37,7 @@ function AdminLayout() {
 
   const nav = [
     { href: "/admin/projects", label: "Projects", icon: Building2 },
+    { href: "/admin/floor-plans", label: "Floor Plans", icon: Building2 },
     { href: "/admin/inquiries", label: "Inquiries", icon: MessageSquare },
     { href: "/admin/integrations", label: "Integrations", icon: Webhook },
     { href: "/admin/marketing", label: "Marketing", icon: BarChart3 },

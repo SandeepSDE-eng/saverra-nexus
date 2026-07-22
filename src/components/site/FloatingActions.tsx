@@ -24,37 +24,39 @@ export function FloatingActions() {
   }, []);
 
   const actions = [
-    { icon: MessageCircle, label: "WhatsApp", onClick: () => window.open("https://wa.me/919876543210", "_blank"), cls: "bg-[#25D366] text-white" },
-    { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+919876543210"), cls: "bg-primary text-white" },
-    { icon: CalendarCheck, label: "Book Site Visit", onClick: () => setModal("visit"), cls: "bg-[color:var(--navy-deep)] text-white" },
-    { icon: Download, label: "Brochure", onClick: () => setModal("brochure"), cls: "bg-gold text-[color:var(--navy-deep)]" },
+    { icon: MessageCircle, label: "WhatsApp", onClick: () => window.open("https://wa.me/919876543210", "_blank"), cls: "hover:bg-[#25D366] hover:text-white hover:border-[#25D366]" },
+    { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+919876543210"), cls: "hover:bg-primary hover:text-white hover:border-primary" },
+    { icon: CalendarCheck, label: "Book Site Visit", onClick: () => setModal("visit"), cls: "hover:bg-[color:var(--navy-deep)] hover:text-white hover:border-[color:var(--navy-deep)]" },
+    { icon: Download, label: "Brochure", onClick: () => setModal("brochure"), cls: "hover:bg-gold hover:text-white hover:border-gold" },
   ];
 
   return (
     <>
-      <div className="pointer-events-none fixed bottom-[100px] right-4 z-40 flex flex-col items-end gap-3 sm:right-6">
-        {actions.map((a) => (
-          <button
-            key={a.label}
-            onClick={a.onClick}
-            className={`pointer-events-auto group flex h-12 flex-row-reverse items-center overflow-hidden whitespace-nowrap rounded-full ${a.cls} px-3.5 shadow-xl border border-white/10 transition-all duration-300 max-w-[48px] hover:max-w-[200px] hover:px-5`}
-            aria-label={a.label}
-          >
-            <a.icon className="size-5 shrink-0" />
-            <span className="pr-3 text-sm font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              {a.label}
-            </span>
-          </button>
-        ))}
-        {show && (
+      <div className="pointer-events-none fixed bottom-[100px] right-4 z-40 flex flex-col items-end gap-2 sm:right-6">
+        <div className="flex flex-col gap-2 rounded-full border border-white/10 bg-white/40 p-1.5 backdrop-blur-xl shadow-2xl pointer-events-auto">
+          {actions.map((a) => (
+            <button
+              key={a.label}
+              onClick={a.onClick}
+              className={`group flex size-10 items-center justify-center rounded-full bg-white text-foreground/80 shadow-sm transition-all duration-300 border border-transparent ${a.cls}`}
+              title={a.label}
+              aria-label={a.label}
+            >
+              <a.icon className="size-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+            </button>
+          ))}
+        </div>
+        
+        {/* Scroll to Top */}
+        <div className={`transition-all duration-500 ${show ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-8 opacity-0 pointer-events-none'}`}>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="pointer-events-auto grid size-12 place-items-center rounded-full bg-background border border-border/50 text-foreground shadow-xl transition-all hover:bg-muted"
+            className="mt-2 grid size-10 place-items-center rounded-full bg-[color:var(--navy-deep)] text-white shadow-lg transition-transform hover:scale-105"
             aria-label="Back to top"
           >
-            <ArrowUp className="size-5" />
+            <ArrowUp className="size-4" />
           </button>
-        )}
+        </div>
       </div>
 
       <BookingModal open={modal !== null} mode={modal ?? "brochure"} onClose={() => setModal(null)} />

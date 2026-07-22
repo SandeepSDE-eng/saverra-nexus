@@ -1,117 +1,95 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CalendarCheck, MapPin } from "lucide-react";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 import { SearchFilters } from "./SearchFilters";
-import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 
-const PREMIUM_PROJECTS = [
-  { id: 1, name: "f Residences", location: "Ghatkopar East", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80" },
-  { id: 2, name: "Spenta Alta Vista", location: "Chembur", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" },
-  { id: 3, name: "Wadhwa Atmosphere", location: "Mulund West", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80" },
-  { id: 4, name: "Neelkanth Regent", location: "Ghatkopar East", image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80" },
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2400&q=85", // Dusk exterior, perfect contrast
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85", // Rich exterior
+  "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=2400&q=85", // Darker premium interior/exterior
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85", // Luxury interior
 ];
 
 export function Hero() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
-    if (!emblaApi) return;
-    const interval = setInterval(scrollNext, 3000);
-    return () => clearInterval(interval);
-  }, [emblaApi, scrollNext]);
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section id="home" className="relative overflow-hidden">
-      <div className="relative">
-        {/* Backdrop image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=85')",
-          }}
-        />
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--navy-deep)]/95 via-[color:var(--navy-deep)]/75 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-
-        <div className="container-luxe relative grid min-h-[86vh] grid-cols-1 items-center gap-10 py-20 lg:grid-cols-12">
-          <div className="lg:col-span-7 animate-fade-up">
-            <p className="eyebrow text-gold">Welcome to SAVERRA</p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-              Unlocking The
-              <span className="mt-2 block italic">
-                <span className="gold-text">Extraordinary,</span>
-              </span>
-              Every Single Day.
-            </h1>
-            <p className="mt-6 max-w-lg text-lg text-white/80">
-              Premium Homes. Prime Locations. Promising Futures.
-              <br className="hidden sm:block" />
-              Curated luxury addresses across India's most sought-after neighborhoods.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button variant="gold" size="xl" asChild>
-                <a href="#projects">Explore Projects <ArrowRight className="size-4" /></a>
-              </Button>
-              <Button variant="heroGhost" size="xl" asChild>
-                <a href="#contact"><CalendarCheck className="size-4" /> Schedule Site Visit</a>
-              </Button>
-            </div>
-
-            <div className="mt-10 grid max-w-md grid-cols-3 divide-x divide-white/15 rounded-lg border border-white/10 bg-white/5 backdrop-blur-md">
-              {[
-                { k: "5000+", v: "Happy Families" },
-                { k: "50+", v: "Projects" },
-                { k: "100%", v: "RERA Approved" },
-              ].map((s) => (
-                <div key={s.k} className="p-4 text-center">
-                  <div className="font-display text-2xl font-bold text-gold">{s.k}</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-wider text-white/70">{s.v}</div>
-                </div>
-              ))}
-            </div>
+    <section id="home" className="relative flex min-h-[80vh] lg:min-h-[85vh] flex-col justify-between overflow-hidden">
+      {/* Crossfading Background Carousel */}
+      <div className="absolute inset-0 z-0">
+        {HERO_IMAGES.map((img, index) => (
+          <div
+            key={img}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImage ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <div
+              className={`absolute inset-0 bg-cover bg-center transition-transform duration-[15000ms] ease-out ${
+                index === currentImage ? "scale-110" : "scale-100"
+              }`}
+              style={{ backgroundImage: `url('${img}')` }}
+            />
           </div>
+        ))}
+      </div>
 
-          <div className="hidden lg:col-span-5 lg:block">
-            <div className="h-full w-full flex flex-col justify-center animate-fade-left">
-              <div className="mb-4 flex items-center justify-between text-white/80">
-                <h3 className="text-sm font-semibold tracking-wide uppercase">Featured Premium Projects</h3>
-                <div className="flex gap-2">
-                  <div className="size-2 rounded-full bg-gold/40"></div>
-                  <div className="size-2 rounded-full bg-gold"></div>
-                  <div className="size-2 rounded-full bg-gold/40"></div>
-                </div>
-              </div>
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 shadow-2xl" ref={emblaRef}>
-                <div className="flex touch-pan-y">
-                  {PREMIUM_PROJECTS.map((project) => (
-                    <div key={project.id} className="min-w-0 flex-[0_0_100%] pl-4 first:pl-0">
-                      <div className="group relative h-80 w-full overflow-hidden rounded-xl">
-                        <img src={project.image} alt={project.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/90 via-[color:var(--navy-deep)]/20 to-transparent"></div>
-                        <div className="absolute bottom-0 left-0 p-5">
-                          <h4 className="font-display text-2xl font-bold text-white">{project.name}</h4>
-                          <p className="mt-1 flex items-center gap-1 text-sm text-gold">
-                            <MapPin className="size-4" /> {project.location}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <div className="container-luxe relative z-10 flex flex-1 flex-col items-center justify-center py-16 lg:py-20 text-center">
+        {/* Glassmorphism Container */}
+        <div className="animate-fade-up w-full max-w-3xl rounded-2xl border border-white/30 bg-white/10 p-8 backdrop-blur-xl shadow-2xl md:p-12">
+          <div className="mb-4 inline-flex items-center justify-center gap-3">
+            <div className="h-[1px] w-6 bg-gold/60"></div>
+            <span className="text-[9px] font-medium tracking-[0.3em] text-white uppercase opacity-90 sm:text-[10px]">
+              The Saverra Experience
+            </span>
+            <div className="h-[1px] w-6 bg-gold/60"></div>
+          </div>
+          
+          <h1 className="font-display text-4xl font-light leading-[1.15] text-white sm:text-5xl lg:text-6xl tracking-wide">
+            Unlocking The <br />
+            <span className="text-gold italic font-medium">Extraordinary,</span> <br />
+            Every Single Day.
+          </h1>
+          
+          <p className="mx-auto mt-5 max-w-lg text-sm font-light leading-relaxed text-white/80 sm:text-base tracking-wide">
+            Discover unparalleled luxury and timeless elegance. We curate India's most prestigious addresses for those who demand nothing but the best.
+          </p>
+          
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button variant="gold" size="lg" className="w-full sm:w-auto rounded-sm px-8 tracking-widest text-[11px] uppercase transition-all hover:scale-105" asChild>
+              <a href="#projects">Explore Portfolio</a>
+            </Button>
+            <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-sm border-white/50 bg-transparent px-8 text-white tracking-widest text-[11px] uppercase transition-all hover:bg-white hover:text-black" asChild>
+              <a href="#contact">Private Viewing</a>
+            </Button>
           </div>
         </div>
 
-        {/* Search filters overlap */}
-        <div className="container-luxe relative -mt-14 pb-2 md:-mt-16">
-          <SearchFilters />
+        {/* Carousel Indicators - Centered */}
+        <div className="absolute bottom-24 lg:bottom-28 flex items-center justify-center gap-2.5">
+          {HERO_IMAGES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImage(index)}
+              className={`h-1 rounded-full transition-all duration-500 shadow-md ${
+                index === currentImage ? "w-8 bg-gold" : "w-2 bg-white/40 hover:bg-white/80"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
+      </div>
+
+      {/* Search filters overlap - anchored to bottom */}
+      <div className="container-luxe relative z-20 pb-4 mt-auto hidden md:block">
+        <SearchFilters />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageSquare, X, Send, Bot, User } from "lucide-react";
+import { MessageSquare, X, Send, Bot, User, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Message {
@@ -7,6 +7,7 @@ interface Message {
   text: string;
   sender: "bot" | "user";
   timestamp: Date;
+  showContactActions?: boolean;
 }
 
 export function LiveChat() {
@@ -69,6 +70,7 @@ export function LiveChat() {
           text: data.reply,
           sender: "bot",
           timestamp: new Date(),
+          showContactActions: data.reply.toLowerCase().includes("call") || data.reply.toLowerCase().includes("number") || data.reply.toLowerCase().includes("contact")
         },
       ]);
     } catch (error) {
@@ -130,6 +132,7 @@ export function LiveChat() {
             text: botReply,
             sender: "bot",
             timestamp: new Date(),
+            showContactActions: botReply.toLowerCase().includes("call") || botReply.toLowerCase().includes("number") || botReply.toLowerCase().includes("contact")
           },
         ]);
       }, 1000 + Math.random() * 1500); // 1-2.5s realistic typing delay
@@ -166,6 +169,18 @@ export function LiveChat() {
               <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${msg.sender === "user" ? "bg-primary text-primary-foreground rounded-tr-sm" : "bg-card border border-border/60 text-foreground rounded-tl-sm shadow-sm"}`}>
                   <p>{msg.text}</p>
+                  
+                  {msg.showContactActions && msg.sender === "bot" && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <a href="tel:+919876543210" className="flex items-center gap-1.5 rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold transition-colors hover:bg-gold hover:text-[color:var(--navy-deep)] border border-gold/30">
+                        <Phone className="size-3" /> Call Now
+                      </a>
+                      <a href="mailto:info@saverra.com" className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted border border-border/50">
+                        <Mail className="size-3" /> Email
+                      </a>
+                    </div>
+                  )}
+
                   <p className={`mt-1 text-[9px] ${msg.sender === "user" ? "text-primary-foreground/70 text-right" : "text-muted-foreground"}`}>
                     {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
