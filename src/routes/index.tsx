@@ -4,9 +4,9 @@ import { DevelopersMarquee } from "@/components/site/DevelopersMarquee";
 import { StatsBar } from "@/components/site/StatsBar";
 import { FeaturedProjects } from "@/components/site/FeaturedProjects";
 import { FloorPlans } from "@/components/site/FloorPlans";
+import { PropertyTours } from "@/components/site/PropertyTours";
 import { Testimonials } from "@/components/site/Testimonials";
 import { ContactSection } from "@/components/site/ContactSection";
-
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -63,6 +63,7 @@ function Home() {
       <StatsBar />
       <FeaturedProjects />
       <FloorPlans />
+      <PropertyTours />
       <Testimonials />
       <ContactSection />
     </>
