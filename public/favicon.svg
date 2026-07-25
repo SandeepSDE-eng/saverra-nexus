@@ -1,15 +1,45 @@
-<svg 
-  viewBox="0 0 48 64" 
-  fill="none" 
+<svg
+  viewBox="0 0 100 150"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <path 
-    d="M 30 6 L 6 6 L 6 32 L 42 32 L 42 58 L 18 58" 
-    stroke="#D4AF37" 
-    stroke-width="6" 
-    stroke-linejoin="miter" 
-    stroke-linecap="square"
+  <!-- Top half of S -->
+  <path
+    d="M 90,10 L 10,10 L 10,70 L 90,70"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+    stroke-linejoin="miter"
   />
-  <line x1="18" y1="6" x2="18" y2="58" stroke="#D4AF37" stroke-width="6" stroke-linecap="square" />
-  <line x1="30" y1="6" x2="30" y2="58" stroke="#D4AF37" stroke-width="6" stroke-linecap="square" />
+  <path
+    d="M 35,20 L 35,60"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+  />
+  <path
+    d="M 65,20 L 65,60"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+  />
+  <!-- Bottom half of S -->
+  <path
+    d="M 10,70 L 90,70 L 90,140 L 10,140"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+    stroke-linejoin="miter"
+  />
+  <path
+    d="M 35,80 L 35,130"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+  />
+  <path
+    d="M 65,80 L 65,130"
+    fill="none"
+    stroke="#023b6d"
+    stroke-width="10"
+  />
 </svg>
