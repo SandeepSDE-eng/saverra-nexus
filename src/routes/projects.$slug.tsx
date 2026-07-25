@@ -4,6 +4,7 @@ import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee } from "lucide-r
 import { supabase } from "@/integrations/supabase/client";
 import { ContactSection } from "@/components/site/ContactSection";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/projects/$slug")({
   component: ProjectDetail,
@@ -123,7 +124,22 @@ function ProjectDetail() {
             <h2 className="mt-2 font-display text-3xl font-bold text-primary">Life at {p.name}</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
               {p.gallery.map((g) => (
-                <img key={g} src={g} alt="" className="aspect-[4/3] w-full rounded-lg object-cover" loading="lazy" />
+                <Dialog key={g}>
+                  <DialogTrigger asChild>
+                    <div className="overflow-hidden rounded-lg cursor-pointer group relative">
+                      <img 
+                        src={g} 
+                        alt={`Gallery image of ${p.name}`} 
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-5xl border-none bg-transparent p-0 shadow-none">
+                    <img src={g} alt="" className="mx-auto h-auto w-full max-h-[85vh] object-contain" />
+                  </DialogContent>
+                </Dialog>
               ))}
             </div>
           </section>
