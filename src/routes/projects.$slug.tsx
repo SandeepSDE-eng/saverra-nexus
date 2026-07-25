@@ -2,9 +2,6 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SiteFooter } from "@/components/site/SiteFooter";
-import { FloatingActions } from "@/components/site/FloatingActions";
 import { ContactSection } from "@/components/site/ContactSection";
 import { Button } from "@/components/ui/button";
 
@@ -46,7 +43,6 @@ function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
       <main>
         {/* Hero */}
         <section className="relative">
@@ -135,8 +131,6 @@ function ProjectDetail() {
 
         <ContactSection />
       </main>
-      <SiteFooter />
-      <FloatingActions />
     </div>
   );
 }
