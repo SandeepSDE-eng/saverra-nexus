@@ -9,11 +9,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-4 group cursor-default">
             <div className="transition-transform duration-500 group-hover:scale-105">
-              <Logo hideText={true} variant="light" className="h-10 w-[1.875rem]" />
-            </div>
-            <div className="leading-[1.15] flex flex-col justify-center">
-              <div className="font-display text-2xl font-semibold tracking-[0.2em] text-white">SAVERRA</div>
-              <div className="text-[0.6rem] font-semibold tracking-[0.25em] text-white/60 uppercase">A Real Estate Firm</div>
+              <Logo variant="light" className="h-14 md:h-16" />
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">

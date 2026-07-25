@@ -55,11 +55,7 @@ function AuthPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--navy-deep)]/90 to-[color:var(--navy)]/70" />
         <div className="relative flex h-full flex-col justify-between p-12 text-white">
           <Link to="/" className="flex items-center gap-3">
-            <Logo hideText={true} variant="light" className="h-10 w-[1.875rem]" />
-            <div className="leading-tight">
-              <div className="font-display text-xl font-bold tracking-wide">SAVERRA</div>
-              <div className="text-[9px] tracking-[0.28em] text-white/60">A REAL ESTATE FIRM</div>
-            </div>
+            <Logo variant="light" className="h-12" />
           </Link>
           <div>
             <p className="eyebrow text-gold">Admin Portal</p>
@@ -71,9 +67,8 @@ function AuthPage() {
 
       <div className="flex flex-col items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
-          <Link to="/" className="mb-8 flex items-center gap-3 md:hidden">
-            <Logo hideText={true} className="h-8 w-6" />
-            <div className="font-display text-lg font-bold text-primary">SAVERRA</div>
+          <Link to="/" className="mb-8 flex items-center justify-center md:hidden">
+            <Logo className="h-10" />
           </Link>
           <h2 className="font-display text-3xl font-bold text-primary">Welcome back</h2>
           <p className="mt-1 text-sm text-muted-foreground">Sign in to your SAVERRA admin account.</p>
