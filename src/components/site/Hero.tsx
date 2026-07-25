@@ -63,6 +63,8 @@ export function Hero() {
               }`}
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
+            {/* Elegant light gradient overlay to ensure text is readable without making it too dark */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#023b6d]/60 via-black/20 to-transparent mix-blend-multiply"></div>
           </div>
         ))}
       </div>
