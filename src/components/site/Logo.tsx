@@ -22,7 +22,7 @@ export function Logo({
       className={cn("bg-no-repeat", className)}
       style={{
         backgroundImage: "url('/logo.png')",
-        backgroundSize: "auto 145%",
+        backgroundSize: "auto 125%",
         backgroundPosition: "center center",
         filter: isLight 
           ? "grayscale(100%) invert(100%) brightness(1000%) contrast(1000%)" 

@@ -144,7 +144,7 @@ function Preloader() {
       <div className="relative flex flex-col items-center justify-center">
         {/* Logo Mark */}
         <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-          <Logo className="w-48 h-32 md:w-64 md:h-48" />
+          <Logo className="h-48 md:h-64 aspect-[2/3]" />
         </div>
         
         {/* Loading Bar */}

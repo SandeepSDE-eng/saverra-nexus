@@ -63,10 +63,8 @@ export function SiteHeader() {
         </div>
       </div>
       <div className="container-luxe flex h-24 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-4 group h-full">
-          <div className="text-[color:var(--navy-deep)] transition-transform duration-500 group-hover:scale-105 flex items-center">
-            <Logo className="w-20 h-16 md:w-28 md:h-20" />
-          </div>
+        <Link to="/" className="flex items-center gap-3">
+          <Logo className="h-20 md:h-24 aspect-[2/3]" />
         </Link>
 
         <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">

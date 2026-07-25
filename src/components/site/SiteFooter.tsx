@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-4 group cursor-default">
             <div className="transition-transform duration-500 group-hover:scale-105">
-              <Logo variant="light" className="w-32 h-20 md:w-40 md:h-24" />
+              <Logo variant="light" className="h-24 md:h-32 aspect-[2/3]" />
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
