@@ -47,7 +47,7 @@ export function ContactSection() {
               { icon: Phone, label: "+91 98765 43210", href: "tel:+919876543210" },
               { icon: MessageCircle, label: "WhatsApp us", href: "https://wa.me/919876543210" },
               { icon: Mail, label: "info@saverra.com", href: "mailto:info@saverra.com" },
-              { icon: MapPin, label: "4th Floor, Level 4, BKC, Bandra (E), Mumbai – 400051", href: "#" },
+              { icon: MapPin, label: "One45 Business Bay, 1205, Vallabh Baug Ln Ext, Railway Police Colony, Ghatkopar East, Mumbai, Maharashtra 400077", href: "#" },
             ].map((c) => (
               <a key={c.label} href={c.href} className="flex items-center gap-4 rounded-lg border border-border/60 bg-card p-4 transition-colors hover:border-gold/60">
                 <div className="grid size-11 shrink-0 place-items-center rounded-md bg-primary/8 text-primary">
