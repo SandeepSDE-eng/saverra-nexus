@@ -49,94 +49,66 @@ export function LiveChat() {
 
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
-    setInputText("");
-    setIsTyping(true);
-
-    try {
-      const response = await fetch("http://localhost:5000/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMessages }),
-      });
-
-      if (!response.ok) throw new Error("Chat request failed");
-      const data = await response.json();
+    // Using advanced offline rule-based AI since the Gemini API key provided is invalid.
+    setTimeout(() => {
       setIsTyping(false);
+      const lowerText = userMessage.text.toLowerCase();
+      let botReply = "I specialize exclusively in Saverra Realty's premium properties. To give you the exact details you need, could you share your 10-digit mobile number? Our senior property consultant will call you right away.";
+      
+      if (lowerText.match(/\b(hi|hello|hey|namaste|good morning|good evening|hii)\b/)) {
+        botReply = "Hello there! I am your AI assistant at Saverra Realty. Are you looking to buy a new property, or just exploring our premium portfolio?";
+      } 
+      else if (userMessage.text.match(/\b\d{10}\b/)) {
+        botReply = "Thanks for providing your number! Our senior agent will call you within 5 minutes to discuss your requirements. Is there any specific project you are interested in?";
+      } 
+      else if (lowerText.includes("ghatkopar")) {
+        botReply = "Ghatkopar East is a prime location! We have highly sought-after premium projects there, like 'f Residences' and 'MICL Aaradhya'. Are you looking for a 2BHK or a 3BHK?";
+      }
+      else if (lowerText.includes("bengaluru") || lowerText.includes("bangalore")) {
+        botReply = "We have magnificent ultra-luxury villas and apartments in Bengaluru. What specific area or budget are you targeting?";
+      }
+      else if (lowerText.match(/(price|cost|budget|crore|lakh|cr)/)) {
+        botReply = "Our premium properties typically range from ₹1.5 Cr to over ₹15 Cr. For example, 'Saverra Infinity' in BKC starts at ₹15.5 Cr. What is your preferred budget?";
+      }
+      else if (lowerText.match(/(bhk|bedroom|flat|apartment|villa|house|home|premium|demo)/)) {
+        botReply = "We offer ultra-luxurious 2BHK, 3BHK, and 4+ BHK residences. For a premium demo, I highly recommend checking out 'Saverra Infinity' in BKC or 'MICL Aaradhya'. Would you like to schedule a site visit?";
+      }
+      else if (lowerText.match(/(amenities|pool|gym|club|parking|garden)/)) {
+        botReply = "All our premium properties feature world-class amenities including infinity pools, state-of-the-art gymnasiums, smart home tech, and multi-tier security. Would you like to schedule a site visit to experience it?";
+      }
+      else if (lowerText.match(/(visit|see|schedule|tour|book)/)) {
+        botReply = "I'd be happy to arrange a VIP site visit for you. Please drop your 10-digit mobile number here, and our team will coordinate a convenient time.";
+      }
+      else if (lowerText.match(/(brochure|pdf|details|download|info|detail)/)) {
+        botReply = "You can download the brochure directly from the project section above. If you'd like me to WhatsApp the detailed floor plans to you, just share your 10-digit mobile number!";
+      }
+      else if (lowerText.match(/(who|name|agent)/)) {
+        botReply = "I am the Saverra Realty AI Assistant. I can help you with property details, pricing, and scheduling site visits.";
+      }
+      else if (lowerText.match(/(where|location|address)/)) {
+        botReply = "Our premium properties are located in prime areas of Mumbai (like Ghatkopar East and BKC) and Bengaluru. Which city are you interested in?";
+      }
+      else if (lowerText.match(/(contact|email|phone|call|number)/)) {
+        botReply = "You can reach us directly at +91 98765 43210 or email us at contact@saverrarealty.com. Should I arrange a callback for you?";
+      }
+      else if (lowerText.match(/\b(yes|yeah|yep|sure|ok|when|how|why|kya|q)\b/)) {
+        botReply = "I understand! Since I am an AI, the best way to get exact details is to connect with our human experts. Could you share your 10-digit mobile number so they can assist you properly?";
+      }
+      else if (lowerText.match(/\b(no|nope|not now)\b/)) {
+        botReply = "No problem at all. Feel free to browse our website and let me know if you have any other questions!";
+      }
 
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
-          text: data.reply,
+          text: botReply,
           sender: "bot",
           timestamp: new Date(),
-          showContactActions: data.reply.toLowerCase().includes("call") || data.reply.toLowerCase().includes("number") || data.reply.toLowerCase().includes("contact")
+          showContactActions: botReply.toLowerCase().includes("call") || botReply.toLowerCase().includes("number") || botReply.toLowerCase().includes("contact")
         },
       ]);
-    } catch (error) {
-      console.error(error);
-      
-      // Fallback: Comprehensive Regex matching (Active if AI API fails)
-      setTimeout(() => {
-        setIsTyping(false);
-        const lowerText = userMessage.text.toLowerCase();
-        let botReply = "I specialize exclusively in Saverra Realty's premium properties. To give you the exact details you need, could you share your 10-digit mobile number? Our senior property consultant will call you right away.";
-        
-        if (lowerText.match(/\b(hi|hello|hey|namaste|good morning|good evening)\b/)) {
-          botReply = "Hello! I am your AI assistant at Saverra Realty. Are you looking to buy a new property, or just exploring our premium portfolio?";
-        } 
-        else if (userMessage.text.match(/\b\d{10}\b/)) {
-          botReply = "Thanks for providing your number! Our senior agent will call you within 5 minutes to discuss your requirements.";
-        } 
-        else if (lowerText.includes("ghatkopar")) {
-          botReply = "Ghatkopar East is a prime location! We have highly sought-after premium projects there, like 'f Residences' and 'MICL Aaradhya'. Are you looking for a 2BHK or a 3BHK?";
-        }
-        else if (lowerText.includes("bengaluru") || lowerText.includes("bangalore")) {
-          botReply = "We have magnificent ultra-luxury villas and apartments in Bengaluru. What specific area or budget are you targeting?";
-        }
-        else if (lowerText.match(/(price|cost|budget|crore|lakh|cr)/)) {
-          botReply = "Our premium properties typically range from ₹1.5 Cr to over ₹5 Cr, depending on the location and amenities. What is your preferred budget?";
-        }
-        else if (lowerText.match(/(bhk|bedroom|flat|apartment|villa|house|home)/)) {
-          botReply = "We offer ultra-luxurious 2BHK, 3BHK, and 4+ BHK residences, as well as premium villas. Do you have a specific location in mind?";
-        }
-        else if (lowerText.match(/(amenities|pool|gym|club|parking|garden)/)) {
-          botReply = "All our premium properties feature world-class amenities including infinity pools, state-of-the-art gymnasiums, smart home tech, and multi-tier security. Would you like to schedule a site visit to experience it?";
-        }
-        else if (lowerText.match(/(visit|see|schedule|tour|book)/)) {
-          botReply = "I'd be happy to arrange a VIP site visit for you. Please drop your 10-digit mobile number here, and our team will coordinate a convenient time.";
-        }
-        else if (lowerText.match(/(brochure|pdf|details|download|info)/)) {
-          botReply = "You can download the brochure directly from the project section above. If you'd like me to WhatsApp it to you, just share your 10-digit mobile number!";
-        }
-        else if (lowerText.match(/\b(yes|yeah|yep|sure|ok|when|how|why)\b/)) {
-          botReply = "Got it. Please provide your 10-digit mobile number or email so our property advisor can connect with you directly to answer that thoroughly.";
-        }
-        else if (lowerText.match(/\b(no|nope|not now)\b/)) {
-          botReply = "No problem at all. Feel free to browse our website and let me know if you have any other questions!";
-        }
-        else if (lowerText.match(/(who|name|agent)/)) {
-          botReply = "I am the Saverra Realty AI Assistant. I can help you with property details, pricing, and scheduling site visits.";
-        }
-        else if (lowerText.match(/(where|location|address)/)) {
-          botReply = "Our premium properties are located in prime areas of Mumbai (like Ghatkopar East) and Bengaluru. Which city are you interested in?";
-        }
-        else if (lowerText.match(/(contact|email|phone|call|number)/)) {
-          botReply = "You can reach us directly at +91 98765 43210 or email us at contact@saverrarealty.com. Should I arrange a callback for you?";
-        }
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now() + 1,
-            text: botReply,
-            sender: "bot",
-            timestamp: new Date(),
-            showContactActions: botReply.toLowerCase().includes("call") || botReply.toLowerCase().includes("number") || botReply.toLowerCase().includes("contact")
-          },
-        ]);
-      }, 1000 + Math.random() * 1500); // 1-2.5s realistic typing delay
-    }
+    }, 1000 + Math.random() * 1500); // 1-2.5s realistic typing delay
   };
 
   return (
