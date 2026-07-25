@@ -8,8 +8,8 @@ export function SiteFooter() {
       <div className="container-luxe grid grid-cols-1 gap-10 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-4 group cursor-default">
-            <div className="text-gold transition-transform duration-500 group-hover:scale-105">
-              <Logo className="h-10 w-[1.875rem]" />
+            <div className="bg-white p-2 rounded-md shadow-sm transition-transform duration-500 group-hover:scale-105">
+              <Logo hideText={true} className="h-10 w-[1.875rem]" />
             </div>
             <div className="leading-[1.15] flex flex-col justify-center">
               <div className="font-display text-2xl font-semibold tracking-[0.2em] text-white">SAVERRA</div>

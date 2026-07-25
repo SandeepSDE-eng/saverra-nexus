@@ -73,12 +73,16 @@ export function LeadPopup() {
       className="fixed inset-0 z-[70] grid place-items-center bg-[color:var(--navy-deep)]/70 p-4 backdrop-blur-sm animate-fade-in"
       role="dialog"
       aria-modal="true"
+      onClick={close}
     >
-      <div className="relative w-[calc(100%-2rem)] max-w-sm overflow-hidden rounded-2xl border border-gold/40 bg-card shadow-2xl mx-auto">
+      <div 
+        className="relative w-[calc(100%-2rem)] max-w-sm overflow-hidden rounded-2xl border border-gold/40 bg-card shadow-2xl mx-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={close}
           aria-label="Close"
-          className="absolute right-3 top-3 z-10 grid size-8 place-items-center rounded-full bg-foreground/10 text-foreground/70 transition hover:bg-foreground/20"
+          className="absolute right-3 top-3 z-10 grid size-8 place-items-center rounded-full bg-white/20 text-white transition hover:bg-white/30"
         >
           <X className="size-4" />
         </button>

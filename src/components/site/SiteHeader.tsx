@@ -52,7 +52,7 @@ export function SiteHeader() {
       <div className="container-luxe flex h-24 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-4 group">
           <div className="text-[color:var(--navy-deep)] transition-transform duration-500 group-hover:scale-105">
-            <Logo className="h-12 w-9" />
+            <Logo hideText={true} className="h-12 w-9" />
           </div>
           <div className="leading-[1.15] flex flex-col justify-center">
             <div className="font-display text-2xl font-semibold tracking-[0.2em] text-[color:var(--navy-deep)]">SAVERRA</div>

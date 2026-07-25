@@ -116,8 +116,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function Preloader() {
   const routerState = useRouterState();
-  const [show, setShow] = useState(false);
-  const [render, setRender] = useState(false);
+  const [show, setShow] = useState(true);
+  const [render, setRender] = useState(true);
 
   useEffect(() => {
     // Only show on home page and only once per session
@@ -126,37 +126,51 @@ function Preloader() {
       setRender(true);
       sessionStorage.setItem("saverra_preloader_shown", "true");
 
-      // Hide animation after 2.0s, unmount after 2.5s
+      // Hide animation after 2.0s, unmount after 2.8s
       const timer1 = setTimeout(() => setShow(false), 2000);
-      const timer2 = setTimeout(() => setRender(false), 2500);
+      const timer2 = setTimeout(() => setRender(false), 2800);
       return () => { clearTimeout(timer1); clearTimeout(timer2); };
+    } else {
+      setShow(false);
+      setRender(false);
     }
   }, [routerState.location.pathname]);
 
   if (!render) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-[color:var(--navy-deep)] transition-all duration-500 ${show ? 'opacity-100' : 'opacity-0 scale-110 pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#f8fafc] transition-transform duration-[800ms] ease-in-out ${show ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="relative flex flex-col items-center justify-center">
-        {/* Bubble Animation */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-48 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite] rounded-full bg-gold/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-36 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] rounded-full bg-gold/10" />
-        
         {/* Logo Mark */}
-        <div className="relative z-10 flex size-28 items-center justify-center rounded-full border border-gold/30 bg-gradient-to-br from-white/10 to-transparent shadow-[0_0_30px_rgba(212,175,55,0.2)] backdrop-blur-md">
-           <span className="font-display text-5xl font-bold text-gold drop-shadow-lg">S</span>
+        <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+          <div className="mb-4">
+            <svg
+              viewBox="0 0 100 150"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-20 h-28 md:w-24 md:h-36"
+            >
+              {/* Top half of S */}
+              <path d="M 90,10 L 10,10 L 10,70 L 90,70" fill="none" stroke="#023b6d" strokeWidth="10" strokeLinejoin="miter" />
+              <path d="M 35,20 L 35,60" fill="none" stroke="#023b6d" strokeWidth="10" />
+              <path d="M 65,20 L 65,60" fill="none" stroke="#023b6d" strokeWidth="10" />
+              {/* Bottom half of S */}
+              <path d="M 10,70 L 90,70 L 90,140 L 10,140" fill="none" stroke="#023b6d" strokeWidth="10" strokeLinejoin="miter" />
+              <path d="M 35,80 L 35,130" fill="none" stroke="#023b6d" strokeWidth="10" />
+              <path d="M 65,80 L 65,130" fill="none" stroke="#023b6d" strokeWidth="10" />
+            </svg>
+          </div>
+          
+          <h1 className="font-display text-4xl md:text-5xl font-semibold text-[#023b6d] tracking-[0.2em] mb-2">
+            SAVERRA
+          </h1>
+          <p className="text-[#023b6d]/80 tracking-widest uppercase text-sm md:text-base font-medium">
+            A Real Estate Firm
+          </p>
         </div>
         
-        {/* Brand Name */}
-        <h1 className="mt-14 font-display text-3xl font-bold text-white tracking-[0.2em] animate-fade-up">
-          SAVERRA <span className="text-gold font-light">REALTY</span>
-        </h1>
-        
-        {/* Loading Dots */}
-        <div className="mt-8 flex gap-2">
-           <div className="size-2 animate-bounce rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]" style={{ animationDelay: "0ms" }} />
-           <div className="size-2 animate-bounce rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]" style={{ animationDelay: "150ms" }} />
-           <div className="size-2 animate-bounce rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]" style={{ animationDelay: "300ms" }} />
+        {/* Loading Bar */}
+        <div className="mt-12 w-48 h-[2px] bg-slate-200 rounded-full overflow-hidden">
+           <div className={`h-full bg-gold transition-all duration-[2000ms] ease-out ${show ? 'w-full' : 'w-0'}`} />
         </div>
       </div>
     </div>
