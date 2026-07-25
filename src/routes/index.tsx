@@ -5,6 +5,7 @@ import { StatsBar } from "@/components/site/StatsBar";
 import { FeaturedProjects } from "@/components/site/FeaturedProjects";
 import { FloorPlans } from "@/components/site/FloorPlans";
 import { PropertyTours } from "@/components/site/PropertyTours";
+import { RentalUpdates } from "@/components/site/RentalUpdates";
 import { Testimonials } from "@/components/site/Testimonials";
 import { ContactSection } from "@/components/site/ContactSection";
 
@@ -63,6 +64,7 @@ function Home() {
       <StatsBar />
       <FeaturedProjects />
       <FloorPlans />
+      <RentalUpdates />
       <PropertyTours />
       <Testimonials />
       <ContactSection />

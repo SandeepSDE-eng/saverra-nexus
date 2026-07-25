@@ -78,3 +78,12 @@ INSERT IGNORE INTO floor_plans (type_key, label, area, features, image_url) VALU
 ('4bhk', '4 BHK', '2200 Sq.Ft', '["Duplex Layout", "4 Bedrooms", "Chef\'s Kitchen", "4 Bathrooms", "Sky Deck"]', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'),
 ('pent', 'Penthouse', '4500 Sq.Ft', '["Duplex", "5 Bedrooms", "Private Terrace Pool", "Wine Cellar", "Home Theatre"]', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80');
 
+-- 6. Rental Updates Table (For YouTube Shorts style rental property updates)
+CREATE TABLE IF NOT EXISTS rental_updates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    youtube_id VARCHAR(50) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
