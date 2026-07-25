@@ -19,17 +19,15 @@ export function Logo({
 
   return (
     <div
-      className={cn(
-        "bg-no-repeat",
-        isLight 
-          ? "grayscale invert brightness-[5] contrast-[5] mix-blend-screen" 
-          : "mix-blend-multiply",
-        className
-      )}
+      className={cn("bg-no-repeat", className)}
       style={{
         backgroundImage: "url('/logo.png')",
-        backgroundSize: "contain",
-        backgroundPosition: "center",
+        backgroundSize: "auto 145%",
+        backgroundPosition: "center center",
+        filter: isLight 
+          ? "grayscale(100%) invert(100%) brightness(1000%) contrast(1000%)" 
+          : "none",
+        mixBlendMode: isLight ? "screen" : "multiply",
       }}
     />
   );

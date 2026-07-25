@@ -14,6 +14,7 @@ import { Toaster } from "@/components/ui/sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LiveChat } from "@/components/site/LiveChat";
+import { Logo } from "@/components/site/Logo";
 
 function NotFoundComponent() {
   return (
@@ -143,29 +144,7 @@ function Preloader() {
       <div className="relative flex flex-col items-center justify-center">
         {/* Logo Mark */}
         <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-          <div className="mb-4">
-            <svg
-              viewBox="0 0 100 150"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-20 h-28 md:w-24 md:h-36"
-            >
-              {/* Top half of S */}
-              <path d="M 90,10 L 10,10 L 10,70 L 90,70" fill="none" stroke="#023b6d" strokeWidth="10" strokeLinejoin="miter" />
-              <path d="M 35,20 L 35,60" fill="none" stroke="#023b6d" strokeWidth="10" />
-              <path d="M 65,20 L 65,60" fill="none" stroke="#023b6d" strokeWidth="10" />
-              {/* Bottom half of S */}
-              <path d="M 10,70 L 90,70 L 90,140 L 10,140" fill="none" stroke="#023b6d" strokeWidth="10" strokeLinejoin="miter" />
-              <path d="M 35,80 L 35,130" fill="none" stroke="#023b6d" strokeWidth="10" />
-              <path d="M 65,80 L 65,130" fill="none" stroke="#023b6d" strokeWidth="10" />
-            </svg>
-          </div>
-          
-          <h1 className="font-display text-4xl md:text-5xl font-semibold text-[#023b6d] tracking-[0.2em] mb-2">
-            SAVERRA
-          </h1>
-          <p className="text-[#023b6d]/80 tracking-widest uppercase text-sm md:text-base font-medium">
-            A Real Estate Firm
-          </p>
+          <Logo className="w-48 h-32 md:w-64 md:h-48" />
         </div>
         
         {/* Loading Bar */}
