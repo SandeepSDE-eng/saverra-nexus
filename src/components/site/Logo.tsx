@@ -15,20 +15,22 @@ export function Logo({
   className,
   variant = "dark",
 }: LogoProps) {
-  // Since the user provided an exact image with text, we will just use the image.
-  // We can use CSS filters to invert the color if variant is "light" (for dark backgrounds).
   const isLight = variant === "light";
 
   return (
-    <div className={cn("flex flex-col items-center justify-center", className)}>
-      <img
-        src="/logo.png"
-        alt="SAVERRA Logo"
-        className={cn(
-          "w-auto h-16 md:h-20 object-contain",
-          isLight && "invert brightness-0"
-        )}
-      />
-    </div>
+    <div
+      className={cn(
+        "bg-no-repeat",
+        isLight 
+          ? "grayscale invert brightness-[5] contrast-[5] mix-blend-screen" 
+          : "mix-blend-multiply",
+        className
+      )}
+      style={{
+        backgroundImage: "url('/logo.png')",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+      }}
+    />
   );
 }
