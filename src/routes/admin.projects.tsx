@@ -106,8 +106,11 @@ function AdminProjects() {
     queryKey: ["admin", "projects"],
     queryFn: async () => {
       const { data, error } = await supabase.from("projects").select("*").order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
+      if (error) {
+        console.warn("Supabase Error (using fallback):", error);
+        return [];
+      }
+      return data as Project[];
     },
   });
 

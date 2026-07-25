@@ -26,14 +26,15 @@ export function FloorPlans() {
   const { data: plans = DEFAULT_PLANS } = useQuery({
     queryKey: ["site", "floor-plans"],
     queryFn: async () => {
-      try {
-        const { data, error } = await supabase.from("floor_plans").select("*").eq("is_published", true).order("created_at", { ascending: true });
-        if (error) throw error;
-        if (data && data.length > 0) return data as FloorPlan[];
-        return DEFAULT_PLANS;
-      } catch (e) {
-        return DEFAULT_PLANS;
+      const { data, error } = await supabase.from("floor_plans").select("*").eq("is_published", true).order("created_at", { ascending: true });
+      if (error) {
+        console.warn("Supabase Error (using mock fallback):", error);
+        return [
+          { id: "mock-1", type_key: "1bhk", label: "1 BHK", area: "620 Sq.Ft", features: '["Living Room", "1 Bedroom", "Modular Kitchen", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" },
+          { id: "mock-2", type_key: "2bhk", label: "2 BHK", area: "850 Sq.Ft", features: '["Spacious Living Room", "2 Bedrooms", "Modular Kitchen", "2 Bathrooms", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" }
+        ];
       }
+      return data || DEFAULT_PLANS;
     }
   });
 

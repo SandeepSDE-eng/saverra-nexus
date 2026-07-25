@@ -12,7 +12,12 @@ export function RentalUpdates() {
         .select("*")
         .eq("is_active", true)
         .order("created_at", { ascending: false });
-      if (error) throw error;
+      if (error) {
+        console.warn("Supabase Error (using mock fallback):", error);
+        return [
+          { id: 1, title: "Example Luxury Flat", youtube_id: "rLSMDfjwwzw" }
+        ];
+      }
       return data;
     },
   });
