@@ -13,7 +13,7 @@ export function InteractiveMap() {
       <div className="container-luxe">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Neighborhood</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             Prime Locations, <span className="gold-text italic">Mapped</span>
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">

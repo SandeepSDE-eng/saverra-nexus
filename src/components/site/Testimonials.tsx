@@ -44,7 +44,7 @@ export function Testimonials() {
       <div className="container-luxe">
         <div className="mb-10 text-center">
           <p className="eyebrow">Customer Stories</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             What Our Customers Say
           </h2>
         </div>

@@ -17,7 +17,7 @@ export function FaqSection() {
       <div className="container-luxe grid gap-10 lg:grid-cols-2">
         <div>
           <p className="eyebrow">FAQ</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">

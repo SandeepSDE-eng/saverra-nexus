@@ -66,7 +66,7 @@ export function BookingModal({
             {isVisit ? <CalendarCheck className="size-3" /> : <Download className="size-3" />}
             {isVisit ? "Site Visit" : "Brochure"}
           </div>
-          <h3 className="mt-3 font-display text-2xl font-bold leading-tight">{title}</h3>
+          <h3 className="mt-3 font-display text-2xl font-medium tracking-wide leading-tight">{title}</h3>
           <p className="mt-1 text-sm text-white/80">{subtitle}</p>
           {projectName && <p className="mt-2 text-xs uppercase tracking-wider text-gold">{projectName}</p>}
         </div>

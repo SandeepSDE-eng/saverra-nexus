@@ -25,7 +25,7 @@ export function FeaturedProjects() {
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Featured Properties</p>
-            <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+            <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
               Curated Masterpieces
             </h2>
             <p className="mt-3 max-w-xl text-sm text-muted-foreground">

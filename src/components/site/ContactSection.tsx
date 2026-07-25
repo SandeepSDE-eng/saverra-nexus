@@ -36,7 +36,7 @@ export function ContactSection() {
       <div className="container-luxe grid gap-10 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <p className="eyebrow">Get In Touch</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             Let's help you find your dream home
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
@@ -60,7 +60,7 @@ export function ContactSection() {
         </div>
 
         <form onSubmit={onSubmit} className="rounded-2xl border border-border/60 bg-card p-6 shadow-card lg:col-span-3 sm:p-8">
-          <h3 className="font-display text-2xl font-bold text-primary">Send us a message</h3>
+          <h3 className="font-display text-2xl font-medium tracking-wide text-primary">Send us a message</h3>
           <p className="mt-1 text-xs text-muted-foreground">All inquiries are handled within 24 hours by a senior advisor.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <div><Label>Full name*</Label><Input required value={form.name} onChange={set("name")} className="mt-1 h-11" /></div>

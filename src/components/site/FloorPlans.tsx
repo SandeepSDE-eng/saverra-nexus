@@ -57,7 +57,7 @@ export function FloorPlans() {
       <div className="container-luxe">
         <div className="mb-10 text-center">
           <p className="eyebrow">Floor Plans</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             Smartly Designed For Modern Living
           </h2>
         </div>
@@ -82,7 +82,7 @@ export function FloorPlans() {
                 </div>
                 <div className="flex flex-col justify-center">
                   <div className="eyebrow">{p.label} Premium</div>
-                  <h3 className="mt-2 font-display text-3xl font-bold text-primary">{p.area} Carpet Area</h3>
+                  <h3 className="mt-2 font-display text-3xl font-light tracking-wide text-primary">{p.area} Carpet Area</h3>
                   <ul className="mt-6 space-y-3">
                     {getFeatures(p).map((f: string) => (
                       <li key={f} className="flex items-center gap-3">

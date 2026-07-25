@@ -19,7 +19,7 @@ export function Amenities() {
       <div className="container-luxe">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">World-Class Amenities</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             A Lifestyle Beyond Compare
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">

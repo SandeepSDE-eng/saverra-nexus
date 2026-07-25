@@ -25,7 +25,7 @@ export function EmiCalculator() {
       <div className="container-luxe">
         <div className="mb-10 text-center">
           <p className="eyebrow">Financing Made Simple</p>
-          <h2 className="mt-2 font-display text-4xl font-bold text-primary sm:text-5xl">
+          <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
             EMI Calculator
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">Plan your dream home purchase with ease.</p>
@@ -54,7 +54,7 @@ export function EmiCalculator() {
           <div className="flex flex-col justify-center gap-4 bg-[color:var(--navy-deep)] p-8 text-white md:col-span-2">
             <div>
               <p className="text-xs uppercase tracking-wider text-white/60">Your EMI</p>
-              <p className="font-display text-4xl font-bold text-gold">{fmt(emi)}<span className="text-base">/mo</span></p>
+              <p className="font-display text-4xl font-light tracking-wide text-gold">{fmt(emi)}<span className="text-base">/mo</span></p>
             </div>
             <div className="space-y-2 border-t border-white/15 pt-4 text-sm">
               <div className="flex justify-between"><span className="text-white/70">Principal</span><span className="font-semibold">{fmt(principal)}</span></div>
