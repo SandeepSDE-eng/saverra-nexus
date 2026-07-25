@@ -1,12 +1,12 @@
-import { Users, Building2, BadgeCheck, ShieldCheck, Home, Handshake } from "lucide-react";
+import { MapPin, Gem, Compass, Star, Key, ShieldCheck } from "lucide-react";
 
 const items = [
-  { icon: Users, k: "5000+", v: "Happy Families" },
-  { icon: Building2, k: "50+", v: "Projects Delivered" },
-  { icon: BadgeCheck, k: "RERA", v: "Approved" },
-  { icon: ShieldCheck, k: "100%", v: "Legal Verified" },
-  { icon: Home, k: "Home Loan", v: "Support" },
-  { icon: Handshake, k: "Trusted", v: "Developers" },
+  { icon: MapPin, k: "Prime", v: "Locations" },
+  { icon: Gem, k: "Ultra Luxury", v: "Residences" },
+  { icon: Compass, k: "Vastu", v: "Compliant" },
+  { icon: Star, k: "World-Class", v: "Amenities" },
+  { icon: Key, k: "Seamless", v: "Experience" },
+  { icon: ShieldCheck, k: "100%", v: "Transparency" },
 ];
 
 export function StatsBar() {

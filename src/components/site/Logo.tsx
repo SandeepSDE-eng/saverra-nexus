@@ -8,6 +8,7 @@ interface LogoProps {
   taglineClassName?: string;
   showTagline?: boolean;
   hideText?: boolean;
+  variant?: "dark" | "light";
 }
 
 export function Logo({
@@ -17,8 +18,9 @@ export function Logo({
   taglineClassName,
   showTagline = true,
   hideText = false,
+  variant = "dark",
 }: LogoProps) {
-  const brandColor = "#023b6d"; // Exact deep blue from the provided logo
+  const brandColor = variant === "light" ? "#ffffff" : "#023b6d";
 
   return (
     <div className={cn("flex flex-col items-center justify-center", className)}>

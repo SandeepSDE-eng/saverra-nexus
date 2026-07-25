@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/auth")({ component: AuthPage });
 
@@ -54,7 +55,7 @@ function AuthPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--navy-deep)]/90 to-[color:var(--navy)]/70" />
         <div className="relative flex h-full flex-col justify-between p-12 text-white">
           <Link to="/" className="flex items-center gap-3">
-            <div className="grid size-11 place-items-center rounded-md bg-white/10 text-gold"><span className="font-display text-lg font-bold">S</span></div>
+            <Logo hideText={true} variant="light" className="h-10 w-[1.875rem]" />
             <div className="leading-tight">
               <div className="font-display text-xl font-bold tracking-wide">SAVERRA</div>
               <div className="text-[9px] tracking-[0.28em] text-white/60">A REAL ESTATE FIRM</div>
@@ -71,7 +72,7 @@ function AuthPage() {
       <div className="flex flex-col items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
           <Link to="/" className="mb-8 flex items-center gap-3 md:hidden">
-            <div className="grid size-10 place-items-center rounded-md bg-primary text-gold"><span className="font-display font-bold">S</span></div>
+            <Logo hideText={true} className="h-8 w-6" />
             <div className="font-display text-lg font-bold text-primary">SAVERRA</div>
           </Link>
           <h2 className="font-display text-3xl font-bold text-primary">Welcome back</h2>

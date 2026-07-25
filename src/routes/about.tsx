@@ -8,9 +8,7 @@ export const Route = createFileRoute("/about")({ component: About });
 
 function About() {
   return (
-    <div className="min-h-screen bg-background">
-      <SiteHeader />
-      
+    <div className="min-h-screen bg-background pb-20">
       {/* Hero Section */}
       <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-[color:var(--navy-deep)] px-4 py-20 text-white">
         <div className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
@@ -34,13 +32,13 @@ function About() {
       <section className="relative -mt-16 z-20 mx-auto max-w-6xl px-4">
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-border shadow-2xl md:grid-cols-4">
           {[
-            { label: "Happy Families", value: "5000+" },
-            { label: "Years of Trust", value: "20+" },
-            { label: "Projects Delivered", value: "45+" },
-            { label: "Cities Presence", value: "4" },
+            { label: "Bespoke", value: "Luxury" },
+            { label: "Absolute", value: "Trust" },
+            { label: "Iconic", value: "Design" },
+            { label: "Premium", value: "Locales" },
           ].map((stat, i) => (
             <div key={i} className="bg-card p-8 text-center transition-colors hover:bg-muted/50">
-              <div className="font-display text-4xl font-bold text-gold md:text-5xl">{stat.value}</div>
+              <div className="font-display text-3xl font-bold text-gold md:text-4xl">{stat.value}</div>
               <div className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{stat.label}</div>
             </div>
           ))}
@@ -193,8 +191,6 @@ function About() {
           </Button>
         </div>
       </section>
-
-      <SiteFooter />
     </div>
   );
 }

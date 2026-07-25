@@ -12,7 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AmenitiesRouteImport } from './routes/amenities'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FinancingRouteImport } from './routes/financing'
+import { Route as NeighborhoodRouteImport } from './routes/neighborhood'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminFloorPlansRouteImport } from './routes/admin.floor-plans'
 import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
@@ -36,9 +40,29 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AmenitiesRoute = AmenitiesRouteImport.update({
+  id: '/amenities',
+  path: '/amenities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancingRoute = FinancingRouteImport.update({
+  id: '/financing',
+  path: '/financing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NeighborhoodRoute = NeighborhoodRouteImport.update({
+  id: '/neighborhood',
+  path: '/neighborhood',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -81,7 +105,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/neighborhood': typeof NeighborhoodRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -93,7 +121,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/neighborhood': typeof NeighborhoodRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -107,7 +139,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/neighborhood': typeof NeighborhoodRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -122,7 +158,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/amenities'
     | '/auth'
+    | '/faq'
+    | '/financing'
+    | '/neighborhood'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -134,7 +174,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/amenities'
     | '/auth'
+    | '/faq'
+    | '/financing'
+    | '/neighborhood'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -147,7 +191,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/amenities'
     | '/auth'
+    | '/faq'
+    | '/financing'
+    | '/neighborhood'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -161,7 +209,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AmenitiesRoute: typeof AmenitiesRoute
   AuthRoute: typeof AuthRoute
+  FaqRoute: typeof FaqRoute
+  FinancingRoute: typeof FinancingRoute
+  NeighborhoodRoute: typeof NeighborhoodRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
 }
 
@@ -188,11 +240,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/amenities': {
+      id: '/amenities'
+      path: '/amenities'
+      fullPath: '/amenities'
+      preLoaderRoute: typeof AmenitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financing': {
+      id: '/financing'
+      path: '/financing'
+      fullPath: '/financing'
+      preLoaderRoute: typeof FinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/neighborhood': {
+      id: '/neighborhood'
+      path: '/neighborhood'
+      fullPath: '/neighborhood'
+      preLoaderRoute: typeof NeighborhoodRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -271,7 +351,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
+  AmenitiesRoute: AmenitiesRoute,
   AuthRoute: AuthRoute,
+  FaqRoute: FaqRoute,
+  FinancingRoute: FinancingRoute,
+  NeighborhoodRoute: NeighborhoodRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
 }
 export const routeTree = rootRouteImport

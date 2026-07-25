@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 type FloorPlan = {
-  id: number;
+  id: string;
   type_key: string;
   label: string;
   area: string;
-  features: string | string[];
+  features: string | any[];
   image_url: string;
 };
 
@@ -26,10 +27,9 @@ export function FloorPlans() {
     queryKey: ["site", "floor-plans"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/floor-plans");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json() as FloorPlan[];
-        if (data && data.length > 0) return data;
+        const { data, error } = await supabase.from("floor_plans").select("*").eq("is_published", true).order("created_at", { ascending: true });
+        if (error) throw error;
+        if (data && data.length > 0) return data as FloorPlan[];
         return DEFAULT_PLANS;
       } catch (e) {
         return DEFAULT_PLANS;

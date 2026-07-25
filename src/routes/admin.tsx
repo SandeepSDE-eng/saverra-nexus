@@ -6,6 +6,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
+import { Logo } from "@/components/site/Logo";
+
 export const Route = createFileRoute("/admin")({ component: AdminLayout });
 
 function AdminLayout() {
@@ -36,6 +38,7 @@ function AdminLayout() {
   }
 
   const nav = [
+    { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/projects", label: "Projects", icon: Building2 },
     { href: "/admin/floor-plans", label: "Floor Plans", icon: Building2 },
     { href: "/admin/inquiries", label: "Inquiries", icon: MessageSquare },
@@ -53,7 +56,7 @@ function AdminLayout() {
     <div className="grid min-h-screen bg-secondary/40 md:grid-cols-[260px_1fr]">
       <aside className="border-r border-border bg-[color:var(--navy-deep)] p-6 text-white md:sticky md:top-0 md:h-screen">
         <Link to="/" className="flex items-center gap-3">
-          <div className="grid size-10 place-items-center rounded-md bg-white/10 text-gold"><span className="font-display font-bold">S</span></div>
+          <Logo hideText={true} variant="light" className="h-8 w-6" />
           <div className="leading-tight">
             <div className="font-display text-lg font-bold">SAVERRA</div>
             <div className="text-[9px] tracking-[0.28em] text-white/60">ADMIN PANEL</div>

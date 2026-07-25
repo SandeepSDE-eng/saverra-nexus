@@ -8,8 +8,8 @@ export function SiteFooter() {
       <div className="container-luxe grid grid-cols-1 gap-10 py-14 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-4 group cursor-default">
-            <div className="bg-white p-2 rounded-md shadow-sm transition-transform duration-500 group-hover:scale-105">
-              <Logo hideText={true} className="h-10 w-[1.875rem]" />
+            <div className="transition-transform duration-500 group-hover:scale-105">
+              <Logo hideText={true} variant="light" className="h-10 w-[1.875rem]" />
             </div>
             <div className="leading-[1.15] flex flex-col justify-center">
               <div className="font-display text-2xl font-semibold tracking-[0.2em] text-white">SAVERRA</div>
@@ -32,9 +32,13 @@ export function SiteFooter() {
         <div>
           <h4 className="mb-4 font-display text-base font-semibold text-white">Quick Links</h4>
           <ul className="space-y-2 text-sm">
-            {["Home", "Projects", "Amenities", "Neighborhood", "Financing", "Blogs", "Contact"].map((l) => (
-              <li key={l}><a href={`/#${l.toLowerCase()}`} className="text-white/70 hover:text-gold">{l}</a></li>
-            ))}
+            <li><Link to="/" className="text-white/70 hover:text-gold">Home</Link></li>
+            <li><a href="/#projects" className="text-white/70 hover:text-gold">Projects</a></li>
+            <li><Link to="/amenities" className="text-white/70 hover:text-gold">Amenities</Link></li>
+            <li><Link to="/neighborhood" className="text-white/70 hover:text-gold">Neighborhood</Link></li>
+            <li><Link to="/financing" className="text-white/70 hover:text-gold">Financing</Link></li>
+            <li><Link to="/faq" className="text-white/70 hover:text-gold">FAQ</Link></li>
+            <li><a href="/#contact" className="text-white/70 hover:text-gold">Contact</a></li>
             <li><Link to="/auth" className="text-white/70 hover:text-gold">Admin Login</Link></li>
           </ul>
         </div>

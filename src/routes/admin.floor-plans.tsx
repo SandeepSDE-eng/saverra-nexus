@@ -8,26 +8,27 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/floor-plans")({ component: AdminFloorPlans });
 
 type FloorPlan = {
-  id: number;
+  id: string; // UUID from Supabase
   type_key: string;
   label: string;
   area: string;
-  features: string;
+  features: string | any[]; // JSONB from Supabase
   image_url: string;
   is_published: boolean;
 };
 
-type FloorPlanForm = Partial<FloorPlan>;
+type FloorPlanForm = Partial<FloorPlan> & { featuresStr?: string };
 
 const empty: FloorPlanForm = {
   type_key: "",
   label: "",
   area: "",
-  features: "",
+  featuresStr: "",
   image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
   is_published: true,
 };
@@ -37,20 +38,16 @@ function AdminFloorPlans() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<FloorPlan | null>(null);
   const [form, setForm] = useState<FloorPlanForm>(empty);
-
-  const API_URL = "http://localhost:5000/api";
-
-  const { data = [], isLoading } = useQuery({
+  const { data = [], isLoading, error: queryError } = useQuery({
     queryKey: ["admin", "floor-plans"],
+    retry: false,
     queryFn: async () => {
-      try {
-        const res = await fetch(`${API_URL}/admin/floor-plans`);
-        if (!res.ok) throw new Error("Failed to fetch floor plans");
-        return await res.json() as FloorPlan[];
-      } catch (error) {
-        console.error(error);
-        return [];
+      const { data, error } = await supabase.from("floor_plans").select("*").order("created_at", { ascending: true });
+      if (error) {
+        console.error("Supabase Error:", error);
+        throw error;
       }
+      return data as FloorPlan[];
     },
   });
 
@@ -58,25 +55,29 @@ function AdminFloorPlans() {
     mutationFn: async (payload: FloorPlanForm) => {
       let featuresArray = [];
       try {
-        if (typeof payload.features === "string") {
-            featuresArray = JSON.parse(payload.features);
-        } else {
-            featuresArray = payload.features;
-        }
+        featuresArray = typeof payload.featuresStr === "string" 
+          ? payload.featuresStr.split(",").map(s => s.trim()).filter(Boolean) 
+          : [];
       } catch(e) {
-          featuresArray = typeof payload.features === "string" ? payload.features.split(",").map(s => s.trim()) : [];
+        featuresArray = [];
       }
       
-      const body = { ...payload, features: featuresArray };
-      const url = editing ? `${API_URL}/floor-plans/${editing.id}` : `${API_URL}/floor-plans`;
-      const method = editing ? "PUT" : "POST";
+      const body = { 
+        type_key: payload.type_key,
+        label: payload.label,
+        area: payload.area,
+        image_url: payload.image_url,
+        is_published: payload.is_published !== false,
+        features: featuresArray 
+      };
 
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) throw new Error("Save failed");
+      if (editing) {
+        const { error } = await supabase.from("floor_plans").update(body).eq("id", editing.id);
+        if (error) throw error;
+      } else {
+        const { error } = await supabase.from("floor_plans").insert([body]);
+        if (error) throw error;
+      }
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "floor-plans"] });
@@ -88,9 +89,9 @@ function AdminFloorPlans() {
   });
 
   const del = useMutation({
-    mutationFn: async (id: number) => {
-      const res = await fetch(`${API_URL}/floor-plans/${id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Delete failed");
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("floor_plans").delete().eq("id", id);
+      if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "floor-plans"] });
@@ -102,18 +103,8 @@ function AdminFloorPlans() {
 
   const togglePub = useMutation({
     mutationFn: async (p: FloorPlan) => {
-      let featuresArray = [];
-      try {
-          featuresArray = typeof p.features === "string" ? JSON.parse(p.features) : p.features;
-      } catch (e) {
-          featuresArray = p.features;
-      }
-      const res = await fetch(`${API_URL}/floor-plans/${p.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...p, is_published: !p.is_published, features: featuresArray }),
-      });
-      if (!res.ok) throw new Error("Update failed");
+      const { error } = await supabase.from("floor_plans").update({ is_published: !p.is_published }).eq("id", p.id);
+      if (error) throw error;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "floor-plans"] });
@@ -124,19 +115,18 @@ function AdminFloorPlans() {
   const openNew = () => { setEditing(null); setForm(empty); setOpen(true); };
   const openEdit = (p: FloorPlan) => {
     setEditing(p);
-    
     let featuresStr = "";
-    try {
-        const arr = typeof p.features === "string" ? JSON.parse(p.features) : p.features;
-        featuresStr = Array.isArray(arr) ? arr.join(", ") : "";
-    } catch(e) {
-        featuresStr = p.features || "";
+    if (Array.isArray(p.features)) {
+      featuresStr = p.features.join(", ");
+    } else if (typeof p.features === "string") {
+      try {
+        const parsed = JSON.parse(p.features);
+        featuresStr = Array.isArray(parsed) ? parsed.join(", ") : p.features;
+      } catch {
+        featuresStr = p.features;
+      }
     }
-
-    setForm({
-      ...p,
-      features: featuresStr
-    });
+    setForm({ ...p, featuresStr });
     setOpen(true);
   };
 
@@ -155,6 +145,12 @@ function AdminFloorPlans() {
 
       {isLoading ? (
         <p className="text-muted-foreground">Loading…</p>
+      ) : queryError ? (
+        <div className="rounded-md bg-destructive/10 p-4 text-destructive">
+          <p className="font-semibold">Failed to load floor plans.</p>
+          <p className="text-sm">Did you run the SQL script in your Supabase dashboard?</p>
+          <p className="text-xs mt-1 font-mono">{queryError.message}</p>
+        </div>
       ) : (
         <div className="overflow-hidden rounded-xl border border-border bg-card">
           <table className="w-full text-sm">
@@ -222,7 +218,7 @@ function AdminFloorPlans() {
             
             <div className="sm:col-span-2">
               <Label>Features (comma-separated)</Label>
-              <Textarea required value={form.features as string ?? ""} onChange={(e) => set("features")(e.target.value)} rows={2} className="mt-1" placeholder="Living Room, 1 Bedroom, Balcony" />
+              <Textarea required value={form.featuresStr ?? ""} onChange={(e) => set("featuresStr")(e.target.value)} rows={2} className="mt-1" placeholder="Living Room, 1 Bedroom, Balcony" />
             </div>
 
             <div className="flex items-center gap-3 sm:col-span-2">

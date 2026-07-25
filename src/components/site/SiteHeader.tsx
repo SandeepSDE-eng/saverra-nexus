@@ -1,14 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Menu, X, Shield } from "lucide-react";
+import { Phone, Menu, X, Shield, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
-
 import { features } from "@/config/features";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const getNavLinks = () => {
+const getMainLinks = () => {
   const links = [
-    { href: "/#home", label: "Home" },
+    { href: "/", label: "Home" },
   ];
   
   if (features.showAboutUs) {
@@ -17,18 +22,26 @@ const getNavLinks = () => {
 
   links.push(
     { href: "/#projects", label: "Projects" },
-    { href: "/#amenities", label: "Amenities" },
-    { href: "/#neighborhood", label: "Neighborhood" },
-    { href: "/#emi", label: "Financing" },
-    { href: "/#faq", label: "FAQ" },
     { href: "/#contact", label: "Contact" },
   );
   
   return links;
 };
 
+const getMoreLinks = () => {
+  return [
+    { href: "/amenities", label: "Amenities" },
+    { href: "/neighborhood", label: "Neighborhood" },
+    { href: "/financing", label: "Financing" },
+    { href: "/faq", label: "FAQ" },
+  ];
+};
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const mainLinks = getMainLinks();
+  const moreLinks = getMoreLinks();
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/40 bg-background/85 backdrop-blur-2xl shadow-sm">
       {/* announcement bar */}
@@ -43,7 +56,7 @@ export function SiteHeader() {
             <a href="tel:+919876543210" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <Phone className="size-3.5 text-gold" /> +91 98765 43210
             </a>
-            <a href="#contact" className="rounded bg-gradient-to-r from-gold to-yellow-600 px-4 py-1.5 font-bold text-[color:var(--navy-deep)] shadow-md transition-all hover:scale-105 hover:shadow-lg">
+            <a href="/#contact" className="rounded bg-gradient-to-r from-gold to-yellow-600 px-4 py-1.5 font-bold text-[color:var(--navy-deep)] shadow-md transition-all hover:scale-105 hover:shadow-lg">
               Schedule Site Visit
             </a>
           </div>
@@ -61,7 +74,7 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
-          {getNavLinks().map((n) => (
+          {mainLinks.map((n) => (
             <a
               key={n.href}
               href={n.href}
@@ -71,11 +84,27 @@ export function SiteHeader() {
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gold transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger className="group relative px-1 py-2 text-[13px] lg:text-[14px] font-medium text-foreground/80 transition-colors hover:text-primary flex items-center gap-1 outline-none">
+              More <ChevronDown className="size-3 opacity-70 group-hover:opacity-100 transition-transform group-data-[state=open]:rotate-180" />
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gold transition-all duration-300 group-hover:w-full"></span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 bg-white/95 backdrop-blur-xl border-white/20 shadow-xl rounded-xl p-2">
+              {moreLinks.map((n) => (
+                <DropdownMenuItem key={n.href} asChild className="cursor-pointer rounded-lg hover:bg-slate-50 focus:bg-slate-50 transition-colors">
+                  <Link to={n.href as any} className="w-full font-medium text-slate-700">
+                    {n.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
           <Button className="bg-[color:var(--navy-deep)] text-white hover:bg-primary shadow-luxury rounded-full px-6 transition-all duration-300 hover:scale-105" asChild>
-            <a href="#contact">Download Brochure</a>
+            <a href="/#contact">Download Brochure</a>
           </Button>
         </div>
 
@@ -91,18 +120,18 @@ export function SiteHeader() {
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
           <div className="container-luxe flex flex-col py-4">
-            {getNavLinks().map((n) => (
+            {[...mainLinks, ...moreLinks].map((n) => (
               <a
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="py-2 text-sm font-medium text-foreground/80"
+                className="py-3 px-2 text-base font-medium text-foreground/80 border-b border-border/40 last:border-0"
               >
                 {n.label}
               </a>
             ))}
-            <Button variant="gold" className="mt-3" asChild>
-              <a href="#contact">Download Brochure</a>
+            <Button variant="gold" className="mt-4" asChild>
+              <a href="/#contact">Download Brochure</a>
             </Button>
           </div>
         </div>
