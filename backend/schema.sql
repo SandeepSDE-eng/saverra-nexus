@@ -101,6 +101,16 @@ ALTER TABLE floor_plans DISABLE ROW LEVEL SECURITY;
 ALTER TABLE rental_updates DISABLE ROW LEVEL SECURITY;
 
 -- ==========================================
+-- VERY IMPORTANT: Grant Permissions
+-- PostgREST hides tables from the schema cache 
+-- if the role (anon/authenticated) lacks permissions!
+-- ==========================================
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated;
+GRANT ALL ON ALL ROUTINES IN SCHEMA public TO anon, authenticated;
+
+-- ==========================================
 -- Refresh the Supabase API Schema Cache
 -- ==========================================
 NOTIFY pgrst, 'reload schema';
