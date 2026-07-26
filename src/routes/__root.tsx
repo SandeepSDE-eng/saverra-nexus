@@ -140,11 +140,11 @@ function Preloader() {
   if (!render) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#023b6d] transition-transform duration-[800ms] ease-in-out ${show ? 'translate-y-0' : '-translate-y-full'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-white transition-transform duration-[800ms] ease-in-out ${show ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="relative flex flex-col items-center justify-center">
         {/* Logo Mark */}
         <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-          <Logo variant="light" className="h-48 md:h-64 aspect-[2/3]" />
+          <Logo variant="dark" className="h-48 md:h-64 aspect-[2/3]" />
         </div>
         
         {/* Loading Bar */}
