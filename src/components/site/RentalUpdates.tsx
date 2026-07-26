@@ -46,7 +46,7 @@ export function RentalUpdates() {
               Latest <span className="font-medium italic text-gold">Rentals</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm text-muted-foreground leading-relaxed">
-              Explore our freshly listed premium rental properties. Quick sneak peeks straight from our agents.
+              Explore our freshly listed premium rental properties. Quick sneak peeks straight from our consultants.
             </p>
           </div>
           <Link

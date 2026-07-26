@@ -59,7 +59,7 @@ export function LiveChat() {
         botReply = "Hello there! I am your AI assistant at Saverra Realty. Are you looking to buy a new property, or just exploring our premium portfolio?";
       } 
       else if (userMessage.text.match(/\b\d{10}\b/)) {
-        botReply = "Thanks for providing your number! Our senior agent will call you within 5 minutes to discuss your requirements. Is there any specific project you are interested in?";
+        botReply = "Thanks for providing your number! Our senior consultant will call you within 5 minutes to discuss your requirements. Is there any specific project you are interested in?";
       } 
       else if (lowerText.includes("ghatkopar")) {
         botReply = "Ghatkopar East is a prime location! We have highly sought-after premium projects there, like 'f Residences' and 'MICL Aaradhya'. Are you looking for a 2BHK or a 3BHK?";
@@ -82,8 +82,8 @@ export function LiveChat() {
       else if (lowerText.match(/(brochure|pdf|details|download|info|detail)/)) {
         botReply = "You can download the brochure directly from the project section above. If you'd like me to WhatsApp the detailed floor plans to you, just share your 10-digit mobile number!";
       }
-      else if (lowerText.match(/(who|name|agent)/)) {
-        botReply = "I am the Saverra Realty AI Assistant. I can help you with property details, pricing, and scheduling site visits.";
+      else if (lowerText.match(/(who|name|consultant)/)) {
+        botReply = "I am an AI assistant here at Saverra Realty. Our expert consultants are just a call away!";
       }
       else if (lowerText.match(/(where|location|address)/)) {
         botReply = "Our premium properties are located in prime areas of Mumbai (like Ghatkopar East and BKC) and Bengaluru. Which city are you interested in?";
@@ -126,7 +126,7 @@ export function LiveChat() {
                 <div className="absolute bottom-0 right-0 size-3 rounded-full border-2 border-[color:var(--navy-deep)] bg-green-500"></div>
               </div>
               <div>
-                <h3 className="font-display font-bold leading-tight">Saverra Agent</h3>
+                <h3 className="font-display font-bold leading-tight">Saverra Consultant</h3>
                 <p className="text-[10px] text-white/70">Typically replies instantly</p>
               </div>
             </div>

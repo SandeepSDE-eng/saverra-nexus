@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 const HERO_SLIDES = [
   {
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2400&q=85",
-    tagline: "Ghatkopar East Market Broker",
+    tagline: "Premium Real Estate Consultants",
     title1: "Your Trusted Partner For",
-    titleHighlight: "Premium Real Estate",
-    description: "Discover unparalleled opportunities with Saverra Realty. We are your dedicated market brokers for luxury homes and commercial spaces in Ghatkopar East and beyond."
+    titleHighlight: "Pan Mumbai Market",
+    description: "Discover unparalleled luxury living and strategic commercial spaces with Saverra Realty. As your dedicated property consultants, we offer bespoke real estate advisory services specializing in Ghatkopar East and the wider Pan Mumbai market."
   },
   {
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85",
