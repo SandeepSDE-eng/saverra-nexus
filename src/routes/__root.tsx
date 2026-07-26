@@ -160,6 +160,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { LeadPopup } from "@/components/site/LeadPopup";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -167,23 +168,25 @@ function RootComponent() {
   const isAppRoute = !routerState.location.pathname.startsWith('/admin') && !routerState.location.pathname.startsWith('/auth');
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Preloader />
-      {isAppRoute ? (
-        <div className="min-h-screen bg-background flex flex-col">
-          <SiteHeader />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <SiteFooter />
-          <FloatingActions />
-          <LeadPopup />
-        </div>
-      ) : (
-        <Outlet />
-      )}
-      <LiveChat />
-      <Toaster richColors position="top-right" />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Preloader />
+        {isAppRoute ? (
+          <div className="min-h-screen bg-background flex flex-col">
+            <SiteHeader />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <SiteFooter />
+            <FloatingActions />
+            <LeadPopup />
+          </div>
+        ) : (
+          <Outlet />
+        )}
+        <LiveChat />
+        <Toaster richColors position="top-right" />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
