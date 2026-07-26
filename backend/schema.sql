@@ -88,3 +88,19 @@ CREATE TABLE IF NOT EXISTS rental_updates (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ==========================================
+-- VERY IMPORTANT: Disable Row Level Security 
+-- so the Admin panel can insert/update data.
+-- ==========================================
+ALTER TABLE inquiries DISABLE ROW LEVEL SECURITY;
+ALTER TABLE projects DISABLE ROW LEVEL SECURITY;
+ALTER TABLE integrations DISABLE ROW LEVEL SECURITY;
+ALTER TABLE campaigns DISABLE ROW LEVEL SECURITY;
+ALTER TABLE floor_plans DISABLE ROW LEVEL SECURITY;
+ALTER TABLE rental_updates DISABLE ROW LEVEL SECURITY;
+
+-- ==========================================
+-- Refresh the Supabase API Schema Cache
+-- ==========================================
+NOTIFY pgrst, 'reload schema';
