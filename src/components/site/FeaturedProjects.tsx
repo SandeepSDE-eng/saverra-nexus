@@ -20,8 +20,9 @@ export function FeaturedProjects() {
         console.warn("Supabase Error (using fallback):", error);
         return MOCK_PROJECTS;
       }
-      // If DB is empty, also use mock data to ensure site looks populated!
-      if (!data || data.length === 0) {
+      // If DB is empty or has old schema (missing slug), use mock data
+      if (!data || data.length === 0 || (data.length > 0 && !data[0].slug)) {
+        console.warn("Using mock data due to empty DB or old schema");
         return MOCK_PROJECTS;
       }
       return data;

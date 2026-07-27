@@ -38,8 +38,8 @@ function ProjectDetail() {
       
       let projectData = data;
 
-      if (error || !data) {
-        // Fallback to mock data
+      if (error || !data || !data.name) {
+        // Fallback to mock data if DB has old schema (missing name) or error
         const mockP = MOCK_PROJECTS.find((m) => m.slug === slug);
         if (mockP) {
           projectData = mockP;
