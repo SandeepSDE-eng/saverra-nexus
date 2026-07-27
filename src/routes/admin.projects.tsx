@@ -41,13 +41,19 @@ function AdminProjects() {
 
   const seed = useMutation({
     mutationFn: async () => {
-      // Clean up the mock projects to match DB format
-      const toInsert = MOCK_PROJECTS.map(p => ({
-        ...p,
-        gallery: Array.isArray(p.gallery) ? p.gallery : [],
-        highlights: Array.isArray(p.highlights) ? p.highlights : [],
-        amenities: Array.isArray(p.amenities) ? p.amenities : []
-      }));
+      // Clean up the mock projects to match DB format and remove explicit IDs
+      const toInsert = MOCK_PROJECTS.map(p => {
+        const { id, created_at, updated_at, ...rest } = p;
+        return {
+          ...rest,
+          city: (p as any).city || "Mumbai", // Force city to prevent null constraint
+          builder: (p as any).builder || "SAVERRA Developers",
+          category: (p as any).category || "Residential",
+          gallery: Array.isArray(p.gallery) ? p.gallery : [],
+          highlights: Array.isArray(p.highlights) ? p.highlights : [],
+          amenities: Array.isArray(p.amenities) ? p.amenities : []
+        };
+      });
       const { error } = await supabase.from("projects").insert(toInsert as any);
       if (error) throw error;
     },
