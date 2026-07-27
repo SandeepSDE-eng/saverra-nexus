@@ -21,6 +21,7 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FinancingRouteImport } from './routes/financing'
 import { Route as NeighborhoodRouteImport } from './routes/neighborhood'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivateViewingRouteImport } from './routes/private-viewing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -94,6 +95,11 @@ const NeighborhoodRoute = NeighborhoodRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateViewingRoute = PrivateViewingRouteImport.update({
+  id: '/private-viewing',
+  path: '/private-viewing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -180,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
   '/privacy': typeof PrivacyRoute
+  '/private-viewing': typeof PrivateViewingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
   '/privacy': typeof PrivacyRoute
+  '/private-viewing': typeof PrivateViewingRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/admin/careers': typeof AdminCareersRoute
@@ -235,6 +243,7 @@ export interface FileRoutesById {
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
   '/privacy': typeof PrivacyRoute
+  '/private-viewing': typeof PrivateViewingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -265,6 +274,7 @@ export interface FileRouteTypes {
     | '/financing'
     | '/neighborhood'
     | '/privacy'
+    | '/private-viewing'
     | '/projects'
     | '/services'
     | '/terms'
@@ -292,6 +302,7 @@ export interface FileRouteTypes {
     | '/financing'
     | '/neighborhood'
     | '/privacy'
+    | '/private-viewing'
     | '/services'
     | '/terms'
     | '/admin/careers'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/financing'
     | '/neighborhood'
     | '/privacy'
+    | '/private-viewing'
     | '/projects'
     | '/services'
     | '/terms'
@@ -348,6 +360,7 @@ export interface RootRouteChildren {
   FinancingRoute: typeof FinancingRoute
   NeighborhoodRoute: typeof NeighborhoodRoute
   PrivacyRoute: typeof PrivacyRoute
+  PrivateViewingRoute: typeof PrivateViewingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
@@ -437,6 +450,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/private-viewing': {
+      id: '/private-viewing'
+      path: '/private-viewing'
+      fullPath: '/private-viewing'
+      preLoaderRoute: typeof PrivateViewingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -593,6 +613,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinancingRoute: FinancingRoute,
   NeighborhoodRoute: NeighborhoodRoute,
   PrivacyRoute: PrivacyRoute,
+  PrivateViewingRoute: PrivateViewingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,

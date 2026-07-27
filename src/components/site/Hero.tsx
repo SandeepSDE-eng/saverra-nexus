@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CalendarCheck } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+
 
 const HERO_SLIDES = [
   {
@@ -94,10 +96,10 @@ export function Hero() {
           
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="gold" size="lg" className="w-full sm:w-auto rounded-sm px-8 tracking-widest text-[11px] uppercase transition-all hover:scale-105" asChild>
-              <a href="#projects">Explore Portfolio</a>
+              <Link to="/projects">Explore Portfolio</Link>
             </Button>
             <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-sm border-white/50 bg-transparent px-8 text-white tracking-widest text-[11px] uppercase transition-all hover:bg-white hover:text-black" asChild>
-              <a href="#contact">Private Viewing</a>
+              <Link to="/private-viewing">Private Viewing</Link>
             </Button>
           </div>
         </div>
