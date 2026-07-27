@@ -14,7 +14,7 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
   return createPortal(
     <div className="fixed inset-0 z-[100] grid place-items-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
       <div 
-        className="relative w-full max-w-4xl bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[560px] shadow-2xl animate-scale-in"
+        className="relative w-full max-w-3xl bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[480px] shadow-2xl animate-scale-in"
         onClick={e => e.stopPropagation()}
       >
         <button 
@@ -46,25 +46,25 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
         </div>
 
         {/* Right Side - Details */}
-        <div className="w-full md:w-[55%] p-5 md:p-7 overflow-y-auto bg-card flex flex-col">
-          <div className="flex flex-wrap items-start justify-between gap-4 mb-5 pr-8">
+        <div className="w-full md:w-[55%] p-5 md:p-6 overflow-y-auto bg-card flex flex-col">
+          <div className="flex flex-wrap items-start justify-between gap-4 mb-4 pr-8">
             <div>
               <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mb-1">Starting</p>
-              <p className="text-2xl text-primary font-display font-medium">{project.price_display}</p>
+              <p className="text-xl md:text-2xl text-primary font-display font-medium">{project.price_display}</p>
             </div>
-            <div className="flex items-center gap-3 text-xs text-muted-foreground font-medium bg-secondary/50 px-3 py-2 rounded-lg">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground font-medium bg-secondary/50 px-3 py-1.5 rounded-lg">
               <span className="flex items-center gap-1.5"><Bed className="size-3.5" /> {project.min_bhk || 2} BHK</span>
               <span className="flex items-center gap-1.5"><Bath className="size-3.5" /> {Math.max(2, (project.min_bhk || 2) + 1)}</span>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex bg-muted p-1 rounded-lg mb-6 shrink-0">
+          <div className="flex bg-muted p-1 rounded-lg mb-5 shrink-0">
             {["Overview", "Gallery", "Financing", "Neighborhood"].map((tab) => (
               <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)} 
-                className={`flex-1 text-xs sm:text-sm py-2 rounded-md transition-colors ${activeTab === tab ? 'bg-primary text-primary-foreground font-medium shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                className={`flex-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider py-2 rounded-md transition-colors ${activeTab === tab ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
               >
                 {tab}
               </button>
