@@ -6,17 +6,13 @@ export function SiteFooter() {
   return (
     <footer className="mt-20 border-t border-border/10 bg-[color:var(--navy-deep)] text-white/70">
       <div className="container-luxe grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
-        <div className="flex flex-col items-start">
-          <div className="flex items-center gap-4 group cursor-default">
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="flex justify-center w-full group cursor-default">
             <div className="transition-transform duration-500 group-hover:scale-105">
-              <Logo variant="light" className="h-24 md:h-28 aspect-[2/3]" />
+              <Logo variant="light" className="h-40 md:h-52 aspect-[2/3] w-auto mx-auto" />
             </div>
           </div>
-          <p className="mt-5 text-sm leading-relaxed max-w-sm text-white/80">
-            SAVERRA is a premium real estate firm committed to delivering luxury homes, commercial spaces
-            and villa plots in prime locations across India — with unmatched value.
-          </p>
-          <div className="mt-8 flex gap-3 text-white/90">
+          <div className="mt-10 flex justify-center lg:justify-start gap-4 text-white/90 w-full">
             <a href="https://www.facebook.com/SaverraRealty/" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
               <Facebook className="size-4.5" />
             </a>
@@ -39,17 +35,17 @@ export function SiteFooter() {
             <li><a href="/#projects" className="transition-colors hover:text-gold font-medium">Projects</a></li>
             <li><Link to="/amenities" className="transition-colors hover:text-gold font-medium">Amenities</Link></li>
             <li><Link to="/neighborhood" className="transition-colors hover:text-gold font-medium">Neighborhood</Link></li>
-            <li><Link to="/financing" className="transition-colors hover:text-gold font-medium">Financing</Link></li>
+            <li><Link to="/careers" className="transition-colors hover:text-gold font-medium">Careers</Link></li>
             <li><Link to="/faq" className="transition-colors hover:text-gold font-medium">FAQ</Link></li>
-            <li><a href="/#contact" className="transition-colors hover:text-gold font-medium">Contact</a></li>
+            <li><a href="/contact" className="transition-colors hover:text-gold font-medium">Contact</a></li>
           </ul>
         </div>
 
         <div className="lg:pl-6 pt-4">
-          <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Top Cities</h4>
+          <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Featured Projects</h4>
           <ul className="space-y-3.5 text-sm">
-            {["Mumbai", "Bengaluru", "Gurugram", "Pune", "Hyderabad", "Chennai"].map((c) => (
-              <li key={c}><a href="#projects" className="transition-colors hover:text-gold font-medium">{c}</a></li>
+            {["Drushti Sapphire", "Azure Sky Villa", "The Imperial", "Lodha Bellissimo", "Rustomjee Elements"].map((project) => (
+              <li key={project}><a href="#projects" className="transition-colors hover:text-gold font-medium">{project}</a></li>
             ))}
           </ul>
         </div>
@@ -82,11 +78,18 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10 bg-black/20">
-        <div className="container-luxe flex flex-col items-center justify-between gap-4 py-6 text-xs sm:flex-row text-white/50">
+        <div className="container-luxe py-4 text-[11px] flex flex-col md:flex-row items-center justify-between gap-3 text-white/40">
           <p className="font-medium">© {new Date().getFullYear()} SAVERRA Real Estate. All rights reserved.</p>
-          <div className="flex flex-col items-center gap-2 sm:items-end">
-            <p className="font-medium hover:text-white/80 transition-colors cursor-pointer">RERA Reg: P51900012345 · Privacy · Terms · Sitemap</p>
-            <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold">Developed by SandeepYadav</p>
+          <div className="flex flex-wrap items-center justify-center gap-2 font-medium">
+            <span className="hover:text-white/80 transition-colors cursor-pointer">RERA Reg: P51900012345</span>
+            <span>·</span>
+            <Link to="/privacy" className="hover:text-white/80 transition-colors cursor-pointer">Privacy</Link>
+            <span>·</span>
+            <Link to="/terms" className="hover:text-white/80 transition-colors cursor-pointer">Terms</Link>
+            <span>·</span>
+            <span className="hover:text-white/80 transition-colors cursor-pointer">Sitemap</span>
+            <span>·</span>
+            <span className="text-[10px] uppercase tracking-wider font-bold hover:text-white/80 transition-colors cursor-pointer">Developed by SandeepYadav</span>
           </div>
         </div>
       </div>

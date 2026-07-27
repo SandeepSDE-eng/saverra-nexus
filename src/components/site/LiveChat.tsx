@@ -126,7 +126,7 @@ export function LiveChat() {
                 <div className="absolute bottom-0 right-0 size-3 rounded-full border-2 border-[color:var(--navy-deep)] bg-green-500"></div>
               </div>
               <div>
-                <h3 className="font-display font-bold leading-tight">Saverra Consultant</h3>
+                <h3 className="font-display font-bold leading-tight">Saverra Realty</h3>
                 <p className="text-[10px] text-white/70">Typically replies instantly</p>
               </div>
             </div>

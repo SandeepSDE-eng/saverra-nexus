@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CalendarCheck } from "lucide-react";
-import { SearchFilters } from "./SearchFilters";
 import { useEffect, useState } from "react";
 
 const HERO_SLIDES = [
@@ -63,32 +62,33 @@ export function Hero() {
               }`}
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
-            {/* Elegant light gradient overlay to ensure text is readable without making it too dark */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#023b6d]/60 via-black/20 to-transparent mix-blend-multiply"></div>
+            {/* Darker overlay to make text pop */}
+            <div className="absolute inset-0 bg-black/40"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#023b6d]/80 via-transparent to-transparent mix-blend-multiply"></div>
           </div>
         ))}
       </div>
 
       <div className="container-luxe relative z-10 flex flex-1 flex-col items-center justify-center py-16 lg:py-20 text-center">
-        {/* Glassmorphism Container */}
+        {/* Glassmorphism Container with stronger backdrop blur and darker background */}
         <div 
           key={currentIndex} 
-          className="animate-fade-up w-full max-w-3xl rounded-2xl border border-white/30 bg-white/10 p-8 backdrop-blur-xl shadow-2xl md:p-12"
+          className="animate-fade-up w-full max-w-3xl rounded-3xl border border-white/20 bg-black/50 p-8 backdrop-blur-2xl shadow-2xl md:p-12"
         >
           <div className="mb-4 inline-flex items-center justify-center gap-3">
-            <div className="h-[1px] w-6 bg-gold/60"></div>
-            <span className="text-[9px] font-medium tracking-[0.3em] text-white uppercase opacity-90 sm:text-[10px]">
+            <div className="h-[1px] w-6 bg-gold/80"></div>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-white uppercase sm:text-[11px] drop-shadow-md">
               {currentSlide.tagline}
             </span>
-            <div className="h-[1px] w-6 bg-gold/60"></div>
+            <div className="h-[1px] w-6 bg-gold/80"></div>
           </div>
           
-          <h1 className="font-display text-4xl font-light leading-[1.15] text-white sm:text-5xl lg:text-6xl tracking-wide">
+          <h1 className="font-display text-4xl font-semibold leading-[1.15] text-white sm:text-5xl lg:text-6xl tracking-wide drop-shadow-lg">
             {currentSlide.title1} <br />
-            <span className="text-gold italic font-medium">{currentSlide.titleHighlight}</span>
+            <span className="text-gold italic font-bold">{currentSlide.titleHighlight}</span>
           </h1>
           
-          <p className="mx-auto mt-5 max-w-lg text-sm font-light leading-relaxed text-white/80 sm:text-base tracking-wide">
+          <p className="mx-auto mt-6 max-w-lg text-sm font-medium leading-relaxed text-white/90 sm:text-base tracking-wide drop-shadow-md">
             {currentSlide.description}
           </p>
           
@@ -117,10 +117,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Search filters overlap - anchored to bottom */}
-      <div className="container-luxe relative z-20 pb-4 mt-auto hidden md:block">
-        <SearchFilters />
-      </div>
     </section>
   );
 }

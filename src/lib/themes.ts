@@ -8,8 +8,15 @@ export interface ThemePalette {
 
 export const THEMES: ThemePalette[] = [
   {
+    id: "saverra-signature",
+    name: "Saverra Signature",
+    primary: "#0A4DA1",
+    accent: "#C9A86A",
+    description: "Vibrant royal blue perfectly matching the original Saverra logo with luxury gold accents."
+  },
+  {
     id: "sapphire-gold",
-    name: "Sapphire & Gold (Default)",
+    name: "Sapphire & Gold (Classic)",
     primary: "#0B3E78",
     accent: "#C5A059",
     description: "The classic luxury combination of deep navy and rich gold."

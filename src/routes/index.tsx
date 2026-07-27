@@ -62,9 +62,7 @@ function Home() {
       <Hero />
       <DevelopersMarquee />
       <StatsBar />
-      <FeaturedProjects />
-      <FloorPlans />
-      <RentalUpdates />
+      <FeaturedProjects limit={8} />
       <PropertyTours />
       <Testimonials />
       <ContactSection />

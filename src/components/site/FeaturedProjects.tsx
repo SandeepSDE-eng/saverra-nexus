@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "./ProjectCard";
-
 import { MOCK_PROJECTS } from "@/lib/mockProjects";
 
-export function FeaturedProjects() {
+export function FeaturedProjects({ limit, showHeading = true }: { limit?: number, showHeading?: boolean }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
   const { data: projects = [], isLoading } = useQuery({
     queryKey: ["projects", "featured"],
     queryFn: async () => {
@@ -20,7 +23,6 @@ export function FeaturedProjects() {
         console.warn("Supabase Error (using fallback):", error);
         return MOCK_PROJECTS;
       }
-      // If DB is empty or has old schema (missing slug), use mock data
       if (!data || data.length === 0 || (data.length > 0 && !data[0].slug)) {
         console.warn("Using mock data due to empty DB or old schema");
         return MOCK_PROJECTS;
@@ -29,27 +31,43 @@ export function FeaturedProjects() {
     },
   });
 
+  // Calculate displayed projects
+  let displayedProjects = projects;
+  let totalPages = 1;
+
+  if (limit) {
+    displayedProjects = projects.slice(0, limit);
+  } else {
+    totalPages = Math.ceil(projects.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    displayedProjects = projects.slice(startIndex, startIndex + itemsPerPage);
+  }
+
   return (
     <section id="projects" className="py-20">
       <div className="container-luxe">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Featured Properties</p>
-            <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-              Curated Masterpieces
-            </h2>
-            <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-              A hand-picked selection of our most sought-after residences and commercial addresses.
-            </p>
+        {showHeading && (
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow">Featured Properties</p>
+              <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
+                Curated Masterpieces
+              </h2>
+              <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+                A hand-picked selection of our most sought-after residences and commercial addresses.
+              </p>
+            </div>
+            {limit && (
+              <Button variant="outline" asChild>
+                <Link to="/projects">View All Projects <ArrowRight className="size-4" /></Link>
+              </Button>
+            )}
           </div>
-          <Button variant="outline" asChild>
-            <a href="#projects">View All Projects <ArrowRight className="size-4" /></a>
-          </Button>
-        </div>
+        )}
 
         {isLoading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {Array.from({ length: 8 }).map((_, i) => (
+            {Array.from({ length: limit || 8 }).map((_, i) => (
               <div key={i} className="aspect-[4/3] animate-pulse rounded-xl bg-muted" />
             ))}
           </div>
@@ -61,9 +79,44 @@ export function FeaturedProjects() {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {projects.map((p) => <ProjectCard key={p.id} p={p} />)}
-          </div>
+          <>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in">
+              {displayedProjects.map((p) => <ProjectCard key={p.id} p={p} />)}
+            </div>
+            
+            {/* Pagination Controls */}
+            {!limit && totalPages > 1 && (
+              <div className="mt-12 flex items-center justify-center gap-4">
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                >
+                  <ChevronLeft className="size-4" />
+                </Button>
+                <div className="flex gap-2">
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`size-8 rounded-md text-sm font-medium transition-colors ${currentPage === i + 1 ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-muted-foreground'}`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  <ChevronRight className="size-4" />
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

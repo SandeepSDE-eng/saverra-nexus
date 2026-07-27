@@ -26,7 +26,6 @@ export function FloatingActions() {
   const actions = [
     { icon: MessageCircle, label: "WhatsApp", onClick: () => window.open("https://wa.me/919876543210", "_blank"), cls: "hover:bg-[#25D366] hover:text-white hover:border-[#25D366]" },
     { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+919876543210"), cls: "hover:bg-primary hover:text-white hover:border-primary" },
-    { icon: CalendarCheck, label: "Book Site Visit", onClick: () => setModal("visit"), cls: "hover:bg-[color:var(--navy-deep)] hover:text-white hover:border-[color:var(--navy-deep)]" },
     { icon: Download, label: "Brochure", onClick: () => setModal("brochure"), cls: "hover:bg-gold hover:text-white hover:border-gold" },
   ];
 

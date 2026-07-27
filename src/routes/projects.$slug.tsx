@@ -60,110 +60,138 @@ function ProjectDetail() {
   const coverImage = p.cover_image || p.image_url;
 
   return (
-    <div className="min-h-screen bg-background">
-      <main>
-        {/* Hero */}
-        <section className="relative">
-          <img src={coverImage} alt={name} className="h-[60vh] w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/95 via-[color:var(--navy-deep)]/40 to-transparent" />
-          <div className="container-luxe absolute inset-x-0 bottom-0 pb-10 text-white">
-            <Link to="/" className="mb-4 inline-flex items-center gap-1 text-xs text-white/80 hover:text-gold">
-              <ArrowLeft className="size-3" /> Back to projects
-            </Link>
-            <p className="eyebrow text-gold">{p.category?.toUpperCase()}</p>
-            <h1 className="mt-2 font-display text-5xl font-bold sm:text-6xl">{name}</h1>
-            {p.tagline && <p className="mt-2 text-lg italic text-white/85">{p.tagline}</p>}
-            <p className="mt-3 flex items-center gap-2 text-sm text-white/85"><MapPin className="size-4 text-gold" /> {p.location}</p>
+    <div className="min-h-screen bg-[#f8f9fa] pb-20">
+      
+      {/* Hero Banner */}
+      <div className="bg-[color:var(--navy-deep)] text-white relative h-[50vh] min-h-[400px] flex flex-col justify-center overflow-hidden pb-12">
+        <div className="absolute inset-0">
+          <img src={coverImage} alt={name} className="h-full w-full object-cover opacity-30 filter mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)] via-[color:var(--navy-deep)]/60 to-transparent opacity-90" />
+        </div>
+        <div className="relative z-10 container-luxe pt-10 animate-fade-up">
+          <Link to="/projects" className="mb-6 inline-flex items-center gap-1.5 text-xs text-white/80 hover:text-gold transition-colors font-medium">
+            <ArrowLeft className="size-3.5" /> Back to projects
+          </Link>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-[10px] font-semibold tracking-[0.25em] text-gold uppercase backdrop-blur-md">
+            <span className="size-1.5 rounded-full bg-gold animate-pulse"></span>
+            {p.category?.toUpperCase() || "PREMIUM PROJECT"}
           </div>
-        </section>
+          <h1 className="font-display text-4xl md:text-6xl font-light tracking-wide mb-3">{name}</h1>
+          {p.tagline && <p className="text-white/85 text-lg md:text-xl italic font-light tracking-wide max-w-3xl mb-4">{p.tagline}</p>}
+          <p className="flex items-center gap-2 text-sm text-white/90 font-medium">
+            <MapPin className="size-4 text-gold" /> {p.location}
+          </p>
+        </div>
+      </div>
 
-        {/* Key facts */}
-        <section className="container-luxe -mt-8 relative z-10">
-          <div className="grid grid-cols-2 gap-4 rounded-xl border border-border/60 bg-card p-6 shadow-luxury md:grid-cols-4">
+      {/* Main Content Area in Overlapping Card */}
+      <div className="container-luxe max-w-6xl mx-auto -mt-16 relative z-20">
+        <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-border/50 p-6 md:p-12 mb-16 animate-fade-up">
+          
+          {/* Key facts */}
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 bg-[#f8f9fa] rounded-2xl p-6 md:p-8 border border-border/50 shadow-inner mb-12">
             <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
             <Fact label="Configuration" value={p.bhk_options ?? "—"} />
             <Fact label="Possession" value={p.status ?? p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
-            <Fact label="RERA" value={p.rera_number ?? "—"} />
+            <Fact label="RERA Number" value={p.rera_number ?? "—"} />
           </div>
-        </section>
 
-        {/* Overview */}
-        <section className="container-luxe grid gap-10 py-16 md:grid-cols-3">
-          <div className="md:col-span-2">
-            <p className="eyebrow">Overview</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-primary">About {name}</h2>
-            <p className="mt-4 leading-relaxed text-foreground/80">{p.description}</p>
+          {/* Overview */}
+          <div className="grid gap-12 md:grid-cols-3">
+            <div className="md:col-span-2 space-y-10">
+              <div>
+                <h2 className="font-display text-3xl font-light mb-6 text-primary">About {name}</h2>
+                <p className="leading-relaxed text-muted-foreground whitespace-pre-line text-sm md:text-base">
+                  {p.description}
+                </p>
+              </div>
 
-            {p.highlights?.length ? (
-              <>
-                <h3 className="mt-8 font-display text-xl font-bold text-primary">Highlights</h3>
-                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {p.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-
-            {p.amenities?.length ? (
-              <>
-                <h3 className="mt-8 font-display text-xl font-bold text-primary">Amenities</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.amenities.map((a) => (
-                    <span key={a} className="rounded-full border border-border bg-secondary px-3 py-1 text-xs">{a}</span>
-                  ))}
+              {p.highlights?.length ? (
+                <div>
+                  <h3 className="font-display text-2xl font-light mb-6 text-primary">Project Highlights</h3>
+                  <ul className="grid gap-4 sm:grid-cols-2">
+                    {p.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-3">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold mt-0.5">
+                          <CheckCircle2 className="size-3.5" />
+                        </div>
+                        <span className="text-sm text-foreground/80">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </>
-            ) : null}
+              ) : null}
+
+              {p.amenities?.length ? (
+                <div>
+                  <h3 className="font-display text-2xl font-light mb-6 text-primary">Amenities</h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {p.amenities.map((a) => (
+                      <span key={a} className="rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-secondary">
+                        {a}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            <aside className="h-fit rounded-2xl border border-border/50 bg-[#f8f9fa] p-8 shadow-inner sticky top-28">
+              <h3 className="font-display text-2xl font-light mb-2 text-primary">Enquire Now</h3>
+              <p className="text-sm text-muted-foreground mb-8">
+                Get a call back from a SAVERRA advisor with pricing, availability and floor plans.
+              </p>
+              <div className="space-y-4">
+                <Button className="w-full bg-[color:var(--navy-deep)] hover:bg-[color:var(--navy-deep)]/90 text-white h-12 text-base tracking-wide" asChild>
+                  <a href="#contact">Schedule Site Visit</a>
+                </Button>
+                <Button variant="outline" className="w-full h-12 text-base tracking-wide bg-white border-border/50 hover:bg-secondary" asChild>
+                  <a href="tel:+919876543210">Call +91 98765 43210</a>
+                </Button>
+              </div>
+            </aside>
           </div>
 
-          <aside className="h-fit rounded-xl border border-border/60 bg-card p-6 shadow-sm">
-            <p className="eyebrow">Enquire Now</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Get a call back from a SAVERRA advisor with pricing, availability and floor plans.
-            </p>
-            <Button variant="gold" size="lg" className="mt-4 w-full" asChild>
-              <a href="#contact">Schedule Site Visit</a>
-            </Button>
-            <Button variant="outline" size="lg" className="mt-2 w-full" asChild>
-              <a href="tel:+919876543210">Call +91 98765 43210</a>
-            </Button>
-          </aside>
-        </section>
-
-        {/* Gallery */}
-        {p.gallery?.length ? (
-          <section className="container-luxe pb-16">
-            <p className="eyebrow">Gallery</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-primary">Life at {name}</h2>
-            <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
-              {p.gallery.map((g) => (
-                <Dialog key={g}>
-                  <DialogTrigger asChild>
-                    <div className="overflow-hidden rounded-lg cursor-pointer group relative">
-                      <img 
-                        src={g} 
-                        alt={`Gallery image of ${name}`} 
-                        className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                        loading="lazy" 
-                      />
-                      <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-5xl border-none bg-transparent p-0 shadow-none">
-                    <img src={g} alt="" className="mx-auto h-auto w-full max-h-[85vh] object-contain" />
-                  </DialogContent>
-                </Dialog>
-              ))}
+          {/* Gallery */}
+          {p.gallery?.length ? (
+            <div className="mt-16 pt-12 border-t border-border/40">
+              <h2 className="font-display text-3xl font-light mb-8 text-primary">Life at {name}</h2>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {p.gallery.map((rawUrl, i) => {
+                  const g = typeof rawUrl === 'string' ? rawUrl.replace(/^["'{\[]+|["'}\]]+$/g, '') : '';
+                  if (!g) return null;
+                  return (
+                    <Dialog key={g + i}>
+                      <DialogTrigger asChild>
+                        <div className="overflow-hidden rounded-xl cursor-pointer group relative bg-secondary">
+                          <img 
+                            src={g} 
+                            alt={`Gallery image of ${name}`} 
+                            className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                            loading="lazy" 
+                            onError={(e) => {
+                              // Hide broken images completely rather than showing alt text
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-[color:var(--navy-deep)]/0 transition-colors duration-500 group-hover:bg-[color:var(--navy-deep)]/20 mix-blend-overlay" />
+                          <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl" />
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-5xl border-none bg-transparent p-0 shadow-none">
+                        <img src={g} alt="" className="mx-auto h-auto w-full max-h-[85vh] object-contain rounded-lg" />
+                      </DialogContent>
+                    </Dialog>
+                  )
+                })}
+              </div>
             </div>
-          </section>
-        ) : null}
+          ) : null}
 
-        <ContactSection />
-      </main>
+        </div>
+      </div>
+
+      <ContactSection />
     </div>
   );
 }

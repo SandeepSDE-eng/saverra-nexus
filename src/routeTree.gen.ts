@@ -14,10 +14,18 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AmenitiesRouteImport } from './routes/amenities'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FinancingRouteImport } from './routes/financing'
 import { Route as NeighborhoodRouteImport } from './routes/neighborhood'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminCareersRouteImport } from './routes/admin.careers'
 import { Route as AdminFloorPlansRouteImport } from './routes/admin.floor-plans'
 import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
 import { Route as AdminIntegrationsRouteImport } from './routes/admin.integrations'
@@ -25,6 +33,7 @@ import { Route as AdminMarketingRouteImport } from './routes/admin.marketing'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminRentalsRouteImport } from './routes/admin.rentals'
 import { Route as AdminThemesRouteImport } from './routes/admin.themes'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -52,6 +61,21 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -67,9 +91,34 @@ const NeighborhoodRoute = NeighborhoodRouteImport.update({
   path: '/neighborhood',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCareersRoute = AdminCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminFloorPlansRoute = AdminFloorPlansRouteImport.update({
@@ -107,10 +156,15 @@ const AdminThemesRoute = AdminThemesRouteImport.update({
   path: '/themes',
   getParentRoute: () => AdminRoute,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsRoute,
+} as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
-  id: '/projects/$slug',
-  path: '/projects/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProjectsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -119,9 +173,17 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
+  '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRouteWithChildren
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -131,15 +193,23 @@ export interface FileRoutesByFullPath {
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
+  '/privacy': typeof PrivacyRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -149,6 +219,7 @@ export interface FileRoutesByTo {
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -157,9 +228,17 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/amenities': typeof AmenitiesRoute
   '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financing': typeof FinancingRoute
   '/neighborhood': typeof NeighborhoodRoute
+  '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRouteWithChildren
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
@@ -169,6 +248,7 @@ export interface FileRoutesById {
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -178,9 +258,17 @@ export interface FileRouteTypes {
     | '/admin'
     | '/amenities'
     | '/auth'
+    | '/careers'
+    | '/case-studies'
+    | '/contact'
     | '/faq'
     | '/financing'
     | '/neighborhood'
+    | '/privacy'
+    | '/projects'
+    | '/services'
+    | '/terms'
+    | '/admin/careers'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -190,15 +278,23 @@ export interface FileRouteTypes {
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin/'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/amenities'
     | '/auth'
+    | '/careers'
+    | '/case-studies'
+    | '/contact'
     | '/faq'
     | '/financing'
     | '/neighborhood'
+    | '/privacy'
+    | '/services'
+    | '/terms'
+    | '/admin/careers'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -208,6 +304,7 @@ export interface FileRouteTypes {
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin'
+    | '/projects'
   id:
     | '__root__'
     | '/'
@@ -215,9 +312,17 @@ export interface FileRouteTypes {
     | '/admin'
     | '/amenities'
     | '/auth'
+    | '/careers'
+    | '/case-studies'
+    | '/contact'
     | '/faq'
     | '/financing'
     | '/neighborhood'
+    | '/privacy'
+    | '/projects'
+    | '/services'
+    | '/terms'
+    | '/admin/careers'
     | '/admin/floor-plans'
     | '/admin/inquiries'
     | '/admin/integrations'
@@ -227,6 +332,7 @@ export interface FileRouteTypes {
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin/'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -235,10 +341,16 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   AmenitiesRoute: typeof AmenitiesRoute
   AuthRoute: typeof AuthRoute
+  CareersRoute: typeof CareersRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
+  ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   FinancingRoute: typeof FinancingRoute
   NeighborhoodRoute: typeof NeighborhoodRoute
-  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProjectsRoute: typeof ProjectsRouteWithChildren
+  ServicesRoute: typeof ServicesRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -278,6 +390,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -299,11 +432,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NeighborhoodRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/careers': {
+      id: '/admin/careers'
+      path: '/careers'
+      fullPath: '/admin/careers'
+      preLoaderRoute: typeof AdminCareersRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/floor-plans': {
@@ -355,17 +523,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminThemesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/projects/$slug': {
       id: '/projects/$slug'
-      path: '/projects/$slug'
+      path: '/$slug'
       fullPath: '/projects/$slug'
       preLoaderRoute: typeof ProjectsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProjectsRoute
     }
   }
 }
 
 interface AdminRouteChildren {
+  AdminCareersRoute: typeof AdminCareersRoute
   AdminFloorPlansRoute: typeof AdminFloorPlansRoute
   AdminInquiriesRoute: typeof AdminInquiriesRoute
   AdminIntegrationsRoute: typeof AdminIntegrationsRoute
@@ -377,6 +553,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCareersRoute: AdminCareersRoute,
   AdminFloorPlansRoute: AdminFloorPlansRoute,
   AdminInquiriesRoute: AdminInquiriesRoute,
   AdminIntegrationsRoute: AdminIntegrationsRoute,
@@ -389,16 +566,36 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface ProjectsRouteChildren {
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+}
+
+const ProjectsRouteChildren: ProjectsRouteChildren = {
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+}
+
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
+  ProjectsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
   AmenitiesRoute: AmenitiesRoute,
   AuthRoute: AuthRoute,
+  CareersRoute: CareersRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
+  ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   FinancingRoute: FinancingRoute,
   NeighborhoodRoute: NeighborhoodRoute,
-  ProjectsSlugRoute: ProjectsSlugRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProjectsRoute: ProjectsRouteWithChildren,
+  ServicesRoute: ServicesRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

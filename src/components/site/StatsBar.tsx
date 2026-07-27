@@ -1,12 +1,12 @@
-import { MapPin, Gem, Compass, Star, Key, ShieldCheck } from "lucide-react";
+import { LineChart, Briefcase, Search, HeadphonesIcon, ShieldCheck, Handshake } from "lucide-react";
 
 const items = [
-  { icon: MapPin, k: "Prime", v: "Locations" },
-  { icon: Gem, k: "Ultra Luxury", v: "Residences" },
-  { icon: Compass, k: "Vastu", v: "Compliant" },
-  { icon: Star, k: "World-Class", v: "Amenities" },
-  { icon: Key, k: "Seamless", v: "Experience" },
-  { icon: ShieldCheck, k: "100%", v: "Transparency" },
+  { icon: Briefcase, k: "Strategic", v: "Advisory" },
+  { icon: Search, k: "Curated", v: "Portfolio" },
+  { icon: LineChart, k: "Market", v: "Intelligence" },
+  { icon: HeadphonesIcon, k: "End-to-End", v: "Support" },
+  { icon: ShieldCheck, k: "Transparent", v: "Dealings" },
+  { icon: Handshake, k: "Expert", v: "Negotiation" },
 ];
 
 export function StatsBar() {

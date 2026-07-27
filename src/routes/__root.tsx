@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "https://www.saverrarealty.com/favicon/apple-touch-icon-57x57.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -127,9 +127,9 @@ function Preloader() {
       setRender(true);
       sessionStorage.setItem("saverra_preloader_shown", "true");
 
-      // Hide animation after 2.0s, unmount after 2.8s
-      const timer1 = setTimeout(() => setShow(false), 2000);
-      const timer2 = setTimeout(() => setRender(false), 2800);
+      // Hide animation after 5.0s, unmount after 6.0s
+      const timer1 = setTimeout(() => setShow(false), 5000);
+      const timer2 = setTimeout(() => setRender(false), 6000);
       return () => { clearTimeout(timer1); clearTimeout(timer2); };
     } else {
       setShow(false);
@@ -140,16 +140,16 @@ function Preloader() {
   if (!render) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-white transition-transform duration-[800ms] ease-in-out ${show ? 'translate-y-0' : '-translate-y-full'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-center justify-center bg-white transition-all duration-[1000ms] ease-in-out ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
       <div className="relative flex flex-col items-center justify-center">
-        {/* Logo Mark */}
-        <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+        {/* Logo Mark with Zig-Zag Animation */}
+        <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-1000 animate-zigzag ${show ? 'opacity-100 scale-110' : 'opacity-0 scale-90'}`}>
           <Logo variant="dark" className="h-48 md:h-64 aspect-[2/3]" />
         </div>
         
         {/* Loading Bar */}
-        <div className="mt-12 w-48 h-[2px] bg-slate-200 rounded-full overflow-hidden">
-           <div className={`h-full bg-gold transition-all duration-[2000ms] ease-out ${show ? 'w-full' : 'w-0'}`} />
+        <div className="mt-16 w-64 h-[2px] bg-slate-100 rounded-full overflow-hidden shadow-inner">
+           <div className={`h-full bg-gold transition-all duration-[5000ms] ease-linear ${show ? 'w-full' : 'w-0'}`} />
         </div>
       </div>
     </div>

@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 
 const STORAGE_KEY = "saverra_lead_submitted_v1";
-const SHOW_DELAY_MS = 7000;
-const REPROMPT_MS = 25000;
+const SHOW_DELAY_MS = 15000;
+const REPROMPT_MS = 50000;
 
 export function LeadPopup() {
   const [open, setOpen] = useState(false);
