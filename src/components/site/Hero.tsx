@@ -5,28 +5,28 @@ import { useEffect, useState } from "react";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2400&q=85",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=75",
     tagline: "Premium Real Estate Consultants",
     title1: "Your Trusted Partner For",
     titleHighlight: "Pan Mumbai Market",
     description: "Discover unparalleled luxury living and strategic commercial spaces with Saverra Realty. As your dedicated property consultants, we offer bespoke real estate advisory services specializing in Ghatkopar East and the wider Pan Mumbai market."
   },
   {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=85",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75",
     tagline: "Exclusive Portfolio",
     title1: "Curating India's Most",
     titleHighlight: "Prestigious Addresses",
     description: "Explore our hand-picked collection of luxury apartments and penthouses. Experience a lifestyle crafted for those who demand nothing but the absolute best."
   },
   {
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=2400&q=85",
+    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1600&q=75",
     tagline: "Transparent Deals",
     title1: "Seamless Buying",
     titleHighlight: "Zero Hassle",
     description: "With over a decade of trust in the Ghatkopar market, we ensure your property buying journey is smooth, transparent, and completely stress-free."
   },
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=75",
     tagline: "Commercial Spaces",
     title1: "Elevate Your",
     titleHighlight: "Business Presence",

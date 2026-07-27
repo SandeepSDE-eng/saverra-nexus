@@ -14,11 +14,16 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 export function ProjectCard({ p }: { p: Project }) {
+  // Optimize Unsplash images for card view (600px width is enough for a card)
+  const optimizedImage = p.cover_image?.includes("unsplash.com") 
+    ? p.cover_image.replace(/w=\d+/, "w=600")
+    : p.cover_image;
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-1 hover:border-gold/50 hover:shadow-luxury">
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
-          src={p.cover_image}
+          src={optimizedImage}
           alt={p.name}
           loading="lazy"
           className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
