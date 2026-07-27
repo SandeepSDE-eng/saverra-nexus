@@ -12,6 +12,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
 
+import { MOCK_PROJECTS } from "@/lib/mockProjects";
+
 export const Route = createFileRoute("/admin/projects")({ component: AdminProjects });
 
 type Project = Tables<"projects">;
@@ -36,6 +38,26 @@ function AdminProjects() {
   const [editing, setEditing] = useState<Project | null>(null);
   const [form, setForm] = useState<ProjectForm>(empty);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  const seed = useMutation({
+    mutationFn: async () => {
+      // Clean up the mock projects to match DB format
+      const toInsert = MOCK_PROJECTS.map(p => ({
+        ...p,
+        gallery: Array.isArray(p.gallery) ? p.gallery : [],
+        highlights: Array.isArray(p.highlights) ? p.highlights : [],
+        amenities: Array.isArray(p.amenities) ? p.amenities : []
+      }));
+      const { error } = await supabase.from("projects").insert(toInsert as any);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin", "projects"] });
+      qc.invalidateQueries({ queryKey: ["projects", "featured"] });
+      toast.success("10 Ghatkopar projects successfully added!");
+    },
+    onError: (e: any) => toast.error(e.message ?? "Failed to add projects"),
+  });
 
   const generateAI = async () => {
     if (!form.name || !form.location) {
@@ -201,7 +223,13 @@ function AdminProjects() {
           <h1 className="mt-1 font-display text-3xl font-bold text-primary">Projects</h1>
           <p className="mt-1 text-sm text-muted-foreground">{data.length} project(s). Changes appear instantly on the homepage.</p>
         </div>
-        <Button variant="gold" onClick={openNew}><Plus className="size-4" /> Add Project</Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => seed.mutate()} disabled={seed.isPending} className="border-gold text-gold hover:bg-gold/10">
+            <Sparkles className="size-4 mr-2" />
+            {seed.isPending ? "Injecting..." : "Inject 10 Ghatkopar Projects"}
+          </Button>
+          <Button variant="gold" onClick={openNew}><Plus className="size-4 mr-1" /> Add Project</Button>
+        </div>
       </div>
 
       {isLoading ? (
