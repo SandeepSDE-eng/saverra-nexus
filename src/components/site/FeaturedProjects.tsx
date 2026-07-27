@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "./ProjectCard";
 
+import { MOCK_PROJECTS } from "@/lib/mockProjects";
+
 export function FeaturedProjects() {
   const { data: projects = [], isLoading } = useQuery({
     queryKey: ["projects", "featured"],
@@ -16,16 +18,11 @@ export function FeaturedProjects() {
         .order("created_at", { ascending: false });
       if (error) {
         console.warn("Supabase Error (using fallback):", error);
-        return [
-          {
-            id: 1,
-            title: "Saverra Infinity",
-            location: "Bandra Kurla Complex, Mumbai",
-            price_range: "₹ 15.5 Cr Onwards",
-            status: "Under Construction",
-            image_url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
-          }
-        ];
+        return MOCK_PROJECTS;
+      }
+      // If DB is empty, also use mock data to ensure site looks populated!
+      if (!data || data.length === 0) {
+        return MOCK_PROJECTS;
       }
       return data;
     },

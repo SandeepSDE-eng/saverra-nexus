@@ -27,34 +27,51 @@ export const Route = createFileRoute("/projects/$slug")({
   ),
 });
 
+import { MOCK_PROJECTS } from "@/lib/mockProjects";
+
 function ProjectDetail() {
   const { slug } = Route.useParams();
   const { data: p, isLoading } = useQuery({
     queryKey: ["project", slug],
     queryFn: async () => {
       const { data, error } = await supabase.from("projects").select("*").eq("slug", slug).maybeSingle();
-      if (error) throw error;
-      if (!data) throw notFound();
-      return data;
+      
+      let projectData = data;
+
+      if (error || !data) {
+        // Fallback to mock data
+        const mockP = MOCK_PROJECTS.find((m) => m.slug === slug);
+        if (mockP) {
+          projectData = mockP;
+        } else {
+          throw notFound();
+        }
+      }
+      return projectData;
     },
   });
 
   if (isLoading) return <div className="grid min-h-screen place-items-center">Loading…</div>;
   if (!p) return null;
 
+  // Map MOCK_PROJECTS fields to what the UI expects if they differ
+  const name = p.name || p.title;
+  const priceDisplay = p.price_display || p.price_range;
+  const coverImage = p.cover_image || p.image_url;
+
   return (
     <div className="min-h-screen bg-background">
       <main>
         {/* Hero */}
         <section className="relative">
-          <img src={p.cover_image} alt={p.name} className="h-[60vh] w-full object-cover" />
+          <img src={coverImage} alt={name} className="h-[60vh] w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/95 via-[color:var(--navy-deep)]/40 to-transparent" />
           <div className="container-luxe absolute inset-x-0 bottom-0 pb-10 text-white">
             <Link to="/" className="mb-4 inline-flex items-center gap-1 text-xs text-white/80 hover:text-gold">
               <ArrowLeft className="size-3" /> Back to projects
             </Link>
             <p className="eyebrow text-gold">{p.category?.toUpperCase()}</p>
-            <h1 className="mt-2 font-display text-5xl font-bold sm:text-6xl">{p.name}</h1>
+            <h1 className="mt-2 font-display text-5xl font-bold sm:text-6xl">{name}</h1>
             {p.tagline && <p className="mt-2 text-lg italic text-white/85">{p.tagline}</p>}
             <p className="mt-3 flex items-center gap-2 text-sm text-white/85"><MapPin className="size-4 text-gold" /> {p.location}</p>
           </div>
@@ -63,9 +80,9 @@ function ProjectDetail() {
         {/* Key facts */}
         <section className="container-luxe -mt-8 relative z-10">
           <div className="grid grid-cols-2 gap-4 rounded-xl border border-border/60 bg-card p-6 shadow-luxury md:grid-cols-4">
-            <Fact label="Starting Price" value={p.price_display} icon={<IndianRupee className="size-4 text-gold" />} />
+            <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
             <Fact label="Configuration" value={p.bhk_options ?? "—"} />
-            <Fact label="Possession" value={p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
+            <Fact label="Possession" value={p.status ?? p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
             <Fact label="RERA" value={p.rera_number ?? "—"} />
           </div>
         </section>
@@ -74,7 +91,7 @@ function ProjectDetail() {
         <section className="container-luxe grid gap-10 py-16 md:grid-cols-3">
           <div className="md:col-span-2">
             <p className="eyebrow">Overview</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-primary">About {p.name}</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold text-primary">About {name}</h2>
             <p className="mt-4 leading-relaxed text-foreground/80">{p.description}</p>
 
             {p.highlights?.length ? (
@@ -121,7 +138,7 @@ function ProjectDetail() {
         {p.gallery?.length ? (
           <section className="container-luxe pb-16">
             <p className="eyebrow">Gallery</p>
-            <h2 className="mt-2 font-display text-3xl font-bold text-primary">Life at {p.name}</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold text-primary">Life at {name}</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
               {p.gallery.map((g) => (
                 <Dialog key={g}>
@@ -129,7 +146,7 @@ function ProjectDetail() {
                     <div className="overflow-hidden rounded-lg cursor-pointer group relative">
                       <img 
                         src={g} 
-                        alt={`Gallery image of ${p.name}`} 
+                        alt={`Gallery image of ${name}`} 
                         className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-110" 
                         loading="lazy" 
                       />
