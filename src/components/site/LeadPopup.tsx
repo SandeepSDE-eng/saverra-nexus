@@ -19,12 +19,20 @@ export function LeadPopup() {
     if (typeof window === "undefined") return;
     if (localStorage.getItem(STORAGE_KEY) === "1") return;
 
-    const first = window.setTimeout(() => setOpen(true), SHOW_DELAY_MS);
-    // If the user closes without submitting, keep re-prompting.
-    const interval = window.setInterval(() => {
+    const checkAndShow = () => {
       if (localStorage.getItem(STORAGE_KEY) === "1") return;
+      const lastClosed = sessionStorage.getItem("saverra_lead_closed");
+      // If closed within the last 5 minutes (300,000 ms), don't show it again yet
+      if (lastClosed && Date.now() - parseInt(lastClosed) < 5 * 60 * 1000) {
+        return;
+      }
       setOpen(true);
-    }, REPROMPT_MS + SHOW_DELAY_MS);
+    };
+
+    // Show for the first time after 10 seconds
+    const first = window.setTimeout(checkAndShow, 10000);
+    // After that, check every 60 seconds if the 5-minute cooldown has passed
+    const interval = window.setInterval(checkAndShow, 60000);
 
     return () => {
       window.clearTimeout(first);
@@ -64,7 +72,10 @@ export function LeadPopup() {
     setOpen(false);
   };
 
-  const close = () => setOpen(false); // reopens automatically until submitted
+  const close = () => {
+    sessionStorage.setItem("saverra_lead_closed", Date.now().toString());
+    setOpen(false);
+  };
 
   if (!open) return null;
 

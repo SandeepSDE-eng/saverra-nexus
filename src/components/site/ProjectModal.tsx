@@ -11,9 +11,9 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] grid place-items-center bg-black/60 backdrop-blur-sm p-4 md:p-6 animate-fade-in" onClick={onClose}>
+    <div className="fixed inset-0 z-[100] grid place-items-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
       <div 
-        className="relative w-full max-w-5xl bg-card rounded-3xl overflow-hidden flex flex-col md:flex-row max-h-[85vh] shadow-2xl animate-scale-in"
+        className="relative w-full max-w-4xl bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[560px] shadow-2xl animate-scale-in"
         onClick={e => e.stopPropagation()}
       >
         <button 
@@ -24,37 +24,36 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
         </button>
 
         {/* Left Side - Image */}
-        <div className="relative w-full md:w-1/2 h-64 md:h-auto min-h-[400px]">
+        <div className="relative w-full md:w-[45%] h-64 md:h-full shrink-0">
           <img 
             src={project.cover_image || ""} 
             alt={project.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/90 via-black/20 to-transparent" />
           
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <span className="inline-block bg-gold text-black text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
-              ✨ AI-ENHANCED LISTING
+            <span className="inline-block bg-gold text-[color:var(--navy-deep)] text-[10px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+              ✨ Premium Listing
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-2">{project.name}</h2>
-            <p className="flex items-center gap-2 text-white/80 text-sm">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <h2 className="text-2xl md:text-3xl font-display font-light text-white mb-1.5">{project.name}</h2>
+            <p className="flex items-center gap-1.5 text-white/80 text-xs font-medium">
+              <MapPin className="size-3.5 text-gold" />
               {project.location}
             </p>
           </div>
         </div>
 
         {/* Right Side - Details */}
-        <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto bg-card flex flex-col">
-          <div className="flex flex-wrap items-start justify-between gap-4 mb-6 pr-8">
+        <div className="w-full md:w-[55%] p-5 md:p-7 overflow-y-auto bg-card flex flex-col">
+          <div className="flex flex-wrap items-start justify-between gap-4 mb-5 pr-8">
             <div>
               <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold mb-1">Starting</p>
-              <p className="text-3xl text-primary font-display font-bold">{project.price_display}</p>
+              <p className="text-2xl text-primary font-display font-medium">{project.price_display}</p>
             </div>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1.5"><Bed className="size-4" /> {project.min_bhk || 2} BHK</span>
-              <span className="flex items-center gap-1.5"><Bath className="size-4" /> {Math.max(2, (project.min_bhk || 2) + 1)}</span>
-              <span className="flex items-center gap-1.5"><Maximize2 className="size-4" /> 1,200 sqft</span>
+            <div className="flex items-center gap-3 text-xs text-muted-foreground font-medium bg-secondary/50 px-3 py-2 rounded-lg">
+              <span className="flex items-center gap-1.5"><Bed className="size-3.5" /> {project.min_bhk || 2} BHK</span>
+              <span className="flex items-center gap-1.5"><Bath className="size-3.5" /> {Math.max(2, (project.min_bhk || 2) + 1)}</span>
             </div>
           </div>
 
@@ -153,12 +152,12 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 mt-auto shrink-0 pt-2 border-t border-border/50">
-            <Button className="flex-1 bg-[color:var(--navy-deep)] hover:bg-[color:var(--navy-deep)]/90 h-12" size="lg">
-              <Phone className="size-4 mr-2" /> Call advisor
+          <div className="flex gap-3 mt-auto shrink-0 pt-4 border-t border-border/40">
+            <Button className="flex-1 bg-[color:var(--navy-deep)] hover:bg-[color:var(--navy-deep)]/90 h-11 shadow-sm" size="default">
+              <Phone className="size-3.5 mr-2" /> Call advisor
             </Button>
-            <Button className="flex-1 bg-[#25D366] hover:bg-[#25D366]/90 text-white h-12" size="lg">
-              <MessageSquare className="size-4 mr-2" /> WhatsApp
+            <Button className="flex-1 bg-[#25D366] hover:bg-[#25D366]/90 text-white h-11 shadow-sm" size="default">
+              <MessageSquare className="size-3.5 mr-2" /> WhatsApp
             </Button>
           </div>
         </div>
