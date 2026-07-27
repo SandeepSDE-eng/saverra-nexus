@@ -49,12 +49,12 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
         {showHeading && (
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow">Featured Properties</p>
+              <p className="eyebrow">Exclusive Recommendations</p>
               <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-                Curated Masterpieces
+                Curated Developer Projects
               </h2>
-              <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-                A hand-picked selection of our most sought-after residences and commercial addresses.
+              <p className="mt-3 max-w-xl text-sm text-muted-foreground leading-relaxed">
+                Explore a hand-picked portfolio of premium residences and commercial spaces from top reputed developers, expertly vetted by our consultants for your lifestyle and investment goals.
               </p>
             </div>
             {limit && (
