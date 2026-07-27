@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { X, Maximize2, Bath, Bed, Video, Phone, MessageSquare, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Tables } from "@/integrations/supabase/types";
@@ -8,9 +9,9 @@ type Project = Tables<"projects">;
 export function ProjectModal({ project, isOpen, onClose }: { project: Project, isOpen: boolean, onClose: () => void }) {
   const [activeTab, setActiveTab] = useState("Gallery");
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof document === 'undefined') return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-[100] grid place-items-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
       <div 
         className="relative w-full max-w-4xl bg-card rounded-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[560px] shadow-2xl animate-scale-in"
@@ -162,6 +163,7 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
