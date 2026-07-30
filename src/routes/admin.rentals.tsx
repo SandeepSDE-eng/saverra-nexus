@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Trash2, Plus, ExternalLink, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
-import { getAdminRentalsFn, addRentalFn, deleteRentalFn, toggleRentalStatusFn } from "@/api/rentals";
+import { getAdminRentalsFn, addRentalFn, deleteRentalFn, toggleRentalStatusFn, updateRentalFn } from "@/api/rentals";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/admin/rentals")({ component: AdminRentals });
 
@@ -13,6 +15,10 @@ function AdminRentals() {
   const qc = useQueryClient();
   const [title, setTitle] = useState("");
   const [youtubeLink, setYoutubeLink] = useState("");
+  const [editingRental, setEditingRental] = useState<any>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editTitle, setEditTitle] = useState("");
+  const [editYoutubeLink, setEditYoutubeLink] = useState("");
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["admin", "rental_updates"],
@@ -73,6 +79,30 @@ function AdminRentals() {
     },
     onError: (err: any) => toast.error(err.message),
   });
+
+  const update = useMutation({
+    mutationFn: async () => {
+      const yId = extractYoutubeId(editYoutubeLink);
+      if (!yId) throw new Error("Invalid YouTube Link or ID");
+      if (!editTitle.trim()) throw new Error("Title is required");
+
+      const response = await updateRentalFn({ data: { id: editingRental.id, title: editTitle, youtube_id: yId } });
+      if (!response.success) throw new Error(response.error || "Failed to update rental");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin", "rental_updates"] });
+      toast.success("Rental video updated!");
+      setIsEditDialogOpen(false);
+    },
+    onError: (err: any) => toast.error(err.message),
+  });
+
+  const openEdit = (rental: any) => {
+    setEditingRental(rental);
+    setEditTitle(rental.title);
+    setEditYoutubeLink(`https://youtube.com/shorts/${rental.youtube_id}`);
+    setIsEditDialogOpen(true);
+  };
 
   return (
     <div>
@@ -136,6 +166,9 @@ function AdminRentals() {
                         {i.is_active ? <EyeOff className="size-4 mr-1" /> : <Eye className="size-4 mr-1" />}
                         {i.is_active ? 'Hide' : 'Publish'}
                       </Button>
+                      <Button size="sm" variant="outline" onClick={() => openEdit(i)}>
+                        Edit
+                      </Button>
                       <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete this rental video?")) del.mutate(i.id); }}>
                         <Trash2 className="size-4 text-destructive" />
                       </Button>
@@ -150,6 +183,38 @@ function AdminRentals() {
           </table>
         </div>
       )}
+
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Rental Video</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="title">Property Title</Label>
+              <Input
+                id="title"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="youtube">YouTube Short Link</Label>
+              <Input
+                id="youtube"
+                value={editYoutubeLink}
+                onChange={(e) => setEditYoutubeLink(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>Cancel</Button>
+            <Button onClick={() => update.mutate()} disabled={update.isPending || !editTitle || !editYoutubeLink}>
+              {update.isPending ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

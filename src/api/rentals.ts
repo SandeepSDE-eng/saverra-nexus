@@ -67,6 +67,25 @@ export const toggleRentalStatusFn = createServerFn({ method: "POST" })
     }
 });
 
+export const updateRentalFn = createServerFn({ method: "POST" })
+  .validator((d: { id: number; title: string; youtube_id: string }) => d)
+  .handler(async ({ data }) => {
+    try {
+      const { id, title, youtube_id } = data;
+      const pool = getMySqlPool();
+      
+      await pool.query(
+        'UPDATE rental_updates SET title = ?, youtube_id = ? WHERE id = ?',
+        [title, youtube_id, id]
+      );
+      
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error updating rental:", error);
+      return { success: false, error: error.message };
+    }
+});
+
 export const deleteRentalFn = createServerFn({ method: "POST" })
   .validator((id: number) => id)
   .handler(async ({ data: id }) => {
