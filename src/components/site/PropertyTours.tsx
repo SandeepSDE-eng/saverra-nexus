@@ -1,17 +1,16 @@
 import { ArrowRight, Instagram, Youtube, Facebook } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { getSocialPostsFn } from "@/api/social";
 
 export function PropertyTours() {
   const { data: posts, isLoading } = useQuery({
     queryKey: ["home_social_posts"],
     queryFn: async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-        const response = await fetch(`${API_URL}/api/social-media`);
-        if (!response.ok) throw new Error("Failed to fetch from MySQL");
-        const data = await response.json();
-        return data.slice(0, 4); // Limit to 4 items
+        const response = await getSocialPostsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch from MySQL");
+        return response.data.slice(0, 4); // Limit to 4 items
       } catch (error) {
         console.warn("Backend error:", error);
         return [];
