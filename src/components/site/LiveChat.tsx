@@ -115,11 +115,11 @@ export function LiveChat() {
     <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 flex h-[400px] w-[320px] sm:w-[350px] flex-col overflow-hidden rounded-2xl border border-border/60 bg-background shadow-2xl animate-in slide-in-from-bottom-5 transform origin-bottom-right">
+        <div className="mb-4 flex h-[350px] w-[280px] sm:w-[320px] flex-col overflow-hidden rounded-3xl border border-border/40 bg-background shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-in slide-in-from-bottom-5 transform origin-bottom-right">
           {/* Header */}
-          <div className="flex items-center justify-between bg-[color:var(--navy-deep)] p-4 text-white">
+          <div className="flex items-center justify-between bg-gradient-to-r from-[color:var(--navy-deep)] to-primary p-4 text-white">
             <div className="flex items-center gap-3">
-              <div className="relative">
+              <div className="relative shadow-md rounded-full">
                 <div className="grid size-10 place-items-center rounded-full bg-gold/20 text-gold">
                   <Bot className="size-6" />
                 </div>
@@ -139,7 +139,7 @@ export function LiveChat() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/20">
             {messages.map((msg) => (
               <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${msg.sender === "user" ? "bg-primary text-primary-foreground rounded-tr-sm" : "bg-card border border-border/60 text-foreground rounded-tl-sm shadow-sm"}`}>
+                <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm shadow-sm ${msg.sender === "user" ? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground rounded-tr-sm" : "bg-card border border-border/40 text-foreground rounded-tl-sm"}`}>
                   <p>{msg.text}</p>
                   
                   {msg.showContactActions && msg.sender === "bot" && (
@@ -195,7 +195,7 @@ export function LiveChat() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex size-14 items-center justify-center rounded-full bg-gold text-[color:var(--navy-deep)] shadow-lg transition-transform hover:scale-110 animate-bounce"
+          className="group relative flex size-14 items-center justify-center rounded-full bg-gradient-to-tr from-gold to-yellow-400 text-[color:var(--navy-deep)] shadow-lg transition-transform hover:scale-110 animate-bounce"
           style={{ animationDuration: "3s" }}
         >
           <MessageSquare className="size-6 transition-transform group-hover:scale-110" />
