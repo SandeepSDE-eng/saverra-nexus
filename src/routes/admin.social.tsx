@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2, ExternalLink, Plus, RefreshCw, Instagram, Youtube, Facebook } from "lucide-react";
 import { toast } from "sonner";
-import { getAdminSocialPostsFn, addSocialPostFn, deleteSocialPostFn } from "@/server/social";
+import { getAdminSocialPostsFn, addSocialPostFn, deleteSocialPostFn } from "@/api/social";
 
 export const Route = createFileRoute("/admin/social")({
   component: AdminSocial,

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Instagram, Youtube, Facebook, Play, Sparkles } from "lucide-react";
-import { getSocialPostsFn } from "@/server/social";
+import { getSocialPostsFn } from "@/api/social";
 
 export const Route = createFileRoute("/social-wall")({
   component: SocialWall,
