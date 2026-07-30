@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { getInquiriesFn, deleteInquiryFn } from "@/api/inquiries";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin/inquiries")({ component: AdminInquiries });
@@ -12,15 +12,15 @@ function AdminInquiries() {
   const { data = [], isLoading } = useQuery({
     queryKey: ["admin", "inquiries"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("inquiries").select("*").order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
+      const response = await getInquiriesFn();
+      if (!response.success) throw new Error(response.error);
+      return response.data;
     },
   });
   const del = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("inquiries").delete().eq("id", id);
-      if (error) throw error;
+    mutationFn: async (id: number) => {
+      const response = await deleteInquiryFn({ data: id });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "inquiries"] });

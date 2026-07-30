@@ -4,7 +4,7 @@ import { X, Download, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
+import { addInquiryFn } from "@/api/inquiries";
 
 type Mode = "brochure" | "visit";
 
@@ -42,13 +42,13 @@ export function BookingModal({
     const msg = isVisit
       ? `Site visit requested${form.date ? ` for ${form.date}` : ""}${projectName ? ` — ${projectName}` : ""}.`
       : `Brochure requested${projectName ? ` — ${projectName}` : ""}.`;
-    const { error } = await supabase.from("inquiries").insert({
+    const response = await addInquiryFn({ data: {
       name: form.name, phone: form.phone,
-      email: form.email || null, city: form.city || null,
-      message: msg,
-    });
+      email: form.email || undefined,
+      message: `${msg}\n[City: ${form.city || 'N/A'}]`,
+    }});
     setSubmitting(false);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (!response.success) return toast.error("Something went wrong. Please try again.");
     toast.success(isVisit ? "Site visit request received!" : "Brochure is on its way to your inbox!");
     setForm({ name: "", phone: "", email: "", city: "", date: "" });
     onClose();

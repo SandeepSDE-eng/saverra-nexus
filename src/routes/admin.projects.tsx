@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Plus, Pencil, Trash2, Eye, EyeOff, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { getAdminProjectsFn, addProjectFn, updateProjectFn, deleteProjectFn, toggleProjectStatusFn } from "@/api/projects";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -42,9 +42,9 @@ function AdminProjects() {
   const seed = useMutation({
     mutationFn: async () => {
       // Clean up the mock projects to match DB format and remove explicit IDs
-      const toInsert = MOCK_PROJECTS.map(p => {
+      for (const p of MOCK_PROJECTS) {
         const { id, created_at, updated_at, ...rest } = p;
-        return {
+        const body = {
           ...rest,
           city: (p as any).city || "Mumbai", // Force city to prevent null constraint
           builder: (p as any).builder || "SAVERRA Developers",
@@ -53,9 +53,9 @@ function AdminProjects() {
           highlights: Array.isArray(p.highlights) ? p.highlights : [],
           amenities: Array.isArray(p.amenities) ? p.amenities : []
         };
-      });
-      const { error } = await supabase.from("projects").insert(toInsert as any);
-      if (error) throw error;
+        const response = await addProjectFn({ data: body });
+        if (!response.success) throw new Error(response.error);
+      }
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects"] });
@@ -133,12 +133,14 @@ function AdminProjects() {
   const { data = [], isLoading } = useQuery({
     queryKey: ["admin", "projects"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("projects").select("*").order("created_at", { ascending: false });
-      if (error) {
-        console.warn("Supabase Error (using fallback):", error);
+      try {
+        const response = await getAdminProjectsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch");
+        return response.data as Project[];
+      } catch (error: any) {
+        console.warn("MySQL Error:", error);
         return [];
       }
-      return data as Project[];
     },
   });
 
@@ -150,11 +152,11 @@ function AdminProjects() {
       body.highlights = typeof body.highlights === "string" ? body.highlights.split(",").map((s: string) => s.trim()).filter(Boolean) : body.highlights ?? [];
       if (!body.slug) body.slug = slugify(body.name ?? "");
       if (editing) {
-        const { error } = await supabase.from("projects").update(body).eq("id", editing.id);
-        if (error) throw error;
+        const response = await updateProjectFn({ data: { id: editing.id, data: body } });
+        if (!response.success) throw new Error(response.error);
       } else {
-        const { error } = await supabase.from("projects").insert(body);
-        if (error) throw error;
+        const response = await addProjectFn({ data: body });
+        if (!response.success) throw new Error(response.error);
       }
     },
     onSuccess: () => {
@@ -167,9 +169,9 @@ function AdminProjects() {
   });
 
   const del = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("projects").delete().eq("id", id);
-      if (error) throw error;
+    mutationFn: async (id: number) => {
+      const response = await deleteProjectFn({ data: id });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects"] });
@@ -181,8 +183,8 @@ function AdminProjects() {
 
   const togglePub = useMutation({
     mutationFn: async (p: Project) => {
-      const { error } = await supabase.from("projects").update({ is_published: !p.is_published }).eq("id", p.id);
-      if (error) throw error;
+      const response = await toggleProjectStatusFn({ data: { id: p.id, is_published: !p.is_published } });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects"] });

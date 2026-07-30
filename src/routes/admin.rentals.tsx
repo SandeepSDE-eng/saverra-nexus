@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Trash2, Plus, ExternalLink } from "lucide-react";
+import { Trash2, Plus, ExternalLink, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { getAdminRentalsFn, addRentalFn, deleteRentalFn, toggleRentalStatusFn } from "@/api/rentals";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -17,14 +17,14 @@ function AdminRentals() {
   const { data = [], isLoading } = useQuery({
     queryKey: ["admin", "rental_updates"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("rental_updates").select("*").order("created_at", { ascending: false });
-      if (error) {
-         console.warn("Supabase Error (using mock fallback):", error);
-         return [
-           { id: 1, title: "Example Luxury Flat", youtube_id: "rLSMDfjwwzw", created_at: new Date().toISOString() }
-         ];
+      try {
+        const response = await getAdminRentalsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch rentals");
+        return response.data;
+      } catch (error: any) {
+         console.warn("MySQL Fetch Error:", error);
+         return [];
       }
-      return data;
     },
   });
 
@@ -39,8 +39,8 @@ function AdminRentals() {
       if (!yId) throw new Error("Invalid YouTube Link or ID");
       if (!title.trim()) throw new Error("Title is required");
 
-      const { error } = await supabase.from("rental_updates").insert({ title, youtube_id: yId });
-      if (error) throw error;
+      const response = await addRentalFn({ data: { title, youtube_id: yId } });
+      if (!response.success) throw new Error(response.error || "Failed to add rental");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "rental_updates"] });
@@ -53,13 +53,25 @@ function AdminRentals() {
 
   const del = useMutation({
     mutationFn: async (id: number) => {
-      const { error } = await supabase.from("rental_updates").delete().eq("id", id);
-      if (error) throw error;
+      const response = await deleteRentalFn({ data: id });
+      if (!response.success) throw new Error(response.error || "Failed to delete rental");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "rental_updates"] });
       toast.success("Rental deleted");
     },
+  });
+
+  const toggleStatus = useMutation({
+    mutationFn: async ({ id, is_active }: { id: number; is_active: boolean }) => {
+      const response = await toggleRentalStatusFn({ data: { id, is_active } });
+      if (!response.success) throw new Error(response.error || "Failed to update status");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin", "rental_updates"] });
+      toast.success("Status updated!");
+    },
+    onError: (err: any) => toast.error(err.message),
   });
 
   return (
@@ -95,8 +107,9 @@ function AdminRentals() {
                 <th className="px-4 py-3">Thumbnail</th>
                 <th className="px-4 py-3">Title</th>
                 <th className="px-4 py-3">YouTube ID</th>
+                <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3">Added On</th>
-                <th className="px-4 py-3"></th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -111,11 +124,22 @@ function AdminRentals() {
                       {i.youtube_id} <ExternalLink className="size-3" />
                     </a>
                   </td>
+                  <td className="px-4 py-3">
+                    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${i.is_active ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                      {i.is_active ? 'Published' : 'Draft'}
+                    </span>
+                  </td>
                   <td className="px-4 py-3 text-xs text-muted-foreground">{new Date(i.created_at).toLocaleString()}</td>
                   <td className="px-4 py-3 text-right">
-                    <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete this rental video?")) del.mutate(i.id); }}>
-                      <Trash2 className="size-4 text-destructive" />
-                    </Button>
+                    <div className="flex justify-end gap-2">
+                      <Button size="sm" variant={i.is_active ? "outline" : "default"} onClick={() => toggleStatus.mutate({ id: i.id, is_active: !i.is_active })}>
+                        {i.is_active ? <EyeOff className="size-4 mr-1" /> : <Eye className="size-4 mr-1" />}
+                        {i.is_active ? 'Hide' : 'Publish'}
+                      </Button>
+                      <Button size="icon" variant="ghost" onClick={() => { if (confirm("Delete this rental video?")) del.mutate(i.id); }}>
+                        <Trash2 className="size-4 text-destructive" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}

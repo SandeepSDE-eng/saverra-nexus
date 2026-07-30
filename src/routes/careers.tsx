@@ -4,7 +4,7 @@ import { Building2, Mail, MapPin, Phone, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
+import { submitCareerApplicationFn } from "@/api/misc";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -52,7 +52,7 @@ function Careers() {
     try {
       setIsSubmitting(true);
       
-      const { error } = await supabase.from("career_applications").insert({
+      const response = await submitCareerApplicationFn({ data: {
         first_name: values.first_name,
         last_name: values.last_name,
         email: values.email,
@@ -61,9 +61,9 @@ function Careers() {
         experience_years: values.experience_years,
         resume_url: values.resume_url,
         cover_letter: values.cover_letter,
-      });
+      }});
 
-      if (error) throw error;
+      if (!response.success) throw new Error(response.error);
 
       toast.success("Application submitted successfully! We will get back to you soon.");
       form.reset();

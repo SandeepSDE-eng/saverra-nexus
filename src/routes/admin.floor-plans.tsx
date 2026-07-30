@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
+import { getFloorPlansFn, createFloorPlanFn, updateFloorPlanFn, deleteFloorPlanFn, updateFloorPlanStatusFn } from "@/api/misc";
 
 export const Route = createFileRoute("/admin/floor-plans")({ component: AdminFloorPlans });
 
@@ -42,15 +42,15 @@ function AdminFloorPlans() {
     queryKey: ["admin", "floor-plans"],
     retry: false,
     queryFn: async () => {
-      const { data, error } = await supabase.from("floor_plans").select("*").order("created_at", { ascending: true });
-      if (error) {
-        console.warn("Supabase Error (using mock fallback):", error);
+      const response = await getFloorPlansFn();
+      if (!response.success) {
+        console.warn("MySQL Error (using mock fallback):", response.error);
         return [
-          { id: "mock-1", type_key: "1bhk", label: "1 BHK", area: "620 Sq.Ft", features: '["Living Room", "1 Bedroom", "Modular Kitchen", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80", is_published: true },
-          { id: "mock-2", type_key: "2bhk", label: "2 BHK", area: "850 Sq.Ft", features: '["Spacious Living Room", "2 Bedrooms", "Modular Kitchen", "2 Bathrooms", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80", is_published: true }
-        ] as FloorPlan[];
+          { id: 1, type_key: "1bhk", label: "1 BHK", area: "620 Sq.Ft", features: '["Living Room", "1 Bedroom", "Modular Kitchen", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80", is_published: true },
+          { id: 2, type_key: "2bhk", label: "2 BHK", area: "850 Sq.Ft", features: '["Spacious Living Room", "2 Bedrooms", "Modular Kitchen", "2 Bathrooms", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80", is_published: true }
+        ] as any[];
       }
-      return data as FloorPlan[];
+      return response.data as FloorPlan[];
     },
   });
 
@@ -75,11 +75,11 @@ function AdminFloorPlans() {
       };
 
       if (editing) {
-        const { error } = await supabase.from("floor_plans").update(body).eq("id", editing.id);
-        if (error) throw error;
+        const response = await updateFloorPlanFn({ data: { id: Number(editing.id), ...body } as any });
+        if (!response.success) throw new Error(response.error);
       } else {
-        const { error } = await supabase.from("floor_plans").insert([body]);
-        if (error) throw error;
+        const response = await createFloorPlanFn({ data: body as any });
+        if (!response.success) throw new Error(response.error);
       }
     },
     onSuccess: () => {
@@ -92,9 +92,9 @@ function AdminFloorPlans() {
   });
 
   const del = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from("floor_plans").delete().eq("id", id);
-      if (error) throw error;
+    mutationFn: async (id: number) => {
+      const response = await deleteFloorPlanFn({ data: id });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "floor-plans"] });
@@ -106,8 +106,8 @@ function AdminFloorPlans() {
 
   const togglePub = useMutation({
     mutationFn: async (p: FloorPlan) => {
-      const { error } = await supabase.from("floor_plans").update({ is_published: !p.is_published }).eq("id", p.id);
-      if (error) throw error;
+      const response = await updateFloorPlanStatusFn({ data: { id: Number(p.id), is_published: !p.is_published }});
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "floor-plans"] });
@@ -182,7 +182,7 @@ function AdminFloorPlans() {
                         {p.is_published ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
                       </Button>
                       <Button size="icon" variant="ghost" onClick={() => openEdit(p)} title="Edit"><Pencil className="size-4" /></Button>
-                      <Button size="icon" variant="ghost" onClick={() => { if (confirm(`Delete "${p.label}"?`)) del.mutate(p.id); }} title="Delete">
+                      <Button size="icon" variant="ghost" onClick={() => { if (confirm(`Delete "${p.label}"?`)) del.mutate(Number(p.id)); }} title="Delete">
                         <Trash2 className="size-4 text-destructive" />
                       </Button>
                     </div>

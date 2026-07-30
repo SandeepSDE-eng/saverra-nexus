@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { getProjectBySlugFn } from "@/api/projects";
 import { ContactSection } from "@/components/site/ContactSection";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -34,20 +34,19 @@ function ProjectDetail() {
   const { data: p, isLoading } = useQuery({
     queryKey: ["project", slug],
     queryFn: async () => {
-      const { data, error } = await supabase.from("projects").select("*").eq("slug", slug).maybeSingle();
-      
-      let projectData = data;
-
-      if (error || !data || !data.name) {
+      try {
+        const response = await getProjectBySlugFn({ data: slug });
+        if (!response.success || !response.data) throw new Error(response.error || "Not found");
+        return response.data;
+      } catch (error) {
         // Fallback to mock data if DB has old schema (missing name) or error
         const mockP = MOCK_PROJECTS.find((m) => m.slug === slug);
         if (mockP) {
-          projectData = mockP;
+          return mockP;
         } else {
           throw notFound();
         }
       }
-      return projectData;
     },
   });
 

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { ExternalLink, Trash2, Mail, Phone, Briefcase } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { getCareerApplicationsFn, updateCareerStatusFn, deleteCareerApplicationFn } from "@/api/misc";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import {
@@ -25,26 +25,19 @@ function AdminCareers() {
   const { data: applications = [], isLoading } = useQuery({
     queryKey: ["admin_careers"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("career_applications")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        toast.error("Failed to fetch applications. Make sure you have run the database migration.");
+      const response = await getCareerApplicationsFn();
+      if (!response.success) {
+        toast.error(response.error || "Failed to fetch applications.");
         return [];
       }
-      return data;
+      return response.data;
     },
   });
 
   const updateStatus = useMutation({
-    mutationFn: async ({ id, status }: { id: string; status: string }) => {
-      const { error } = await supabase
-        .from("career_applications")
-        .update({ status })
-        .eq("id", id);
-      if (error) throw error;
+    mutationFn: async ({ id, status }: { id: number; status: string }) => {
+      const response = await updateCareerStatusFn({ data: { id, status } });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       toast.success("Application status updated");
@@ -56,12 +49,9 @@ function AdminCareers() {
   });
 
   const deleteApplication = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase
-        .from("career_applications")
-        .delete()
-        .eq("id", id);
-      if (error) throw error;
+    mutationFn: async (id: number) => {
+      const response = await deleteCareerApplicationFn({ data: id });
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       toast.success("Application deleted");

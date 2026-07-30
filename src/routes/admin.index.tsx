@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Building2, MessageSquare, TrendingUp, Users } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { getAdminProjectsFn } from "@/api/projects";
+import { getInquiriesFn } from "@/api/inquiries";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
 export const Route = createFileRoute("/admin/")({
@@ -22,18 +23,28 @@ function AdminDashboard() {
   const { data: projects = [], isLoading: pLoading } = useQuery({
     queryKey: ["admin", "projects"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("projects").select("id, is_published");
-      if (error) throw error;
-      return data;
+      try {
+        const response = await getAdminProjectsFn();
+        if (!response.success) throw new Error(response.error);
+        return response.data;
+      } catch (error) {
+        console.warn("MySQL Error (admin projects):", error);
+        return [];
+      }
     },
   });
 
   const { data: inquiries = [], isLoading: iLoading } = useQuery({
     queryKey: ["admin", "inquiries"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("inquiries").select("*").order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
+      try {
+        const response = await getInquiriesFn();
+        if (!response.success) throw new Error(response.error);
+        return response.data;
+      } catch (error) {
+        console.warn("MySQL Error (admin inquiries):", error);
+        return [];
+      }
     },
   });
 

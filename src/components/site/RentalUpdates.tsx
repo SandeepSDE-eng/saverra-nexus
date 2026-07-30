@@ -1,24 +1,20 @@
 import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 import { Link } from "@tanstack/react-router";
+import { getRentalsFn } from "@/api/rentals";
 
 export function RentalUpdates() {
   const { data: rentals = [], isLoading } = useQuery({
     queryKey: ["site", "rental_updates"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("rental_updates")
-        .select("*")
-        .eq("is_active", true)
-        .order("created_at", { ascending: false });
-      if (error) {
-        console.warn("Supabase Error (using mock fallback):", error);
-        return [
-          { id: 1, title: "Example Luxury Flat", youtube_id: "rLSMDfjwwzw" }
-        ];
+      try {
+        const response = await getRentalsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch rentals");
+        return response.data;
+      } catch (error: any) {
+        console.warn("MySQL Fetch Error:", error);
+        return [];
       }
-      return data;
     },
   });
 

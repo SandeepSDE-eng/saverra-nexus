@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
+import { addInquiryFn } from "@/api/inquiries";
 
 export function ContactSection() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", city: "", budget: "", message: "" });
@@ -21,12 +21,12 @@ export function ContactSection() {
       return;
     }
     setSubmitting(true);
-    const { error } = await supabase.from("inquiries").insert({
-      name: form.name, phone: form.phone, email: form.email || null,
-      city: form.city || null, budget: form.budget || null, message: form.message || null,
-    });
+    const response = await addInquiryFn({ data: {
+      name: form.name, phone: form.phone, email: form.email || undefined,
+      message: `${form.message || ''} \n[City: ${form.city || 'N/A'}, Budget: ${form.budget || 'N/A'}]`,
+    }});
     setSubmitting(false);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (!response.success) return toast.error("Something went wrong. Please try again.");
     toast.success("Thanks! Our team will reach out within 24 hours.");
     setForm({ name: "", phone: "", email: "", city: "", budget: "", message: "" });
   };

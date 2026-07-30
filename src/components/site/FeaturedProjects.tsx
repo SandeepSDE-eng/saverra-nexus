@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { getProjectsFn, getFeaturedProjectsFn } from "@/api/projects";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "./ProjectCard";
 import { MOCK_PROJECTS } from "@/lib/mockProjects";
@@ -14,20 +14,20 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
   const { data: projects = [], isLoading } = useQuery({
     queryKey: ["projects", "featured"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("*")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false });
-      if (error) {
-        console.warn("Supabase Error (using fallback):", error);
+      try {
+        const response = limit 
+          ? await getFeaturedProjectsFn()
+          : await getProjectsFn();
+          
+        if (!response.success || !response.data || response.data.length === 0) {
+          console.warn("Using mock data due to empty DB or old schema");
+          return MOCK_PROJECTS;
+        }
+        return response.data;
+      } catch (error) {
+        console.warn("MySQL Error (using fallback):", error);
         return MOCK_PROJECTS;
       }
-      if (!data || data.length === 0 || (data.length > 0 && !data[0].slug)) {
-        console.warn("Using mock data due to empty DB or old schema");
-        return MOCK_PROJECTS;
-      }
-      return data;
     },
   });
 

@@ -4,7 +4,7 @@ import { X, Sparkles, Phone as PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
+import { addInquiryFn } from "@/api/inquiries";
 
 const STORAGE_KEY = "saverra_lead_submitted_v1";
 const SHOW_DELAY_MS = 15000;
@@ -58,15 +58,13 @@ export function LeadPopup() {
       return;
     }
     setSubmitting(true);
-    const { error } = await supabase.from("inquiries").insert({
+    const response = await addInquiryFn({ data: {
       name: form.name,
       phone: form.phone,
-      city: form.city || null,
-      budget: form.budget || null,
-      message: "Popup lead — requested callback",
-    });
+      message: `Popup lead — requested callback. City: ${form.city}, Budget: ${form.budget}`,
+    }});
     setSubmitting(false);
-    if (error) return toast.error("Something went wrong. Please try again.");
+    if (!response.success) return toast.error("Something went wrong. Please try again.");
     localStorage.setItem(STORAGE_KEY, "1");
     toast.success("Thank you! A SAVERRA advisor will call you shortly.");
     setOpen(false);

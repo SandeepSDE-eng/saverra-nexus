@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { getFloorPlansFn } from "@/api/misc";
 
 type FloorPlan = {
   id: string;
@@ -26,15 +26,16 @@ export function FloorPlans() {
   const { data: plans = DEFAULT_PLANS } = useQuery({
     queryKey: ["site", "floor-plans"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("floor_plans").select("*").eq("is_published", true).order("created_at", { ascending: true });
-      if (error) {
-        console.warn("Supabase Error (using mock fallback):", error);
+      const response = await getFloorPlansFn();
+      if (!response.success) {
+        console.warn("MySQL Error (using mock fallback):", response.error);
         return [
-          { id: "mock-1", type_key: "1bhk", label: "1 BHK", area: "620 Sq.Ft", features: '["Living Room", "1 Bedroom", "Modular Kitchen", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" },
-          { id: "mock-2", type_key: "2bhk", label: "2 BHK", area: "850 Sq.Ft", features: '["Spacious Living Room", "2 Bedrooms", "Modular Kitchen", "2 Bathrooms", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" }
-        ];
+          { id: 1, type_key: "1bhk", label: "1 BHK", area: "620 Sq.Ft", features: '["Living Room", "1 Bedroom", "Modular Kitchen", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" },
+          { id: 2, type_key: "2bhk", label: "2 BHK", area: "850 Sq.Ft", features: '["Spacious Living Room", "2 Bedrooms", "Modular Kitchen", "2 Bathrooms", "Balcony"]', image_url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" }
+        ] as any[];
       }
-      return data || DEFAULT_PLANS;
+      // Only return published floor plans for public view
+      return (response.data || []).filter((p: any) => p.is_published) || DEFAULT_PLANS;
     }
   });
 
