@@ -46,26 +46,26 @@ export function RentalUpdates() {
             </p>
           </div>
           <Link
-            to="/#contact"
+            to="/social-wall"
             className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary transition-colors hover:text-gold"
           >
-            Inquire Now <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            Explore Full Gallery <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* Horizontal scroll container for Rental Reels */}
-        <div className="flex w-full snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        {/* 4 items max on Home page */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
           {isLoading ? (
-             <div className="flex gap-6 animate-pulse">
+             <>
                 {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="flex-none w-[280px] sm:w-[320px] aspect-[9/16] rounded-2xl bg-secondary/80"></div>
+                  <div key={i} className="w-full aspect-[9/16] rounded-2xl bg-secondary/80 animate-pulse"></div>
                 ))}
-             </div>
+             </>
           ) : (
-            rentals.map((rental) => (
+            rentals.slice(0, 4).map((rental) => (
               <div
                 key={rental.id}
-                className="group relative flex-none w-[280px] sm:w-[320px] aspect-[9/16] snap-center overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
+                className="group relative w-full aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
               >
                 {/* Title Overlay */}
                 <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
@@ -75,7 +75,7 @@ export function RentalUpdates() {
                 <iframe
                   src={`https://www.youtube.com/embed/${rental.youtube_id}?autoplay=0&controls=1&rel=0&showinfo=0&modestbranding=1`}
                   title={rental.title}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full border-0 object-cover"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -83,13 +83,6 @@ export function RentalUpdates() {
             ))
           )}
         </div>
-        
-        {/* Hide webkit scrollbar in a style tag */}
-        <style dangerouslySetInnerHTML={{__html: `
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-        `}} />
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Instagram, Youtube, Facebook, Play, Sparkles } from "lucide-react";
 import { getSocialPostsFn } from "@/api/social";
+import { getRentalsFn } from "@/api/rentals";
 
 export const Route = createFileRoute("/social-wall")({
   component: SocialWall,
@@ -13,7 +14,7 @@ type Platform = 'all' | 'instagram' | 'youtube' | 'facebook';
 function SocialWall() {
   const [activeTab, setActiveTab] = useState<Platform>('all');
 
-  const { data: posts, isLoading } = useQuery({
+  const { data: postsData, isLoading: isLoadingPosts } = useQuery({
     queryKey: ["public_social_posts"],
     queryFn: async () => {
       try {
@@ -27,7 +28,36 @@ function SocialWall() {
     },
   });
 
-  const filteredPosts = posts?.filter(post => activeTab === 'all' || post.platform === activeTab) || [];
+  const { data: rentalsData, isLoading: isLoadingRentals } = useQuery({
+    queryKey: ["site", "rental_updates"],
+    queryFn: async () => {
+      try {
+        const response = await getRentalsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch rentals");
+        return response.data;
+      } catch (error) {
+        console.warn("Rentals fetch error:", error);
+        return [];
+      }
+    },
+  });
+
+  const isLoading = isLoadingPosts || isLoadingRentals;
+
+  const combinedPosts = [
+    ...(postsData || []),
+    ...(rentalsData || []).map(r => ({
+      id: `rental_${r.id}` as any, // Cast to any to bypass strict type checking for union
+      platform: 'youtube' as const,
+      url: `https://youtube.com/shorts/${r.youtube_id}`,
+      embed_id: r.youtube_id,
+      title: r.title,
+      is_active: r.is_active,
+      created_at: r.created_at
+    }))
+  ].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
+
+  const filteredPosts = combinedPosts.filter(post => activeTab === 'all' || post.platform === activeTab);
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] pb-20">

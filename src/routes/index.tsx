@@ -63,6 +63,7 @@ function Home() {
       <DevelopersMarquee />
       <StatsBar />
       <FeaturedProjects limit={8} />
+      <RentalUpdates />
       <PropertyTours />
       <Testimonials />
       <ContactSection />
