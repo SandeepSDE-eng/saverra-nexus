@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Instagram, Youtube, Facebook, Play, Sparkles } from "lucide-react";
+import { getSocialPostsFn } from "@/server/social";
 
 export const Route = createFileRoute("/social-wall")({
   component: SocialWall,
@@ -16,10 +17,9 @@ function SocialWall() {
     queryKey: ["public_social_posts"],
     queryFn: async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-        const response = await fetch(`${API_URL}/api/social-media`);
-        if (!response.ok) throw new Error("Failed to fetch from MySQL");
-        return await response.json();
+        const response = await getSocialPostsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch from MySQL");
+        return response.data;
       } catch (error) {
         console.warn("Backend error:", error);
         return [];

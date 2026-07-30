@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2, ExternalLink, Plus, RefreshCw, Instagram, Youtube, Facebook } from "lucide-react";
 import { toast } from "sonner";
+import { getAdminSocialPostsFn, addSocialPostFn, deleteSocialPostFn } from "@/server/social";
 
 export const Route = createFileRoute("/admin/social")({
   component: AdminSocial,
@@ -60,10 +61,9 @@ function AdminSocial() {
     queryKey: ["admin_social_posts"],
     queryFn: async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-        const response = await fetch(`${API_URL}/api/admin/social-media`);
-        if (!response.ok) throw new Error("Failed to fetch from MySQL");
-        return await response.json() as SocialPost[];
+        const response = await getAdminSocialPostsFn();
+        if (!response.success) throw new Error(response.error || "Failed to fetch from MySQL");
+        return response.data as SocialPost[];
       } catch (error) {
         console.warn("Backend error:", error);
         return [];
@@ -83,18 +83,15 @@ function AdminSocial() {
         throw new Error(`Could not extract valid ID from the ${platform} URL.`);
       }
 
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const response = await fetch(`${API_URL}/api/social-media`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await addSocialPostFn({
+        data: {
           platform,
           url: newUrl,
           embed_id: embedId,
           title: newTitle || `${platform} Post`,
-        }),
+        }
       });
-      if (!response.ok) throw new Error("Failed to add post to MySQL");
+      if (!response.success) throw new Error(response.error || "Failed to add post to MySQL");
     },
     onSuccess: () => {
       toast.success("Social post added successfully");
@@ -109,11 +106,8 @@ function AdminSocial() {
 
   const deletePost = useMutation({
     mutationFn: async (id: string) => {
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const response = await fetch(`${API_URL}/api/social-media/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error("Failed to delete post");
+      const response = await deleteSocialPostFn({ data: { id: parseInt(id) } });
+      if (!response.success) throw new Error(response.error || "Failed to delete post");
     },
     onSuccess: () => {
       toast.success("Post deleted");
