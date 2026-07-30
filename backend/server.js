@@ -164,6 +164,47 @@ app.delete('/api/floor-plans/:id', async (req, res) => {
   }
 });
 
+// --- SOCIAL MEDIA POSTS ---
+app.get('/api/social-media', async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM social_media_posts WHERE status = 'active' ORDER BY created_at DESC");
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/admin/social-media', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM social_media_posts ORDER BY created_at DESC');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/social-media', async (req, res) => {
+  const { platform, url, embed_id, title } = req.body;
+  try {
+    const [result] = await pool.query(
+      'INSERT INTO social_media_posts (platform, url, embed_id, title) VALUES (?, ?, ?, ?)',
+      [platform, url, embed_id, title]
+    );
+    res.status(201).json({ id: result.insertId, message: 'Social post saved successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/social-media/:id', async (req, res) => {
+  try {
+    await pool.query('DELETE FROM social_media_posts WHERE id = ?', [req.params.id]);
+    res.json({ message: 'Social post deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // --- REAL ESTATE AI CHATBOT ---
 app.post('/api/chat', async (req, res) => {
   const { messages } = req.body;

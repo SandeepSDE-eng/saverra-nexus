@@ -24,6 +24,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivateViewingRouteImport } from './routes/private-viewing'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SocialWallRouteImport } from './routes/social-wall'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminCareersRouteImport } from './routes/admin.careers'
@@ -33,6 +34,7 @@ import { Route as AdminIntegrationsRouteImport } from './routes/admin.integratio
 import { Route as AdminMarketingRouteImport } from './routes/admin.marketing'
 import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
 import { Route as AdminRentalsRouteImport } from './routes/admin.rentals'
+import { Route as AdminSocialRouteImport } from './routes/admin.social'
 import { Route as AdminThemesRouteImport } from './routes/admin.themes'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
@@ -112,6 +114,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SocialWallRoute = SocialWallRouteImport.update({
+  id: '/social-wall',
+  path: '/social-wall',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -157,6 +164,11 @@ const AdminRentalsRoute = AdminRentalsRouteImport.update({
   path: '/rentals',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSocialRoute = AdminSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminThemesRoute = AdminThemesRouteImport.update({
   id: '/themes',
   path: '/themes',
@@ -189,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/private-viewing': typeof PrivateViewingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
+  '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -197,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/admin/marketing': typeof AdminMarketingRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/rentals': typeof AdminRentalsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -216,6 +230,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/private-viewing': typeof PrivateViewingRoute
   '/services': typeof ServicesRoute
+  '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -224,6 +239,7 @@ export interface FileRoutesByTo {
   '/admin/marketing': typeof AdminMarketingRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/rentals': typeof AdminRentalsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -246,6 +262,7 @@ export interface FileRoutesById {
   '/private-viewing': typeof PrivateViewingRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/services': typeof ServicesRoute
+  '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -254,6 +271,7 @@ export interface FileRoutesById {
   '/admin/marketing': typeof AdminMarketingRoute
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/rentals': typeof AdminRentalsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/themes': typeof AdminThemesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -277,6 +295,7 @@ export interface FileRouteTypes {
     | '/private-viewing'
     | '/projects'
     | '/services'
+    | '/social-wall'
     | '/terms'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -285,6 +304,7 @@ export interface FileRouteTypes {
     | '/admin/marketing'
     | '/admin/projects'
     | '/admin/rentals'
+    | '/admin/social'
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin/'
@@ -304,6 +324,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/private-viewing'
     | '/services'
+    | '/social-wall'
     | '/terms'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -312,6 +333,7 @@ export interface FileRouteTypes {
     | '/admin/marketing'
     | '/admin/projects'
     | '/admin/rentals'
+    | '/admin/social'
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin'
@@ -333,6 +355,7 @@ export interface FileRouteTypes {
     | '/private-viewing'
     | '/projects'
     | '/services'
+    | '/social-wall'
     | '/terms'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -341,6 +364,7 @@ export interface FileRouteTypes {
     | '/admin/marketing'
     | '/admin/projects'
     | '/admin/rentals'
+    | '/admin/social'
     | '/admin/themes'
     | '/projects/$slug'
     | '/admin/'
@@ -363,6 +387,7 @@ export interface RootRouteChildren {
   PrivateViewingRoute: typeof PrivateViewingRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
+  SocialWallRoute: typeof SocialWallRoute
   TermsRoute: typeof TermsRoute
 }
 
@@ -473,6 +498,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social-wall': {
+      id: '/social-wall'
+      path: '/social-wall'
+      fullPath: '/social-wall'
+      preLoaderRoute: typeof SocialWallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -536,6 +568,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRentalsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/social': {
+      id: '/admin/social'
+      path: '/social'
+      fullPath: '/admin/social'
+      preLoaderRoute: typeof AdminSocialRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/themes': {
       id: '/admin/themes'
       path: '/themes'
@@ -568,6 +607,7 @@ interface AdminRouteChildren {
   AdminMarketingRoute: typeof AdminMarketingRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminRentalsRoute: typeof AdminRentalsRoute
+  AdminSocialRoute: typeof AdminSocialRoute
   AdminThemesRoute: typeof AdminThemesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -580,6 +620,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminMarketingRoute: AdminMarketingRoute,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminRentalsRoute: AdminRentalsRoute,
+  AdminSocialRoute: AdminSocialRoute,
   AdminThemesRoute: AdminThemesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -616,6 +657,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivateViewingRoute: PrivateViewingRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   ServicesRoute: ServicesRoute,
+  SocialWallRoute: SocialWallRoute,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
