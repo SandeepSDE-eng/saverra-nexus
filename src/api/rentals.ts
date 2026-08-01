@@ -1,100 +1,76 @@
-import { createServerFn } from "@tanstack/react-start";
-import { getMySqlPool } from "@/lib/mysql";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-// Get all active rentals for the public website
-export const getRentalsFn = createServerFn({ method: "GET" }).handler(async () => {
+export const getRentalsFn = async () => {
   try {
-    const pool = getMySqlPool();
-    const [rows]: any = await pool.query(
-      'SELECT * FROM rental_updates WHERE is_active = TRUE ORDER BY created_at DESC'
-    );
-    return { success: true, data: rows };
+    const res = await fetch(`${API_URL}/api/rentals`);
+    if (!res.ok) throw new Error("Failed to fetch rentals");
+    const data = await res.json();
+    return { success: true, data };
   } catch (error: any) {
-    console.error("Error fetching rentals:", error);
     return { success: false, error: error.message, data: [] };
   }
-});
+};
 
-// Get all rentals (active and inactive) for the Admin Panel
-export const getAdminRentalsFn = createServerFn({ method: "GET" }).handler(async () => {
+export const getAdminRentalsFn = async () => {
   try {
-    const pool = getMySqlPool();
-    const [rows]: any = await pool.query(
-      'SELECT * FROM rental_updates ORDER BY created_at DESC'
-    );
-    return { success: true, data: rows };
+    const res = await fetch(`${API_URL}/api/admin/rentals`);
+    if (!res.ok) throw new Error("Failed to fetch admin rentals");
+    const data = await res.json();
+    return { success: true, data };
   } catch (error: any) {
-    console.error("Error fetching admin rentals:", error);
     return { success: false, error: error.message, data: [] };
   }
-});
+};
 
-export const addRentalFn = createServerFn({ method: "POST" })
-  .validator((d: { title: string; youtube_id: string }) => d)
-  .handler(async ({ data }) => {
-    try {
-      const { title, youtube_id } = data;
-      const pool = getMySqlPool();
-      
-      const [result]: any = await pool.query(
-        'INSERT INTO rental_updates (title, youtube_id, is_active) VALUES (?, ?, TRUE)',
-        [title, youtube_id]
-      );
-      
-      return { success: true, insertId: result.insertId };
-    } catch (error: any) {
-      console.error("Error adding rental:", error);
-      return { success: false, error: error.message };
-    }
-});
+export const addRentalFn = async ({ data }: { data: { title: string; youtube_id: string } }) => {
+  try {
+    const res = await fetch(`${API_URL}/api/rentals`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to add rental");
+    const result = await res.json();
+    return { success: true, insertId: result.id };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+};
 
-export const toggleRentalStatusFn = createServerFn({ method: "POST" })
-  .validator((d: { id: number; is_active: boolean }) => d)
-  .handler(async ({ data }) => {
-    try {
-      const { id, is_active } = data;
-      const pool = getMySqlPool();
-      
-      await pool.query(
-        'UPDATE rental_updates SET is_active = ? WHERE id = ?',
-        [is_active, id]
-      );
-      
-      return { success: true };
-    } catch (error: any) {
-      console.error("Error toggling rental status:", error);
-      return { success: false, error: error.message };
-    }
-});
+export const toggleRentalStatusFn = async ({ data }: { data: { id: number; is_active: boolean } }) => {
+  try {
+    const res = await fetch(`${API_URL}/api/rentals/${data.id}/status`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_active: data.is_active }),
+    });
+    if (!res.ok) throw new Error("Failed to toggle rental status");
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+};
 
-export const updateRentalFn = createServerFn({ method: "POST" })
-  .validator((d: { id: number; title: string; youtube_id: string }) => d)
-  .handler(async ({ data }) => {
-    try {
-      const { id, title, youtube_id } = data;
-      const pool = getMySqlPool();
-      
-      await pool.query(
-        'UPDATE rental_updates SET title = ?, youtube_id = ? WHERE id = ?',
-        [title, youtube_id, id]
-      );
-      
-      return { success: true };
-    } catch (error: any) {
-      console.error("Error updating rental:", error);
-      return { success: false, error: error.message };
-    }
-});
+export const updateRentalFn = async ({ data }: { data: { id: number; title: string; youtube_id: string } }) => {
+  try {
+    const res = await fetch(`${API_URL}/api/rentals/${data.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update rental");
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+};
 
-export const deleteRentalFn = createServerFn({ method: "POST" })
-  .validator((id: number) => id)
-  .handler(async ({ data: id }) => {
-    try {
-      const pool = getMySqlPool();
-      await pool.query('DELETE FROM rental_updates WHERE id = ?', [id]);
-      return { success: true };
-    } catch (error: any) {
-      console.error("Error deleting rental:", error);
-      return { success: false, error: error.message };
-    }
-});
+export const deleteRentalFn = async ({ data: id }: { data: number }) => {
+  try {
+    const res = await fetch(`${API_URL}/api/rentals/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Failed to delete rental");
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+};
