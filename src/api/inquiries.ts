@@ -1,39 +1,48 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { createServerFn } from "@tanstack/react-start";
+import { getMySqlPool } from "@/lib/mysql";
 
-export const getInquiriesFn = async () => {
+// Get all inquiries for the admin panel
+export const getInquiriesFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
-    const res = await fetch(`${API_URL}/api/inquiries`);
-    if (!res.ok) throw new Error("Failed to fetch inquiries");
-    const data = await res.json();
-    return { success: true, data };
+    const pool = getMySqlPool();
+    const [rows]: any = await pool.query(
+      'SELECT * FROM inquiries ORDER BY created_at DESC'
+    );
+    return { success: true, data: rows };
   } catch (error: any) {
+    console.error("Error fetching inquiries:", error);
     return { success: false, error: error.message, data: [] };
   }
-};
+});
 
-export const addInquiryFn = async ({ data }: { data: any }) => {
-  try {
-    const res = await fetch(`${API_URL}/api/inquiries`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to add inquiry");
-    const result = await res.json();
-    return { success: true, insertId: result.id };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const addInquiryFn = createServerFn({ method: "POST" })
+  .validator((d: { name: string; email?: string; phone: string; message?: string; project_id?: number; city?: string; budget?: string; source?: string }) => d)
+  .handler(async ({ data }) => {
+    try {
+      const { name, email, phone, message, project_id, city, budget, source } = data;
+      const pool = getMySqlPool();
+      
+      const [result]: any = await pool.query(
+        'INSERT INTO inquiries (name, email, phone, message, project_id, city, budget, source) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [name, email || null, phone, message || null, project_id || null, city || null, budget || null, source || 'Website']
+      );
+      
+      return { success: true, insertId: result.insertId };
+    } catch (error: any) {
+      console.error("Error adding inquiry:", error);
+      return { success: false, error: error.message };
+    }
+});
 
-export const deleteInquiryFn = async ({ data: id }: { data: number }) => {
-  try {
-    const res = await fetch(`${API_URL}/api/inquiries/${id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) throw new Error("Failed to delete inquiry");
-    return { success: true };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const deleteInquiryFn = createServerFn({ method: "POST" })
+  .validator((id: number) => id)
+  .handler(async ({ data: id }) => {
+    try {
+      const pool = getMySqlPool();
+      await pool.query('DELETE FROM inquiries WHERE id = ?', [id]);
+      return { success: true };
+    } catch (error: any) {
+      console.error("Error deleting inquiry:", error);
+      return { success: false, error: error.message };
+    }
+});

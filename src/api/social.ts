@@ -1,50 +1,58 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+import { createServerFn } from '@tanstack/react-start';
+import { getMySqlPool } from '@/lib/mysql';
 
-export const getSocialPostsFn = async () => {
-  try {
-    const res = await fetch(`${API_URL}/api/social-media`);
-    if (!res.ok) throw new Error("Failed to fetch social posts");
-    const data = await res.json();
-    return { success: true, data };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const getSocialPostsFn = createServerFn({ method: 'GET' })
+  .handler(async () => {
+    try {
+      const pool = getMySqlPool();
+      const [rows] = await pool.query(
+        "SELECT * FROM social_media_posts WHERE status = 'active' ORDER BY created_at DESC"
+      );
+      return { success: true, data: rows as any[] };
+    } catch (error: any) {
+      console.error('Error fetching social posts:', error);
+      return { success: false, error: error.message };
+    }
+  });
 
-export const getAdminSocialPostsFn = async () => {
-  try {
-    const res = await fetch(`${API_URL}/api/admin/social-media`);
-    if (!res.ok) throw new Error("Failed to fetch admin social posts");
-    const data = await res.json();
-    return { success: true, data };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const getAdminSocialPostsFn = createServerFn({ method: 'GET' })
+  .handler(async () => {
+    try {
+      const pool = getMySqlPool();
+      const [rows] = await pool.query('SELECT * FROM social_media_posts ORDER BY created_at DESC');
+      return { success: true, data: rows as any[] };
+    } catch (error: any) {
+      console.error('Error fetching admin social posts:', error);
+      return { success: false, error: error.message };
+    }
+  });
 
-export const addSocialPostFn = async ({ data }: { data: { platform: string; url: string; embed_id?: string; title?: string } }) => {
-  try {
-    const res = await fetch(`${API_URL}/api/social-media`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to add social post");
-    const result = await res.json();
-    return { success: true, id: result.id };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const addSocialPostFn = createServerFn({ method: 'POST' })
+  .validator((data: { platform: string; url: string; embed_id?: string; title?: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { platform, url, embed_id, title } = data;
+      const pool = getMySqlPool();
+      const [result]: any = await pool.query(
+        'INSERT INTO social_media_posts (platform, url, embed_id, title) VALUES (?, ?, ?, ?)',
+        [platform, url, embed_id || null, title || null]
+      );
+      return { success: true, id: result.insertId };
+    } catch (error: any) {
+      console.error('Error adding social post:', error);
+      return { success: false, error: error.message };
+    }
+  });
 
-export const deleteSocialPostFn = async ({ data }: { data: { id: number } }) => {
-  try {
-    const res = await fetch(`${API_URL}/api/social-media/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) throw new Error("Failed to delete social post");
-    return { success: true };
-  } catch (error: any) {
-    return { success: false, error: error.message };
-  }
-};
+export const deleteSocialPostFn = createServerFn({ method: 'POST' })
+  .validator((data: { id: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const pool = getMySqlPool();
+      await pool.query('DELETE FROM social_media_posts WHERE id = ?', [data.id]);
+      return { success: true };
+    } catch (error: any) {
+      console.error('Error deleting social post:', error);
+      return { success: false, error: error.message };
+    }
+  });
