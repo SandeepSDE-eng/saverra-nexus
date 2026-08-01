@@ -43,7 +43,7 @@ export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(a
   try {
     const pool = getMySqlPool();
     const [rows]: any = await pool.query(
-      'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 6'
+      'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 8'
     );
     return { success: true, data: rows };
   } catch (error: any) {
