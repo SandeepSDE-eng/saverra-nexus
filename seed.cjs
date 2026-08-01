@@ -92,8 +92,10 @@ async function seed() {
       `DROP TABLE IF EXISTS inquiries; CREATE TABLE inquiries (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
+        email VARCHAR(255),
         phone VARCHAR(50) NOT NULL,
         message TEXT,
+        project_id INT,
         city VARCHAR(100),
         budget VARCHAR(100),
         source VARCHAR(100) DEFAULT 'Website',

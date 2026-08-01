@@ -32,7 +32,7 @@ const extractEmbedId = (url: string, platform: SocialPlatform): string | null =>
     }
     if (platform === 'instagram') {
       // e.g. https://www.instagram.com/p/CXYZ12345/ or https://www.instagram.com/reel/CXYZ12345/
-      const match = url.match(/(?:instagram\.com\/(?:p|reel|tv)\/)([^\/\?]+)/);
+      const match = url.match(/(?:instagram\.com\/(?:[A-Za-z0-9_.]+\/)?(?:p|reel|tv)\/)([^\/\?]+)/);
       return match ? match[1] : null;
     }
     if (platform === 'facebook') {
