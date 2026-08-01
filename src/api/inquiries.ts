@@ -16,15 +16,15 @@ export const getInquiriesFn = createServerFn({ method: "GET" }).handler(async ()
 });
 
 export const addInquiryFn = createServerFn({ method: "POST" })
-  .validator((d: { name: string; email?: string; phone: string; message?: string; project_id?: number }) => d)
+  .validator((d: { name: string; email?: string; phone: string; message?: string; project_id?: number; city?: string; budget?: string; source?: string }) => d)
   .handler(async ({ data }) => {
     try {
-      const { name, email, phone, message, project_id } = data;
+      const { name, email, phone, message, project_id, city, budget, source } = data;
       const pool = getMySqlPool();
       
       const [result]: any = await pool.query(
-        'INSERT INTO inquiries (name, email, phone, message, project_id) VALUES (?, ?, ?, ?, ?)',
-        [name, email || null, phone, message || null, project_id || null]
+        'INSERT INTO inquiries (name, email, phone, message, project_id, city, budget, source) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [name, email || null, phone, message || null, project_id || null, city || null, budget || null, source || 'Website']
       );
       
       return { success: true, insertId: result.insertId };

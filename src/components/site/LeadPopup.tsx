@@ -61,7 +61,10 @@ export function LeadPopup() {
     const response = await addInquiryFn({ data: {
       name: form.name,
       phone: form.phone,
-      message: `Popup lead — requested callback. City: ${form.city}, Budget: ${form.budget}`,
+      city: form.city,
+      budget: form.budget,
+      source: "Popup",
+      message: "Popup lead — requested callback.",
     }});
     setSubmitting(false);
     if (!response.success) return toast.error("Something went wrong. Please try again.");

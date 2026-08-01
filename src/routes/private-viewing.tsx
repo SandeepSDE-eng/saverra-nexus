@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { toast } from "sonner";
+import { addInquiryFn } from "@/api/inquiries";
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, Clock, MapPin, Sparkles, Building, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,6 +13,33 @@ export const Route = createFileRoute("/private-viewing")({
 });
 
 function PrivateViewing() {
+  const [form, setForm] = useState({ name: "", phone: "", date: "", budget: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((s) => ({ ...s, [k]: e.target.value }));
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.phone) {
+      toast.error("Please provide your name and phone number.");
+      return;
+    }
+    setSubmitting(true);
+    const msg = `Private Viewing requested${form.date ? ` for ${form.date}` : ""}.\nRequirements: ${form.message || 'None'}`;
+    const response = await addInquiryFn({ data: {
+      name: form.name,
+      phone: form.phone,
+      budget: form.budget || undefined,
+      source: "Private Viewing",
+      message: msg,
+    }});
+    setSubmitting(false);
+    if (!response.success) return toast.error("Something went wrong. Please try again.");
+    toast.success("Request received! An advisor will contact you shortly.");
+    setForm({ name: "", phone: "", date: "", budget: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-[#f8f9fa] pb-20">
       {/* Top Banner */}
@@ -40,36 +70,36 @@ function PrivateViewing() {
               <p className="text-muted-foreground text-sm font-medium">Your details are kept strictly confidential.</p>
             </div>
             
-            <form className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Full Name *</Label>
-                  <Input placeholder="John Doe" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" required />
+                  <Input value={form.name} onChange={set("name")} placeholder="John Doe" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" required />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Phone Number *</Label>
-                  <Input type="tel" placeholder="+91 98xxx xxxxx" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" required />
+                  <Input type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 98xxx xxxxx" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" required />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Preferred Date</Label>
-                  <Input type="date" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold text-foreground/80" />
+                  <Input type="date" value={form.date} onChange={set("date")} className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold text-foreground/80" />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Interest / Budget</Label>
-                  <Input placeholder="e.g. 3 BHK in Ghatkopar, ₹3-4 Cr" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" />
+                  <Input value={form.budget} onChange={set("budget")} placeholder="e.g. 3 BHK in Ghatkopar, ₹3-4 Cr" className="h-12 bg-secondary/30 border-border/50 focus-visible:border-gold" />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <Label className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Specific Requirements</Label>
-                <Textarea placeholder="Any specific projects or requirements you have in mind?" className="min-h-[120px] resize-none bg-secondary/30 border-border/50 focus-visible:border-gold" />
+                <Textarea value={form.message} onChange={set("message")} placeholder="Any specific projects or requirements you have in mind?" className="min-h-[120px] resize-none bg-secondary/30 border-border/50 focus-visible:border-gold" />
               </div>
               
-              <Button variant="gold" className="w-full h-14 text-sm tracking-widest uppercase mt-4 shadow-lg shadow-gold/20">
-                Confirm Request
+              <Button type="submit" variant="gold" className="w-full h-14 text-sm tracking-widest uppercase mt-4 shadow-lg shadow-gold/20" disabled={submitting}>
+                {submitting ? "Sending..." : "Confirm Request"}
               </Button>
             </form>
           </div>

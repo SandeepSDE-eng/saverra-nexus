@@ -23,7 +23,10 @@ export function ContactSection() {
     setSubmitting(true);
     const response = await addInquiryFn({ data: {
       name: form.name, phone: form.phone, email: form.email || undefined,
-      message: `${form.message || ''} \n[City: ${form.city || 'N/A'}, Budget: ${form.budget || 'N/A'}]`,
+      city: form.city || undefined,
+      budget: form.budget || undefined,
+      source: "Contact Section",
+      message: form.message || undefined,
     }});
     setSubmitting(false);
     if (!response.success) return toast.error("Something went wrong. Please try again.");

@@ -45,7 +45,9 @@ export function BookingModal({
     const response = await addInquiryFn({ data: {
       name: form.name, phone: form.phone,
       email: form.email || undefined,
-      message: `${msg}\n[City: ${form.city || 'N/A'}]`,
+      city: form.city || undefined,
+      source: isVisit ? "Site Visit" : "Brochure",
+      message: msg,
     }});
     setSubmitting(false);
     if (!response.success) return toast.error("Something went wrong. Please try again.");

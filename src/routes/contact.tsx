@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { toast } from "sonner";
+import { addInquiryFn } from "@/api/inquiries";
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +11,32 @@ import { Textarea } from "@/components/ui/textarea";
 export const Route = createFileRoute("/contact")({ component: Contact });
 
 function Contact() {
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((s) => ({ ...s, [k]: e.target.value }));
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.firstName || !form.phone) {
+      toast.error("Please provide your name and phone number.");
+      return;
+    }
+    setSubmitting(true);
+    const response = await addInquiryFn({ data: {
+      name: `${form.firstName} ${form.lastName}`.trim(),
+      phone: form.phone,
+      email: form.email || undefined,
+      source: "Contact Page",
+      message: form.message || undefined,
+    }});
+    setSubmitting(false);
+    if (!response.success) return toast.error("Something went wrong. Please try again.");
+    toast.success("Thanks! Our team will reach out within 24 hours.");
+    setForm({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-[#f8f9fa] pb-20">
       {/* Top Banner */}
@@ -100,33 +129,33 @@ function Contact() {
           {/* Contact Form & Map */}
           <div className="p-10 md:p-14 bg-white flex flex-col">
             <h2 className="font-display text-3xl font-light text-primary mb-8">Send a Message</h2>
-            <form className="space-y-6 flex-1">
+            <form onSubmit={onSubmit} className="space-y-6 flex-1">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label className="text-muted-foreground text-xs uppercase tracking-wider">First Name</Label>
-                  <Input placeholder="John" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
+                  <Input required value={form.firstName} onChange={set("firstName")} placeholder="John" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-muted-foreground text-xs uppercase tracking-wider">Last Name</Label>
-                  <Input placeholder="Doe" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
+                  <Input value={form.lastName} onChange={set("lastName")} placeholder="Doe" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label className="text-muted-foreground text-xs uppercase tracking-wider">Email</Label>
-                  <Input type="email" placeholder="john@example.com" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
+                  <Input type="email" value={form.email} onChange={set("email")} placeholder="john@example.com" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-muted-foreground text-xs uppercase tracking-wider">Phone</Label>
-                  <Input type="tel" placeholder="+91 98xxx xxxxx" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
+                  <Input required type="tel" value={form.phone} onChange={set("phone")} placeholder="+91 98xxx xxxxx" className="h-12 bg-muted/30 border-border/50 focus-visible:border-gold" />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label className="text-muted-foreground text-xs uppercase tracking-wider">Message</Label>
-                <Textarea placeholder="How can we help you?" className="min-h-[140px] resize-none bg-muted/30 border-border/50 focus-visible:border-gold" />
+                <Textarea value={form.message} onChange={set("message")} placeholder="How can we help you?" className="min-h-[140px] resize-none bg-muted/30 border-border/50 focus-visible:border-gold" />
               </div>
-              <Button variant="gold" className="w-full h-14 text-sm tracking-widest uppercase mt-4">
-                Send Inquiry
+              <Button type="submit" variant="gold" className="w-full h-14 text-sm tracking-widest uppercase mt-4" disabled={submitting}>
+                {submitting ? "Sending..." : "Send Inquiry"}
               </Button>
             </form>
           </div>
