@@ -116,7 +116,91 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function Preloader() {
-  return null;
+  const routerState = useRouterState();
+  const [show, setShow] = useState(false);
+  const [render, setRender] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let shouldShow = false;
+
+    try {
+      if (typeof window !== "undefined" && routerState.location.pathname === "/") {
+        const key = "saverra_preloader_v3_shown";
+        const hasShown = sessionStorage.getItem(key);
+        if (!hasShown) {
+          shouldShow = true;
+          sessionStorage.setItem(key, "true");
+        }
+      }
+    } catch (e) {
+      console.warn("Storage check warning:", e);
+      if (routerState.location.pathname === "/") {
+        shouldShow = true;
+      }
+    }
+
+    if (shouldShow) {
+      setShow(true);
+      setRender(true);
+
+      const progressTimer = setTimeout(() => {
+        setProgress(100);
+      }, 50);
+
+      const timer1 = setTimeout(() => {
+        setShow(false);
+      }, 1800);
+
+      const timer2 = setTimeout(() => {
+        setRender(false);
+      }, 2300);
+
+      return () => {
+        clearTimeout(progressTimer);
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else {
+      setShow(false);
+      setRender(false);
+    }
+  }, [routerState.location.pathname]);
+
+  if (!render) return null;
+
+  return (
+    <div
+      onClick={() => { setShow(false); setRender(false); }}
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a1424] text-white transition-opacity duration-700 ease-in-out cursor-pointer ${
+        show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <div className="relative flex flex-col items-center justify-center px-6 text-center">
+        {/* Animated Logo */}
+        <div
+          className={`transition-all duration-700 ease-out transform ${
+            show ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2"
+          }`}
+        >
+          <Logo variant="light" className="h-44 sm:h-60 aspect-[2/3] drop-shadow-2xl" />
+        </div>
+
+        {/* Progress Bar Container */}
+        <div className="mt-10 w-56 sm:w-72 h-[3px] bg-white/10 rounded-full overflow-hidden relative shadow-inner">
+          <div
+            className="h-full bg-gradient-to-r from-gold/80 via-gold to-gold/90 transition-all duration-[1700ms] ease-out rounded-full"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+
+        {/* Subtitle */}
+        <p className="mt-4 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-gold/90 animate-pulse">
+          SAVERRA REALTY
+        </p>
+      </div>
+    </div>
+  );
 }
 
 import { SiteHeader } from "@/components/site/SiteHeader";
