@@ -40,7 +40,7 @@ export function ContactSection() {
         <div className="lg:col-span-2">
           <p className="eyebrow">Get In Touch</p>
           <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-            Let's help you find your dream home
+            Let's Elevate Your Real Estate Experience
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
             Speak with a SAVERRA advisor. We'll walk you through availability, pricing, and financing.

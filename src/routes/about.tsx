@@ -35,7 +35,7 @@ function About() {
               </h2>
               <div className="w-16 h-1 bg-gold rounded-full"></div>
               <p className="text-muted-foreground leading-relaxed font-light text-lg">
-                Our quality services include assistance in identifying customer needs, offering suitable products, arranging buyers or sellers, tenants or landlords, alongside expert negotiations, finalizing deals, and meticulous documentation.
+                Our quality services include assistance in identifying client needs, offering suitable products, arranging buyers or sellers, tenants or landlords, alongside expert negotiations, finalizing deals, and meticulous documentation.
               </p>
               <p className="text-muted-foreground leading-relaxed font-light text-lg">
                 Our clients range from individual owners and buyers to major developers, investors, and corporate tenants. We pride ourselves on offering highly competitive rates and exceptional offers in the market.

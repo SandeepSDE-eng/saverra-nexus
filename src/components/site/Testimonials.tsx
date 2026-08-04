@@ -43,9 +43,9 @@ export function Testimonials() {
     <section className="bg-secondary/50 py-20 overflow-hidden">
       <div className="container-luxe">
         <div className="mb-10 text-center">
-          <p className="eyebrow">Customer Stories</p>
+          <p className="eyebrow">Client Stories</p>
           <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-            What Our CLIENTS Say
+            What Our Clients Say
           </h2>
         </div>
         
