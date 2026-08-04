@@ -172,7 +172,7 @@ function Preloader() {
   return (
     <div
       onClick={() => { setShow(false); setRender(false); }}
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a1424] text-white transition-opacity duration-700 ease-in-out cursor-pointer ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white dark:bg-[#0a1424] transition-opacity duration-700 ease-in-out cursor-pointer ${
         show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -183,11 +183,11 @@ function Preloader() {
             show ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2"
           }`}
         >
-          <Logo variant="light" className="h-44 sm:h-60 aspect-[2/3] drop-shadow-2xl" />
+          <Logo variant="dark" className="h-44 sm:h-60 aspect-[2/3] drop-shadow-2xl" />
         </div>
 
         {/* Progress Bar Container */}
-        <div className="mt-10 w-56 sm:w-72 h-[3px] bg-white/10 rounded-full overflow-hidden relative shadow-inner">
+        <div className="mt-10 w-56 sm:w-72 h-[3px] bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden relative shadow-inner">
           <div
             className="h-full bg-gradient-to-r from-gold/80 via-gold to-gold/90 transition-all duration-[1700ms] ease-out rounded-full"
             style={{ width: `${progress}%` }}
