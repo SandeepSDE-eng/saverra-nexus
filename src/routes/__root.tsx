@@ -116,69 +116,7 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function Preloader() {
-  const routerState = useRouterState();
-  const [show, setShow] = useState(false);
-  const [render, setRender] = useState(false);
-
-  useEffect(() => {
-    // Check if on home page and preloader not shown yet
-    let shouldShow = false;
-    try {
-      if (
-        typeof window !== "undefined" &&
-        routerState.location.pathname === "/" &&
-        !sessionStorage.getItem("saverra_preloader_shown")
-      ) {
-        shouldShow = true;
-        sessionStorage.setItem("saverra_preloader_shown", "true");
-      }
-    } catch (e) {
-      console.warn("Preloader storage access warning:", e);
-    }
-
-    if (shouldShow) {
-      setShow(true);
-      setRender(true);
-
-      // Fast 1.2s animation, unmount at 1.6s
-      const timer1 = setTimeout(() => setShow(false), 1200);
-      const timer2 = setTimeout(() => setRender(false), 1600);
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
-    } else {
-      setShow(false);
-      setRender(false);
-    }
-  }, [routerState.location.pathname]);
-
-  if (!render) return null;
-
-  const dismiss = () => {
-    setShow(false);
-    setRender(false);
-  };
-
-  return (
-    <div 
-      onClick={dismiss}
-      className={`fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-white dark:bg-[#0a1424] transition-all duration-500 ease-in-out ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-    >
-      <div className="relative flex flex-col items-center justify-center p-4">
-        {/* Logo Mark */}
-        <div className={`relative z-10 flex flex-col items-center justify-center transition-all duration-700 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-          <Logo variant="dark" className="h-40 sm:h-56 aspect-[2/3]" />
-        </div>
-        
-        {/* Loading Bar */}
-        <div className="mt-12 w-48 sm:w-64 h-[2px] bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
-           <div className={`h-full bg-gold transition-all duration-[1200ms] ease-out ${show ? 'w-full' : 'w-0'}`} />
-        </div>
-        <p className="mt-3 text-[10px] uppercase tracking-widest text-muted-foreground/60">Tap anywhere to skip</p>
-      </div>
-    </div>
-  );
+  return null;
 }
 
 import { SiteHeader } from "@/components/site/SiteHeader";
