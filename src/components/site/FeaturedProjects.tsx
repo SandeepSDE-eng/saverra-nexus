@@ -81,7 +81,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
         ) : (
           <>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in">
-              {displayedProjects.map((p) => <ProjectCard key={p.id} p={p} />)}
+              {displayedProjects.map((p: any) => <ProjectCard key={p.id} p={p} />)}
             </div>
             
             {/* Pagination Controls */}

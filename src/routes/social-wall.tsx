@@ -46,7 +46,7 @@ function SocialWall() {
 
   const combinedPosts = [
     ...(postsData || []),
-    ...(rentalsData || []).map(r => ({
+    ...(rentalsData || []).map((r: any) => ({
       id: `rental_${r.id}` as any, // Cast to any to bypass strict type checking for union
       platform: 'youtube' as const,
       url: `https://youtube.com/shorts/${r.youtube_id}`,

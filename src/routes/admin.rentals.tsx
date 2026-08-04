@@ -143,7 +143,7 @@ function AdminRentals() {
               </tr>
             </thead>
             <tbody>
-              {data.map((i) => (
+              {data.map((i: any) => (
                 <tr key={i.id} className="border-t border-border/70 align-middle">
                   <td className="px-4 py-3">
                     <img src={`https://i.ytimg.com/vi/${i.youtube_id}/hqdefault.jpg`} alt={i.title} className="h-16 w-12 object-cover rounded bg-secondary" />

@@ -95,7 +95,7 @@ function AdminCareers() {
                 </TableCell>
               </TableRow>
             ) : (
-              applications.map((app) => (
+              applications.map((app: any) => (
                 <TableRow key={app.id}>
                   <TableCell>
                     <div className="font-medium">{app.first_name} {app.last_name}</div>

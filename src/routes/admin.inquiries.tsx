@@ -50,7 +50,7 @@ function AdminInquiries() {
               </tr>
             </thead>
             <tbody>
-              {data.map((i) => (
+              {data.map((i: any) => (
                 <tr key={i.id} className="border-t border-border/70 align-top">
                   <td className="px-4 py-3 font-semibold text-primary">{i.name}</td>
                   <td className="px-4 py-3"><a href={`tel:${i.phone}`} className="hover:underline">{i.phone}</a></td>

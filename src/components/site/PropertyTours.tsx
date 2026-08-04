@@ -23,7 +23,7 @@ export function PropertyTours() {
       <div className="container-luxe">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Connect With Us</p>
+            <p className="eyebrow">EXPLORE</p>
             <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
               Saverra <span className="font-medium italic text-gold">Social Wall</span>
             </h2>

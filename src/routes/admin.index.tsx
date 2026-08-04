@@ -48,7 +48,7 @@ function AdminDashboard() {
     },
   });
 
-  const activeProjects = projects.filter(p => p.is_published).length;
+  const activeProjects = projects.filter((p: any) => p.is_published).length;
   const totalProjects = projects.length;
   const totalInquiries = inquiries.length;
   
@@ -140,7 +140,7 @@ function AdminDashboard() {
               <div className="p-6 text-sm text-muted-foreground">No recent inquiries.</div>
             ) : (
               <div className="divide-y divide-border/60">
-                {recentInquiries.map((inq) => (
+                {recentInquiries.map((inq: any) => (
                   <div key={inq.id} className="p-4 hover:bg-muted/50 transition-colors">
                     <div className="flex justify-between items-start mb-1">
                       <span className="font-medium text-sm text-primary">{inq.name}</span>

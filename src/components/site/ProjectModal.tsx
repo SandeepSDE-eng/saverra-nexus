@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { X, Maximize2, Bath, Bed, Video, Phone, MessageSquare, MapPin } from "lucide-react";
+import { X, Bath, Bed, Phone, MessageSquare, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Tables } from "@/integrations/supabase/types";
+import { getCarpetArea } from "@/lib/projectUtils";
 
 type Project = Tables<"projects">;
 
@@ -97,10 +98,10 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
                 <p>Welcome to {project.name}, a masterpiece of modern architecture situated in the heart of {project.location}. Experience unparalleled luxury with our exquisitely designed residences that offer breathtaking views and world-class amenities.</p>
                 <p>Designed for those who seek the extraordinary, this project features state-of-the-art facilities including a temperature-controlled infinity pool, a fully equipped wellness center, and sprawling landscaped gardens.</p>
                 <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
-                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Status</span> {project.status}</div>
-                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Carpet Area</span> {project.rera_number || "Applied"}</div>
+                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Configuration</span> {project.bhk_options || "2 & 3 BHK"}</div>
+                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Carpet Area</span> {getCarpetArea(project)}</div>
+                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Starting Price</span> {project.price_display}</div>
                   <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Possession</span> {project.possession || "Dec 2026"}</div>
-                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Total Area</span> 2.5 Acres</div>
                 </div>
               </div>
             )}

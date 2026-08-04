@@ -42,7 +42,7 @@ export function RentalUpdates() {
               Latest <span className="font-medium italic text-gold">Inventories</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm text-muted-foreground leading-relaxed">
-              Explore our freshly listed premium rental properties. Quick sneak peeks straight from our advisors.
+              Explore our freshly listed premium properties. Quick sneak peeks straight from our advisors.
             </p>
           </div>
           <Link
@@ -62,7 +62,7 @@ export function RentalUpdates() {
                 ))}
              </>
           ) : (
-            rentals.slice(0, 4).map((rental) => (
+            rentals.slice(0, 4).map((rental: any) => (
               <div
                 key={rental.id}
                 className="group relative w-full aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"

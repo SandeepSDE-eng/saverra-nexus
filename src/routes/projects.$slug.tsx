@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee } from "lucide-react";
 import { getProjectBySlugFn } from "@/api/projects";
+import { getCarpetArea } from "@/lib/projectUtils";
 import { ContactSection } from "@/components/site/ContactSection";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -87,12 +88,12 @@ function ProjectDetail() {
       <div className="container-luxe max-w-6xl mx-auto -mt-16 relative z-20">
         <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-border/50 p-6 md:p-12 mb-16 animate-fade-up">
           
-          {/* Key facts */}
+          {/* Key facts - Chronology: 1. Configuration, 2. Carpet Area, 3. Starting Price, 4. Possession */}
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 bg-[#f8f9fa] rounded-2xl p-6 md:p-8 border border-border/50 shadow-inner mb-12">
-            <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
             <Fact label="Configuration" value={p.bhk_options ?? "—"} />
+            <Fact label="Carpet Area" value={getCarpetArea(p)} />
+            <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
             <Fact label="Possession" value={p.status ?? p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
-            <Fact label="Carpet Area" value={p.rera_number ?? "—"} />
           </div>
 
           {/* Overview */}
@@ -109,7 +110,7 @@ function ProjectDetail() {
                 <div>
                   <h3 className="font-display text-2xl font-light mb-6 text-primary">Project Highlights</h3>
                   <ul className="grid gap-4 sm:grid-cols-2">
-                    {p.highlights.map((h) => (
+                    {p.highlights.map((h: any) => (
                       <li key={h} className="flex items-start gap-3">
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold mt-0.5">
                           <CheckCircle2 className="size-3.5" />
@@ -125,7 +126,7 @@ function ProjectDetail() {
                 <div>
                   <h3 className="font-display text-2xl font-light mb-6 text-primary">Amenities</h3>
                   <div className="flex flex-wrap gap-2.5">
-                    {p.amenities.map((a) => (
+                    {p.amenities.map((a: any) => (
                       <span key={a} className="rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-secondary">
                         {a}
                       </span>
@@ -156,7 +157,7 @@ function ProjectDetail() {
             <div className="mt-16 pt-12 border-t border-border/40">
               <h2 className="font-display text-3xl font-light mb-8 text-primary">Life at {name}</h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                {p.gallery.map((rawUrl, i) => {
+                {p.gallery.map((rawUrl: any, i: number) => {
                   const g = typeof rawUrl === 'string' ? rawUrl.replace(/^["'{\[]+|["'}\]]+$/g, '') : '';
                   if (!g) return null;
                   return (

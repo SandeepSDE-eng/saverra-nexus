@@ -9,7 +9,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
     bhk_options: "3, 4 & 5 BHK",
     possession: "Dec 2026",
-    rera_number: "P51800000001",
+    rera_number: "1,250 - 2,800 Sq.Ft.",
     category: "Residential",
     tagline: "Ultra Luxury on 60ft Road",
     gallery: [
@@ -35,7 +35,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
     bhk_options: "2 & 3 BHK",
     possession: "Ready to Move",
-    rera_number: "P51800000002",
+    rera_number: "680 - 1,150 Sq.Ft.",
     category: "Residential",
     tagline: "Premium Ready Homes",
     gallery: [
@@ -61,7 +61,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
     bhk_options: "2 & 3 BHK",
     possession: "Mid 2025",
-    rera_number: "P51800000003",
+    rera_number: "650 - 1,050 Sq.Ft.",
     category: "Residential",
     tagline: "Smart Homes in Garodia Nagar",
     gallery: [
@@ -87,7 +87,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
     bhk_options: "2, 3 & 4 BHK",
     possession: "Jan 2027",
-    rera_number: "P51800000004",
+    rera_number: "780 - 1,650 Sq.Ft.",
     category: "Residential",
     tagline: "New York Lifestyle in Mumbai",
     gallery: [
@@ -113,7 +113,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
     bhk_options: "3 & 4 BHK",
     possession: "Ready to Move",
-    rera_number: "P51800000005",
+    rera_number: "1,100 - 1,950 Sq.Ft.",
     category: "Residential",
     tagline: "Architectural Brilliance",
     gallery: [
@@ -139,7 +139,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200&q=80",
     bhk_options: "1, 2 & 3 BHK",
     possession: "March 2026",
-    rera_number: "P51800000006",
+    rera_number: "450 - 1,200 Sq.Ft.",
     category: "Residential",
     tagline: "Unmatched Connectivity",
     gallery: [
@@ -165,7 +165,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
     bhk_options: "2 & 3 BHK",
     possession: "Oct 2025",
-    rera_number: "P51800000007",
+    rera_number: "720 - 1,350 Sq.Ft.",
     category: "Residential",
     tagline: "Panoramic City Views",
     gallery: [
@@ -191,7 +191,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
     bhk_options: "2 & 3 BHK",
     possession: "Ready to Move",
-    rera_number: "P51800000008",
+    rera_number: "680 - 1,100 Sq.Ft.",
     category: "Residential",
     tagline: "Vibrant Community Living",
     gallery: [
@@ -217,7 +217,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
     bhk_options: "3 & 4 BHK",
     possession: "Q4 2026",
-    rera_number: "P51800000009",
+    rera_number: "1,150 - 1,850 Sq.Ft.",
     category: "Residential",
     tagline: "Majestic Clubhouse Living",
     gallery: [
@@ -243,7 +243,7 @@ export const MOCK_PROJECTS = [
     cover_image: "https://images.unsplash.com/photo-1599423300746-b62533397364?w=1200&q=80",
     bhk_options: "1 & 2 BHK",
     possession: "Dec 2025",
-    rera_number: "P51800000010",
+    rera_number: "440 - 750 Sq.Ft.",
     category: "Residential",
     tagline: "Efficient Premium Layouts",
     gallery: [

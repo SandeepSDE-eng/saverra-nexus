@@ -4,6 +4,7 @@ import { MapPin, Calendar, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Tables } from "@/integrations/supabase/types";
 import { ProjectModal } from "./ProjectModal";
+import { getCarpetArea } from "@/lib/projectUtils";
 
 type Project = Tables<"projects">;
 
@@ -51,7 +52,7 @@ export function ProjectCard({ p }: { p: Project }) {
             <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Onwards</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span>Carpet Area: {p.rera_number ?? "—"}</span>
+            <span>Carpet Area: {getCarpetArea(p)}</span>
             {p.possession && <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {p.possession}</span>}
           </div>
           <div className="mt-4 flex gap-2 pt-3">

@@ -67,13 +67,13 @@ export function FloorPlans() {
         {plans.length > 0 && (
           <Tabs defaultValue={defaultTab} className="w-full">
             <TabsList className="mx-auto mb-8 flex h-auto w-fit flex-wrap justify-center bg-secondary p-1">
-              {plans.map((p) => (
+              {plans.map((p: any) => (
                 <TabsTrigger key={p.type_key} value={p.type_key} className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   {p.label}
                 </TabsTrigger>
               ))}
             </TabsList>
-            {plans.map((p) => (
+            {plans.map((p: any) => (
               <TabsContent key={p.type_key} value={p.type_key} className="grid gap-8 md:grid-cols-2">
                 <div className="overflow-hidden rounded-xl border border-border/60 bg-card p-4">
                   <img

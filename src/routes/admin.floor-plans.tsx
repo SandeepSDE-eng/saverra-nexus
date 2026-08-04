@@ -56,7 +56,7 @@ function AdminFloorPlans() {
 
   const save = useMutation({
     mutationFn: async (payload: FloorPlanForm) => {
-      let featuresArray = [];
+      let featuresArray: string[] = [];
       try {
         featuresArray = typeof payload.featuresStr === "string" 
           ? payload.featuresStr.split(",").map(s => s.trim()).filter(Boolean) 

@@ -111,19 +111,19 @@ function AdminProjects() {
       "Premium Location, Vastu Compliant, High-Speed Elevators, Smart Home Features",
       "100% Power Backup, Earth-quake Resistant, Italian Marble Flooring",
       "Exclusive Sky Lounge, Private Pools, Multi-tier Security",
-      "Close to Metro Station, Top Schools nearby, High Rental Yield"
+      "Close to Metro Station, Top Schools nearby, High ROI & Capital Growth"
     ];
 
     const randomPick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
     // Simulate AI generation delay
     setTimeout(() => {
-      setForm((s) => ({
+      setForm((s: any) => ({
         ...s,
         description: `${randomPick(hooks)} ${randomPick(bodies)} ${randomPick(closings)}`,
         tagline: randomPick(taglines),
-        amenities: randomPick(allAmenities),
-        highlights: randomPick(allHighlights)
+        amenities: randomPick(allAmenities) as any,
+        highlights: randomPick(allHighlights) as any
       }));
       setIsGenerating(false);
       toast.success("AI generated a unique premium description!");
@@ -152,7 +152,7 @@ function AdminProjects() {
       body.highlights = typeof body.highlights === "string" ? body.highlights.split(",").map((s: string) => s.trim()).filter(Boolean) : body.highlights ?? [];
       if (!body.slug) body.slug = slugify(body.name ?? "");
       if (editing) {
-        const response = await updateProjectFn({ data: { id: editing.id, data: body } });
+        const response = await updateProjectFn({ data: { id: Number(editing.id), data: body } });
         if (!response.success) throw new Error(response.error);
       } else {
         const response = await addProjectFn({ data: body });
@@ -169,8 +169,8 @@ function AdminProjects() {
   });
 
   const del = useMutation({
-    mutationFn: async (id: number) => {
-      const response = await deleteProjectFn({ data: id });
+    mutationFn: async (id: number | string) => {
+      const response = await deleteProjectFn({ data: Number(id) });
       if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
@@ -183,7 +183,7 @@ function AdminProjects() {
 
   const togglePub = useMutation({
     mutationFn: async (p: Project) => {
-      const response = await toggleProjectStatusFn({ data: { id: p.id, is_published: !p.is_published } });
+      const response = await toggleProjectStatusFn({ data: { id: Number(p.id), is_published: !p.is_published } });
       if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
@@ -321,10 +321,10 @@ function AdminProjects() {
             <div><Label>City*</Label><Input required value={form.city ?? ""} onChange={(e) => set("city")(e.target.value)} className="mt-1" /></div>
             <div><Label>Location*</Label><Input required value={form.location ?? ""} onChange={(e) => set("location")(e.target.value)} placeholder="Bandra, Mumbai" className="mt-1" /></div>
             <div><Label>Builder</Label><Input value={form.builder ?? ""} onChange={(e) => set("builder")(e.target.value)} className="mt-1" /></div>
-            <div><Label>BHK Options</Label><Input value={form.bhk_options ?? ""} onChange={(e) => set("bhk_options")(e.target.value)} placeholder="2, 3 & 4 BHK" className="mt-1" /></div>
-            <div><Label>Price (display)*</Label><Input required value={form.price_display ?? ""} onChange={(e) => set("price_display")(e.target.value)} placeholder="₹ 1.75 Cr*" className="mt-1" /></div>
+            <div><Label>Configuration (BHK)</Label><Input value={form.bhk_options ?? ""} onChange={(e) => set("bhk_options")(e.target.value)} placeholder="2, 3 & 4 BHK" className="mt-1" /></div>
+            <div><Label>Carpet Area</Label><Input value={form.rera_number ?? ""} onChange={(e) => set("rera_number")(e.target.value)} placeholder="e.g. 750 - 1,450 Sq.Ft." className="mt-1" /></div>
+            <div><Label>Starting Price (display)*</Label><Input required value={form.price_display ?? ""} onChange={(e) => set("price_display")(e.target.value)} placeholder="₹ 1.75 Cr*" className="mt-1" /></div>
             <div><Label>Possession</Label><Input value={form.possession ?? ""} onChange={(e) => set("possession")(e.target.value)} placeholder="Dec 2026" className="mt-1" /></div>
-            <div><Label>Carpet Area</Label><Input value={form.rera_number ?? ""} onChange={(e) => set("rera_number")(e.target.value)} className="mt-1" /></div>
             
             <div className="sm:col-span-2">
               <Label>Cover Image (Upload or URL)*</Label>

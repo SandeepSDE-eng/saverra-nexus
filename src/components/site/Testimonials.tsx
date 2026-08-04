@@ -20,9 +20,9 @@ const REVIEWS = [
   { id: 15, name: "Chandan Gokhru", city: "Mumbai", rating: 5, message: "Vijay Vishwakarma from Saverra Realty is a very good professional real estate advisor. His understanding of the clients' requirements is really good." },
   { id: 16, name: "Shweta Joshi", city: "Mumbai", rating: 5, message: "Excellent post-sales support as well. They really go the extra mile." },
   { id: 17, name: "Milan Bavishi", city: "Mumbai", rating: 5, message: "If you're looking for a trustworthy and efficient real estate consultant, we highly recommend Vijay from Saverra Realty!" },
-  { id: 18, name: "sandeep yadav", city: "Mumbai", rating: 5, message: "I had an outstanding experience working with Vijay Vishkarma for my rental property search. His professionalism, attention to detail, and extensive knowledge." },
+  { id: 18, name: "sandeep yadav", city: "Mumbai", rating: 5, message: "I had an outstanding experience working with Vijay Vishkarma for my property search. His professionalism, attention to detail, and extensive knowledge." },
   { id: 19, name: "Hiral Sheth", city: "Mumbai", rating: 5, message: "One of the best experience I have till date of dealing with any real estate consultant. Professional yet friendly and understanding. Special thanks to Mr Vijay." },
-  { id: 20, name: "Jay Mehta", city: "Mumbai", rating: 5, message: "Thank you Saverra Owner Nimesh Ji and his team Vijay Ji, who have helped us to get our desired house on rent with total transparency." }
+  { id: 20, name: "Jay Mehta", city: "Mumbai", rating: 5, message: "Thank you Saverra Owner Nimesh Ji and his team Vijay Ji, who have helped us to get our desired house with total transparency." }
 ];
 
 export function Testimonials() {
