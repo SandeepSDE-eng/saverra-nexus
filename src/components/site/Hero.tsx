@@ -7,10 +7,10 @@ import { Link } from "@tanstack/react-router";
 const HERO_SLIDES = [
   {
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=75",
-    tagline: "Premium Real Estate Consultants",
+    tagline: "Premium Real Estate Advisors",
     title1: "Your Trusted Partner For",
-    titleHighlight: "Pan Mumbai Market",
-    description: "Discover unparalleled luxury living and strategic commercial spaces with Saverra Realty. As your dedicated property consultants, we offer bespoke real estate advisory services specializing in Ghatkopar East and the wider Pan Mumbai market."
+    titleHighlight: "Real Estate Portfolio",
+    description: "Discover unparalleled luxury living and strategic commercial spaces with Saverra Realty. As your dedicated property advisors, we offer bespoke real estate advisory services specializing in the real estate market and the wider real estate portfolio."
   },
   {
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75",
@@ -24,13 +24,13 @@ const HERO_SLIDES = [
     tagline: "Transparent Deals",
     title1: "Seamless Buying",
     titleHighlight: "Zero Hassle",
-    description: "With over a decade of trust in the Ghatkopar market, we ensure your property buying journey is smooth, transparent, and completely stress-free."
+    description: "With over a decade of trust in the real estate market, we ensure your property buying journey is smooth, transparent, and completely stress-free."
   },
   {
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=75",
     tagline: "Commercial Spaces",
-    title1: "Elevate Your",
-    titleHighlight: "Business Presence",
+    title1: "Lets Elevate Your",
+    titleHighlight: "Real Estate Experience",
     description: "Find the perfect premium office space or retail location to scale your business in Mumbai's fastest-growing commercial hubs."
   }
 ];
@@ -96,7 +96,7 @@ export function Hero() {
           
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="gold" size="lg" className="w-full sm:w-auto rounded-sm px-8 tracking-widest text-[11px] uppercase transition-all hover:scale-105" asChild>
-              <Link to="/projects">Explore Portfolio</Link>
+              <Link to="/projects">EXPLORE</Link>
             </Button>
             <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-sm border-white/50 bg-transparent px-8 text-white tracking-widest text-[11px] uppercase transition-all hover:bg-white hover:text-black" asChild>
               <Link to="/private-viewing">Private Viewing</Link>

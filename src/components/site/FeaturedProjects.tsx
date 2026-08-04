@@ -54,7 +54,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
                 Curated Developer Projects
               </h2>
               <p className="mt-3 max-w-xl text-sm text-muted-foreground leading-relaxed">
-                Explore a hand-picked portfolio of premium residences and commercial spaces from top reputed developers, expertly vetted by our consultants for your lifestyle and investment goals.
+                Explore a hand-picked portfolio of premium residences and commercial spaces from top reputed developers, expertly vetted by our advisors for your lifestyle and investment goals.
               </p>
             </div>
             {limit && (

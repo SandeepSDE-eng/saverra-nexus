@@ -92,7 +92,7 @@ function ProjectDetail() {
             <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
             <Fact label="Configuration" value={p.bhk_options ?? "—"} />
             <Fact label="Possession" value={p.status ?? p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
-            <Fact label="RERA Number" value={p.rera_number ?? "—"} />
+            <Fact label="Carpet Area" value={p.rera_number ?? "—"} />
           </div>
 
           {/* Overview */}

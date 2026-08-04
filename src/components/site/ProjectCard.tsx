@@ -51,7 +51,7 @@ export function ProjectCard({ p }: { p: Project }) {
             <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Onwards</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span>RERA: {p.rera_number ?? "—"}</span>
+            <span>Carpet Area: {p.rera_number ?? "—"}</span>
             {p.possession && <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {p.possession}</span>}
           </div>
           <div className="mt-4 flex gap-2 pt-3">

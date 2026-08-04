@@ -82,7 +82,7 @@ export function BookingModal({
           {isVisit ? (
             <div><Label className="text-xs">Preferred date</Label><Input type="date" value={form.date} onChange={set("date")} className="mt-1 h-11" /></div>
           ) : (
-            <div><Label className="text-xs">Preferred city</Label><Input value={form.city} onChange={set("city")} className="mt-1 h-11" /></div>
+            <div><Label className="text-xs">Location</Label><Input value={form.city} onChange={set("city")} className="mt-1 h-11" /></div>
           )}
           <Button type="submit" variant="gold" size="lg" className="mt-2 w-full" disabled={submitting}>
             {submitting ? "Sending…" : isVisit ? "Confirm Site Visit" : "Send Brochure to Me"}

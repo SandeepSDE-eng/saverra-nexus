@@ -324,7 +324,7 @@ function AdminProjects() {
             <div><Label>BHK Options</Label><Input value={form.bhk_options ?? ""} onChange={(e) => set("bhk_options")(e.target.value)} placeholder="2, 3 & 4 BHK" className="mt-1" /></div>
             <div><Label>Price (display)*</Label><Input required value={form.price_display ?? ""} onChange={(e) => set("price_display")(e.target.value)} placeholder="₹ 1.75 Cr*" className="mt-1" /></div>
             <div><Label>Possession</Label><Input value={form.possession ?? ""} onChange={(e) => set("possession")(e.target.value)} placeholder="Dec 2026" className="mt-1" /></div>
-            <div><Label>RERA Number</Label><Input value={form.rera_number ?? ""} onChange={(e) => set("rera_number")(e.target.value)} className="mt-1" /></div>
+            <div><Label>Carpet Area</Label><Input value={form.rera_number ?? ""} onChange={(e) => set("rera_number")(e.target.value)} className="mt-1" /></div>
             
             <div className="sm:col-span-2">
               <Label>Cover Image (Upload or URL)*</Label>

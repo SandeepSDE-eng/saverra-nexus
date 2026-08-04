@@ -39,17 +39,17 @@ export function RentalUpdates() {
             </div>
             
             <h2 className="mt-4 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-              Latest <span className="font-medium italic text-gold">Rentals</span>
+              Latest <span className="font-medium italic text-gold">Inventories</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm text-muted-foreground leading-relaxed">
-              Explore our freshly listed premium rental properties. Quick sneak peeks straight from our consultants.
+              Explore our freshly listed premium rental properties. Quick sneak peeks straight from our advisors.
             </p>
           </div>
           <Link
             to="/social-wall"
             className="group flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-primary transition-colors hover:text-gold"
           >
-            Explore Full Gallery <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            EXPLORE <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 

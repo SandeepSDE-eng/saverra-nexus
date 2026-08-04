@@ -38,7 +38,7 @@ function PrivacyPolicy() {
                 <h3 className="text-xl md:text-2xl font-display font-medium text-primary m-0">1. Information We Collect</h3>
               </div>
               <p className="leading-relaxed">
-                At Saverra Realty, we collect information that you provide directly to us. This includes, but is not limited to, your name, email address, phone number, and any other details you choose to share when filling out inquiry forms, subscribing to our newsletters, or communicating with our consultants. We may also collect automated data such as IP addresses and browsing behavior to enhance your website experience.
+                At Saverra Realty, we collect information that you provide directly to us. This includes, but is not limited to, your name, email address, phone number, and any other details you choose to share when filling out inquiry forms, subscribing to our newsletters, or communicating with our advisors. We may also collect automated data such as IP addresses and browsing behavior to enhance your website experience.
               </p>
             </section>
 

@@ -16,8 +16,8 @@ const REVIEWS = [
   { id: 11, name: "Anita Desai", city: "Mumbai", rating: 5, message: "Found our dream home through Saverra. The entire team was exceptional from start to finish." },
   { id: 12, name: "Karan Shah", city: "Mumbai", rating: 5, message: "Their knowledge of the Ghatkopar real estate market is unmatched. Great advisory services." },
   { id: 13, name: "Neha Gupta", city: "Mumbai", rating: 4, message: "Prompt responses and excellent property curation. Saved us a lot of time." },
-  { id: 14, name: "Rakesh Sharma", city: "Mumbai", rating: 5, message: "Very reliable and trustworthy real estate consultants. I would definitely work with them again." },
-  { id: 15, name: "Chandan Gokhru", city: "Mumbai", rating: 5, message: "Vijay Vishwakarma from Saverra Realty is a very good professional real estate consultant. His understanding of the customers' requirements is really good." },
+  { id: 14, name: "Rakesh Sharma", city: "Mumbai", rating: 5, message: "Very reliable and trustworthy real estate advisors. I would definitely work with them again." },
+  { id: 15, name: "Chandan Gokhru", city: "Mumbai", rating: 5, message: "Vijay Vishwakarma from Saverra Realty is a very good professional real estate advisor. His understanding of the clients' requirements is really good." },
   { id: 16, name: "Shweta Joshi", city: "Mumbai", rating: 5, message: "Excellent post-sales support as well. They really go the extra mile." },
   { id: 17, name: "Milan Bavishi", city: "Mumbai", rating: 5, message: "If you're looking for a trustworthy and efficient real estate consultant, we highly recommend Vijay from Saverra Realty!" },
   { id: 18, name: "sandeep yadav", city: "Mumbai", rating: 5, message: "I had an outstanding experience working with Vijay Vishkarma for my rental property search. His professionalism, attention to detail, and extensive knowledge." },
@@ -45,7 +45,7 @@ export function Testimonials() {
         <div className="mb-10 text-center">
           <p className="eyebrow">Customer Stories</p>
           <h2 className="mt-2 font-display text-4xl font-light tracking-wide text-primary sm:text-5xl">
-            What Our Customers Say
+            What Our CLIENTS Say
           </h2>
         </div>
         

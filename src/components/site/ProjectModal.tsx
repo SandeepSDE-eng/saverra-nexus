@@ -98,7 +98,7 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
                 <p>Designed for those who seek the extraordinary, this project features state-of-the-art facilities including a temperature-controlled infinity pool, a fully equipped wellness center, and sprawling landscaped gardens.</p>
                 <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                   <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Status</span> {project.status}</div>
-                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">RERA</span> {project.rera_number || "Applied"}</div>
+                  <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Carpet Area</span> {project.rera_number || "Applied"}</div>
                   <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Possession</span> {project.possession || "Dec 2026"}</div>
                   <div className="bg-muted/50 p-3 rounded-lg"><span className="block font-medium text-foreground mb-1">Total Area</span> 2.5 Acres</div>
                 </div>

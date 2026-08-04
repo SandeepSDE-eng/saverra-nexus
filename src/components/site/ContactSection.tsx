@@ -69,7 +69,7 @@ export function ContactSection() {
             <div><Label>Full name*</Label><Input required value={form.name} onChange={set("name")} className="mt-1 h-11" /></div>
             <div><Label>Phone*</Label><Input required type="tel" value={form.phone} onChange={set("phone")} className="mt-1 h-11" /></div>
             <div><Label>Email</Label><Input type="email" value={form.email} onChange={set("email")} className="mt-1 h-11" /></div>
-            <div><Label>Preferred city</Label><Input value={form.city} onChange={set("city")} className="mt-1 h-11" /></div>
+            <div><Label>Location</Label><Input value={form.city} onChange={set("city")} className="mt-1 h-11" /></div>
             <div className="sm:col-span-2"><Label>Budget</Label><Input value={form.budget} onChange={set("budget")} placeholder="e.g. ₹1 – 2 Cr" className="mt-1 h-11" /></div>
             <div className="sm:col-span-2"><Label>Message</Label><Textarea rows={4} value={form.message} onChange={set("message")} className="mt-1" placeholder="Tell us what you're looking for…" /></div>
           </div>

@@ -83,7 +83,7 @@ export function LiveChat() {
         botReply = "You can download the brochure directly from the project section above. If you'd like me to WhatsApp the detailed floor plans to you, just share your 10-digit mobile number!";
       }
       else if (lowerText.match(/(who|name|consultant)/)) {
-        botReply = "I am an AI assistant here at Saverra Realty. Our expert consultants are just a call away!";
+        botReply = "I am an AI assistant here at Saverra Realty. Our expert advisors are just a call away!";
       }
       else if (lowerText.match(/(where|location|address)/)) {
         botReply = "Our premium properties are located in prime areas of Mumbai (like Ghatkopar East and BKC) and Bengaluru. Which city are you interested in?";

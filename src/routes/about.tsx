@@ -65,7 +65,7 @@ function About() {
             {
               icon: HeartHandshake,
               title: "Lifetime Relationships",
-              desc: "Our aim is to optimize satisfactory services and build lifelong relationships with our customers and communities."
+              desc: "Our aim is to optimize satisfactory services and build lifelong relationships with our clients and communities."
             },
             {
               icon: Lightbulb,
@@ -113,7 +113,7 @@ function About() {
               <Trophy className="size-10 text-gold mb-6 transition-transform duration-500 group-hover:scale-110" />
               <h3 className="font-display text-2xl font-light text-white mb-4">Our Vision</h3>
               <p className="text-white/70 font-light leading-relaxed">
-                To be the most trusted and innovative real estate consultancy, known for setting the benchmark in market insight, foresight, and building lifelong community relationships.
+                To be the most trusted and innovative real estate advisory, known for setting the benchmark in market insight, foresight, and building lifelong community relationships.
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Deep market insights</li>
