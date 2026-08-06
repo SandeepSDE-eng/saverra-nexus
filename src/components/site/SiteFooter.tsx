@@ -19,13 +19,13 @@ export function SiteFooter() {
   });
 
   const featuredProjectsList = projectsData && projectsData.length > 0 
-    ? projectsData.slice(0, 5).map((p: any) => ({ name: p.title, slug: p.slug }))
+    ? projectsData.slice(0, 5).map((p: any) => ({ name: p.title || p.name, slug: p.slug }))
     : [
-        { name: "Drushti Sapphire", slug: "drushti-sapphire" },
-        { name: "Azure Sky Villa", slug: "azure-sky-villa" },
-        { name: "The Imperial", slug: "the-imperial" },
-        { name: "Lodha Bellissimo", slug: "lodha-bellissimo" },
-        { name: "Rustomjee Elements", slug: "rustomjee-elements" }
+        { name: "MICL Aaradhya OnePark", slug: "micl-aaradhya-onepark" },
+        { name: "Shubham Elegance", slug: "shubham-elegance-ghatkopar" },
+        { name: "Happy Home Heights", slug: "happy-home-heights" },
+        { name: "Prajapati Heights", slug: "prajapati-heights-pant-nagar" },
+        { name: "Adani Ten BKC", slug: "adani-ten-bkc" }
       ];
 
   return (
