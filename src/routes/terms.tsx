@@ -21,16 +21,6 @@ function TermsConditions() {
 
       <div className="container-luxe max-w-4xl mx-auto -mt-10 relative z-20">
         <div className="bg-white rounded-2xl shadow-xl border border-border/50 p-8 md:p-12 lg:p-16">
-          <div className="flex items-center gap-4 mb-8 pb-8 border-b border-border">
-            <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center text-gold">
-              <Gavel className="size-6" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Last Updated</p>
-              <p className="font-medium text-primary">July 27, 2026</p>
-            </div>
-          </div>
-
           <div className="prose prose-slate max-w-none text-muted-foreground space-y-8">
             <section>
               <div className="flex items-center gap-3 mb-4">
