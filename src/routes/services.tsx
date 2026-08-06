@@ -11,14 +11,15 @@ const SERVICES_DATA = [
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=75",
     reverse: false,
     points: [
-      "Market Intelligence & Competition Strategy",
-      "Go-To-Market Strategy",
-      "Product Planning",
-      "Pricing Strategy",
-      "Marketing Planning",
-      "Channel Partner Outreach Strategy",
-      "Campaign Planning and Management",
-      "Inventory Strategy",
+      "Market Intelligence & Property Insights",
+      "Buyer & Seller Advisory",
+      "Investment Strategy & Portfolio Guidance",
+      "Property Valuation & Pricing Advisory",
+      "End-to-End Buying & Selling Assistance",
+      "Leasing & Rental Advisory",
+      "Negotiation & Deal Structuring",
+      "Legal & Documentation Coordination",
+      "Home Loan & Financial Assistance",
     ]
   },
   {
@@ -27,15 +28,14 @@ const SERVICES_DATA = [
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=75",
     reverse: true,
     points: [
-      "Market Intelligence & Competition Strategy",
-      "Go-To-Market Strategy",
-      "Product Planning",
+      "Market Intelligence & Competitive Analysis",
+      "Go-to-Market Strategy",
       "Pricing Strategy",
-      "Sales Strategy",
-      "Marketing Planning",
-      "Channel Partner Outreach Strategy",
-      "Campaign Planning and Management",
-      "Inventory Strategy",
+      "Marketing Strategy",
+      "Leasing Strategy",
+      "Investment Advisory",
+      "Occupier & Landlord Representation",
+      "Transaction Management",
     ]
   },
   {
@@ -44,12 +44,14 @@ const SERVICES_DATA = [
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=75",
     reverse: false,
     points: [
-      "Catchment Analysis & Feasibility Study",
-      "Tenant Mix Planning",
+      "Catchment & Market Analysis",
+      "Retail Location Advisory",
+      "Tenant Mix Strategy",
       "Leasing Strategy & Execution",
-      "Brand Positioning & Marketing",
-      "Space Optimization Strategy",
-      "Revenue Maximization Models",
+      "Occupancy Planning",
+      "Brand Positioning",
+      "Lease Advisory & Negotiation",
+      "Revenue Optimization",
     ]
   },
   {
@@ -107,7 +109,7 @@ function Services() {
         <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-border/50 p-6 md:p-12 lg:p-16 mb-16 animate-fade-up">
           
           {/* Sticky Tab Navigation */}
-          <div className="sticky top-[96px] z-30 bg-white/90 backdrop-blur-md mb-12 py-4 border-b border-border/50">
+          <div className="sticky top-[80px] z-40 bg-white/95 backdrop-blur-md mb-12 py-4 border-b border-border/50 -mx-6 px-6 md:-mx-12 md:px-12 lg:-mx-16 lg:px-16">
             <ul className="flex items-center justify-center overflow-x-auto scrollbar-none text-xs md:text-sm font-medium tracking-widest uppercase gap-8 md:gap-16">
               {SERVICES_DATA.map(s => (
                 <li key={s.id}>

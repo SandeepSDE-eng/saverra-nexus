@@ -5,9 +5,9 @@ const FAQ = [
   { q: "How do I book a site visit?", a: "You can schedule a site visit by clicking the 'Schedule Site Visit' button on any page, filling out the contact form, or calling us directly at +91 98765 43210." },
   { q: "What documents are required for booking?", a: "Basic KYC documents (PAN, Aadhaar), 2 passport-size photos, and a signed booking form. For NRIs, an additional NRE/NRO account statement is required." },
   { q: "Do you provide home loan assistance?", a: "Yes. We are empanelled with 20+ leading banks and NBFCs and our team helps you get pre-approved home loans at the best interest rates." },
-  { q: "Can I get a customized floor plan?", a: "Absolutely. For premium villas and penthouses, we offer bespoke customization for interiors, lighting, and layout." },
-  { q: "What is the payment schedule?", a: "Standard construction-linked plan with milestone-based payments. Subvention schemes and flexible payment plans are also available." },
-  { q: "Are there any hidden charges?", a: "No. SAVERRA follows a 100% transparent pricing policy — every charge, tax and stamp duty is disclosed upfront in the cost sheet." },
+  { q: "What types of properties do you specialize in?", a: "We provide advisory and transaction services for residential, commercial, retail, office spaces, land, and investment properties." },
+  { q: "Can you help identify high-growth investment opportunities?", a: "Yes. We leverage in-depth market insights and location analysis to recommend properties with strong growth potential and attractive long-term returns" },
+  { q: "Why should I choose Saverra Realty?", a: "We combine market expertise, transparent advice, strong negotiation skills, and end-to-end support to ensure every real estate decision is informed, seamless, and rewarding" },
   { q: "Do you handle registration and legal work?", a: "Yes, our legal desk assists you end-to-end with agreement drafting, stamp duty, and sub-registrar registration." },
 ];
 
