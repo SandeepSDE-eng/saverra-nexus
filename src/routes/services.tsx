@@ -109,7 +109,7 @@ function Services() {
         <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-border/50 p-6 md:p-12 lg:p-16 mb-16 animate-fade-up">
           
           {/* Sticky Tab Navigation */}
-          <div className="sticky top-[80px] z-40 bg-white/95 backdrop-blur-md mb-12 py-4 border-b border-border/50 -mx-6 px-6 md:-mx-12 md:px-12 lg:-mx-16 lg:px-16">
+          <div className="sticky top-[96px] sm:top-[136px] z-30 bg-white/95 backdrop-blur-md mb-12 py-4 border-b border-border/50 -mx-6 px-6 md:-mx-12 md:px-12 lg:-mx-16 lg:px-16 transition-all">
             <ul className="flex items-center justify-center overflow-x-auto scrollbar-none text-xs md:text-sm font-medium tracking-widest uppercase gap-8 md:gap-16">
               {SERVICES_DATA.map(s => (
                 <li key={s.id}>
