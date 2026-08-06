@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Instagram, Youtube, Facebook, Play, Sparkles } from "lucide-react";
 import { getSocialPostsFn } from "@/api/social";
 import { getRentalsFn } from "@/api/rentals";
+import { StatusStories } from "@/components/site/StatusStories";
 
 export const Route = createFileRoute("/social-wall")({
   component: SocialWall,
@@ -81,6 +82,10 @@ function SocialWall() {
 
       <div className="container-luxe mx-auto max-w-7xl px-4 -mt-8 relative z-20">
         
+        <div className="mb-8 rounded-2xl overflow-hidden bg-white shadow-lg border border-border/50">
+          <StatusStories />
+        </div>
+
         {/* Tabs Filter */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
           <button 

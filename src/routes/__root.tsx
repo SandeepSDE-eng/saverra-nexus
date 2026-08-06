@@ -207,6 +207,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { LeadPopup } from "@/components/site/LeadPopup";
+import { GlobalPopup } from "@/components/site/GlobalPopup";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
 function RootComponent() {
@@ -227,6 +228,7 @@ function RootComponent() {
             <SiteFooter />
             <FloatingActions />
             <LeadPopup />
+            <GlobalPopup />
           </div>
         ) : (
           <Outlet />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/site/Hero";
+import { StatusStories } from "@/components/site/StatusStories";
 import { DevelopersMarquee } from "@/components/site/DevelopersMarquee";
 import { StatsBar } from "@/components/site/StatsBar";
 import { FeaturedProjects } from "@/components/site/FeaturedProjects";
@@ -60,6 +61,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <StatusStories />
       <DevelopersMarquee />
       <StatsBar />
       <FeaturedProjects limit={8} />

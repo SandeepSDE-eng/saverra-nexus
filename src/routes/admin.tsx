@@ -40,6 +40,7 @@ function AdminLayout() {
   const nav = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/themes", label: "Theme & Colors", icon: Palette },
+    { href: "/admin/announcements", label: "Announcements", icon: Share2 },
     { href: "/admin/social", label: "Social Wall", icon: Share2 },
     { href: "/admin/rentals", label: "Rentals (Shorts)", icon: Video },
     { href: "/admin/projects", label: "Projects", icon: Building2 },
