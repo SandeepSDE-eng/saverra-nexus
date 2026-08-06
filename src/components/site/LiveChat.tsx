@@ -23,7 +23,7 @@ export function LiveChat() {
       setMessages([
         {
           id: 1,
-          text: "Welcome to Saverra Realty! 👋 How can I help you find your dream home today?",
+          text: "Welcome to Saverra Realty! 👋 How can I help you?",
           sender: "bot",
           timestamp: new Date(),
         },

@@ -48,7 +48,7 @@ function Contact() {
             Get in <span className="text-gold italic font-medium">Touch</span>
           </h1>
           <p className="text-white/80 max-w-2xl mx-auto font-light tracking-wide text-sm md:text-lg">
-            Connect with our expert advisors to find your perfect luxury home.
+            Connect with our expert advisors to find your perfect property.
           </p>
         </div>
       </div>
@@ -70,7 +70,7 @@ function Contact() {
                     <MapPin className="size-6" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-lg text-white mb-1">Head Office</h3>
+                    <h3 className="font-medium text-lg text-white mb-1">Office</h3>
                     <p className="text-white/70 leading-relaxed font-light text-sm">
                       One45 Business Bay, 1205,<br />
                       Vallabh Baug Ln Ext,<br />

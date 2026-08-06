@@ -21,16 +21,6 @@ function PrivacyPolicy() {
 
       <div className="container-luxe max-w-4xl mx-auto -mt-10 relative z-20">
         <div className="bg-white rounded-2xl shadow-xl border border-border/50 p-8 md:p-12 lg:p-16">
-          <div className="flex items-center gap-4 mb-8 pb-8 border-b border-border">
-            <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center text-gold">
-              <Shield className="size-6" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Last Updated</p>
-              <p className="font-medium text-primary">July 27, 2026</p>
-            </div>
-          </div>
-
           <div className="prose prose-slate max-w-none text-muted-foreground space-y-8">
             <section>
               <div className="flex items-center gap-3 mb-4">
@@ -54,7 +44,7 @@ function PrivacyPolicy() {
                 <li>Personalize your property recommendations based on your preferences.</li>
                 <li>Communicate with you regarding site visits, new launches, and exclusive offers.</li>
                 <li>Analyze website traffic and optimize our digital marketing efforts.</li>
-                <li>Ensure compliance with RERA and other legal regulations.</li>
+                <li>Ensure compliance with legal regulations.</li>
               </ul>
             </section>
 
@@ -65,13 +55,6 @@ function PrivacyPolicy() {
               </div>
               <p className="leading-relaxed">
                 We implement state-of-the-art technical and organizational measures to maintain the safety of your personal information. Your data is stored on secure servers with restricted access. While we strive to use commercially acceptable means to protect your personal information, please note that no method of transmission over the internet is 100% secure.
-              </p>
-            </section>
-
-            <section className="bg-[#f8f9fa] p-6 rounded-xl border border-border mt-8">
-              <h3 className="text-lg font-display font-medium text-primary mb-2">4. Contact Us for Privacy Concerns</h3>
-              <p className="text-sm leading-relaxed mb-0">
-                If you have any questions, concerns, or requests regarding this Privacy Policy or how your data is handled, please reach out to our compliance team at <strong>privacy@saverra.com</strong> or call us at <strong>+91 98765 43210</strong>.
               </p>
             </section>
           </div>

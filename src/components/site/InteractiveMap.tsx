@@ -24,7 +24,7 @@ export function InteractiveMap() {
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <div className="overflow-hidden rounded-2xl border border-border/60 shadow-luxury lg:col-span-2">
             <iframe
-              title="SAVERRA Head Office — BKC, Mumbai"
+              title="SAVERRA Office — BKC, Mumbai"
               src="https://www.openstreetmap.org/export/embed.html?bbox=72.8500%2C19.0550%2C72.8900%2C19.0800&layer=mapnik&marker=19.0680%2C72.8697"
               className="h-[420px] w-full border-0"
               loading="lazy"

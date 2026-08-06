@@ -1,8 +1,33 @@
 import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
+import { useQuery } from "@tanstack/react-query";
+import { getProjectsFn } from "@/api/projects";
 
 export function SiteFooter() {
+  const { data: projectsData } = useQuery({
+    queryKey: ["footer_projects"],
+    queryFn: async () => {
+      try {
+        const res = await getProjectsFn();
+        if (res.success && res.data?.length > 0) return res.data;
+        return [];
+      } catch {
+        return [];
+      }
+    }
+  });
+
+  const featuredProjectsList = projectsData && projectsData.length > 0 
+    ? projectsData.slice(0, 5).map((p: any) => ({ name: p.title, slug: p.slug }))
+    : [
+        { name: "Drushti Sapphire", slug: "drushti-sapphire" },
+        { name: "Azure Sky Villa", slug: "azure-sky-villa" },
+        { name: "The Imperial", slug: "the-imperial" },
+        { name: "Lodha Bellissimo", slug: "lodha-bellissimo" },
+        { name: "Rustomjee Elements", slug: "rustomjee-elements" }
+      ];
+
   return (
     <footer className="mt-20 border-t border-border/10 bg-[color:var(--navy-deep)] text-white/70">
       <div className="container-luxe grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
@@ -42,8 +67,10 @@ export function SiteFooter() {
         <div className="lg:pl-6 pt-4">
           <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Featured Projects</h4>
           <ul className="space-y-3.5 text-sm">
-            {["Drushti Sapphire", "Azure Sky Villa", "The Imperial", "Lodha Bellissimo", "Rustomjee Elements"].map((project) => (
-              <li key={project}><a href="#projects" className="transition-colors hover:text-gold font-medium">{project}</a></li>
+            {featuredProjectsList.map((project: any) => (
+              <li key={project.name}>
+                <a href={`/projects/${project.slug}`} className="transition-colors hover:text-gold font-medium">{project.name}</a>
+              </li>
             ))}
           </ul>
         </div>
@@ -77,9 +104,9 @@ export function SiteFooter() {
 
       <div className="border-t border-white/10 bg-black/20">
         <div className="container-luxe py-4 text-[11px] flex flex-col md:flex-row items-center justify-between gap-3 text-white/40">
-          <p className="font-medium">© {new Date().getFullYear()} SAVERRA Real Estate. All rights reserved.</p>
+          <p className="font-medium">© {new Date().getFullYear()} SAVERRA. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-2 font-medium">
-            <span className="hover:text-white/80 transition-colors cursor-pointer">RERA Reg: P51900012345</span>
+            <span className="hover:text-white/80 transition-colors cursor-pointer">RERA Registered</span>
             <span>·</span>
             <Link to="/privacy" className="hover:text-white/80 transition-colors cursor-pointer">Privacy</Link>
             <span>·</span>
