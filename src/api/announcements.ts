@@ -102,11 +102,11 @@ export const getActivePopupFn = createServerFn({ method: "GET" }).handler(async 
   try {
     const pool = getMySqlPool();
     await ensureTablesExist(pool);
-    // Only fetch one active popup at a time to prevent multiple overlays
-    const [rows]: any = await pool.query('SELECT * FROM global_popups WHERE is_active = TRUE ORDER BY created_at DESC LIMIT 1');
-    return { success: true, data: rows[0] || null };
+    // Fetch all active popups so they can be shown in a carousel
+    const [rows]: any = await pool.query('SELECT * FROM global_popups WHERE is_active = TRUE ORDER BY created_at DESC');
+    return { success: true, data: rows };
   } catch (error: any) {
-    return { success: false, error: error.message, data: null };
+    return { success: false, error: error.message, data: [] };
   }
 });
 
@@ -128,11 +128,6 @@ export const addPopupFn = createServerFn({ method: "POST" })
       const pool = getMySqlPool();
       await ensureTablesExist(pool);
       
-      // If we are making this one active, deactivate all others first
-      if (is_active) {
-        await pool.query('UPDATE global_popups SET is_active = FALSE');
-      }
-      
       await pool.query('INSERT INTO global_popups (image_url, link_url, is_active) VALUES (?, ?, ?)', [image_url, link_url, is_active]);
       return { success: true };
     } catch (error: any) {
@@ -145,11 +140,6 @@ export const togglePopupFn = createServerFn({ method: "POST" })
   .handler(async ({ data: { id, is_active } }) => {
     try {
       const pool = getMySqlPool();
-      
-      // If turning on, turn off all others
-      if (is_active) {
-        await pool.query('UPDATE global_popups SET is_active = FALSE');
-      }
       
       await pool.query('UPDATE global_popups SET is_active = ? WHERE id = ?', [is_active, id]);
       return { success: true };

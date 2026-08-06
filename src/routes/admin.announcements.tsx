@@ -235,7 +235,7 @@ function PopupsManager() {
         <h2 className="font-medium text-lg mb-4 flex items-center gap-2">
           <Plus className="size-5 text-gold" /> Add New Global Popup
         </h2>
-        <p className="text-sm text-muted-foreground mb-6">When you add a new popup, it automatically becomes the active one. Only one popup can be active at a time.</p>
+        <p className="text-sm text-muted-foreground mb-6">If you have multiple active popups, they will be displayed in a beautiful carousel for the user.</p>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Popup Image (Upload File or Enter URL)</label>
