@@ -69,20 +69,17 @@ const SERVICES_DATA = [
 ];
 
 function Services() {
-  // Smooth scroll for internal links
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
+    // Handle initial hash on load
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
-    return () => window.removeEventListener('hashchange', handleHashChange);
+      }, 100);
+    }
   }, []);
 
   return (
@@ -116,6 +113,14 @@ function Services() {
                 <li key={s.id}>
                   <a 
                     href={`#${s.id}`} 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById(s.id);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                        window.history.pushState(null, '', `#${s.id}`);
+                      }
+                    }}
                     className="text-muted-foreground hover:text-primary transition-colors pb-2 border-b-2 border-transparent hover:border-gold whitespace-nowrap"
                   >
                     {s.title}
