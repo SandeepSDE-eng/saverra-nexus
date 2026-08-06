@@ -6,7 +6,7 @@ async function ensureTablesExist(pool: any) {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS statuses (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        image_url TEXT NOT NULL,
+        image_url LONGTEXT NOT NULL,
         title VARCHAR(255),
         is_active BOOLEAN DEFAULT TRUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -16,12 +16,19 @@ async function ensureTablesExist(pool: any) {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS global_popups (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        image_url TEXT NOT NULL,
+        image_url LONGTEXT NOT NULL,
         link_url TEXT,
         is_active BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  try {
+    await pool.query('ALTER TABLE statuses MODIFY COLUMN image_url LONGTEXT');
+    await pool.query('ALTER TABLE global_popups MODIFY COLUMN image_url LONGTEXT');
+  } catch (e) {
+    // Ignore if it fails (e.g., column doesn't exist yet in a race condition, though it should)
+  }
 }
 
 // ==========================================

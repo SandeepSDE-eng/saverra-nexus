@@ -78,6 +78,16 @@ function StatusesManager() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["admin_statuses"] })
   });
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
@@ -86,13 +96,27 @@ function StatusesManager() {
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Image URL (Vertical/Story Format)</label>
-            <input 
-              value={imageUrl} 
-              onChange={e => setImageUrl(e.target.value)} 
-              placeholder="https://..." 
-              className="w-full border border-border rounded-md px-3 py-2 text-sm focus:border-gold outline-none"
-            />
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Image (Upload File or Enter URL)</label>
+            <div className="flex gap-2">
+              <input 
+                value={imageUrl} 
+                onChange={e => setImageUrl(e.target.value)} 
+                placeholder="https://..." 
+                className="flex-1 border border-border rounded-md px-3 py-2 text-sm focus:border-gold outline-none"
+              />
+              <div className="relative">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleFileUpload} 
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full" 
+                  title="Upload Image" 
+                />
+                <button type="button" className="bg-muted text-muted-foreground px-4 py-2 rounded-md text-sm font-medium border border-border pointer-events-none whitespace-nowrap">
+                  Upload
+                </button>
+              </div>
+            </div>
           </div>
           <div>
             <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Title / Caption (Optional)</label>
@@ -195,6 +219,16 @@ function PopupsManager() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["admin_popups"] })
   });
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
@@ -204,13 +238,27 @@ function PopupsManager() {
         <p className="text-sm text-muted-foreground mb-6">When you add a new popup, it automatically becomes the active one. Only one popup can be active at a time.</p>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Popup Image URL (Square or Landscape)</label>
-            <input 
-              value={imageUrl} 
-              onChange={e => setImageUrl(e.target.value)} 
-              placeholder="https://..." 
-              className="w-full border border-border rounded-md px-3 py-2 text-sm focus:border-gold outline-none"
-            />
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Popup Image (Upload File or Enter URL)</label>
+            <div className="flex gap-2">
+              <input 
+                value={imageUrl} 
+                onChange={e => setImageUrl(e.target.value)} 
+                placeholder="https://..." 
+                className="flex-1 border border-border rounded-md px-3 py-2 text-sm focus:border-gold outline-none"
+              />
+              <div className="relative">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleFileUpload} 
+                  className="absolute inset-0 opacity-0 cursor-pointer w-full" 
+                  title="Upload Image" 
+                />
+                <button type="button" className="bg-muted text-muted-foreground px-4 py-2 rounded-md text-sm font-medium border border-border pointer-events-none whitespace-nowrap">
+                  Upload
+                </button>
+              </div>
+            </div>
           </div>
           <div>
             <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Redirect Link (Optional)</label>
