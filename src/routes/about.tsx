@@ -98,12 +98,12 @@ function About() {
               <Target className="size-10 text-gold mb-6 transition-transform duration-500 group-hover:scale-110" />
               <h3 className="font-display text-2xl font-light text-white mb-4">Our Mission</h3>
               <p className="text-white/70 font-light leading-relaxed">
-                To identify and deliver suitable real estate products while ensuring honest negotiations, transparent documentation, and a seamless experience for every buyer, seller, tenant, and landlord.
+                To deliver end-to-end real estate consulting and execution services that empower developers and investors to maximize asset value, accelerate growth, and achieve long-term success.
               </p>
               <ul className="mt-6 space-y-3">
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Client-centric approach</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Honest negotiations</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Transparent documentation</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> End-to-end consulting</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Maximize asset value</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Long-term success</li>
               </ul>
             </div>
 
@@ -113,12 +113,12 @@ function About() {
               <Trophy className="size-10 text-gold mb-6 transition-transform duration-500 group-hover:scale-110" />
               <h3 className="font-display text-2xl font-light text-white mb-4">Our Vision</h3>
               <p className="text-white/70 font-light leading-relaxed">
-                To be the most trusted and innovative real estate advisory, known for setting the benchmark in market insight, foresight, and building lifelong community relationships.
+                To be the most trusted real estate consulting firm, delivering ethical, transparent, and process-driven solutions that create value, build lasting relationships, and enable sustainable growth.
               </p>
               <ul className="mt-6 space-y-3">
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Deep market insights</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Lifelong relationships</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Innovative thinking</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Ethical & transparent</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Process-driven solutions</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Lasting relationships</li>
               </ul>
             </div>
 
@@ -128,12 +128,12 @@ function About() {
               <Users className="size-10 text-gold mb-6 transition-transform duration-500 group-hover:scale-110" />
               <h3 className="font-display text-2xl font-light text-white mb-4">Our Goals</h3>
               <p className="text-white/70 font-light leading-relaxed">
-                To consistently exceed client expectations by offering highly competitive rates and delivering more than they anticipate, growing our network of individual and corporate investors.
+                To build enduring relationships through trust, transparency, and performance while helping clients make smarter real estate decisions and achieve sustainable growth.
               </p>
               <ul className="mt-6 space-y-3">
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Exceeding expectations</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Competitive market rates</li>
-                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Expanding investor network</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Enduring relationships</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Trust & performance</li>
+                <li className="flex items-center gap-3 text-white/60 text-sm font-light"><CheckCircle2 className="size-4 text-gold" /> Smarter decisions</li>
               </ul>
             </div>
 
