@@ -61,7 +61,7 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
 
           {/* Tabs */}
           <div className="flex bg-muted p-1 rounded-lg mb-5 shrink-0">
-            {["Overview", "Gallery", "Financing", "Neighborhood"].map((tab) => (
+            {["Overview", "Gallery", "Financing"].map((tab) => (
               <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)} 
@@ -124,33 +124,6 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
               </div>
             )}
 
-            {activeTab === "Neighborhood" && (
-              <div className="space-y-4 animate-fade-in">
-                <div className="aspect-video bg-muted rounded-xl relative overflow-hidden flex items-center justify-center border border-border">
-                  <div 
-                    className="absolute inset-0 opacity-20 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://maps.googleapis.com/maps/api/staticmap?center=Mumbai&zoom=14&size=600x300&sensor=false')" }}
-                  ></div>
-                  <span className="relative z-10 text-muted-foreground font-medium flex items-center gap-2"><MapPin className="size-4" /> View on Map</span>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mt-4">
-                  <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Connectivity</h5>
-                    <ul className="text-sm space-y-1 text-foreground/80">
-                      <li>• Metro Station (2 min)</li>
-                      <li>• Eastern Express (5 min)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Lifestyle</h5>
-                    <ul className="text-sm space-y-1 text-foreground/80">
-                      <li>• R City Mall (10 min)</li>
-                      <li>• Phoenix Marketcity (15 min)</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Action Buttons */}

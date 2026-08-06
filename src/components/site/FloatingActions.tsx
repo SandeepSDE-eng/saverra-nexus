@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Phone, ArrowUp, Download } from "lucide-react";
+import { Phone, ArrowUp } from "lucide-react";
 import { BookingModal } from "./BookingModal";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -32,7 +32,6 @@ export function FloatingActions() {
   const actions = [
     { icon: WhatsAppIcon, label: "WhatsApp", onClick: () => window.open("https://wa.me/919876543210", "_blank"), cls: "bg-[#25D366] text-white border-[#25D366] hover:bg-[#20bd5a]" },
     { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+919876543210"), cls: "bg-primary text-white border-primary hover:bg-primary/90" },
-    { icon: Download, label: "Brochure", onClick: () => setModal("brochure"), cls: "bg-gold text-white border-gold hover:bg-gold/90" },
   ];
 
   return (

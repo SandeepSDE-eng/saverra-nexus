@@ -33,8 +33,6 @@ export function SiteFooter() {
           <ul className="space-y-3.5 text-sm">
             <li><Link to="/" className="transition-colors hover:text-gold font-medium">Home</Link></li>
             <li><a href="/#projects" className="transition-colors hover:text-gold font-medium">Projects</a></li>
-            <li><Link to="/amenities" className="transition-colors hover:text-gold font-medium">Amenities</Link></li>
-            <li><Link to="/neighborhood" className="transition-colors hover:text-gold font-medium">Neighborhood</Link></li>
             <li><Link to="/careers" className="transition-colors hover:text-gold font-medium">Careers</Link></li>
             <li><Link to="/faq" className="transition-colors hover:text-gold font-medium">FAQ</Link></li>
             <li><a href="/contact" className="transition-colors hover:text-gold font-medium">Contact</a></li>
