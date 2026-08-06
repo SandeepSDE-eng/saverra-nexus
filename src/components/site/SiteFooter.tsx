@@ -19,7 +19,11 @@ export function SiteFooter() {
   });
 
   const featuredProjectsList = projectsData && projectsData.length > 0 
-    ? projectsData.slice(0, 5).map((p: any) => ({ name: p.title || p.name, slug: p.slug }))
+    ? projectsData
+        .filter((p: any) => p.is_published !== false)
+        .sort((a: any, b: any) => (b.is_featured ? 1 : 0) - (a.is_featured ? 1 : 0))
+        .slice(0, 5)
+        .map((p: any) => ({ name: p.title || p.name, slug: p.slug }))
     : [
         { name: "MICL Aaradhya OnePark", slug: "micl-aaradhya-onepark" },
         { name: "Shubham Elegance", slug: "shubham-elegance-ghatkopar" },
