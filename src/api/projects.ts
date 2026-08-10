@@ -13,10 +13,45 @@ const formatForDb = (data: any) => {
   return formatted;
 };
 
+// Helper function to auto-sync MySQL table with initial Live / Draft states if out of sync
+async function autoSyncDbIfNeeded(pool: any) {
+  try {
+    const [checkRows]: any = await pool.query(
+      "SELECT COUNT(*) as cnt FROM projects WHERE slug IN ('adani-the-views', 'orient-odyssey', '9-anemone-heights') AND is_published = TRUE"
+    );
+    if (!checkRows || checkRows[0].cnt < 3) {
+      console.log("Auto-syncing MySQL projects table with new 4 live projects & drafting rest...");
+      // Unpublish existing projects that are not in our 4 live slugs
+      await pool.query(
+        "UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights')"
+      );
+
+      // Upsert mock projects
+      for (const p of MOCK_PROJECTS) {
+        const formatted = formatForDb(p);
+        const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
+        const values = keys.map(k => formatted[k]);
+
+        const [existing]: any = await pool.query('SELECT id FROM projects WHERE slug = ?', [p.slug]);
+        if (existing && existing.length > 0) {
+          const setClause = keys.map(k => `${k} = ?`).join(', ');
+          await pool.query(`UPDATE projects SET ${setClause} WHERE id = ?`, [...values, existing[0].id]);
+        } else {
+          const placeholders = keys.map(() => '?').join(', ');
+          await pool.query(`INSERT INTO projects (${keys.join(', ')}) VALUES (${placeholders})`, values);
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Auto sync DB error:", err);
+  }
+}
+
 // Get all projects for the admin panel
 export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects ORDER BY created_at DESC'
     );
@@ -34,23 +69,14 @@ export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(asyn
 export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE ORDER BY created_at DESC'
     );
     
-    // Check if the DB has any rows at all
     if (!rows || rows.length === 0) {
       return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
     }
-
-    // Check if DB is still on old seed without new slugs
-    const hasNewLiveSlugs = rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
-    if (!hasNewLiveSlugs && rows.length > 4) {
-      // If DB has old un-updated dataset, fallback to updated MOCK_PROJECTS
-      return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
-    }
-    
-    // Otherwise return DB rows (respecting any Admin UI toggle changes)
     return { success: true, data: rows };
   } catch (error: any) {
     console.error("Error fetching projects:", error);
@@ -62,6 +88,7 @@ export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () 
 export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 8'
     );
@@ -69,12 +96,6 @@ export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(a
     if (!rows || rows.length === 0) {
       return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
     }
-
-    const hasNewLiveSlugs = rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
-    if (!hasNewLiveSlugs && rows.length > 4) {
-      return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
-    }
-    
     return { success: true, data: rows };
   } catch (error: any) {
     console.error("Error fetching featured projects:", error);
@@ -108,7 +129,7 @@ export const syncLiveProjectsFn = createServerFn({ method: "POST" }).handler(asy
   try {
     const pool = getMySqlPool();
     // 1. Unpublish all current projects in DB first
-    await pool.query('UPDATE projects SET is_published = FALSE');
+    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights')");
 
     // 2. Upsert/Add all MOCK_PROJECTS into DB
     for (const p of MOCK_PROJECTS) {

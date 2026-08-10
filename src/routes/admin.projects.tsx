@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Plus, Pencil, Trash2, Eye, EyeOff, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { getAdminProjectsFn, addProjectFn, updateProjectFn, deleteProjectFn, toggleProjectStatusFn } from "@/api/projects";
+import { getAdminProjectsFn, addProjectFn, updateProjectFn, deleteProjectFn, toggleProjectStatusFn, syncLiveProjectsFn } from "@/api/projects";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,28 +41,15 @@ function AdminProjects() {
 
   const seed = useMutation({
     mutationFn: async () => {
-      // Clean up the mock projects to match DB format and remove explicit IDs
-      for (const p of MOCK_PROJECTS) {
-        const { id, created_at, updated_at, ...rest } = p;
-        const body = {
-          ...rest,
-          city: (p as any).city || "Mumbai", // Force city to prevent null constraint
-          builder: (p as any).builder || "SAVERRA Developers",
-          category: (p as any).category || "Residential",
-          gallery: Array.isArray(p.gallery) ? p.gallery : [],
-          highlights: Array.isArray(p.highlights) ? p.highlights : [],
-          amenities: Array.isArray(p.amenities) ? p.amenities : []
-        };
-        const response = await addProjectFn({ data: body });
-        if (!response.success) throw new Error(response.error);
-      }
+      const response = await syncLiveProjectsFn();
+      if (!response.success) throw new Error(response.error);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin", "projects"] });
       qc.invalidateQueries({ queryKey: ["projects", "featured"] });
-      toast.success("10 Ghatkopar projects successfully added!");
+      toast.success("Live Projects synchronized (4 Live + Rest Draft)!");
     },
-    onError: (e: any) => toast.error(e.message ?? "Failed to add projects"),
+    onError: (e: any) => toast.error(e.message ?? "Sync failed"),
   });
 
   const generateAI = async () => {
@@ -234,7 +221,7 @@ function AdminProjects() {
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => seed.mutate()} disabled={seed.isPending} className="border-gold text-gold hover:bg-gold/10">
             <Sparkles className="size-4 mr-2" />
-            {seed.isPending ? "Injecting..." : "Inject 10 Ghatkopar Projects"}
+            {seed.isPending ? "Syncing..." : "Sync Live Projects (4 Live + Draft)"}
           </Button>
           <Button variant="gold" onClick={openNew}><Plus className="size-4 mr-1" /> Add Project</Button>
         </div>
