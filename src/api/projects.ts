@@ -2,6 +2,17 @@ import { createServerFn } from "@tanstack/react-start";
 import { getMySqlPool } from "@/lib/mysql";
 import { MOCK_PROJECTS } from "@/lib/mockProjects";
 
+let hasUpgradedSchema = false;
+async function ensureSchemaUpgraded(pool: any) {
+  if (hasUpgradedSchema) return;
+  try {
+    await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
+    hasUpgradedSchema = true;
+  } catch (err) {
+    hasUpgradedSchema = true;
+  }
+}
+
 // Helper to stringify JSON fields if needed
 const formatForDb = (data: any) => {
   const formatted = { ...data };
@@ -15,6 +26,7 @@ const formatForDb = (data: any) => {
 export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await ensureSchemaUpgraded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects ORDER BY created_at DESC'
     );
@@ -32,6 +44,7 @@ export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(asyn
 export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await ensureSchemaUpgraded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE ORDER BY created_at DESC'
     );
@@ -50,6 +63,7 @@ export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () 
 export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await ensureSchemaUpgraded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 8'
     );
@@ -69,6 +83,7 @@ export const getProjectBySlugFn = createServerFn({ method: "GET" })
   .handler(async ({ data: slug }) => {
     try {
       const pool = getMySqlPool();
+      await ensureSchemaUpgraded(pool);
       const [rows]: any = await pool.query(
         'SELECT * FROM projects WHERE slug = ? LIMIT 1',
         [slug]
@@ -89,6 +104,7 @@ export const getProjectBySlugFn = createServerFn({ method: "GET" })
 export const syncLiveProjectsFn = createServerFn({ method: "POST" }).handler(async () => {
   try {
     const pool = getMySqlPool();
+    await ensureSchemaUpgraded(pool);
     // 1. Unpublish all current projects in DB first
     await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights')");
 
@@ -120,6 +136,7 @@ export const addProjectFn = createServerFn({ method: "POST" })
     try {
       const formatted = formatForDb(data);
       const pool = getMySqlPool();
+      await ensureSchemaUpgraded(pool);
       const keys = Object.keys(formatted).filter(k => k !== 'id');
       const values = keys.map(k => formatted[k]);
       
@@ -140,6 +157,7 @@ export const updateProjectFn = createServerFn({ method: "POST" })
     try {
       const formatted = formatForDb(data);
       const pool = getMySqlPool();
+      await ensureSchemaUpgraded(pool);
       const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
       const values = keys.map(k => formatted[k]);
       
@@ -160,6 +178,7 @@ export const toggleProjectStatusFn = createServerFn({ method: "POST" })
     try {
       const { id, is_published } = data;
       const pool = getMySqlPool();
+      await ensureSchemaUpgraded(pool);
       
       await pool.query(
         'UPDATE projects SET is_published = ? WHERE id = ?',
@@ -178,6 +197,7 @@ export const deleteProjectFn = createServerFn({ method: "POST" })
   .handler(async ({ data: id }) => {
     try {
       const pool = getMySqlPool();
+      await ensureSchemaUpgraded(pool);
       await pool.query('DELETE FROM projects WHERE id = ?', [id]);
       return { success: true };
     } catch (error: any) {

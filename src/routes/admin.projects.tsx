@@ -193,35 +193,58 @@ function AdminProjects() {
 
   const set = (k: keyof ProjectForm) => (v: any) => setForm((s) => ({ ...s, [k]: v }));
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, field: "cover_image" | "gallery") => {
+const compressImage = (file: File, maxWidth = 1200, quality = 0.85): Promise<string> => {
+  return new Promise((resolve) => {
+    if (file.type === "image/svg+xml") {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve((e.target?.result as string) || "");
+      reader.readAsDataURL(file);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        } else {
+          resolve((e.target?.result as string) || "");
+        }
+      };
+      img.onerror = () => resolve((e.target?.result as string) || "");
+      img.src = (e.target?.result as string) || "";
+    };
+    reader.readAsDataURL(file);
+  });
+};
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: "cover_image" | "gallery") => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
     
     if (field === "cover_image") {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setForm(s => ({ ...s, cover_image: event.target!.result as string }));
-          toast.success("Cover image uploaded permanently!");
-        }
-      };
-      reader.readAsDataURL(files[0]);
+      const base64 = await compressImage(files[0]);
+      setForm(s => ({ ...s, cover_image: base64 }));
+      toast.success("Cover image uploaded permanently!");
     } else {
       const fileList = Array.from(files);
-      const readPromises = fileList.map(file => {
-        return new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = (ev) => resolve(ev.target?.result as string || "");
-          reader.readAsDataURL(file);
-        });
-      });
-      Promise.all(readPromises).then((base64Urls) => {
-        const validUrls = base64Urls.filter(Boolean);
-        const existing = typeof form.gallery === "string" ? form.gallery : (form.gallery?.join(", ") || "");
-        const newGallery = existing ? `${existing}, ${validUrls.join(", ")}` : validUrls.join(", ");
-        setForm(s => ({ ...s, gallery: newGallery as any }));
-        toast.success(`${validUrls.length} images added to gallery permanently!`);
-      });
+      const base64Urls = await Promise.all(fileList.map(f => compressImage(f)));
+      const validUrls = base64Urls.filter(Boolean);
+      const existing = typeof form.gallery === "string" ? form.gallery : (form.gallery?.join(", ") || "");
+      const newGallery = existing ? `${existing}, ${validUrls.join(", ")}` : validUrls.join(", ");
+      setForm(s => ({ ...s, gallery: newGallery as any }));
+      toast.success(`${validUrls.length} images added to gallery permanently!`);
     }
   };
 
