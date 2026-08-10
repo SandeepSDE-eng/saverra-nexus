@@ -21,12 +21,12 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
           
         if (!response.success || !response.data || response.data.length === 0) {
           console.warn("Using mock data due to empty DB or old schema");
-          return MOCK_PROJECTS;
+          return MOCK_PROJECTS.filter((p: any) => p.is_published !== false);
         }
         return response.data;
       } catch (error) {
         console.warn("MySQL Error (using fallback):", error);
-        return MOCK_PROJECTS;
+        return MOCK_PROJECTS.filter((p: any) => p.is_published !== false);
       }
     },
   });

@@ -9,7 +9,7 @@ import {
   getAdminPopupsFn, addPopupFn, deletePopupFn, togglePopupFn
 } from "@/api/announcements";
 
-export const Route = createFileRoute("/admin/announcements")({
+export const Route = createFileRoute("/admin/announcements" as any)({
   component: AdminAnnouncements,
 });
 
