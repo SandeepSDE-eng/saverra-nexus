@@ -122,7 +122,7 @@ function AdminProjects() {
     queryFn: async () => {
       try {
         const response = await getAdminProjectsFn();
-        if (!response.success) throw new Error(response.error || "Failed to fetch");
+        if (!response.success) throw new Error((response as any).error || "Failed to fetch");
         return response.data as Project[];
       } catch (error: any) {
         console.warn("MySQL Error:", error);
@@ -198,15 +198,30 @@ function AdminProjects() {
     if (!files || files.length === 0) return;
     
     if (field === "cover_image") {
-      const url = URL.createObjectURL(files[0]);
-      setForm(s => ({ ...s, cover_image: url }));
-      toast.success("Cover image uploaded locally!");
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setForm(s => ({ ...s, cover_image: event.target!.result as string }));
+          toast.success("Cover image uploaded permanently!");
+        }
+      };
+      reader.readAsDataURL(files[0]);
     } else {
-      const urls = Array.from(files).map(f => URL.createObjectURL(f));
-      const existing = typeof form.gallery === "string" ? form.gallery : (form.gallery?.join(", ") || "");
-      const newGallery = existing ? `${existing}, ${urls.join(", ")}` : urls.join(", ");
-      setForm(s => ({ ...s, gallery: newGallery as any }));
-      toast.success(`${files.length} images added to gallery locally!`);
+      const fileList = Array.from(files);
+      const readPromises = fileList.map(file => {
+        return new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => resolve(ev.target?.result as string || "");
+          reader.readAsDataURL(file);
+        });
+      });
+      Promise.all(readPromises).then((base64Urls) => {
+        const validUrls = base64Urls.filter(Boolean);
+        const existing = typeof form.gallery === "string" ? form.gallery : (form.gallery?.join(", ") || "");
+        const newGallery = existing ? `${existing}, ${validUrls.join(", ")}` : validUrls.join(", ");
+        setForm(s => ({ ...s, gallery: newGallery as any }));
+        toast.success(`${validUrls.length} images added to gallery permanently!`);
+      });
     }
   };
 
@@ -247,7 +262,14 @@ function AdminProjects() {
                 <tr key={p.id} className="border-t border-border/70">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <img src={p.cover_image} alt="" className="size-11 rounded-md object-cover" />
+                      <img 
+                        src={p.cover_image || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&q=80"} 
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&q=80";
+                        }}
+                        alt={p.name} 
+                        className="size-11 rounded-md object-cover bg-muted" 
+                      />
                       <div>
                         <div className="font-semibold text-primary">{p.name}</div>
                         <div className="text-xs text-muted-foreground">/{p.slug}</div>

@@ -29,9 +29,12 @@ export function ProjectCard({ p }: { p: Project }) {
       <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-1 hover:border-gold/50 hover:shadow-luxury">
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={optimizedImage}
+            src={optimizedImage || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80"}
             alt={p.name}
             loading="lazy"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80";
+            }}
             className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <span className="absolute left-3 top-3 rounded-sm bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[color:var(--navy-deep)] shadow-md">

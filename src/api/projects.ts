@@ -2,8 +2,6 @@ import { createServerFn } from "@tanstack/react-start";
 import { getMySqlPool } from "@/lib/mysql";
 import { MOCK_PROJECTS } from "@/lib/mockProjects";
 
-const LIVE_SLUGS = ["micl-aaradhya-onepark", "adani-the-views", "orient-odyssey", "9-anemone-heights"];
-
 // Helper to stringify JSON fields if needed
 const formatForDb = (data: any) => {
   const formatted = { ...data };
@@ -13,45 +11,10 @@ const formatForDb = (data: any) => {
   return formatted;
 };
 
-// Helper function to auto-sync MySQL table with initial Live / Draft states if out of sync
-async function autoSyncDbIfNeeded(pool: any) {
-  try {
-    const [checkRows]: any = await pool.query(
-      "SELECT COUNT(*) as cnt FROM projects WHERE slug IN ('adani-the-views', 'orient-odyssey', '9-anemone-heights') AND is_published = TRUE"
-    );
-    if (!checkRows || checkRows[0].cnt < 3) {
-      console.log("Auto-syncing MySQL projects table with new 4 live projects & drafting rest...");
-      // Unpublish existing projects that are not in our 4 live slugs
-      await pool.query(
-        "UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights')"
-      );
-
-      // Upsert mock projects
-      for (const p of MOCK_PROJECTS) {
-        const formatted = formatForDb(p);
-        const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
-        const values = keys.map(k => formatted[k]);
-
-        const [existing]: any = await pool.query('SELECT id FROM projects WHERE slug = ?', [p.slug]);
-        if (existing && existing.length > 0) {
-          const setClause = keys.map(k => `${k} = ?`).join(', ');
-          await pool.query(`UPDATE projects SET ${setClause} WHERE id = ?`, [...values, existing[0].id]);
-        } else {
-          const placeholders = keys.map(() => '?').join(', ');
-          await pool.query(`INSERT INTO projects (${keys.join(', ')}) VALUES (${placeholders})`, values);
-        }
-      }
-    }
-  } catch (err) {
-    console.error("Auto sync DB error:", err);
-  }
-}
-
 // Get all projects for the admin panel
 export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
-    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects ORDER BY created_at DESC'
     );
@@ -69,7 +32,6 @@ export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(asyn
 export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
-    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE ORDER BY created_at DESC'
     );
@@ -88,7 +50,6 @@ export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () 
 export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const pool = getMySqlPool();
-    await autoSyncDbIfNeeded(pool);
     const [rows]: any = await pool.query(
       'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 8'
     );
