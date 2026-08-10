@@ -38,15 +38,20 @@ export const getProjectsFn = createServerFn({ method: "GET" }).handler(async () 
       'SELECT * FROM projects WHERE is_published = TRUE ORDER BY created_at DESC'
     );
     
-    // Check if the returned rows contain our new live projects
-    const hasNewLiveProjects = rows && rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
-    if (!rows || rows.length === 0 || !hasNewLiveProjects) {
+    // Check if the DB has any rows at all
+    if (!rows || rows.length === 0) {
+      return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
+    }
+
+    // Check if DB is still on old seed without new slugs
+    const hasNewLiveSlugs = rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
+    if (!hasNewLiveSlugs && rows.length > 4) {
+      // If DB has old un-updated dataset, fallback to updated MOCK_PROJECTS
       return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
     }
     
-    // Return only published projects that match our current slug configuration
-    const validLiveRows = rows.filter((r: any) => LIVE_SLUGS.includes(r.slug));
-    return { success: true, data: validLiveRows.length > 0 ? validLiveRows : MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
+    // Otherwise return DB rows (respecting any Admin UI toggle changes)
+    return { success: true, data: rows };
   } catch (error: any) {
     console.error("Error fetching projects:", error);
     return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
@@ -61,13 +66,16 @@ export const getFeaturedProjectsFn = createServerFn({ method: "GET" }).handler(a
       'SELECT * FROM projects WHERE is_published = TRUE AND is_featured = TRUE ORDER BY created_at DESC LIMIT 8'
     );
     
-    const hasNewLiveProjects = rows && rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
-    if (!rows || rows.length === 0 || !hasNewLiveProjects) {
+    if (!rows || rows.length === 0) {
+      return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
+    }
+
+    const hasNewLiveSlugs = rows.some((r: any) => LIVE_SLUGS.includes(r.slug));
+    if (!hasNewLiveSlugs && rows.length > 4) {
       return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
     }
     
-    const validLiveRows = rows.filter((r: any) => LIVE_SLUGS.includes(r.slug));
-    return { success: true, data: validLiveRows.length > 0 ? validLiveRows : MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
+    return { success: true, data: rows };
   } catch (error: any) {
     console.error("Error fetching featured projects:", error);
     return { success: true, data: MOCK_PROJECTS.filter((p: any) => p.is_published !== false) };
