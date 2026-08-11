@@ -52,39 +52,35 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#040e1d] text-white relative overflow-hidden">
-      {/* Ambient Metallic Mesh Orbs */}
-      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#d4af37]/5 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-[#08182f] blur-[160px] pointer-events-none" />
-
+    <section id="contact" className="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 relative overflow-hidden border-t border-slate-200">
       <div className="container-luxe relative z-10">
         <div className="grid gap-12 lg:grid-cols-12 items-start">
           
           {/* Left Column — Brand & Direct Channels (5 Cols) */}
           <div className="lg:col-span-5 text-left space-y-8">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#08182f] border border-[#d4af37]/30 text-[10px] font-bold uppercase tracking-widest text-[#d4af37]">
-                <Sparkles className="size-3.5" /> SAVERRA PRIVATE CONCIERGE
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-[10px] font-bold uppercase tracking-widest text-[#aa820a]">
+                <Sparkles className="size-3.5 text-[#d4af37]" /> SAVERRA PRIVATE CONCIERGE
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.15]">
+              <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-[1.15]">
                 Let's Elevate Your <br />
-                <span className="bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] bg-clip-text text-transparent italic font-normal">
+                <span className="text-[#d4af37] italic font-normal">
                   Real Estate Experience
                 </span>
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base font-light leading-relaxed max-w-md">
+              <p className="text-slate-600 text-sm sm:text-base font-medium leading-relaxed max-w-md">
                 Speak directly with senior real estate advisors. We guide you through inventory availability, confidential pre-launch pricing, and tailored mortgage structures.
               </p>
             </div>
 
             {/* SLA Trust Card */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#08182f] border border-[#d4af37]/30 text-xs text-slate-300">
-              <div className="size-10 rounded-xl bg-black/40 border border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] shrink-0">
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+              <div className="size-10 rounded-xl bg-amber-50 border border-[#d4af37]/40 flex items-center justify-center text-[#aa820a] shrink-0">
                 <Clock className="size-5" />
               </div>
               <div>
-                <span className="block font-bold text-white uppercase tracking-wider text-[11px]">24-Hour SLA Advisory Guarantee</span>
-                <span className="text-slate-400">All submissions are reviewed by senior partners in strict confidence.</span>
+                <span className="block font-bold text-slate-900 uppercase tracking-wider text-[11px]">24-Hour SLA Advisory Guarantee</span>
+                <span className="text-slate-500 font-medium">All submissions are reviewed by senior partners in strict confidence.</span>
               </div>
             </div>
 
@@ -127,20 +123,20 @@ export function ContactSection() {
                     href={c.href}
                     target={c.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#08182f]/60 p-4 transition-all duration-300 hover:border-[#d4af37]/60 hover:bg-[#08182f] hover:-translate-y-1 group"
+                    className="flex items-center gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 transition-all duration-300 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/10 hover:-translate-y-1 group"
                   >
-                    <div className="size-11 shrink-0 rounded-xl bg-black/50 border border-[#d4af37]/30 flex items-center justify-center text-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-slate-950 transition-colors">
+                    <div className="size-11 shrink-0 rounded-xl bg-amber-50 border border-[#d4af37]/30 flex items-center justify-center text-[#aa820a] group-hover:bg-[#d4af37] group-hover:text-slate-950 transition-colors">
                       <Icon className="size-5" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <span className="block text-[10px] uppercase font-bold tracking-widest text-[#d4af37]">
+                      <span className="block text-[10px] uppercase font-bold tracking-widest text-[#aa820a]">
                         {c.title}
                       </span>
-                      <span className="text-xs sm:text-sm font-semibold text-slate-200 truncate block mt-0.5 group-hover:text-white">
+                      <span className="text-xs sm:text-sm font-semibold text-slate-800 truncate block mt-0.5 group-hover:text-slate-950">
                         {c.value}
                       </span>
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/40 border border-white/10 text-slate-400 group-hover:border-[#d4af37] group-hover:text-[#d4af37] shrink-0">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 group-hover:border-[#d4af37] group-hover:text-[#aa820a] shrink-0">
                       {c.badge}
                     </span>
                   </a>
@@ -149,20 +145,20 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column — Luxury Interactive Form Card (7 Cols) */}
+          {/* Right Column — Luxury Interactive Light Form Card (7 Cols) */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-[#d4af37]/30 bg-[#08182f]/90 backdrop-blur-2xl p-6 sm:p-10 text-left shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] space-y-6">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 text-left shadow-2xl shadow-slate-200/60 space-y-6">
               
-              <div className="space-y-1 border-b border-white/10 pb-5">
+              <div className="space-y-1 border-b border-slate-100 pb-5">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900">
                     Send Us A Message
                   </h3>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#d4af37] uppercase tracking-wider bg-black/40 px-3 py-1 rounded-full border border-[#d4af37]/30">
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#aa820a] uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-full border border-[#d4af37]/30">
                     <ShieldCheck className="size-3" /> Confidential
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 font-medium">
+                <p className="text-xs text-slate-500 font-medium">
                   Fill in your preferences below to receive verified project deck & private viewing invitation.
                 </p>
               </div>
@@ -170,65 +166,65 @@ export function ContactSection() {
               <form onSubmit={onSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <Label className="text-[11px] font-bold uppercase tracking-wider text-[#d4af37]">Full Name *</Label>
+                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-800">Full Name *</Label>
                     <Input
                       required
                       placeholder="e.g. Vikramaditya Sharma"
                       value={form.name}
                       onChange={set("name")}
-                      className="h-12 rounded-xl bg-black/40 border-white/10 text-sm font-medium text-white placeholder:text-slate-500 focus:border-[#d4af37]"
+                      className="h-12 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-[#d4af37] focus:bg-white"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label className="text-[11px] font-bold uppercase tracking-wider text-[#d4af37]">Contact Phone *</Label>
+                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-800">Contact Phone *</Label>
                     <Input
                       required
                       type="tel"
                       placeholder="+91 98xxx xxxxx"
                       value={form.phone}
                       onChange={set("phone")}
-                      className="h-12 rounded-xl bg-black/40 border-white/10 text-sm font-medium text-white placeholder:text-slate-500 focus:border-[#d4af37]"
+                      className="h-12 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-[#d4af37] focus:bg-white"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Email Address</Label>
+                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Email Address</Label>
                     <Input
                       type="email"
                       placeholder="vikram@company.com"
                       value={form.email}
                       onChange={set("email")}
-                      className="h-12 rounded-xl bg-black/40 border-white/10 text-sm font-medium text-white placeholder:text-slate-500 focus:border-[#d4af37]"
+                      className="h-12 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-[#d4af37] focus:bg-white"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Preferred Location / City</Label>
+                    <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Preferred Location / City</Label>
                     <Input
                       placeholder="e.g. Worli, Bandra, BKC"
                       value={form.city}
                       onChange={set("city")}
-                      className="h-12 rounded-xl bg-black/40 border-white/10 text-sm font-medium text-white placeholder:text-slate-500 focus:border-[#d4af37]"
+                      className="h-12 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-[#d4af37] focus:bg-white"
                     />
                   </div>
                 </div>
 
                 {/* Budget Bracket Selector Pills */}
                 <div className="space-y-2">
-                  <Label className="text-[11px] font-bold uppercase tracking-wider text-[#d4af37]">Target Budget Bracket</Label>
+                  <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-800">Target Budget Bracket</Label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {BUDGET_OPTIONS.map((opt) => (
                       <button
                         type="button"
                         key={opt}
                         onClick={() => setForm((s) => ({ ...s, budget: opt }))}
-                        className={`px-3 py-2 rounded-xl text-[11px] font-bold transition-all border text-center cursor-pointer ${
+                        className={`px-3 py-2.5 rounded-xl text-[11px] font-bold transition-all border text-center cursor-pointer ${
                           form.budget === opt
-                            ? "bg-[#d4af37] text-slate-950 border-[#d4af37] shadow-[0_0_12px_rgba(212,175,55,0.4)]"
-                            : "bg-black/40 text-slate-300 border-white/10 hover:border-[#d4af37]/50"
+                            ? "bg-[#d4af37] text-slate-950 border-[#d4af37] shadow-md shadow-[#d4af37]/30"
+                            : "bg-slate-50 text-slate-700 border-slate-200 hover:border-[#d4af37]/60"
                         }`}
                       >
                         {opt}
@@ -238,27 +234,27 @@ export function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Specific Requirements / Message</Label>
+                  <Label className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Specific Requirements / Message</Label>
                   <Textarea
                     rows={4}
                     value={form.message}
                     onChange={set("message")}
                     placeholder="Tell us your preferred configurations (e.g., 4 BHK Sky Villa with Private Deck)…"
-                    className="rounded-xl bg-black/40 border-white/10 text-sm font-medium text-white placeholder:text-slate-500 focus:border-[#d4af37] resize-none"
+                    className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-[#d4af37] focus:bg-white resize-none"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full h-14 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-[0_0_25px_rgba(212,175,55,0.35)] flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full h-14 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-[#d4af37]/20 flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <Send className="size-4" />
                   <span>{submitting ? "Transmitting Inquiry…" : "Submit Priority Inquiry"}</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Button>
 
-                <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest">
+                <p className="text-[10px] text-center text-slate-500 uppercase tracking-widest font-medium">
                   🔒 Zero Spam Promise · Instant Callback by Certified Saverra Advisor
                 </p>
               </form>
