@@ -3,21 +3,32 @@ import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
+  iconClassName?: string;
+  textClassName?: string;
+  taglineClassName?: string;
+  showTagline?: boolean;
+  hideText?: boolean;
   variant?: "dark" | "light";
 }
 
-export function Logo({ className }: LogoProps) {
+export function Logo({
+  className,
+  variant = "dark",
+}: LogoProps) {
+  const isLight = variant === "light";
+
   return (
-    <div className={cn("relative flex items-center justify-center shrink-0", className)}>
-      <img
-        src="/logo.png"
-        alt="SAVERRA REALTY"
-        className="h-full w-auto object-contain max-h-full drop-shadow-md"
-        onError={(e) => {
-          // Fallback if logo.png image is missing
-          (e.target as HTMLImageElement).style.display = "none";
-        }}
-      />
-    </div>
+    <div
+      className={cn("bg-no-repeat", className)}
+      style={{
+        backgroundImage: "url('/logo.png')",
+        backgroundSize: "auto 125%",
+        backgroundPosition: "center center",
+        filter: isLight 
+          ? "grayscale(100%) invert(100%) brightness(1000%) contrast(1000%)" 
+          : "none",
+        mixBlendMode: isLight ? "screen" : "multiply",
+      }}
+    />
   );
 }
