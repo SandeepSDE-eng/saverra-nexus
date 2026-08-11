@@ -23,33 +23,34 @@ export function HeroQuickFilter() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-8 relative z-30 animate-fade-up">
-      <div className="rounded-2xl bg-[#08182f]/90 backdrop-blur-2xl border border-[#d4af37]/30 p-4 md:p-6 shadow-[0_25px_60px_-15px_rgba(4,14,29,0.7)] text-white">
+    <div className="w-full max-w-5xl mx-auto mt-10 relative z-30 animate-fade-up">
+      <div className="rounded-2xl bg-white border border-slate-200 p-4 md:p-6 shadow-2xl shadow-slate-200/70 text-slate-900">
         <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+          
           {/* Location Selector */}
-          <div className="relative flex items-center bg-black/40 rounded-xl px-4 py-3 border border-white/10 focus-within:border-[#d4af37] transition-all">
+          <div className="relative flex items-center bg-slate-50 rounded-xl px-4 py-3 border border-slate-200 focus-within:border-[#d4af37] focus-within:bg-white transition-all">
             <MapPin className="size-5 text-[#d4af37] shrink-0 mr-3" />
             <div className="flex-1 text-left">
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#d4af37]">Location / Hub</label>
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#aa820a]">Location / Hub</label>
               <input
                 type="text"
                 placeholder="e.g. Worli, Bandra, BKC"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="w-full bg-transparent text-sm font-medium text-white focus:outline-none placeholder:text-slate-400"
+                className="w-full bg-transparent text-sm font-semibold text-slate-900 focus:outline-none placeholder:text-slate-400"
               />
             </div>
           </div>
 
           {/* Property Type Selector */}
-          <div className="relative flex items-center bg-black/40 rounded-xl px-4 py-3 border border-white/10 focus-within:border-[#d4af37] transition-all">
+          <div className="relative flex items-center bg-slate-50 rounded-xl px-4 py-3 border border-slate-200 focus-within:border-[#d4af37] focus-within:bg-white transition-all">
             <Building2 className="size-5 text-[#d4af37] shrink-0 mr-3" />
             <div className="flex-1 text-left">
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#d4af37]">Property Category</label>
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#aa820a]">Property Category</label>
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full bg-transparent text-sm font-medium text-white focus:outline-none cursor-pointer border-none [&>option]:bg-[#08182f] [&>option]:text-white"
+                className="w-full bg-transparent text-sm font-semibold text-slate-900 focus:outline-none cursor-pointer border-none [&>option]:bg-white [&>option]:text-slate-900"
               >
                 <option value="all">All Residences</option>
                 <option value="Penthouse">Sky Penthouses</option>
@@ -61,14 +62,14 @@ export function HeroQuickFilter() {
           </div>
 
           {/* Budget Range Selector */}
-          <div className="relative flex items-center bg-black/40 rounded-xl px-4 py-3 border border-white/10 focus-within:border-[#d4af37] transition-all">
+          <div className="relative flex items-center bg-slate-50 rounded-xl px-4 py-3 border border-slate-200 focus-within:border-[#d4af37] focus-within:bg-white transition-all">
             <SlidersHorizontal className="size-5 text-[#d4af37] shrink-0 mr-3" />
             <div className="flex-1 text-left">
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#d4af37]">Price Bracket</label>
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-[#aa820a]">Price Bracket</label>
               <select
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
-                className="w-full bg-transparent text-sm font-medium text-white focus:outline-none cursor-pointer border-none [&>option]:bg-[#08182f] [&>option]:text-white"
+                className="w-full bg-transparent text-sm font-semibold text-slate-900 focus:outline-none cursor-pointer border-none [&>option]:bg-white [&>option]:text-slate-900"
               >
                 <option value="all">Any Budget</option>
                 <option value="2-5">₹2 Cr – ₹5 Cr</option>
@@ -83,7 +84,7 @@ export function HeroQuickFilter() {
           <div>
             <Button
               type="submit"
-              className="w-full h-[54px] rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full h-[54px] rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-[#d4af37]/20 flex items-center justify-center gap-2 group cursor-pointer"
             >
               <Search className="size-4" />
               <span>Explore Portfolio</span>
