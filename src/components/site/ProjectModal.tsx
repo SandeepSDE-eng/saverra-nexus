@@ -74,24 +74,36 @@ export function ProjectModal({ project, isOpen, onClose }: { project: Project, i
 
           {/* Tab Content */}
           <div className="flex-1 overflow-y-auto mb-6 pr-2">
-            {activeTab === "Gallery" && (
-              <div className="grid grid-cols-2 gap-2 shrink-0 animate-fade-in">
-                <div className="relative rounded-xl overflow-hidden aspect-square group">
-                  <img src={project.cover_image || ""} alt="Gallery Main" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                </div>
-                <div className="grid grid-rows-2 gap-2">
-                  <div className="relative rounded-xl overflow-hidden group">
-                    <img src={project.cover_image || ""} alt="Gallery Interior" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter brightness-95" />
+            {activeTab === "Gallery" && (() => {
+              const galleryList: string[] = Array.isArray(project.gallery)
+                ? project.gallery
+                : typeof project.gallery === "string"
+                  ? (JSON.parse(project.gallery) as string[])
+                  : [project.cover_image || ""];
+              const img1 = galleryList[0] || project.cover_image || "";
+              const img2 = galleryList[1] || img1;
+              const img3 = galleryList[2] || img2;
+              const remainingCount = Math.max(0, galleryList.length - 3);
+
+              return (
+                <div className="grid grid-cols-2 gap-2 shrink-0 animate-fade-in">
+                  <div className="relative rounded-xl overflow-hidden aspect-square group">
+                    <img src={img1} alt={`${project.name} Gallery 1`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   </div>
-                  <div className="relative rounded-xl overflow-hidden group cursor-pointer">
-                    <img src={project.cover_image || ""} alt="Gallery More" className="w-full h-full object-cover filter brightness-50 transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 flex items-center justify-center backdrop-blur-[2px]">
-                      <span className="text-white font-medium tracking-wide">+12 Photos</span>
+                  <div className="grid grid-rows-2 gap-2">
+                    <div className="relative rounded-xl overflow-hidden group">
+                      <img src={img2} alt={`${project.name} Gallery 2`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter brightness-95" />
+                    </div>
+                    <div className="relative rounded-xl overflow-hidden group cursor-pointer">
+                      <img src={img3} alt={`${project.name} Gallery 3`} className="w-full h-full object-cover filter brightness-50 transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 flex items-center justify-center backdrop-blur-[2px]">
+                        <span className="text-white font-medium tracking-wide">+{remainingCount + 4} Photos</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {activeTab === "Overview" && (
               <div className="space-y-4 animate-fade-in text-muted-foreground text-sm leading-relaxed">

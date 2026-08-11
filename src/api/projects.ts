@@ -105,8 +105,8 @@ export const syncLiveProjectsFn = createServerFn({ method: "POST" }).handler(asy
   try {
     const pool = getMySqlPool();
     await ensureSchemaUpgraded(pool);
-    // 1. Unpublish all current projects in DB first
-    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights')");
+    // 1. Unpublish all current projects in DB first except live published projects
+    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights', 'house-of-hiranandani-chembur', 'rustomjee-balmoral-golf-links')");
 
     // 2. Upsert/Add all MOCK_PROJECTS into DB
     for (const p of MOCK_PROJECTS) {

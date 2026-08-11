@@ -42,23 +42,23 @@ export function ProjectCard({ p }: { p: Project }) {
           </span>
         </div>
         <div className="flex flex-1 flex-col p-5">
-          <h3 className="font-display text-lg font-bold text-primary">{p.name}</h3>
-          <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-            <MapPin className="size-3 text-gold" /> {p.location}
+          <h3 className="font-display text-lg font-bold text-primary line-clamp-1" title={p.name}>{p.name}</h3>
+          <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground line-clamp-1">
+            <MapPin className="size-3 text-gold shrink-0" /> <span className="truncate">{p.location}</span>
           </p>
-          {p.bhk_options && (
-            <p className="mt-2 text-xs text-foreground/70">{p.bhk_options}</p>
-          )}
+          <div className="mt-2 text-xs text-foreground/70 min-h-[1.25rem]">
+            {p.bhk_options || "\u00A0"}
+          </div>
           <div className="mt-3 flex items-baseline gap-2">
-            <IndianRupee className="size-4 text-gold" />
-            <span className="font-display text-xl font-bold text-primary">{p.price_display.replace(/^₹\s*/, "")}</span>
+            <IndianRupee className="size-4 text-gold shrink-0" />
+            <span className="font-display text-xl font-bold text-primary">{p.price_display ? p.price_display.replace(/^₹\s*/, "") : "On Request"}</span>
             <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Onwards</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground">
-            <span>Carpet Area: {getCarpetArea(p)}</span>
-            {p.possession && <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {p.possession}</span>}
+            <span className="truncate">Carpet: {getCarpetArea(p)}</span>
+            {p.possession && <span className="inline-flex items-center gap-1 shrink-0 ml-2"><Calendar className="size-3" /> {p.possession}</span>}
           </div>
-          <div className="mt-4 flex gap-2 pt-3">
+          <div className="mt-auto pt-4 flex gap-2">
             <Button variant="outline" size="sm" className="flex-1" asChild>
               <Link to="/projects/$slug" params={{ slug: p.slug }}>Full Details</Link>
             </Button>
