@@ -3,15 +3,6 @@ import { getMySqlPool } from "@/lib/mysql";
 import { MOCK_PROJECTS } from "@/lib/mockProjects";
 
 let hasUpgradedSchema = false;
-async function ensureSchemaUpgraded(pool: any) {
-  if (hasUpgradedSchema) return;
-  try {
-    await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
-    hasUpgradedSchema = true;
-  } catch (err) {
-    hasUpgradedSchema = true;
-  }
-}
 
 // Helper to stringify JSON fields if needed
 const formatForDb = (data: any) => {
@@ -21,6 +12,44 @@ const formatForDb = (data: any) => {
   if (Array.isArray(formatted.highlights)) formatted.highlights = JSON.stringify(formatted.highlights);
   return formatted;
 };
+
+async function autoSyncProjects(pool: any) {
+  try {
+    const liveSlugs = ['micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights', 'house-of-hiranandani-chembur', 'rustomjee-balmoral-golf-links'];
+    await pool.query(`UPDATE projects SET is_published = FALSE WHERE slug NOT IN (${liveSlugs.map(s => `'${s}'`).join(',')})`);
+
+    for (const p of MOCK_PROJECTS) {
+      const formatted = formatForDb(p);
+      const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
+      const values = keys.map(k => formatted[k]);
+
+      const [existing]: any = await pool.query('SELECT id FROM projects WHERE slug = ?', [p.slug]);
+      if (existing && existing.length > 0) {
+        const setClause = keys.map(k => `${k} = ?`).join(', ');
+        await pool.query(`UPDATE projects SET ${setClause} WHERE id = ?`, [...values, existing[0].id]);
+      } else {
+        const placeholders = keys.map(() => '?').join(', ');
+        await pool.query(`INSERT INTO projects (${keys.join(', ')}) VALUES (${placeholders})`, values);
+      }
+    }
+  } catch (e) {
+    console.error("Auto sync projects error:", e);
+  }
+}
+
+async function ensureSchemaUpgraded(pool: any) {
+  if (hasUpgradedSchema) return;
+  try {
+    await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
+    const [check]: any = await pool.query("SELECT id FROM projects WHERE slug = 'house-of-hiranandani-chembur'");
+    if (!check || check.length === 0) {
+      await autoSyncProjects(pool);
+    }
+    hasUpgradedSchema = true;
+  } catch (err) {
+    hasUpgradedSchema = true;
+  }
+}
 
 // Get all projects for the admin panel
 export const getAdminProjectsFn = createServerFn({ method: "GET" }).handler(async () => {
