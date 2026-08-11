@@ -102,37 +102,41 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
             </div>
           </div>
 
-          {/* Investment Price & Action Buttons */}
-          <div className="pt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          {/* Investment Price Row */}
+          <div className="flex items-center justify-between border-t border-slate-100 pt-3">
             <div>
               <span className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">Starting Investment</span>
               <p className="font-display text-xl font-bold text-[#d4af37]">
                 {p.price_display ? p.price_display : "On Request"}
               </p>
             </div>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
+              Onwards
+            </span>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-10 px-3.5 rounded-xl border-slate-200 text-slate-700 hover:border-[#d4af37] hover:bg-amber-50 text-xs font-bold transition-all cursor-pointer"
-                onClick={() => setIsModalOpen(true)}
-              >
-                <Eye className="size-3.5 text-[#d4af37] mr-1" />
-                Quick View
-              </Button>
+          {/* Responsive Equal-Width Action Buttons Grid */}
+          <div className="grid grid-cols-2 gap-2.5 pt-1">
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full h-11 rounded-xl border-slate-200 bg-slate-50 text-slate-800 hover:bg-white hover:border-[#d4af37] text-xs font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap shrink-0 flex items-center justify-center gap-1.5"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <Eye className="size-3.5 text-[#d4af37]" />
+              <span>Quick View</span>
+            </Button>
 
-              <Button
-                asChild
-                size="sm"
-                className="h-10 px-4 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-1 shadow-md shadow-[#d4af37]/20 hover:brightness-110 transition-all cursor-pointer"
-              >
-                <Link to="/projects/$slug" params={{ slug }}>
-                  <span>Full Details</span>
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
-              </Button>
-            </div>
+            <Button
+              asChild
+              size="sm"
+              className="w-full h-11 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md shadow-[#d4af37]/20 hover:brightness-110 transition-all cursor-pointer whitespace-nowrap shrink-0"
+            >
+              <Link to="/projects/$slug" params={{ slug }}>
+                <span>Full Details</span>
+                <ArrowUpRight className="size-3.5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </article>
