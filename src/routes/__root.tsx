@@ -18,20 +18,20 @@ import { Logo } from "@/components/site/Logo";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <p className="eyebrow">404</p>
-        <h1 className="mt-3 font-display text-5xl text-foreground">Page not found</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="flex min-h-screen items-center justify-center bg-[#040e1d] text-white px-4">
+      <div className="max-w-md text-center space-y-4">
+        <span className="text-[#d4af37] text-xs font-bold uppercase tracking-widest">404 Error</span>
+        <h1 className="font-display text-4xl font-bold text-white">Page Not Found</h1>
+        <p className="text-sm text-slate-300">
+          The property collection or page you're looking for doesn't exist or has been relocated.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        <div className="pt-4">
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] px-6 py-3 text-xs font-bold text-slate-950 uppercase tracking-widest hover:brightness-110 transition-all shadow-lg"
           >
-            Return home
-          </Link>
+            Return To Home
+          </a>
         </div>
       </div>
     </div>
@@ -39,28 +39,49 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
+  console.error("Root Error Boundary caught error:", error);
+  
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.clear();
+      } catch (err) {
+        console.warn("Session storage clear error:", err);
+      }
+      window.location.href = "/";
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="font-display text-3xl text-foreground">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Please try again or return home.
+    <div className="flex min-h-screen items-center justify-center bg-[#040e1d] text-white px-4">
+      <div className="max-w-md text-center space-y-4">
+        <div className="size-12 mx-auto rounded-xl bg-gradient-to-tr from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold flex items-center justify-center text-xl font-display shadow-lg shadow-[#d4af37]/20">
+          S
+        </div>
+        <h1 className="font-display text-3xl font-bold text-white">Saverra Realty</h1>
+        <p className="text-sm text-slate-300 leading-relaxed">
+          Welcome to Saverra Realty. Please click below to view our exclusive real estate portfolio.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="pt-4 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
-            className="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            onClick={() => {
+              reset();
+            }}
+            className="rounded-xl border border-[#d4af37]/40 bg-[#08182f] px-6 py-3 text-xs font-bold text-white uppercase tracking-widest hover:bg-[#d4af37] hover:text-slate-950 transition-all cursor-pointer"
           >
-            Try again
+            Refresh Page
           </button>
-          <a href="/" className="rounded-md border border-input bg-background px-5 py-2.5 text-sm font-medium hover:bg-accent">
-            Go home
+          <a
+            href="/"
+            onClick={handleHomeClick}
+            className="rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] px-6 py-3 text-xs font-bold text-slate-950 uppercase tracking-widest hover:brightness-110 transition-all shadow-md cursor-pointer"
+          >
+            Go To Home
           </a>
         </div>
       </div>
@@ -76,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "SAVERRA — Premium Homes, Prime Locations, Promising Futures" },
       { name: "description", content: "SAVERRA is a premium real estate firm delivering luxury homes, commercial spaces and villa plots in India's most sought-after locations. RERA registered, 5000+ happy families." },
       { name: "author", content: "SAVERRA" },
-      { name: "theme-color", content: "#0B3E78" },
+      { name: "theme-color", content: "#040e1d" },
       { property: "og:title", content: "SAVERRA — Premium Homes, Prime Locations, Promising Futures" },
       { property: "og:description", content: "SAVERRA is a premium real estate firm delivering luxury homes, commercial spaces and villa plots in India's most sought-after locations. RERA registered, 5000+ happy families." },
       { property: "og:type", content: "website" },
@@ -172,7 +193,7 @@ function Preloader() {
   return (
     <div
       onClick={() => { setShow(false); setRender(false); }}
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white dark:bg-[#0a1424] transition-opacity duration-700 ease-in-out cursor-pointer ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#040e1d] text-white transition-opacity duration-700 ease-in-out cursor-pointer ${
         show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -183,19 +204,19 @@ function Preloader() {
             show ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2"
           }`}
         >
-          <Logo variant="dark" className="h-44 sm:h-60 aspect-[2/3] drop-shadow-2xl" />
+          <Logo className="h-28 sm:h-36 aspect-[2/3] drop-shadow-2xl" />
         </div>
 
         {/* Progress Bar Container */}
-        <div className="mt-10 w-56 sm:w-72 h-[3px] bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden relative shadow-inner">
+        <div className="mt-8 w-56 sm:w-72 h-[3px] bg-slate-800 rounded-full overflow-hidden relative shadow-inner">
           <div
-            className="h-full bg-gradient-to-r from-gold/80 via-gold to-gold/90 transition-all duration-[1700ms] ease-out rounded-full"
+            className="h-full bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] transition-all duration-[1700ms] ease-out rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         {/* Subtitle */}
-        <p className="mt-4 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-gold/90 animate-pulse">
+        <p className="mt-4 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-[#d4af37] animate-pulse">
           SAVERRA REALTY
         </p>
       </div>
@@ -220,7 +241,7 @@ function RootComponent() {
       <QueryClientProvider client={queryClient}>
         <Preloader />
         {isAppRoute ? (
-          <div className="min-h-screen bg-background flex flex-col">
+          <div className="min-h-screen bg-[#040e1d] text-white flex flex-col">
             <SiteHeader />
             <main className="flex-1">
               <Outlet />

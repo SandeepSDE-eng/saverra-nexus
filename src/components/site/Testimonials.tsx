@@ -1,6 +1,6 @@
-import { Star, ShieldCheck, Quote } from "lucide-react";
+import { Star, ShieldCheck } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 
 const REVIEWS = [
   { id: 1, name: "Nikita Wadhawana", city: "Mumbai", rating: 5, message: "I had an excellent experience working with Vijay Vishwakarma. He was highly professional, knowledgeable, and attentive to my requirements throughout the entire home-search process." },
@@ -16,18 +16,22 @@ const REVIEWS = [
 ];
 
 export function Testimonials() {
-  const data = REVIEWS;
+  const [isMounted, setIsMounted] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi || !isMounted) return;
     const interval = setInterval(scrollNext, 4500);
     return () => clearInterval(interval);
-  }, [emblaApi, scrollNext]);
+  }, [emblaApi, scrollNext, isMounted]);
 
   return (
     <section className="py-24 bg-[#06152b] text-white relative overflow-hidden">
@@ -47,10 +51,10 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="overflow-visible" ref={emblaRef}>
-          <div className="flex touch-pan-y -ml-6">
-            {data.map((t) => (
-              <div key={t.id} className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-6">
+        <div className="overflow-visible" ref={isMounted ? emblaRef : undefined}>
+          <div className="flex touch-pan-y -ml-6 overflow-x-auto no-scrollbar md:overflow-visible">
+            {REVIEWS.map((t) => (
+              <div key={t.id} className="min-w-0 flex-[0_0_90%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-6 shrink-0">
                 <div className="flex h-full flex-col rounded-3xl border border-[#d4af37]/20 bg-[#08182f]/80 p-8 backdrop-blur-xl shadow-[0_20px_50px_-15px_rgba(4,14,29,0.6)] transition-all hover:-translate-y-2 hover:border-[#d4af37]/60 group">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex text-[#d4af37] gap-1">
