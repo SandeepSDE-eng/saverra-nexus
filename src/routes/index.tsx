@@ -4,71 +4,63 @@ import { StatusStories } from "@/components/site/StatusStories";
 import { DevelopersMarquee } from "@/components/site/DevelopersMarquee";
 import { StatsBar } from "@/components/site/StatsBar";
 import { FeaturedProjects } from "@/components/site/FeaturedProjects";
-import { FloorPlans } from "@/components/site/FloorPlans";
+import { ArchitecturalShowcase } from "@/components/site/ArchitecturalShowcase";
+import { NeighborhoodExplorer } from "@/components/site/NeighborhoodExplorer";
 import { PropertyTours } from "@/components/site/PropertyTours";
 import { RentalUpdates } from "@/components/site/RentalUpdates";
+import { EmiCalculator } from "@/components/site/EmiCalculator";
 import { Testimonials } from "@/components/site/Testimonials";
 import { ContactSection } from "@/components/site/ContactSection";
 
 export const Route = createFileRoute("/")({ component: Home });
 
-// 🚧 DEVELOPMENT MODE TOGGLE
-// Set this to 'true' to SHOW the actual landing page.
-// Set this to 'false' to HIDE the landing page and show a premium "Coming Soon" screen to the client.
 const SHOW_WEBSITE = true;
 
 function Home() {
   if (!SHOW_WEBSITE) {
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-        {/* Elegant Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="min-h-screen bg-[#040e1d] flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#d4af37]/10 blur-[140px] rounded-full pointer-events-none" />
         
-        <div className="relative z-10 space-y-8 max-w-2xl">
-          {/* Logo */}
+        <div className="relative z-10 space-y-8 max-w-2xl text-white">
           <div className="flex items-center justify-center gap-2 mb-12 animate-fade-in">
-            <div className="size-10 bg-gradient-to-tr from-primary to-primary/60 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <span className="text-white font-bold text-xl font-display">S</span>
+            <div className="size-12 bg-gradient-to-tr from-[#f3e5ad] via-[#d4af37] to-[#aa820a] rounded-xl flex items-center justify-center shadow-lg shadow-[#d4af37]/20 text-slate-950 font-bold text-2xl font-display">
+              S
             </div>
-            <span className="font-display text-2xl font-bold tracking-wider text-white">
+            <span className="font-display text-2xl font-bold tracking-widest text-white">
               SAVERRA
             </span>
           </div>
           
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight">
             A New Era of <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">
+            <span className="bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] bg-clip-text text-transparent">
               Luxury Living
             </span>
           </h1>
           
-          <p className="text-muted-foreground text-lg md:text-xl font-light max-w-lg mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            We are meticulously crafting our digital experience. Our premium real estate portal is currently under development and will be launching soon.
+          <p className="text-slate-300 text-lg md:text-xl font-light max-w-lg mx-auto">
+            We are meticulously crafting our digital experience. Our luxury real estate portal will be launching soon.
           </p>
-          
-          <div className="pt-8 flex flex-col items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-center gap-2 text-primary text-sm font-medium tracking-widest uppercase">
-              <span className="size-2 bg-primary rounded-full animate-pulse" />
-              Development in Progress
-            </div>
-            <div className="h-[1px] w-48 bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="bg-[#040e1d] text-white overflow-hidden">
       <Hero />
       <StatusStories />
       <DevelopersMarquee />
       <StatsBar />
-      <FeaturedProjects limit={8} />
+      <FeaturedProjects limit={6} />
+      <ArchitecturalShowcase />
+      <NeighborhoodExplorer />
       <RentalUpdates />
       <PropertyTours />
+      <EmiCalculator />
       <Testimonials />
       <ContactSection />
-    </>
+    </div>
   );
 }
