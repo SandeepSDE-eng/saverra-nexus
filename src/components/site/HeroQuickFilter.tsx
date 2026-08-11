@@ -1,24 +1,25 @@
 import { useState } from "react";
 import { Search, MapPin, Building2, SlidersHorizontal, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "@tanstack/react-router";
 
 export function HeroQuickFilter() {
-  const navigate = useNavigate();
   const [location, setLocation] = useState("");
   const [propertyType, setPropertyType] = useState("all");
   const [budget, setBudget] = useState("all");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate({
-      to: "/projects",
-      search: {
-        location: location || undefined,
-        type: propertyType !== "all" ? propertyType : undefined,
-        budget: budget !== "all" ? budget : undefined,
-      } as any,
-    });
+    const params = new URLSearchParams();
+    if (location.trim()) params.set("location", location.trim());
+    if (propertyType !== "all") params.set("type", propertyType);
+    if (budget !== "all") params.set("budget", budget);
+    
+    const queryString = params.toString();
+    const targetUrl = queryString ? `/projects?${queryString}` : "/projects";
+    
+    if (typeof window !== "undefined") {
+      window.location.href = targetUrl;
+    }
   };
 
   return (

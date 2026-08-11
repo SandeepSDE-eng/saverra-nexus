@@ -19,26 +19,29 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
-  const { data: projects = [], isLoading } = useQuery({
+  const { data: rawProjects = [], isLoading } = useQuery({
     queryKey: ["projects", "featured"],
     queryFn: async () => {
       try {
         const response = limit ? await getFeaturedProjectsFn() : await getProjectsFn();
 
-        if (!response.success || !response.data || response.data.length === 0) {
-          console.warn("Using mock data due to empty DB or old schema");
-          return MOCK_PROJECTS.filter((p: any) => p.is_published !== false);
+        if (!response?.success || !Array.isArray(response?.data) || response.data.length === 0) {
+          console.warn("Using mock data due to empty DB or fallback");
+          return MOCK_PROJECTS.filter((p: any) => p && p.is_published !== false);
         }
         return response.data;
       } catch (error) {
-        console.warn("MySQL Error (using fallback):", error);
-        return MOCK_PROJECTS.filter((p: any) => p.is_published !== false);
+        console.warn("MySQL/API Error (using fallback):", error);
+        return MOCK_PROJECTS.filter((p: any) => p && p.is_published !== false);
       }
     },
   });
 
+  const projects = Array.isArray(rawProjects) ? rawProjects.filter(Boolean) : [];
+
   // Filter projects by active tab
   const filteredProjects = projects.filter((p: any) => {
+    if (!p) return false;
     if (activeTab === "all") return true;
     return p.status === activeTab;
   });
@@ -124,7 +127,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
             <Button
               variant="outline"
               onClick={() => setActiveTab("all")}
-              className="border-[#d4af37]/40 text-[#d4af37] hover:bg-[#d4af37] hover:text-slate-950"
+              className="border-[#d4af37]/40 text-[#d4af37] hover:bg-[#d4af37] hover:text-slate-950 cursor-pointer"
             >
               Reset Filters
             </Button>
@@ -134,7 +137,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
             {/* Asymmetrical Layout Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-up">
               {displayedProjects.map((p: any, idx: number) => (
-                <ProjectCard key={p.id} p={p} isFeatured={idx === 0 && activeTab === "all" && !limit} />
+                <ProjectCard key={p?.id || idx} p={p} isFeatured={idx === 0 && activeTab === "all" && !limit} />
               ))}
             </div>
 
@@ -146,7 +149,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
                   size="icon"
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="rounded-xl border-[#d4af37]/30 bg-[#08182f] text-white hover:bg-[#d4af37] hover:text-slate-950"
+                  className="rounded-xl border-[#d4af37]/30 bg-[#08182f] text-white hover:bg-[#d4af37] hover:text-slate-950 cursor-pointer"
                 >
                   <ChevronLeft className="size-4" />
                 </Button>
@@ -155,7 +158,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
                     <button
                       key={i}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`size-10 rounded-xl text-xs font-bold transition-all ${
+                      className={`size-10 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                         currentPage === i + 1
                           ? "bg-[#d4af37] text-slate-950 shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                           : "bg-[#08182f] border border-white/10 text-slate-300 hover:border-[#d4af37]"
@@ -170,7 +173,7 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
                   size="icon"
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="rounded-xl border-[#d4af37]/30 bg-[#08182f] text-white hover:bg-[#d4af37] hover:text-slate-950"
+                  className="rounded-xl border-[#d4af37]/30 bg-[#08182f] text-white hover:bg-[#d4af37] hover:text-slate-950 cursor-pointer"
                 >
                   <ChevronRight className="size-4" />
                 </Button>

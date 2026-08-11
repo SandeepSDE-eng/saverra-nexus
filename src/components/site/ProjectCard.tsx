@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { MapPin, Calendar, ArrowUpRight, Sparkles, Building } from "lucide-react";
+import { MapPin, Calendar, ArrowUpRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Tables } from "@/integrations/supabase/types";
 import { ProjectModal } from "./ProjectModal";
@@ -19,9 +19,16 @@ const STATUS_LABEL: Record<string, string> = {
 export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?: boolean }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  if (!p) return null;
+
+  const statusKey = p.status || "premium";
+  const statusDisplay = STATUS_LABEL[statusKey] || statusKey.toUpperCase();
+
   const optimizedImage = p.cover_image?.includes("unsplash.com") 
     ? p.cover_image.replace(/w=\d+/, "w=800")
-    : p.cover_image;
+    : (p.cover_image || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80");
+
+  const projectSlug = p.slug || p.id || "";
 
   return (
     <>
@@ -33,8 +40,8 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
         {/* Card Media Section */}
         <div className={`relative overflow-hidden ${isFeatured ? "lg:w-1/2 min-h-[320px]" : "aspect-[16/10]"}`}>
           <img
-            src={optimizedImage || "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80"}
-            alt={p.name}
+            src={optimizedImage}
+            alt={p.name || "Luxury Property"}
             loading="lazy"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80";
@@ -47,7 +54,7 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
           <div className="absolute left-4 top-4 flex items-center gap-2">
             <span className="inline-flex items-center gap-1 rounded-full bg-[#08182f]/90 border border-[#d4af37]/50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#d4af37] backdrop-blur-md">
               <Sparkles className="size-3" />
-              {STATUS_LABEL[p.status] ?? p.status}
+              {statusDisplay}
             </span>
           </div>
 
@@ -55,7 +62,7 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
           <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
             <span className="inline-flex items-center gap-1.5 rounded-lg bg-black/60 px-3 py-1 text-xs font-medium text-slate-200 backdrop-blur-md">
               <MapPin className="size-3.5 text-[#d4af37]" />
-              <span className="truncate">{p.location}</span>
+              <span className="truncate">{p.location || "Prime Location"}</span>
             </span>
           </div>
         </div>
@@ -64,7 +71,7 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
         <div className="flex flex-1 flex-col p-6 space-y-4">
           <div className="space-y-1">
             <h3 className="font-display text-xl lg:text-2xl font-bold text-white group-hover:text-[#d4af37] transition-colors line-clamp-1" title={p.name}>
-              {p.name}
+              {p.name || "Exclusive Luxury Estate"}
             </h3>
             <p className="text-xs text-slate-400 font-medium tracking-wide">
               {p.bhk_options || "Luxury Configurations Available"}
@@ -99,30 +106,35 @@ export function ProjectCard({ p, isFeatured = false }: { p: Project; isFeatured?
               <Button
                 variant="outline"
                 size="sm"
-                className="h-10 rounded-xl border-[#d4af37]/40 bg-transparent text-white hover:bg-[#d4af37] hover:text-slate-950 transition-all font-semibold text-xs px-3"
+                className="h-10 rounded-xl border-[#d4af37]/40 bg-transparent text-white hover:bg-[#d4af37] hover:text-slate-950 transition-all font-semibold text-xs px-3 cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
               >
                 Quick View
               </Button>
-              <Button
-                asChild
-                size="sm"
-                className="h-10 w-10 p-0 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold hover:brightness-110 transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-              >
-                <Link to="/projects/$slug" params={{ slug: p.slug }} title="View Full Details">
-                  <ArrowUpRight className="size-5" />
-                </Link>
-              </Button>
+
+              {projectSlug ? (
+                <Button
+                  asChild
+                  size="sm"
+                  className="h-10 w-10 p-0 rounded-xl bg-gradient-to-r from-[#f3e5ad] via-[#d4af37] to-[#aa820a] text-slate-950 font-bold hover:brightness-110 transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)] cursor-pointer"
+                >
+                  <Link to="/projects/$slug" params={{ slug: projectSlug }} title="View Full Details">
+                    <ArrowUpRight className="size-5" />
+                  </Link>
+                </Button>
+              ) : null}
             </div>
           </div>
         </div>
       </article>
 
-      <ProjectModal 
-        project={p} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-      />
+      {isModalOpen && (
+        <ProjectModal 
+          project={p} 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
     </>
   );
 }
