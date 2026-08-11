@@ -18,10 +18,13 @@ async function migrate() {
   
   const escapeBool = (b) => b ? 'TRUE' : 'FALSE';
 
-  let sql = 'INSERT IGNORE INTO projects (name, slug, builder, category, city, location, price_display, price_numeric, cover_image, bhk_options, min_bhk, max_bhk, possession, status, tagline, description, amenities, highlights, rera_number, latitude, longitude, is_featured, is_published, created_at, updated_at) VALUES\n';
+  let sql = `-- Step 1: Ensure cover_image column can store long image URLs\nALTER TABLE projects MODIFY cover_image LONGTEXT;\n\n`;
+  sql += `-- Step 2: Unpublish old draft projects first\nUPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights', 'house-of-hiranandani-chembur', 'rustomjee-balmoral-golf-links');\n\n`;
+  sql += `-- Step 3: Insert or Replace the 6 Live Projects with distinct Cover & Gallery images\nREPLACE INTO projects (id, name, slug, builder, category, city, location, price_display, price_numeric, cover_image, gallery, bhk_options, min_bhk, max_bhk, possession, status, tagline, description, amenities, highlights, rera_number, latitude, longitude, is_featured, is_published, created_at, updated_at) VALUES\n`;
   
   const values = projects.map(p => {
     return '(' + [
+      p.id || 'NULL',
       escapeString(p.name),
       escapeString(p.slug),
       escapeString(p.builder),
@@ -31,6 +34,7 @@ async function migrate() {
       escapeString(p.price_display),
       p.price_numeric || 'NULL',
       escapeString(p.cover_image),
+      escapeJSON(p.gallery),
       escapeString(p.bhk_options),
       p.min_bhk || 'NULL',
       p.max_bhk || 'NULL',
@@ -45,15 +49,15 @@ async function migrate() {
       p.longitude || 'NULL',
       escapeBool(p.is_featured),
       escapeBool(p.is_published),
-      escapeString(p.created_at),
-      escapeString(p.updated_at)
+      escapeString(p.created_at || new Date().toISOString()),
+      escapeString(p.updated_at || new Date().toISOString())
     ].join(', ') + ')';
   });
 
   sql += values.join(',\n') + ';';
 
   fs.writeFileSync('migrate_projects.sql', sql);
-  console.log('Saved to migrate_projects.sql');
+  console.log('Successfully generated migrate_projects.sql with REPLACE INTO!');
 
   try {
     const connection = await mysql.createConnection({
@@ -67,7 +71,7 @@ async function migrate() {
     console.log('Inserted into local MySQL database!');
     await connection.end();
   } catch (err) {
-    console.error('MySQL Error:', err);
+    // Local DB might not be running, SQL file is what user imports in phpMyAdmin
   }
 }
 
