@@ -6,44 +6,44 @@ import { HeroQuickFilter } from "./HeroQuickFilter";
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=75",
-    category: "SKY PENTHOUSES",
-    tagline: "Ultra-Luxe Duplex Residences",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=75",
+    category: "ULTRA LUXURY HIGH-RISE",
+    tagline: "MICL Aaradhya OnePark",
     title1: "Your Trusted Partner For",
     titleHighlight: "Real Estate Portfolio",
     description: "Discover curated luxury penthouses, oceanfront villas, and prime commercial landmarks across Mumbai. Backed by over a decade of uncompromised integrity and advisory mastery.",
-    location: "Worli, South Mumbai",
-    price: "₹18.5 Cr Onwards"
+    location: "60ft Road, Ghatkopar East",
+    price: "₹2.80 Cr Onwards"
   },
   {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=75",
-    category: "SIGNATURE VILLAS",
-    tagline: "Exclusive Private Oceanfront Sanctuaries",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=75",
+    category: "SIGNATURE PODIUM LIVING",
+    tagline: "Adani The Views",
     title1: "Curating India's Most",
     titleHighlight: "Prestigious Addresses",
     description: "Explore our hand-picked collection of luxury apartments, sea-facing estates, and sky villas crafted for those who demand absolute distinction.",
-    location: "Bandstand, Bandra West",
-    price: "₹24.0 Cr Onwards"
+    location: "Pant Nagar, Ghatkopar East",
+    price: "₹1.99 Cr Onwards"
   },
   {
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1600&q=75",
-    category: "COMMERCIAL LANDMARKS",
-    tagline: "Grade-A Corporate Headquarters & Retail",
-    title1: "Seamless Commercial",
-    titleHighlight: "Advisory & Buying",
-    description: "Find the perfect premium office space or retail location to scale your enterprise in Mumbai's fastest-growing financial and business hubs.",
-    location: "BKC & Ghatkopar East, Mumbai",
-    price: "₹6.8 Cr Onwards"
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1600&q=75",
+    category: "MODERN TWIN-TOWER LANDMARK",
+    tagline: "Orient Odyssey",
+    title1: "Seamless Commercial &",
+    titleHighlight: "Residential Advisory",
+    description: "Find the perfect premium office space or luxury home to scale your enterprise and elevate your lifestyle in Mumbai's prime hubs.",
+    location: "Ghatkopar East, Mumbai",
+    price: "₹1.91 Cr Onwards"
   },
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=75",
-    category: "PREMIUM TOWNSHIPS",
-    tagline: "Sprawling 2, 3 & 4 BHK Luxury Residences",
+    image: "https://images.unsplash.com/photo-1613490900233-141c5560d75d?auto=format&fit=crop&w=1600&q=75",
+    category: "PREMIUM SKYLINE TOWERS",
+    tagline: "9 Anemone Heights",
     title1: "Let's Elevate Your",
     titleHighlight: "Real Estate Experience",
     description: "With over a decade of market leadership, we ensure your property buying journey is smooth, transparent, and completely stress-free.",
-    location: "Central Avenue, Chembur",
-    price: "₹2.65 Cr Onwards"
+    location: "90 Feet Rd, Ghatkopar East",
+    price: "₹1.85 Cr Onwards"
   }
 ];
 
