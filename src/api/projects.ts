@@ -15,18 +15,6 @@ const formatForDb = (data: any) => {
 
 async function autoSyncProjects(pool: any) {
   try {
-    const liveSlugs = [
-      'sai-shankar-sai-life',
-      'psk-aura-ghatkopar',
-      'silver-stellar-ghatkopar',
-      'silver-house-ghatkopar',
-      'alag-one-chembur',
-      'shubham-artesia-ghatkopar',
-      'micl-aaradhya-onepark',
-      'adani-the-views'
-    ];
-    await pool.query(`UPDATE projects SET is_published = FALSE WHERE slug NOT IN (${liveSlugs.map(s => `'${s}'`).join(',')})`);
-
     for (const p of MOCK_PROJECTS) {
       const formatted = formatForDb(p);
       const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
@@ -143,10 +131,8 @@ export const syncLiveProjectsFn = createServerFn({ method: "POST" }).handler(asy
   try {
     const pool = getMySqlPool();
     await ensureSchemaUpgraded(pool);
-    // 1. Unpublish all current projects in DB first except live published projects
-    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('sai-shankar-sai-life', 'psk-aura-ghatkopar', 'silver-stellar-ghatkopar', 'silver-house-ghatkopar', 'alag-one-chembur', 'shubham-artesia-ghatkopar', 'micl-aaradhya-onepark', 'adani-the-views')");
 
-    // 2. Upsert/Add all MOCK_PROJECTS into DB
+    // Upsert/Add all MOCK_PROJECTS into DB
     for (const p of MOCK_PROJECTS) {
       const formatted = formatForDb(p);
       const keys = Object.keys(formatted).filter(k => k !== 'id' && k !== 'created_at' && k !== 'updated_at');
