@@ -16,12 +16,12 @@ NC='\033[0m'
 
 USER_HOME="$HOME"
 MAIN_DOMAIN_PATH="$USER_HOME/domains/saverrarealty.com/public_html"
-BACKUP_DIR="$USER_HOME/backups/saverrarealty"
+BACKUP_DIR="$USER_HOME/backups"
 
 if [ ! -d "$USER_HOME/domains/saverrarealty.com" ]; then
     if [ -d "/var/www/saverrarealty.com" ]; then
         MAIN_DOMAIN_PATH="/var/www/saverrarealty.com"
-        BACKUP_DIR="/var/backups/saverrarealty"
+        BACKUP_DIR="/var/backups"
     else
         MAIN_DOMAIN_PATH="$(pwd)"
         BACKUP_DIR="$(pwd)/backups"
@@ -39,7 +39,7 @@ if [ ! -d "$BACKUP_DIR" ]; then
     exit 1
 fi
 
-LATEST_BACKUP=$(ls -t "$BACKUP_DIR"/saverrarealty_old_backup_*.tar.gz 2>/dev/null | head -n 1)
+LATEST_BACKUP=$(ls -t "$BACKUP_DIR"/backup_saverra_*.tar.gz "$BACKUP_DIR"/saverrarealty_*.tar.gz 2>/dev/null | head -n 1)
 
 if [ -z "$LATEST_BACKUP" ]; then
     echo -e "${RED}❌ No backup archive found in $BACKUP_DIR!${NC}"
