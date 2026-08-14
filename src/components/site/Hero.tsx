@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { HeroQuickFilter } from "./HeroQuickFilter";
+
 
 const HERO_SLIDES = [
   {
@@ -40,7 +41,7 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
+    }, 6000); // slightly longer duration to allow reading the text
     return () => clearInterval(timer);
   }, []);
 
@@ -74,19 +75,19 @@ export function Hero() {
         {/* Glassmorphism Container with stronger backdrop blur and darker background */}
         <div 
           key={currentIndex} 
-          className="animate-fade-up w-full max-w-3xl rounded-3xl border border-white/20 bg-black/50 p-8 backdrop-blur-2xl shadow-2xl md:p-12 text-white"
+          className="animate-fade-up w-full max-w-3xl rounded-3xl border border-white/20 bg-black/50 p-8 backdrop-blur-2xl shadow-2xl md:p-12"
         >
           <div className="mb-4 inline-flex items-center justify-center gap-3">
-            <div className="h-[1px] w-6 bg-[#d4af37]"></div>
+            <div className="h-[1px] w-6 bg-gold/80"></div>
             <span className="text-[10px] font-bold tracking-[0.3em] text-white uppercase sm:text-[11px] drop-shadow-md">
               {currentSlide.tagline}
             </span>
-            <div className="h-[1px] w-6 bg-[#d4af37]"></div>
+            <div className="h-[1px] w-6 bg-gold/80"></div>
           </div>
           
           <h1 className="font-display text-4xl font-semibold leading-[1.15] text-white sm:text-5xl lg:text-6xl tracking-wide drop-shadow-lg">
             {currentSlide.title1} <br />
-            <span className="text-[#d4af37] italic font-bold">{currentSlide.titleHighlight}</span>
+            <span className="text-gold italic font-bold">{currentSlide.titleHighlight}</span>
           </h1>
           
           <p className="mx-auto mt-6 max-w-lg text-sm font-medium leading-relaxed text-white/90 sm:text-base tracking-wide drop-shadow-md">
@@ -94,30 +95,28 @@ export function Hero() {
           </p>
           
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button variant="gold" size="lg" className="w-full sm:w-auto rounded-xl px-8 tracking-widest text-[11px] uppercase transition-all hover:scale-105 shadow-lg shadow-[#d4af37]/30" asChild>
+            <Button variant="gold" size="lg" className="w-full sm:w-auto rounded-sm px-8 tracking-widest text-[11px] uppercase transition-all hover:scale-105" asChild>
               <Link to="/projects">EXPLORE</Link>
             </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-xl border-white/50 bg-transparent px-8 text-white tracking-widest text-[11px] uppercase transition-all hover:bg-white hover:text-black" asChild>
+            <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-sm border-white/50 bg-transparent px-8 text-white tracking-widest text-[11px] uppercase transition-all hover:bg-white hover:text-black" asChild>
               <Link to="/private-viewing">Private Viewing</Link>
             </Button>
           </div>
         </div>
 
         {/* Carousel Indicators - Centered */}
-        <div className="mt-8 flex items-center justify-center gap-2.5">
+        <div className="absolute bottom-24 lg:bottom-28 flex items-center justify-center gap-2.5">
           {HERO_SLIDES.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-1.5 rounded-full transition-all duration-500 shadow-md cursor-pointer ${
-                index === currentIndex ? "w-8 bg-[#d4af37]" : "w-2 bg-white/40 hover:bg-white/80"
+              className={`h-1 rounded-full transition-all duration-500 shadow-md ${
+                index === currentIndex ? "w-8 bg-gold" : "w-2 bg-white/40 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
-
-        <HeroQuickFilter />
       </div>
 
     </section>
