@@ -47,10 +47,10 @@ export function ContactSection() {
           </p>
           <div className="mt-8 space-y-4">
             {[
-              { icon: Phone, label: "+91 98765 43210", href: "tel:+919876543210" },
-              { icon: MessageCircle, label: "WhatsApp us", href: "https://wa.me/919876543210" },
-              { icon: Mail, label: "info@saverra.com", href: "mailto:info@saverra.com" },
-              { icon: MapPin, label: "One45 Business Bay, 1205, Vallabh Baug Ln Ext, Railway Police Colony, Ghatkopar East, Mumbai, Maharashtra 400077", href: "#" },
+              { icon: Phone, label: "+91 86918 66691", href: "tel:+918691866691" },
+              { icon: MessageCircle, label: "WhatsApp us", href: "https://wa.me/918691866691" },
+              { icon: Mail, label: "info@saverrarealty.com", href: "mailto:info@saverrarealty.com" },
+              { icon: MapPin, label: "One45 Business Bay, 1205, Vallabh Baug Ln Ext, Railway Police Colony, Ghatkopar East, Mumbai, Maharashtra 400077", href: "https://maps.google.com/?q=One45+Business+Bay+Ghatkopar+East" },
             ].map((c) => (
               <a key={c.label} href={c.href} className="flex items-center gap-4 rounded-lg border border-border/60 bg-card p-4 transition-colors hover:border-gold/60">
                 <div className="grid size-11 shrink-0 place-items-center rounded-md bg-primary/8 text-primary">

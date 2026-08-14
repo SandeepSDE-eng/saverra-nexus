@@ -146,7 +146,7 @@ function ProjectDetail() {
                   <a href="#contact">Schedule Site Visit</a>
                 </Button>
                 <Button variant="outline" className="w-full h-12 text-base tracking-wide bg-white border-border/50 hover:bg-secondary" asChild>
-                  <a href="tel:+919876543210">Call +91 98765 43210</a>
+                  <a href="tel:+918691866691">Call +91 86918 66691</a>
                 </Button>
               </div>
             </aside>

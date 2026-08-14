@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Menu, X, Shield, ChevronDown } from "lucide-react";
+import { Phone, Mail, Menu, X, Shield, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
@@ -23,9 +23,8 @@ const getMainLinks = () => {
   links.push(
     { href: "/case-studies", label: "Case Studies" },
     { href: "/careers", label: "Careers" },
-    { href: "/projects", label: "Projects" },
-    { href: "/services", label: "Services" },
-    { href: "/#contact", label: "Contact" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/contact", label: "Contact" }
   );
   
   return links;
@@ -46,12 +45,12 @@ export function SiteHeader() {
             <span className="hidden md:inline">Trusted by 500+ Families</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="tel:+918691866691" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="size-3.5 text-gold" /> +91 86918 66691
+            <a href="mailto:info@saverrarealty.com" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 hover:text-gold transition-colors">
+              <Mail className="size-3.5 text-gold" /> info@saverrarealty.com
             </a>
             <span className="text-white/30">|</span>
-            <a href="tel:+919876543210" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="size-3.5 text-gold" /> +91 98765 43210
+            <a href="tel:+918691866691" className="inline-flex items-center gap-1.5 opacity-90 hover:opacity-100 hover:text-gold transition-colors font-medium">
+              <Phone className="size-3.5 text-gold" /> +91 86918 66691
             </a>
           </div>
         </div>

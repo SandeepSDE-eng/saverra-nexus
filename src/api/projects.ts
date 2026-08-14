@@ -15,7 +15,16 @@ const formatForDb = (data: any) => {
 
 async function autoSyncProjects(pool: any) {
   try {
-    const liveSlugs = ['micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights', 'house-of-hiranandani-chembur', 'rustomjee-balmoral-golf-links'];
+    const liveSlugs = [
+      'sai-shankar-sai-life',
+      'psk-aura-ghatkopar',
+      'silver-stellar-ghatkopar',
+      'silver-house-ghatkopar',
+      'alag-one-chembur',
+      'shubham-artesia-ghatkopar',
+      'micl-aaradhya-onepark',
+      'adani-the-views'
+    ];
     await pool.query(`UPDATE projects SET is_published = FALSE WHERE slug NOT IN (${liveSlugs.map(s => `'${s}'`).join(',')})`);
 
     for (const p of MOCK_PROJECTS) {
@@ -41,7 +50,7 @@ async function ensureSchemaUpgraded(pool: any) {
   if (hasUpgradedSchema) return;
   try {
     await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
-    const [check]: any = await pool.query("SELECT id FROM projects WHERE slug = 'house-of-hiranandani-chembur'");
+    const [check]: any = await pool.query("SELECT id FROM projects WHERE slug = 'sai-shankar-sai-life'");
     if (!check || check.length === 0) {
       await autoSyncProjects(pool);
     }
@@ -135,7 +144,7 @@ export const syncLiveProjectsFn = createServerFn({ method: "POST" }).handler(asy
     const pool = getMySqlPool();
     await ensureSchemaUpgraded(pool);
     // 1. Unpublish all current projects in DB first except live published projects
-    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('micl-aaradhya-onepark', 'adani-the-views', 'orient-odyssey', '9-anemone-heights', 'house-of-hiranandani-chembur', 'rustomjee-balmoral-golf-links')");
+    await pool.query("UPDATE projects SET is_published = FALSE WHERE slug NOT IN ('sai-shankar-sai-life', 'psk-aura-ghatkopar', 'silver-stellar-ghatkopar', 'silver-house-ghatkopar', 'alag-one-chembur', 'shubham-artesia-ghatkopar', 'micl-aaradhya-onepark', 'adani-the-views')");
 
     // 2. Upsert/Add all MOCK_PROJECTS into DB
     for (const p of MOCK_PROJECTS) {

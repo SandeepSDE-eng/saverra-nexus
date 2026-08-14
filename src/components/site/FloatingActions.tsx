@@ -30,8 +30,8 @@ export function FloatingActions() {
   }, []);
 
   const actions = [
-    { icon: WhatsAppIcon, label: "WhatsApp", onClick: () => window.open("https://wa.me/919876543210", "_blank"), cls: "bg-[#25D366] text-white border-[#25D366] hover:bg-[#20bd5a]" },
-    { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+919876543210"), cls: "bg-primary text-white border-primary hover:bg-primary/90" },
+    { icon: WhatsAppIcon, label: "WhatsApp", onClick: () => window.open("https://wa.me/918691866691", "_blank"), cls: "bg-[#25D366] text-white border-[#25D366] hover:bg-[#20bd5a]" },
+    { icon: Phone, label: "Call Now", onClick: () => (window.location.href = "tel:+918691866691"), cls: "bg-primary text-white border-primary hover:bg-primary/90" },
   ];
 
   return (

@@ -86,7 +86,7 @@ function Contact() {
                   <div>
                     <h3 className="font-medium text-lg text-white mb-1">Phone</h3>
                     <p className="text-white/70 leading-relaxed font-light text-sm">
-                      +91 98765 43210<br />
+                      <a href="tel:+918691866691" className="hover:text-gold transition-colors font-medium text-white">+91 86918 66691</a><br />
                       Mon-Sat, 9:00 AM - 7:00 PM
                     </p>
                   </div>
@@ -99,8 +99,7 @@ function Contact() {
                   <div>
                     <h3 className="font-medium text-lg text-white mb-1">Email</h3>
                     <p className="text-white/70 leading-relaxed font-light text-sm">
-                      info@saverrarealty.com<br />
-                      sales@saverrarealty.com
+                      <a href="mailto:info@saverrarealty.com" className="hover:text-gold transition-colors text-white font-medium">info@saverrarealty.com</a>
                     </p>
                   </div>
                 </div>
@@ -109,16 +108,16 @@ function Contact() {
               <div className="mt-16 pt-8 border-t border-white/10">
                 <h3 className="font-medium text-sm uppercase tracking-widest text-white/50 mb-6">Follow Us</h3>
                 <div className="flex gap-4">
-                  <a href="https://www.instagram.com/saverrarealty/" target="_blank" rel="noreferrer" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
+                  <a href="https://www.instagram.com/saverrarealty/" target="_blank" rel="noreferrer" title="Instagram" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
                     <Instagram className="size-5" />
                   </a>
-                  <a href="https://www.facebook.com/SaverraRealty/" target="_blank" rel="noreferrer" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
+                  <a href="https://www.facebook.com/SaverraRealty/" target="_blank" rel="noreferrer" title="Facebook" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
                     <Facebook className="size-5" />
                   </a>
-                  <a href="https://www.youtube.com/channel/UC4evOuC0SqWApu0cYg6tfWQ" target="_blank" rel="noreferrer" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
+                  <a href="https://www.youtube.com/channel/UC4evOuC0SqWApu0cYg6tfWQ" target="_blank" rel="noreferrer" title="YouTube" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
                     <Youtube className="size-5" />
                   </a>
-                  <a href="#" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
+                  <a href="https://www.linkedin.com/in/nimesh-bhanushali-83671b54" target="_blank" rel="noreferrer" title="LinkedIn" className="bg-white/10 p-3 rounded-full text-white hover:bg-gold hover:text-black transition-all hover:-translate-y-1">
                     <Linkedin className="size-5" />
                   </a>
                 </div>

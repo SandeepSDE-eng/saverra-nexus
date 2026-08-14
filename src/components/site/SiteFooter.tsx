@@ -22,14 +22,15 @@ export function SiteFooter() {
     ? projectsData
         .filter((p: any) => p.is_published !== false)
         .sort((a: any, b: any) => (b.is_featured ? 1 : 0) - (a.is_featured ? 1 : 0))
-        .slice(0, 5)
+        .slice(0, 6)
         .map((p: any) => ({ name: p.title || p.name, slug: p.slug }))
     : [
-        { name: "MICL Aaradhya OnePark", slug: "micl-aaradhya-onepark" },
-        { name: "Shubham Elegance", slug: "shubham-elegance-ghatkopar" },
-        { name: "Happy Home Heights", slug: "happy-home-heights" },
-        { name: "Prajapati Heights", slug: "prajapati-heights-pant-nagar" },
-        { name: "Adani Ten BKC", slug: "adani-ten-bkc" }
+        { name: "Sai Shankar by Sai Life", slug: "sai-shankar-sai-life" },
+        { name: "PSK Aura", slug: "psk-aura-ghatkopar" },
+        { name: "Silver Stellar", slug: "silver-stellar-ghatkopar" },
+        { name: "Silver House", slug: "silver-house-ghatkopar" },
+        { name: "One Alag", slug: "alag-one-chembur" },
+        { name: "Shubham Artesia", slug: "shubham-artesia-ghatkopar" }
       ];
 
   return (
@@ -42,16 +43,16 @@ export function SiteFooter() {
             </div>
           </div>
           <div className="mt-10 flex justify-center lg:justify-start gap-4 text-white/90 w-full">
-            <a href="https://www.facebook.com/SaverraRealty/" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
+            <a href="https://www.facebook.com/SaverraRealty/" target="_blank" rel="noreferrer" title="Facebook" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
               <Facebook className="size-4.5" />
             </a>
-            <a href="https://www.instagram.com/saverrarealty/" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
+            <a href="https://www.instagram.com/saverrarealty/" target="_blank" rel="noreferrer" title="Instagram" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
               <Instagram className="size-4.5" />
             </a>
-            <a href="https://www.youtube.com/channel/UC4evOuC0SqWApu0cYg6tfWQ" target="_blank" rel="noreferrer" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
+            <a href="https://www.youtube.com/channel/UC4evOuC0SqWApu0cYg6tfWQ" target="_blank" rel="noreferrer" title="YouTube" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
               <Youtube className="size-4.5" />
             </a>
-            <a href="#" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
+            <a href="https://www.linkedin.com/in/nimesh-bhanushali-83671b54" target="_blank" rel="noreferrer" title="LinkedIn" className="grid size-10 place-items-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-[color:var(--navy-deep)] hover:-translate-y-1 shadow-sm">
               <Linkedin className="size-4.5" />
             </a>
           </div>
@@ -86,13 +87,13 @@ export function SiteFooter() {
               <div className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 group-hover:bg-gold group-hover:text-[color:var(--navy-deep)] transition-all">
                 <Phone className="size-4 text-gold group-hover:text-[color:var(--navy-deep)]" /> 
               </div>
-              <span className="font-medium pt-1.5">+91 98765 43210</span>
+              <a href="tel:+918691866691" className="font-medium pt-1.5 hover:text-gold transition-colors">+91 86918 66691</a>
             </li>
             <li className="flex items-start gap-4 transition-colors hover:text-white group">
               <div className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 group-hover:bg-gold group-hover:text-[color:var(--navy-deep)] transition-all">
                 <Mail className="size-4 text-gold group-hover:text-[color:var(--navy-deep)]" /> 
               </div>
-              <span className="font-medium pt-1.5">info@saverra.com</span>
+              <a href="mailto:info@saverrarealty.com" className="font-medium pt-1.5 hover:text-gold transition-colors">info@saverrarealty.com</a>
             </li>
             <li className="flex items-start gap-4 transition-colors leading-relaxed group">
               <div className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 group-hover:bg-gold group-hover:text-[color:var(--navy-deep)] transition-all">

@@ -135,7 +135,7 @@ export function LeadPopup() {
             {submitting ? "Sending…" : "Get Instant Callback"}
           </Button>
           <p className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-muted-foreground">
-            <PhoneIcon className="size-3 text-gold" /> Or call us: +91 98765 43210
+            <PhoneIcon className="size-3 text-gold" /> Or call us: +91 86918 66691
           </p>
         </form>
       </div>

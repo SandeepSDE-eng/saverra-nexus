@@ -62,34 +62,10 @@ export function LiveChat() {
         botReply = "Thanks for providing your number! Our senior consultant will call you within 5 minutes to discuss your requirements. Is there any specific project you are interested in?";
       } 
       else if (lowerText.includes("ghatkopar")) {
-        botReply = "Ghatkopar East is a prime location! We have highly sought-after premium projects there, like 'f Residences' and 'MICL Aaradhya'. Are you looking for a 2BHK or a 3BHK?";
-      }
-      else if (lowerText.includes("bengaluru") || lowerText.includes("bangalore")) {
-        botReply = "We have magnificent ultra-luxury villas and apartments in Bengaluru. What specific area or budget are you targeting?";
-      }
-      else if (lowerText.match(/(price|cost|budget|crore|lakh|cr)/)) {
-        botReply = "Our premium properties typically range from ₹1.5 Cr to over ₹15 Cr. For example, 'Saverra Infinity' in BKC starts at ₹15.5 Cr. What is your preferred budget?";
-      }
-      else if (lowerText.match(/(bhk|bedroom|flat|apartment|villa|house|home|premium|demo)/)) {
-        botReply = "We offer ultra-luxurious 2BHK, 3BHK, and 4+ BHK residences. For a premium demo, I highly recommend checking out 'Saverra Infinity' in BKC or 'MICL Aaradhya'. Would you like to schedule a site visit?";
-      }
-      else if (lowerText.match(/(amenities|pool|gym|club|parking|garden)/)) {
-        botReply = "All our premium properties feature world-class amenities including infinity pools, state-of-the-art gymnasiums, smart home tech, and multi-tier security. Would you like to schedule a site visit to experience it?";
-      }
-      else if (lowerText.match(/(visit|see|schedule|tour|book)/)) {
-        botReply = "I'd be happy to arrange a VIP site visit for you. Please drop your 10-digit mobile number here, and our team will coordinate a convenient time.";
-      }
-      else if (lowerText.match(/(brochure|pdf|details|download|info|detail)/)) {
-        botReply = "You can download the brochure directly from the project section above. If you'd like me to WhatsApp the detailed floor plans to you, just share your 10-digit mobile number!";
-      }
-      else if (lowerText.match(/(who|name|consultant)/)) {
-        botReply = "I am an AI assistant here at Saverra Realty. Our expert advisors are just a call away!";
-      }
-      else if (lowerText.match(/(where|location|address)/)) {
-        botReply = "Our premium properties are located in prime areas of Mumbai (like Ghatkopar East and BKC) and Bengaluru. Which city are you interested in?";
+        botReply = "Ghatkopar East is our core specialty! We represent premier projects like 'Sai Shankar by Sai Life', 'PSK Aura', 'Silver Stellar', 'Silver House', and 'Shubham Artesia'. Are you looking for residential or commercial?";
       }
       else if (lowerText.match(/(contact|email|phone|call|number)/)) {
-        botReply = "You can reach us directly at +91 98765 43210 or email us at contact@saverrarealty.com. Should I arrange a callback for you?";
+        botReply = "You can reach us directly at +91 86918 66691 or email us at info@saverrarealty.com. Should I arrange a callback for you?";
       }
       else if (lowerText.match(/\b(yes|yeah|yep|sure|ok|when|how|why|kya|q)\b/)) {
         botReply = "I understand! Since I am an AI, the best way to get exact details is to connect with our human experts. Could you share your 10-digit mobile number so they can assist you properly?";
@@ -144,10 +120,10 @@ export function LiveChat() {
                   
                   {msg.showContactActions && msg.sender === "bot" && (
                     <div className="mt-3 flex flex-wrap gap-2">
-                      <a href="tel:+919876543210" className="flex items-center gap-1.5 rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold transition-colors hover:bg-gold hover:text-[color:var(--navy-deep)] border border-gold/30">
+                      <a href="tel:+918691866691" className="flex items-center gap-1.5 rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold transition-colors hover:bg-gold hover:text-[color:var(--navy-deep)] border border-gold/30">
                         <Phone className="size-3" /> Call Now
                       </a>
-                      <a href="mailto:info@saverra.com" className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted border border-border/50">
+                      <a href="mailto:info@saverrarealty.com" className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-muted border border-border/50">
                         <Mail className="size-3" /> Email
                       </a>
                     </div>

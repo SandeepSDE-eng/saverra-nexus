@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FAQ = [
-  { q: "How do I book a site visit?", a: "You can schedule a site visit by clicking the 'Schedule Site Visit' button on any page, filling out the contact form, or calling us directly at +91 98765 43210." },
+  { q: "How do I book a site visit?", a: "You can schedule a site visit by clicking the 'Schedule Site Visit' button on any page, filling out the contact form, or calling us directly at +91 86918 66691." },
   { q: "What documents are required for booking?", a: "Basic KYC documents (PAN, Aadhaar), 2 passport-size photos, and a signed booking form. For NRIs, an additional NRE/NRO account statement is required." },
   { q: "Do you provide home loan assistance?", a: "Yes. We are empanelled with 20+ leading banks and NBFCs and our team helps you get pre-approved home loans at the best interest rates." },
   { q: "What types of properties do you specialize in?", a: "We provide advisory and transaction services for residential, commercial, retail, office spaces, land, and investment properties." },
