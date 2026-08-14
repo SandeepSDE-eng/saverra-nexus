@@ -249,7 +249,7 @@ const allProjects = [
     amenities: JSON.stringify(["Infinity Pool", "Gymnasium", "Concierge", "Sky Lounge", "24/7 Security"]),
     description: "Aaradhya OnePark brings ultra-luxury living to the prestigious 60ft Road in Ghatkopar East. A perfect blend of contemporary glass architecture, gold accents, and timeless elegance with panoramic city vistas.",
     is_published: true,
-    is_featured: false,
+    is_featured: true,
   },
   {
     name: "Adani The Views",
@@ -278,7 +278,7 @@ const allProjects = [
     amenities: JSON.stringify(["Skywalk", "Clubhouse", "Gymnasium", "Swimming Pool", "Kids Play Area"]),
     description: "Adani The Views in Pant Nagar, Ghatkopar East offers premium 2, 3 & 4 BHK residences featuring a signature 200-foot elevated skywalk, expansive podium gardens, and top-tier luxury amenities.",
     is_published: true,
-    is_featured: false,
+    is_featured: true,
   },
   {
     name: "Orient Odyssey",
