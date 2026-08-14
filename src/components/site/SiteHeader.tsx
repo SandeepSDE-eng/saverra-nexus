@@ -14,6 +14,8 @@ import {
 const getMainLinks = () => {
   const links = [
     { href: "/", label: "Home" },
+    { href: "/projects", label: "Projects" },
+    { href: "/services", label: "Services" },
   ];
   
   if (features.showAboutUs) {
@@ -21,8 +23,8 @@ const getMainLinks = () => {
   }
 
   links.push(
-    { href: "/case-studies", label: "Case Studies" },
     { href: "/careers", label: "Careers" },
+    { href: "/case-studies", label: "Case Studies" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" }
   );
@@ -55,9 +57,9 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
-      <div className="container-luxe flex h-24 items-center justify-between gap-4">
+      <div className="container-luxe flex h-20 md:h-24 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3">
-          <Logo className="h-20 md:h-24 aspect-[2/3]" />
+          <Logo className="h-16 md:h-24 aspect-[2/3]" />
         </Link>
 
         <nav className="hidden items-center gap-5 xl:gap-7 lg:flex z-50">
@@ -78,6 +80,9 @@ export function SiteHeader() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer rounded-lg hover:bg-gold/10 focus:bg-gold/10 focus:text-primary py-2.5">
                   <Link to="/careers" className="font-medium">Careers</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer rounded-lg hover:bg-gold/10 focus:bg-gold/10 focus:text-primary py-2.5">
+                  <Link to="/case-studies" className="font-medium">Case Studies</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -106,30 +111,41 @@ export function SiteHeader() {
         </div>
 
         <button
-          className="grid size-10 place-items-center rounded-md border border-border lg:hidden"
+          className="grid size-10 place-items-center rounded-lg border border-border bg-card lg:hidden shadow-sm"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-5 text-primary" /> : <Menu className="size-5 text-primary" />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
-          <div className="container-luxe flex flex-col py-4">
+        <div className="border-t border-border bg-background/95 backdrop-blur-xl lg:hidden animate-in slide-in-from-top-2 duration-200">
+          <div className="container-luxe flex flex-col py-4 gap-1">
             {mainLinks.map((n) => (
-              <a
+              <Link
                 key={n.href}
-                href={n.href === '/#contact' ? '/contact' : n.href}
+                to={n.href}
                 onClick={() => setOpen(false)}
-                className="py-3 px-2 text-base font-medium text-foreground/80 border-b border-border/40 last:border-0"
+                className="py-3 px-3 rounded-lg text-sm font-semibold text-foreground/90 hover:bg-gold/10 hover:text-primary transition-colors flex items-center justify-between border-b border-border/30 last:border-0"
               >
                 {n.label}
-              </a>
+              </Link>
             ))}
-            <Button variant="gold" className="mt-4" asChild>
-              <Link to="/contact">Schedule Site Visit</Link>
-            </Button>
+            <div className="pt-3 pb-1 flex flex-col gap-2.5">
+              <Button className="w-full bg-gold text-white hover:bg-gold/90 shadow-md font-semibold py-5 rounded-xl" asChild>
+                <Link to="/contact" onClick={() => setOpen(false)}>Schedule Site Visit</Link>
+              </Button>
+              <div className="flex items-center justify-center gap-3 pt-2 text-xs text-muted-foreground">
+                <a href="tel:+918691866691" className="flex items-center gap-1.5 hover:text-gold font-medium">
+                  <Phone className="size-3.5 text-gold" /> +91 86918 66691
+                </a>
+                <span>•</span>
+                <a href="mailto:info@saverrarealty.com" className="flex items-center gap-1.5 hover:text-gold font-medium">
+                  <Mail className="size-3.5 text-gold" /> info@saverrarealty.com
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
