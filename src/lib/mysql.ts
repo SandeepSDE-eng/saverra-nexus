@@ -11,9 +11,9 @@ export function getMySqlPool() {
 
     pool = mysql.createPool({
       host: dbHost,
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '',
-      database: process.env.DB_NAME || 'saverra_db',
+      user: process.env.DB_USER || 'u278286324_user',
+      password: process.env.DB_PASSWORD || 'Saverra@123',
+      database: process.env.DB_NAME || 'u278286324_saverra',
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0
@@ -21,3 +21,4 @@ export function getMySqlPool() {
   }
   return pool;
 }
+

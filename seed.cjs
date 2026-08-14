@@ -10,9 +10,9 @@ async function seed() {
   try {
     const pool = mysql.createPool({
       host: dbHost,
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '',
-      database: process.env.DB_NAME || 'saverra_db',
+      user: process.env.DB_USER || 'u278286324_user',
+      password: process.env.DB_PASSWORD || 'Saverra@123',
+      database: process.env.DB_NAME || 'u278286324_saverra',
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
@@ -32,7 +32,7 @@ async function seed() {
         location VARCHAR(255),
         price_display VARCHAR(100),
         price_numeric BIGINT,
-        cover_image VARCHAR(500),
+        cover_image LONGTEXT,
         gallery JSON,
         bhk_options VARCHAR(255),
         min_bhk INT,
