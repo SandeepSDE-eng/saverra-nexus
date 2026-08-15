@@ -187,3 +187,10 @@
 @utility animate-fade-up { animation: fade-up 0.8s cubic-bezier(.22,.9,.32,1) both; }
 @utility animate-marquee { animation: marquee 30s linear infinite; }
 @utility animate-zigzag { animation: float-zigzag 3.5s ease-in-out infinite; }
+
+/* Content Protection & Anti-Theft */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+

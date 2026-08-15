@@ -211,6 +211,7 @@ import { FloatingActions } from "@/components/site/FloatingActions";
 import { LeadPopup } from "@/components/site/LeadPopup";
 import { GlobalPopup } from "@/components/site/GlobalPopup";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ContentProtection } from "@/components/common/ContentProtection";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -220,6 +221,7 @@ function RootComponent() {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
+        <ContentProtection />
         <Preloader />
         {isAppRoute ? (
           <div className="min-h-screen bg-background flex flex-col">
