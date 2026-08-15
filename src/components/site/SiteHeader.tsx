@@ -24,7 +24,6 @@ const getMainLinks = () => {
 
   links.push(
     { href: "/careers", label: "Careers" },
-    { href: "/case-studies", label: "Case Studies" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" }
   );
@@ -80,9 +79,6 @@ export function SiteHeader() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer rounded-lg hover:bg-gold/10 focus:bg-gold/10 focus:text-primary py-2.5">
                   <Link to="/careers" className="font-medium">Careers</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer rounded-lg hover:bg-gold/10 focus:bg-gold/10 focus:text-primary py-2.5">
-                  <Link to="/case-studies" className="font-medium">Case Studies</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
