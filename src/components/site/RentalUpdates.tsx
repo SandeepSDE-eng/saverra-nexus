@@ -1,7 +1,17 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { getRentalsFn } from "@/api/rentals";
+
+function extractYoutubeId(input: string): string {
+  if (!input) return "";
+  const str = input.trim();
+  if (str.length === 11 && !str.includes("/") && !str.includes(".")) {
+    return str;
+  }
+  const match = str.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/)|youtu\.be\/|\?v=)([^#&?]{11})/);
+  return match && match[1] ? match[1] : str;
+}
 
 export function RentalUpdates() {
   const { data: rentals = [], isLoading } = useQuery({
@@ -12,7 +22,7 @@ export function RentalUpdates() {
         if (!response.success) throw new Error(response.error || "Failed to fetch rentals");
         return response.data;
       } catch (error: any) {
-        console.warn("MySQL Fetch Error:", error);
+        console.warn("Fetch Error:", error);
         return [];
       }
     },
@@ -62,25 +72,40 @@ export function RentalUpdates() {
                 ))}
              </>
           ) : (
-            rentals.slice(0, 4).map((rental: any) => (
-              <div
-                key={rental.id}
-                className="group relative w-full aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
-              >
-                {/* Title Overlay */}
-                <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
-                  <p className="text-white font-medium text-shadow-sm line-clamp-2">{rental.title}</p>
+            rentals.slice(0, 4).map((rental: any) => {
+              const yId = extractYoutubeId(rental.youtube_id);
+              const isValidId = Boolean(yId && yId.length >= 8);
+
+              return (
+                <div
+                  key={rental.id}
+                  className="group relative w-full aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
+                >
+                  {/* Title Overlay */}
+                  <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+                    <p className="text-white font-medium text-shadow-sm line-clamp-2">{rental.title}</p>
+                  </div>
+                  
+                  {isValidId ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${yId}?autoplay=0&controls=1&rel=0&showinfo=0&modestbranding=1`}
+                      title={rental.title}
+                      className="absolute inset-0 h-full w-full border-0 object-cover"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-[color:var(--navy-deep)] to-slate-900 text-white p-6 text-center">
+                      <div className="size-14 rounded-full bg-gold/20 flex items-center justify-center text-gold mb-3 group-hover:scale-110 transition-transform">
+                        <Play className="size-6 fill-current" />
+                      </div>
+                      <p className="text-sm font-display font-medium text-white">{rental.title}</p>
+                      <span className="text-[10px] text-gold uppercase tracking-widest mt-2">Saverra Inventory</span>
+                    </div>
+                  )}
                 </div>
-                
-                <iframe
-                  src={`https://www.youtube.com/embed/${rental.youtube_id}?autoplay=0&controls=1&rel=0&showinfo=0&modestbranding=1`}
-                  title={rental.title}
-                  className="absolute inset-0 h-full w-full border-0 object-cover"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
       </div>

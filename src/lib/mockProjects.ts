@@ -925,5 +925,49 @@ export const MOCK_PROJECTS = [
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
     "updated_at": "2026-08-14T19:48:38.661Z"
+  },
+  {
+    "id": 122,
+    "name": "VK Elegance",
+    "slug": "vk-elegance-ghatkopar",
+    "location": "90ft Road, Pant Nagar, Ghatkopar East, Mumbai",
+    "city": "Mumbai",
+    "builder": "VK Developer",
+    "price_display": "₹ 1.85 Cr Onwards",
+    "price_numeric": 18500000,
+    "status": "new-launch",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+    "bhk_options": "2 & 3 BHK",
+    "min_bhk": 2,
+    "max_bhk": 3,
+    "possession": "Dec 2028",
+    "rera_number": "P51800059812",
+    "category": "Residential",
+    "tagline": "Boutique High-Rise Residences by VK Developer",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+    ],
+    "highlights": [
+      "Boutique G+18 High-Rise Living on 90ft Road",
+      "Spacious Vastu-Compliant 2 & 3 BHK Homes",
+      "Air-Conditioned Fitness Studio & Yoga Lounge",
+      "Double-Height Entrance Lobby with Concierge",
+      "Multi-Tier Security & Biometric Access"
+    ],
+    "amenities": [
+      "Gymnasium",
+      "Yoga Deck",
+      "Kids Play Zone",
+      "Automated Parking",
+      "24/7 Security"
+    ],
+    "description": "VK Elegance by VK Developer brings contemporary luxury living to 90ft Road, Ghatkopar East. Thoughtfully designed 2 and 3 BHK residences featuring floor-to-ceiling windows, high-speed elevators, and top-tier amenities.",
+    "is_published": true,
+    "is_featured": true,
+    "created_at": "2026-08-16T19:00:00.000Z",
+    "updated_at": "2026-08-16T19:00:00.000Z"
   }
 ];

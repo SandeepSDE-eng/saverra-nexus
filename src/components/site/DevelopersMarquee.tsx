@@ -1,4 +1,6 @@
 const BRANDS = [
+  { name: "MICL Group", logo: "/logos/micl.webp" },
+  { name: "VK Developer", logo: "/logos/vk-developer.webp" },
   { name: "Avidahan", logo: "/logos/avidahan.webp" },
   { name: "Lodha", logo: "/logos/lodha.webp" },
   { name: "Kalpataru", logo: "/logos/kalptaru.webp" },

@@ -1,0 +1,11 @@
+# Legacy PHP Page Redirects
+/f-residences.php /projects/f-residences 301
+/f-residences /projects/f-residences 301
+/rising-city.php /projects 301
+/about.php /about 301
+/contact.php /contact 301
+/services.php /services 301
+/careers.php /careers 301
+/social-gallery.php /social-wall 301
+/other-projects.php /projects 301
+/*.php /projects 302

@@ -17,6 +17,32 @@ import { LiveChat } from "@/components/site/LiveChat";
 import { Logo } from "@/components/site/Logo";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname.toLowerCase();
+      if (pathname.endsWith(".php")) {
+        const cleanName = pathname.replace(/^\/+|\.php$/g, "");
+        if (cleanName === "about") {
+          window.location.replace("/about");
+          return;
+        }
+        if (cleanName === "contact") {
+          window.location.replace("/contact");
+          return;
+        }
+        if (cleanName === "social-gallery" || cleanName === "social-wall") {
+          window.location.replace("/social-wall");
+          return;
+        }
+        if (cleanName.includes("f-residences") || cleanName.includes("rising-city")) {
+          window.location.replace("/projects");
+          return;
+        }
+        window.location.replace("/projects");
+      }
+    }
+  }, []);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">

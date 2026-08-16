@@ -26,6 +26,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SocialWallRouteImport } from './routes/social-wall'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SlugPhpRouteImport } from './routes/$slug.php'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnnouncementsRouteImport } from './routes/admin.announcements'
 import { Route as AdminCareersRouteImport } from './routes/admin.careers'
@@ -125,6 +126,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SlugPhpRoute = SlugPhpRouteImport.update({
+  id: '/$slug/php',
+  path: '/$slug/php',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -209,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/$slug/php': typeof SlugPhpRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/$slug/php': typeof SlugPhpRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -272,6 +280,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/$slug/php': typeof SlugPhpRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -306,6 +315,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/$slug/php'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -336,6 +346,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/$slug/php'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -368,6 +379,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/$slug/php'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -401,6 +413,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SocialWallRoute: typeof SocialWallRoute
   TermsRoute: typeof TermsRoute
+  SlugPhpRoute: typeof SlugPhpRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -522,6 +535,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug/php': {
+      id: '/$slug/php'
+      path: '/$slug/php'
+      fullPath: '/$slug/php'
+      preLoaderRoute: typeof SlugPhpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -680,6 +700,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SocialWallRoute: SocialWallRoute,
   TermsRoute: TermsRoute,
+  SlugPhpRoute: SlugPhpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
