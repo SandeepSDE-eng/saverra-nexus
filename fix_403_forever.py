@@ -18,7 +18,7 @@ def upload_dir(sftp, local_dir, remote_dir):
             sftp.put(local_file, remote_file)
 
 def main():
-    print("Connecting to Hostinger via SSH & SFTP...")
+    print("Connecting to Hostinger to fix 403 Forbidden...")
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect('145.223.17.106', port=65002, username='u278286324', password='Saverra@123')
@@ -31,18 +31,18 @@ def main():
     remote_nodejs = "/home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs"
     remote_public_html = "/home/u278286324/domains/saverrarealty.com/public_html"
 
-    print("Completely purging public_html and nodejs directories...")
-    client.exec_command(f"rm -rf {remote_nodejs}/*")
-    client.exec_command(f"find {remote_public_html} -maxdepth 1 ! -name '.' ! -name '..' -exec rm -rf {{}} +")
+    print("Cleaning public_html directory...")
+    client.exec_command(f"rm -rf {remote_public_html}/*")
+    client.exec_command(f"rm -rf {remote_public_html}/.* 2>/dev/null")
 
-    print("Uploading clean .output nodejs server build...")
     local_output = r"c:\SandeYadav\saverra-nexus\.output"
+    print("Uploading nodejs server build...")
     upload_dir(sftp, local_output, remote_nodejs)
 
-    print("Uploading static public assets to public_html...")
+    print("Uploading public assets...")
     upload_dir(sftp, os.path.join(local_output, "public"), remote_public_html)
 
-    print("Removing static index.html from public_html to prevent SSR blocking...")
+    print("Removing static index.html from public_html so Passenger handles SSR...")
     client.exec_command(f"rm -f {remote_public_html}/index.html")
 
     htaccess_content = """PassengerAppRoot /home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs
@@ -76,11 +76,14 @@ SetEnv VITE_API_URL https://saverrarealty.com
 </IfModule>
 """
 
+    print("Writing .htaccess file and setting permissions...")
     client.exec_command(f"mkdir -p {remote_nodejs}/tmp")
     client.exec_command(f"cat << 'EOF' > {remote_public_html}/.htaccess\n{htaccess_content}\nEOF")
+    client.exec_command(f"chmod 644 {remote_public_html}/.htaccess")
+    client.exec_command(f"chmod 755 {remote_public_html}")
     client.exec_command(f"touch {remote_nodejs}/tmp/restart.txt")
 
-    print("Clean deployment & restart completed successfully!")
+    print("Fix 403 complete and Passenger restarted!")
     sftp.close()
     transport.close()
     client.close()
