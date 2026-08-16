@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Handle Legacy PHP redirects
+  RewriteRule ^f-residences\.php$ /projects/f-residences [R=301,L]
+  RewriteRule ^about\.php$ /about [R=301,L]
+  RewriteRule ^contact\.php$ /contact [R=301,L]
+  RewriteRule ^services\.php$ /services [R=301,L]
+  RewriteRule ^careers\.php$ /careers [R=301,L]
+  RewriteRule ^social-gallery\.php$ /social-wall [R=301,L]
+  RewriteRule ^other-projects\.php$ /projects [R=301,L]
+  RewriteRule ^.*\.php$ /projects [R=302,L]
+
+  # Route all SPA requests to index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
