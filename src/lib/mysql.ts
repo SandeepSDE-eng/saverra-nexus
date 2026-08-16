@@ -9,11 +9,26 @@ export function getMySqlPool() {
       dbHost = '127.0.0.1'; // Fix for Node.js IPv6 '::1' access denied error on Hostinger
     }
 
+    let dbUser = process.env.DB_USER;
+    if (!dbUser || dbUser === 'root') {
+      dbUser = 'u278286324_user';
+    }
+
+    let dbPass = process.env.DB_PASSWORD;
+    if (!dbPass) {
+      dbPass = 'Saverra@123';
+    }
+
+    let dbName = process.env.DB_NAME;
+    if (!dbName || dbName === 'saverra_db') {
+      dbName = 'u278286324_saverra';
+    }
+
     pool = mysql.createPool({
       host: dbHost,
-      user: process.env.DB_USER || 'u278286324_user',
-      password: process.env.DB_PASSWORD || 'Saverra@123',
-      database: process.env.DB_NAME || 'u278286324_saverra',
+      user: dbUser,
+      password: dbPass,
+      database: dbName,
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0
