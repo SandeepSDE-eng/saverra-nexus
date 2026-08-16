@@ -1,6 +1,6 @@
 const BRANDS = [
-  { name: "MICL Group", logo: "/logos/micl-official.png?v=2" },
-  { name: "VK Developer", logo: "/logos/vk-developers-official.png?v=2" },
+  { name: "MICL Group", logo: "/logos/micl-clean.png" },
+  { name: "VK Developer", logo: "/logos/vk-clean.png" },
   { name: "Avidahan", logo: "/logos/avidahan.webp" },
   { name: "Lodha", logo: "/logos/lodha.webp" },
   { name: "Kalpataru", logo: "/logos/kalptaru.webp" },
