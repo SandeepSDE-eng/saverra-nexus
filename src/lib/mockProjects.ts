@@ -969,5 +969,90 @@ export const MOCK_PROJECTS = [
     "is_featured": true,
     "created_at": "2026-08-16T19:00:00.000Z",
     "updated_at": "2026-08-16T19:00:00.000Z"
+  },
+  {
+    "id": 123,
+    "name": "F Residences",
+    "slug": "f-residences",
+    "location": "Ghatkopar East, Mumbai",
+    "city": "Mumbai",
+    "builder": "Fashion TV & Premier Developers",
+    "price_display": "₹ 2.10 Cr Onwards",
+    "price_numeric": 21000000,
+    "status": "under-construction",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+    "bhk_options": "2 & 3 BHK Fashion Residences",
+    "min_bhk": 2,
+    "max_bhk": 3,
+    "possession": "Dec 2027",
+    "rera_number": "P51800061234",
+    "category": "Residential",
+    "tagline": "Fashion-Inspired Luxury High-Rise Living",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"
+    ],
+    "highlights": [
+      "Fashion TV Branded Designer Lobbies & Interiors",
+      "Rooftop Sky Lounge & Infinity Edge Pool",
+      "State-of-the-Art Gymnasium & Wellness Center",
+      "Prime Strategic Location with Transit Connectivity"
+    ],
+    "amenities": [
+      "Infinity Pool",
+      "Gymnasium",
+      "Sky Lounge",
+      "Clubhouse",
+      "24/7 Security"
+    ],
+    "description": "F Residences brings world-class fashion-inspired luxury architecture to Ghatkopar East. Designed with bespoke interiors, panoramic sundecks, and curated lifestyle amenities.",
+    "is_published": true,
+    "is_featured": true,
+    "created_at": "2026-08-16T19:00:00.000Z",
+    "updated_at": "2026-08-16T19:00:00.000Z"
+  },
+  {
+    "id": 124,
+    "name": "Rising City",
+    "slug": "rising-city",
+    "location": "Ghatkopar East, Mumbai",
+    "city": "Mumbai",
+    "builder": "Rising Group",
+    "price_display": "₹ 1.75 Cr Onwards",
+    "price_numeric": 17500000,
+    "status": "under-construction",
+    "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+    "bhk_options": "1, 2 & 3 BHK",
+    "min_bhk": 1,
+    "max_bhk": 3,
+    "possession": "Dec 2028",
+    "rera_number": "P51800072345",
+    "category": "Residential",
+    "tagline": "Integrated Township Living in Ghatkopar East",
+    "gallery": [
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80"
+    ],
+    "highlights": [
+      "Multi-Acre Gated Integrated Township",
+      "Podium Level Landscaped Gardens & Sports Courts",
+      "Grand Air-Conditioned Entrance Lobby",
+      "5 Mins to Eastern Express Highway & Railway Station"
+    ],
+    "amenities": [
+      "Podium Garden",
+      "Clubhouse",
+      "Gymnasium",
+      "Sports Court",
+      "24/7 Security"
+    ],
+    "description": "Rising City is an expansive township project in Ghatkopar East offering modern 1, 2, and 3 BHK residences amidst lush podium gardens and high-end lifestyle facilities.",
+    "is_published": true,
+    "is_featured": true,
+    "created_at": "2026-08-16T19:00:00.000Z",
+    "updated_at": "2026-08-16T19:00:00.000Z"
   }
 ];
+
