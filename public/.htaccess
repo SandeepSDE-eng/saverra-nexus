@@ -17,13 +17,17 @@ SetEnv VITE_API_URL https://saverrarealty.com
   RewriteEngine On
   RewriteBase /
 
-  # Legacy PHP Redirects
+  # Legacy PHP 301 Redirects for Google Search Sitelinks
   RewriteRule ^f-residences\.php$ /projects/f-residences [R=301,L]
+  RewriteRule ^rising-city\.php$ /projects/rising-city [R=301,L]
   RewriteRule ^about\.php$ /about [R=301,L]
   RewriteRule ^contact\.php$ /contact [R=301,L]
   RewriteRule ^services\.php$ /services [R=301,L]
   RewriteRule ^careers\.php$ /careers [R=301,L]
   RewriteRule ^social-gallery\.php$ /social-wall [R=301,L]
   RewriteRule ^other-projects\.php$ /projects [R=301,L]
-  RewriteRule ^.*\.php$ /projects [R=302,L]
+  RewriteRule ^financing\.php$ /financing [R=301,L]
+  RewriteRule ^amenities\.php$ /amenities [R=301,L]
+  RewriteRule ^faq\.php$ /faq [R=301,L]
+  RewriteRule ^.*\.php$ /projects [R=301,L]
 </IfModule>
