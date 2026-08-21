@@ -63,23 +63,26 @@ export function RentalUpdates() {
           </Link>
         </div>
 
-        {/* 4 items max on Home page */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+        {/* Mobile Horizontal Carousel / Desktop Grid */}
+        <div 
+          className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-6 pt-4 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4 sm:gap-6"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {isLoading ? (
              <>
                 {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="w-full aspect-[9/16] rounded-2xl bg-secondary/80 animate-pulse"></div>
+                  <div key={i} className="w-[82vw] sm:w-full flex-none snap-center aspect-[9/16] rounded-2xl bg-secondary/80 animate-pulse"></div>
                 ))}
              </>
           ) : (
-            rentals.slice(0, 4).map((rental: any) => {
+            rentals.map((rental: any) => {
               const yId = extractYoutubeId(rental.youtube_id);
               const isValidId = Boolean(yId && yId.length >= 8);
 
               return (
                 <div
                   key={rental.id}
-                  className="group relative w-full aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
+                  className="group relative w-[82vw] sm:w-full flex-none snap-center aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-card transition-all duration-500 hover:-translate-y-2 hover:shadow-luxury"
                 >
                   {/* Title Overlay */}
                   <div className="absolute top-0 left-0 right-0 p-4 z-10 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
@@ -108,6 +111,12 @@ export function RentalUpdates() {
             })
           )}
         </div>
+
+        <style dangerouslySetInnerHTML={{__html: `
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+        `}} />
       </div>
     </section>
   );

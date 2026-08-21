@@ -99,26 +99,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SAVERRA — Premium Homes, Prime Locations, Promising Futures" },
-      { name: "description", content: "SAVERRA is a premium real estate firm delivering luxury homes, commercial spaces and villa plots in India's most sought-after locations. RERA registered, 5000+ happy families." },
-      { name: "author", content: "SAVERRA" },
+      { title: "SAVERRA Realty — Best Property Consultant & Real Estate Agent in Ghatkopar East, Mumbai" },
+      { name: "description", content: "SAVERRA Realty is the top RERA registered real estate consultant in Ghatkopar East, Mumbai. Buy luxury 1, 2, 3 BHK flats, commercial offices & premium properties in Ghatkopar, Chembur & Central Mumbai." },
+      { name: "keywords", content: "Best Property Consultant in Ghatkopar East, Real Estate Agent in Ghatkopar East, Property Dealer Ghatkopar, Luxury Flats for Sale Ghatkopar East, Commercial Property Ghatkopar, RERA Registered Broker Ghatkopar, Real Estate Firm Mumbai, SAVERRA Realty" },
+      { name: "author", content: "SAVERRA Realty" },
+      { name: "geo.region", content: "IN-MH" },
+      { name: "geo.placename", content: "Ghatkopar East, Mumbai" },
+      { name: "geo.position", content: "19.0860;72.9090" },
+      { name: "ICBM", content: "19.0860, 72.9090" },
       { name: "theme-color", content: "#0B3E78" },
-      { property: "og:title", content: "SAVERRA — Premium Homes, Prime Locations, Promising Futures" },
-      { property: "og:description", content: "SAVERRA is a premium real estate firm delivering luxury homes, commercial spaces and villa plots in India's most sought-after locations. RERA registered, 5000+ happy families." },
+      { property: "og:title", content: "SAVERRA Realty — Best Property Consultant & Real Estate Agent in Ghatkopar East" },
+      { property: "og:description", content: "Top RERA registered real estate firm in Ghatkopar East, Mumbai. Premium residential flats, commercial properties, and luxury real estate advisory." },
       { property: "og:image", content: "https://saverrarealty.com/og-image.png" },
       { property: "og:url", content: "https://saverrarealty.com" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "SAVERRA — Premium Homes, Prime Locations, Promising Futures" },
-      { name: "twitter:description", content: "SAVERRA is a premium real estate firm delivering luxury homes, commercial spaces and villa plots in India's most sought-after locations. RERA registered, 5000+ happy families." },
+      { name: "twitter:title", content: "SAVERRA Realty — Best Property Consultant in Ghatkopar East" },
+      { name: "twitter:description", content: "Top RERA registered real estate firm in Ghatkopar East, Mumbai." },
       { name: "twitter:image", content: "https://saverrarealty.com/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
-      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "512x512" },
-      { rel: "shortcut icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { rel: "icon", href: "/favicon-192x192.png", type: "image/png", sizes: "192x192" },
+      { rel: "icon", href: "/favicon-512x512.png", type: "image/png", sizes: "512x512" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -134,10 +143,123 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "SAVERRA Realty",
+    "image": "https://saverrarealty.com/logo.png",
+    "@id": "https://saverrarealty.com/#organization",
+    "url": "https://saverrarealty.com",
+    "telephone": "+918691866691",
+    "email": "info@saverrarealty.com",
+    "priceRange": "₹₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "One45 Business Bay, 1205, Vallabh Baug Ln Ext",
+      "addressLocality": "Ghatkopar East",
+      "addressRegion": "Mumbai, Maharashtra",
+      "postalCode": "400077",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.0860,
+      "longitude": 72.9090
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:30",
+      "closes": "19:30"
+    },
+    "sameAs": [
+      "https://www.facebook.com/SaverraRealty/",
+      "https://www.instagram.com/saverrarealty/",
+      "https://www.youtube.com/channel/UC4evOuC0SqWApu0cYg6tfWQ",
+      "https://www.linkedin.com/in/nimesh-bhanushali-83671b54"
+    ],
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Ghatkopar East, Mumbai"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Chembur, Mumbai"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Vikhroli, Mumbai"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Central Suburbs Mumbai"
+      }
+    ]
+  };
+
+  const siteNavigationSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Projects",
+        "url": "https://saverrarealty.com/projects"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "Services",
+        "url": "https://saverrarealty.com/services"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "About Us",
+        "url": "https://saverrarealty.com/about"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Social Wall",
+        "url": "https://saverrarealty.com/social-wall"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 5,
+        "name": "Careers",
+        "url": "https://saverrarealty.com/careers"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 6,
+        "name": "Contact Us",
+        "url": "https://saverrarealty.com/contact"
+      }
+    ]
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
+        />
       </head>
       <body>
         {children}

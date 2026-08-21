@@ -27,7 +27,7 @@ export function Logo({
         filter: isLight 
           ? "grayscale(100%) invert(100%) brightness(1000%) contrast(1000%)" 
           : "none",
-        mixBlendMode: isLight ? "screen" : "multiply",
+        mixBlendMode: isLight ? "screen" : "normal",
       }}
     />
   );

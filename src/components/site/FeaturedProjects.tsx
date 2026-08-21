@@ -80,9 +80,22 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in">
-              {displayedProjects.map((p: any) => <ProjectCard key={p.id} p={p} />)}
+            <div 
+              className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 animate-fade-in"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {displayedProjects.map((p: any) => (
+                <div key={p.id} className="w-[85vw] sm:w-full flex-none snap-center">
+                  <ProjectCard p={p} />
+                </div>
+              ))}
             </div>
+
+            <style dangerouslySetInnerHTML={{__html: `
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}} />
             
             {/* Pagination Controls */}
             {!limit && totalPages > 1 && (

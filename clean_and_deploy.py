@@ -65,14 +65,15 @@ SetEnv VITE_API_URL https://saverrarealty.com
   RewriteBase /
 
   # Legacy PHP Redirects
-  RewriteRule ^f-residences\\.php$ /projects/f-residences [R=301,L]
+  RewriteRule ^f-residences\\.php$ /projects [R=301,L]
+  RewriteRule ^rising-city\\.php$ /projects [R=301,L]
   RewriteRule ^about\\.php$ /about [R=301,L]
   RewriteRule ^contact\\.php$ /contact [R=301,L]
   RewriteRule ^services\\.php$ /services [R=301,L]
   RewriteRule ^careers\\.php$ /careers [R=301,L]
   RewriteRule ^social-gallery\\.php$ /social-wall [R=301,L]
   RewriteRule ^other-projects\\.php$ /projects [R=301,L]
-  RewriteRule ^.*\\.php$ /projects [R=302,L]
+  RewriteRule ^.*\\.php$ /projects [R=301,L]
 </IfModule>
 """
 

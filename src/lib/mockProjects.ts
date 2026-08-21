@@ -1,16 +1,66 @@
 export const MOCK_PROJECTS = [
   {
+    "id": 100,
+    "name": "Emperia Legacy",
+    "slug": "emperia-legacy-ghatkopar",
+    "location": "Pant Nagar, Ghatkopar East, Mumbai",
+    "city": "Mumbai",
+    "builder": "Emperia Group",
+    "price_display": "\u20b9 1.22 Cr Onwards",
+    "price_numeric": 12200000,
+    "status": "under-construction",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+    "bhk_options": "1, 2 BHK & Jodi Options",
+    "carpet_area": "457 - 657 Sq.Ft.",
+    "min_bhk": 1,
+    "max_bhk": 4,
+    "possession": "Dec 2031",
+    "rera_number": "PR1180002600209",
+    "category": "Residential",
+    "tagline": "G+15 Storey Landmark of Luxury in Pant Nagar",
+    "gallery": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+    ],
+    "highlights": [
+      "G+15 Storey Landmark Residential High-Rise",
+      "Over 25+ World-Class Lifestyle Amenities",
+      "Infinity Swimming Pool & Rooftop Horizon Cafe",
+      "1 BHK (457 Sq.Ft.) & 2 BHK (609\u2013657 Sq.Ft.) Layouts",
+      "Proximity to Eastern Express Highway & Pant Nagar Metro",
+      "MahaRERA Approved: PR1180002600209"
+    ],
+    "amenities": [
+      "Infinity Pool",
+      "Rooftop Cafe",
+      "Gymnasium",
+      "Yoga Deck",
+      "Kids Play Area",
+      "Jogging Track",
+      "Podium Parking",
+      "24/7 Security"
+    ],
+    "description": "Emperia Legacy (One Legacy) by Emperia Group is a G+15 storey luxury residential tower situated in the prime hub of Pant Nagar, Ghatkopar East. Offering meticulously planned 1 and 2 BHK residences with custom Jodi combinations, the project features 25+ curated lifestyle amenities including an infinity swimming pool, rooftop cafe, gym, and seamless connectivity to Eastern Express Highway and Metro.",
+    "is_published": true,
+    "is_featured": true,
+    "created_at": "2026-08-19T13:25:00.000Z",
+    "updated_at": "2026-08-19T13:25:00.000Z"
+  },
+  {
     "id": 101,
     "name": "Sai Shankar by Sai Life",
     "slug": "sai-shankar-sai-life",
     "location": "M.G. Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Sai Life Realtors",
-    "price_display": "₹ 1.65 Cr Onwards",
-    "price_numeric": 16500000,
+    "price_display": "\u20b9 2.84 Cr Onwards",
+    "price_numeric": 28400000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
     "bhk_options": "2, 3 BHK & Jodi Options (4, 5 BHK)",
+    "carpet_area": "706 - 1,178 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 5,
     "possession": "Dec 2028",
@@ -54,11 +104,12 @@ export const MOCK_PROJECTS = [
     "location": "Hingwala Lane, Saibaba Nagar, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "PSK Group",
-    "price_display": "₹ 1.75 Cr Onwards",
-    "price_numeric": 17500000,
+    "price_display": "\u20b9 2.18 Cr Onwards",
+    "price_numeric": 21800000,
     "status": "under-construction",
     "cover_image": "https://pskaura.in/public/admin/images/PSK-Aura-elevation-image-1-04082025105835.jpg",
     "bhk_options": "2, 3 & 4 BHK",
+    "carpet_area": "605 - 1,230 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 4,
     "possession": "March 2029",
@@ -103,11 +154,12 @@ export const MOCK_PROJECTS = [
     "location": "Bhanushali Lane, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "₹ 2.45 Cr Onwards",
-    "price_numeric": 24500000,
+    "price_display": "\u20b9 4.40 Cr Onwards",
+    "price_numeric": 44000000,
     "status": "under-construction",
     "cover_image": "https://silverstellar.in/assets/img/banners/Desktop-banner-1.jpg",
     "bhk_options": "3 & 4 BHK",
+    "carpet_area": "1,151 - 2,996 Sq.Ft.",
     "min_bhk": 3,
     "max_bhk": 4,
     "possession": "Dec 2028",
@@ -151,7 +203,7 @@ export const MOCK_PROJECTS = [
     "location": "Tilak Road, Opp. Gurukrupa Hotel, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "₹ 1.15 Cr Onwards",
+    "price_display": "\u20b9 1.15 Cr Onwards",
     "price_numeric": 11500000,
     "status": "under-construction",
     "cover_image": "https://silverhouse.business/assets/img/banner/desk1.jpg",
@@ -190,7 +242,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-14T19:48:38.660Z",
-    "updated_at": "2026-08-14T19:48:38.660Z"
+    "updated_at": "2026-08-14T19:48:38.660Z",
+    "carpet_area": "350 - 1,200 Sq.Ft."
   },
   {
     "id": 105,
@@ -199,7 +252,7 @@ export const MOCK_PROJECTS = [
     "location": "Central Chembur / Ghatkopar Link, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "₹ 95 Lac Onwards",
+    "price_display": "\u20b9 95 Lac Onwards",
     "price_numeric": 9500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80",
@@ -237,7 +290,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "400 - 1,500 Sq.Ft."
   },
   {
     "id": 106,
@@ -246,7 +300,7 @@ export const MOCK_PROJECTS = [
     "location": "328, Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "₹ 1.80 Cr Onwards",
+    "price_display": "\u20b9 1.80 Cr Onwards",
     "price_numeric": 18000000,
     "status": "under-construction",
     "cover_image": "https://shubhamartesiaghatkopareast.in/assets/img/common/metaimage.jpg",
@@ -284,7 +338,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "675 - 1,342 Sq.Ft."
   },
   {
     "id": 107,
@@ -293,7 +348,7 @@ export const MOCK_PROJECTS = [
     "location": "60ft Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "MICL Group",
-    "price_display": "₹ 2.80 Cr Onwards",
+    "price_display": "\u20b9 2.80 Cr Onwards",
     "price_numeric": 28000000,
     "status": "new-launch",
     "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
@@ -327,7 +382,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "980 - 2,450 Sq.Ft."
   },
   {
     "id": 108,
@@ -336,7 +392,7 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Adani Realty",
-    "price_display": "₹ 1.99 Cr Onwards",
+    "price_display": "\u20b9 1.99 Cr Onwards",
     "price_numeric": 19900000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
@@ -370,7 +426,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "720 - 1,650 Sq.Ft."
   },
   {
     "id": 109,
@@ -379,7 +436,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Orient Corp",
-    "price_display": "₹ 1.91 Cr Onwards",
+    "price_display": "\u20b9 1.91 Cr Onwards",
     "price_numeric": 19100000,
     "status": "new-launch",
     "cover_image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80",
@@ -413,7 +470,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "430 - 1,380 Sq.Ft."
   },
   {
     "id": 110,
@@ -422,7 +480,7 @@ export const MOCK_PROJECTS = [
     "location": "90 Feet Rd, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Anemone Homes LLP",
-    "price_display": "₹ 1.85 Cr Onwards",
+    "price_display": "\u20b9 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
@@ -456,7 +514,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "680 - 1,150 Sq.Ft."
   },
   {
     "id": 111,
@@ -465,7 +524,7 @@ export const MOCK_PROJECTS = [
     "location": "Central Avenue, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "House of Hiranandani",
-    "price_display": "₹ 2.65 Cr Onwards",
+    "price_display": "\u20b9 2.65 Cr Onwards",
     "price_numeric": 26500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
@@ -501,7 +560,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "740 - 1,820 Sq.Ft."
   },
   {
     "id": 112,
@@ -510,7 +570,7 @@ export const MOCK_PROJECTS = [
     "location": "Golf Link Enclave, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Rustomjee Group",
-    "price_display": "₹ 3.45 Cr Onwards",
+    "price_display": "\u20b9 3.45 Cr Onwards",
     "price_numeric": 34500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
@@ -546,7 +606,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "1,180 - 2,650 Sq.Ft."
   },
   {
     "id": 113,
@@ -555,7 +616,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "₹ 1.95 Cr",
+    "price_display": "\u20b9 1.95 Cr",
     "price_numeric": 19500000,
     "status": "ready-to-move",
     "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
@@ -588,7 +649,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "650 - 1,050 Sq.Ft."
   },
   {
     "id": 114,
@@ -597,7 +659,7 @@ export const MOCK_PROJECTS = [
     "location": "Garodia Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Happy Home Group",
-    "price_display": "₹ 1.85 Cr Onwards",
+    "price_display": "\u20b9 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
@@ -630,7 +692,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "620 - 980 Sq.Ft."
   },
   {
     "id": 115,
@@ -639,7 +702,7 @@ export const MOCK_PROJECTS = [
     "location": "Bhakti Park, Wadala / Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Ajmera Realty",
-    "price_display": "₹ 2.20 Cr Onwards",
+    "price_display": "\u20b9 2.20 Cr Onwards",
     "price_numeric": 22000000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
@@ -672,7 +735,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "750 - 1,890 Sq.Ft."
   },
   {
     "id": 116,
@@ -681,7 +745,7 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "₹ 2.50 Cr Onwards",
+    "price_display": "\u20b9 2.50 Cr Onwards",
     "price_numeric": 25000000,
     "status": "ready-to-move",
     "cover_image": "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
@@ -714,7 +778,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "1,120 - 1,950 Sq.Ft."
   },
   {
     "id": 117,
@@ -723,7 +788,7 @@ export const MOCK_PROJECTS = [
     "location": "Near Station, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Yog Group",
-    "price_display": "₹ 1.70 Cr Onwards",
+    "price_display": "\u20b9 1.70 Cr Onwards",
     "price_numeric": 17000000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200&q=80",
@@ -756,7 +821,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "415 - 950 Sq.Ft."
   },
   {
     "id": 118,
@@ -765,7 +831,7 @@ export const MOCK_PROJECTS = [
     "location": "MG Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "₹ 2.15 Cr Onwards",
+    "price_display": "\u20b9 2.15 Cr Onwards",
     "price_numeric": 21500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
@@ -798,7 +864,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "690 - 1,150 Sq.Ft."
   },
   {
     "id": 119,
@@ -807,7 +874,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Drushti Group",
-    "price_display": "₹ 1.80 Cr Onwards",
+    "price_display": "\u20b9 1.80 Cr Onwards",
     "price_numeric": 18000000,
     "status": "ready-to-move",
     "cover_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
@@ -840,7 +907,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   },
   {
     "id": 120,
@@ -849,7 +917,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Gurukrupa Group",
-    "price_display": "₹ 2.40 Cr Onwards",
+    "price_display": "\u20b9 2.40 Cr Onwards",
     "price_numeric": 24000000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
@@ -882,7 +950,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   },
   {
     "id": 121,
@@ -891,7 +960,7 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Adityaraj Group",
-    "price_display": "₹ 1.45 Cr Onwards",
+    "price_display": "\u20b9 1.45 Cr Onwards",
     "price_numeric": 14500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1599423300746-b62533397364?w=1200&q=80",
@@ -924,7 +993,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": false,
     "created_at": "2026-08-14T19:48:38.661Z",
-    "updated_at": "2026-08-14T19:48:38.661Z"
+    "updated_at": "2026-08-14T19:48:38.661Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   },
   {
     "id": 122,
@@ -933,7 +1003,7 @@ export const MOCK_PROJECTS = [
     "location": "90ft Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "VK Developer",
-    "price_display": "₹ 1.85 Cr Onwards",
+    "price_display": "\u20b9 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "new-launch",
     "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
@@ -968,7 +1038,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-16T19:00:00.000Z",
-    "updated_at": "2026-08-16T19:00:00.000Z"
+    "updated_at": "2026-08-16T19:00:00.000Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   },
   {
     "id": 123,
@@ -977,7 +1048,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Fashion TV & Premier Developers",
-    "price_display": "₹ 2.10 Cr Onwards",
+    "price_display": "\u20b9 2.10 Cr Onwards",
     "price_numeric": 21000000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
@@ -1010,7 +1081,8 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-16T19:00:00.000Z",
-    "updated_at": "2026-08-16T19:00:00.000Z"
+    "updated_at": "2026-08-16T19:00:00.000Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   },
   {
     "id": 124,
@@ -1019,7 +1091,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Rising Group",
-    "price_display": "₹ 1.75 Cr Onwards",
+    "price_display": "\u20b9 1.75 Cr Onwards",
     "price_numeric": 17500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
@@ -1052,7 +1124,7 @@ export const MOCK_PROJECTS = [
     "is_published": true,
     "is_featured": true,
     "created_at": "2026-08-16T19:00:00.000Z",
-    "updated_at": "2026-08-16T19:00:00.000Z"
+    "updated_at": "2026-08-16T19:00:00.000Z",
+    "carpet_area": "650 - 1,250 Sq.Ft."
   }
 ];
-

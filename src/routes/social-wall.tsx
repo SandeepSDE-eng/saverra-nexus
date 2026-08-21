@@ -114,62 +114,73 @@ function SocialWall() {
           </button>
         </div>
 
-        {/* Media Grid */}
+        {/* Media Carousel (Mobile) / Grid (Desktop) */}
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div 
+            className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4 sm:gap-6"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {[1,2,3,4,5,6,7,8].map(i => (
-              <div key={i} className="aspect-[9/16] bg-muted animate-pulse rounded-2xl"></div>
+              <div key={i} className="w-[82vw] sm:w-full flex-none snap-center aspect-[9/16] bg-muted animate-pulse rounded-2xl"></div>
             ))}
           </div>
         ) : filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredPosts.map((post) => (
-              <div key={post.id} className="group relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-500 border border-border/50 aspect-[9/16] flex flex-col">
-                
-                <div className="relative flex-1 bg-black overflow-hidden flex items-center justify-center">
-                  {post.platform === 'youtube' ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${post.embed_id}?modestbranding=1&rel=0`}
-                      className="w-full h-full border-0"
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
-                  ) : post.platform === 'instagram' ? (
-                     <iframe
-                      src={`https://www.instagram.com/p/${post.embed_id}/embed/captioned`}
-                      className="w-full h-full border-0"
-                      scrolling="no"
-                      loading="lazy"
-                    ></iframe>
-                  ) : (
-                    <div className="text-white text-center p-6">
-                      <Facebook className="size-12 text-blue-500 mx-auto mb-4" />
-                      <a href={post.url} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline text-sm break-all">
-                        View Post on Facebook
-                      </a>
+          <>
+            <div 
+              className="flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {filteredPosts.map((post) => (
+                <div key={post.id} className="group relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-500 border border-border/50 w-[82vw] sm:w-full flex-none snap-center aspect-[9/16] flex flex-col">
+                  
+                  <div className="relative flex-1 bg-black overflow-hidden flex items-center justify-center">
+                    {post.platform === 'youtube' ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${post.embed_id}?modestbranding=1&rel=0`}
+                        className="w-full h-full border-0"
+                        allowFullScreen
+                        loading="lazy"
+                      ></iframe>
+                    ) : post.platform === 'instagram' ? (
+                       <iframe
+                        src={`https://www.instagram.com/p/${post.embed_id}/embed/captioned`}
+                        className="w-full h-full border-0"
+                        scrolling="no"
+                        loading="lazy"
+                      ></iframe>
+                    ) : (
+                      <div className="text-white text-center p-6">
+                        <Facebook className="size-12 text-blue-500 mx-auto mb-4" />
+                        <a href={post.url} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline text-sm break-all">
+                          View Post on Facebook
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {post.title && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 pt-12 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white text-sm font-medium line-clamp-2 drop-shadow-md">
+                        {post.title}
+                      </p>
                     </div>
                   )}
                   
-                  {/* Overlay for non-iframe interaction catch (optional depending on UX) */}
-                  {/* <a href={post.url} target="_blank" rel="noreferrer" className="absolute inset-0 z-10 hidden group-hover:block bg-black/10"></a> */}
-                </div>
-                
-                {post.title && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 pt-12 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm font-medium line-clamp-2 drop-shadow-md">
-                      {post.title}
-                    </p>
+                  <div className="absolute top-4 right-4 z-20">
+                    {post.platform === 'instagram' && <div className="bg-pink-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Instagram className="size-4" /></div>}
+                    {post.platform === 'youtube' && <div className="bg-red-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Youtube className="size-4" /></div>}
+                    {post.platform === 'facebook' && <div className="bg-blue-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Facebook className="size-4" /></div>}
                   </div>
-                )}
-                
-                <div className="absolute top-4 right-4 z-20">
-                  {post.platform === 'instagram' && <div className="bg-pink-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Instagram className="size-4" /></div>}
-                  {post.platform === 'youtube' && <div className="bg-red-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Youtube className="size-4" /></div>}
-                  {post.platform === 'facebook' && <div className="bg-blue-600/90 p-2 rounded-full text-white shadow-lg backdrop-blur-sm"><Facebook className="size-4" /></div>}
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+            <style dangerouslySetInnerHTML={{__html: `
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}} />
+          </>
         ) : (
           <div className="text-center py-20 bg-white rounded-2xl shadow-sm border border-border/50">
             <Play className="size-12 text-muted-foreground/30 mx-auto mb-4" />
