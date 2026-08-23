@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, MapPin, Calendar, CheckCircle2, IndianRupee, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { getProjectBySlugFn } from "@/api/projects";
 import { getCarpetArea } from "@/lib/projectUtils";
 import { ContactSection } from "@/components/site/ContactSection";
@@ -32,6 +33,8 @@ import { MOCK_PROJECTS } from "@/lib/mockProjects";
 
 function ProjectDetail() {
   const { slug } = Route.useParams();
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
   const { data: p, isLoading } = useQuery({
     queryKey: ["project", slug],
     queryFn: async () => {
@@ -161,32 +164,60 @@ function ProjectDetail() {
                   const g = typeof rawUrl === 'string' ? rawUrl.replace(/^["'{\[]+|["'}\]]+$/g, '') : '';
                   if (!g) return null;
                   return (
-                    <Dialog key={g + i}>
-                      <DialogTrigger asChild>
-                        <div className="overflow-hidden rounded-xl cursor-pointer group relative bg-secondary">
-                          <img 
-                            src={g} 
-                            alt={`Gallery image of ${name}`} 
-                            className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                            loading="lazy" 
-                            onError={(e) => {
-                              // Hide broken images completely rather than showing alt text
-                              e.currentTarget.style.display = 'none';
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-[color:var(--navy-deep)]/0 transition-colors duration-500 group-hover:bg-[color:var(--navy-deep)]/20 mix-blend-overlay" />
-                          <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl" />
-                        </div>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-5xl border-none bg-transparent p-0 shadow-none">
-                        <img src={g} alt="" className="mx-auto h-auto w-full max-h-[85vh] object-contain rounded-lg" />
-                      </DialogContent>
-                    </Dialog>
+                    <div key={g + i} className="overflow-hidden rounded-xl cursor-pointer group relative bg-secondary" onClick={() => setLightboxIndex(i)}>
+                      <img 
+                        src={g} 
+                        alt={`Gallery image of ${name}`} 
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                        loading="lazy" 
+                        onError={(e) => {
+                          // Hide broken images completely rather than showing alt text
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-[color:var(--navy-deep)]/0 transition-colors duration-500 group-hover:bg-[color:var(--navy-deep)]/20 mix-blend-overlay" />
+                      <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl" />
+                    </div>
                   )
                 })}
               </div>
             </div>
           ) : null}
+
+          {/* Lightbox */}
+          {lightboxIndex !== null && p.gallery && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95">
+              <button 
+                className="absolute top-4 right-4 z-50 p-2 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
+                onClick={() => setLightboxIndex(null)}
+              >
+                <X className="size-6" />
+              </button>
+              
+              <button 
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
+                onClick={() => setLightboxIndex(prev => prev !== null ? (prev === 0 ? p.gallery.length - 1 : prev - 1) : null)}
+              >
+                <ChevronLeft className="size-8" />
+              </button>
+
+              <img 
+                src={typeof p.gallery[lightboxIndex] === 'string' ? p.gallery[lightboxIndex].replace(/^["'{\[]+|["'}\]]+$/g, '') : ''} 
+                alt="Gallery preview" 
+                className="max-h-[90vh] max-w-[90vw] object-contain select-none"
+              />
+
+              <button 
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
+                onClick={() => setLightboxIndex(prev => prev !== null ? (prev === p.gallery.length - 1 ? 0 : prev + 1) : null)}
+              >
+                <ChevronRight className="size-8" />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm bg-black/50 px-3 py-1 rounded-full">
+                {lightboxIndex + 1} / {p.gallery.length}
+              </div>
+            </div>
+          )}
 
         </div>
       </div>
