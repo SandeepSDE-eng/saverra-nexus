@@ -29,21 +29,33 @@ def main():
     print("Connected!")
 
     remote_nodejs = "/home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs"
+    remote_nodejs_temp = "/home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs_temp"
     remote_public_html = "/home/u278286324/domains/saverrarealty.com/public_html"
+    remote_public_temp = "/home/u278286324/domains/saverrarealty.com/public_html/temp_deploy"
 
-    print("Completely purging public_html and nodejs directories...")
-    client.exec_command(f"rm -rf {remote_nodejs}/*")
-    client.exec_command(f"find {remote_public_html} -maxdepth 1 ! -name '.' ! -name '..' -exec rm -rf {{}} +")
+    print("Cleaning up old temp directories...")
+    client.exec_command(f"rm -rf {remote_nodejs_temp}")
+    client.exec_command(f"rm -rf {remote_public_temp}")
+    client.exec_command(f"mkdir -p {remote_nodejs_temp}")
+    client.exec_command(f"mkdir -p {remote_public_temp}")
 
-    print("Uploading clean .output nodejs server build...")
+    print("Uploading clean .output nodejs server build to temp directory...")
     local_output = r"c:\SandeYadav\saverra-nexus\.output"
-    upload_dir(sftp, local_output, remote_nodejs)
+    upload_dir(sftp, local_output, remote_nodejs_temp)
 
-    print("Uploading static public assets to public_html...")
-    upload_dir(sftp, os.path.join(local_output, "public"), remote_public_html)
+    print("Uploading static public assets to temp directory...")
+    upload_dir(sftp, os.path.join(local_output, "public"), remote_public_temp)
 
-    print("Removing static index.html from public_html to prevent SSR blocking...")
-    client.exec_command(f"rm -f {remote_public_html}/index.html")
+    print("Removing static index.html from temp directory to prevent SSR blocking...")
+    client.exec_command(f"rm -f {remote_public_temp}/index.html")
+
+    print("Performing Zero-Downtime Swap...")
+    # Atomic swap for nodejs directory
+    client.exec_command(f"rm -rf {remote_nodejs}_old && mv {remote_nodejs} {remote_nodejs}_old && mv {remote_nodejs_temp} {remote_nodejs}")
+    
+    # Fast swap for public_html
+    swap_public_cmd = f"cd {remote_public_html} && mkdir -p old_deploy && find . -maxdepth 1 ! -name '.' ! -name '..' ! -name 'temp_deploy' ! -name 'old_deploy' -exec mv {{}} old_deploy/ \\; && mv temp_deploy/* ./ && rm -rf old_deploy temp_deploy"
+    client.exec_command(swap_public_cmd)
 
     htaccess_content = """PassengerAppRoot /home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs
 PassengerAppType node
