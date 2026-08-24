@@ -184,45 +184,50 @@ function ProjectDetail() {
             </div>
           ) : null}
 
-          {/* Lightbox */}
-          {lightboxIndex !== null && p.gallery && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95">
-              <button 
-                className="absolute top-4 right-4 z-50 p-2 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
-                onClick={() => setLightboxIndex(null)}
-              >
-                <X className="size-6" />
-              </button>
-              
-              <button 
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
-                onClick={() => setLightboxIndex(prev => prev !== null ? (prev === 0 ? p.gallery.length - 1 : prev - 1) : null)}
-              >
-                <ChevronLeft className="size-8" />
-              </button>
 
-              <img 
-                src={typeof p.gallery[lightboxIndex] === 'string' ? p.gallery[lightboxIndex].replace(/^["'{\[]+|["'}\]]+$/g, '') : ''} 
-                alt="Gallery preview" 
-                className="max-h-[90vh] max-w-[90vw] object-contain select-none"
-              />
-
-              <button 
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 text-white/70 hover:text-white transition-colors bg-black/50 rounded-full"
-                onClick={() => setLightboxIndex(prev => prev !== null ? (prev === p.gallery.length - 1 ? 0 : prev + 1) : null)}
-              >
-                <ChevronRight className="size-8" />
-              </button>
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm bg-black/50 px-3 py-1 rounded-full">
-                {lightboxIndex + 1} / {p.gallery.length}
-              </div>
-            </div>
-          )}
 
         </div>
       </div>
 
       <ContactSection />
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && p.gallery && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm">
+          <button 
+            className="absolute top-4 right-4 md:top-6 md:right-6 z-50 p-3 text-white/80 hover:text-white hover:bg-black/80 transition-colors bg-black/40 border border-white/10 rounded-full"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <X className="size-6 md:size-8" />
+          </button>
+          
+          <button 
+            className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-50 p-3 md:p-4 text-white/80 hover:text-white hover:bg-black/80 transition-colors bg-black/40 border border-white/10 rounded-full"
+            onClick={() => setLightboxIndex(prev => prev !== null ? (prev === 0 ? p.gallery.length - 1 : prev - 1) : null)}
+          >
+            <ChevronLeft className="size-8 md:size-10" />
+          </button>
+
+          <div className="w-full h-full p-4 md:p-12 flex items-center justify-center">
+            <img 
+              src={typeof p.gallery[lightboxIndex] === 'string' ? p.gallery[lightboxIndex].replace(/^["'{\[]+|["'}\]]+$/g, '') : ''} 
+              alt="Gallery preview" 
+              className="max-h-full max-w-full object-contain select-none drop-shadow-2xl"
+            />
+          </div>
+
+          <button 
+            className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-50 p-3 md:p-4 text-white/80 hover:text-white hover:bg-black/80 transition-colors bg-black/40 border border-white/10 rounded-full"
+            onClick={() => setLightboxIndex(prev => prev !== null ? (prev === p.gallery.length - 1 ? 0 : prev + 1) : null)}
+          >
+            <ChevronRight className="size-8 md:size-10" />
+          </button>
+          
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white font-medium tracking-widest text-sm bg-black/60 border border-white/20 px-6 py-2 rounded-full backdrop-blur-md">
+            {lightboxIndex + 1} / {p.gallery.length}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
