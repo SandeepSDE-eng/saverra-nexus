@@ -26,7 +26,10 @@ import {
   Sparkles,
   ArrowUpRight,
   RefreshCw,
-  FileText
+  FileText,
+  FileCode,
+  SlidersHorizontal,
+  FolderGit2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,7 +42,7 @@ export const Route = createFileRoute("/admin/guide")({
   component: AdminGuidePage,
 });
 
-function AdminGuidePage() {
+export function AdminGuidePage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("overview");
@@ -55,391 +58,406 @@ function AdminGuidePage() {
     window.print();
   };
 
+  const publicPages = [
+    { name: "Home Page", path: "/", type: "Core Public", desc: "Hero slider, project filter, MICL/Lodha logos marquee, services, testimonials & booking CTA." },
+    { name: "Projects Catalog", path: "/projects", type: "Catalog", desc: "Filterable property catalogue (Residential, Commercial, Luxury) with instant search." },
+    { name: "Property Details", path: "/projects/$slug", type: "Dynamic", desc: "Full property specs, high-res Lightbox gallery, floor plans viewer, RERA info & brochure download." },
+    { name: "About Us", path: "/about", type: "Corporate", desc: "Saverra Realty brand heritage, leadership vision, core values, and market milestones." },
+    { name: "Services Advisory", path: "/services", type: "Advisory", desc: "Real estate consulting, NRI investment desk, legal advisory, and property management." },
+    { name: "Home Financing", path: "/financing", type: "Financial", desc: "Home loan eligibility calculator, banking partner options, and instant consultation booking." },
+    { name: "Careers & Jobs", path: "/careers", type: "Recruitment", desc: "Open corporate positions listing, job detail modals, and direct resume submission form." },
+    { name: "Social Wall & Reels", path: "/social-wall", type: "Media", desc: "Property walkthrough video reels, Instagram/YouTube feeds, and rental highlights." },
+    { name: "Private Viewing", path: "/private-viewing", type: "Lead Desk", desc: "VIP site visit booking desk, personalized viewing scheduler, and direct sales contact." },
+    { name: "Contact Us", path: "/contact", type: "Contact Desk", desc: "General inquiry form, office address, phone desk, email contacts, and Google Maps location." },
+    { name: "Terms of Service", path: "/terms", type: "Legal", desc: "Standard terms & conditions governing website usage and property advisory." },
+    { name: "Privacy Policy", path: "/privacy", type: "Legal", desc: "Data protection guidelines, lead privacy terms, and cookie management policy." },
+    { name: "Amenities Overview", path: "/amenities", type: "Informational", desc: "Luxury amenities catalog including swimming pool, clubhouse, EV charging & gym." },
+    { name: "Frequently Asked Questions", path: "/faq", type: "Support", desc: "Common buyer questions regarding RERA, home loans, booking process, and site visits." },
+    { name: "Neighborhood Guide", path: "/neighborhood", type: "Location", desc: "Location advantages, connectivity highlights, schools & hospital proximity guides." },
+    { name: "Case Studies", path: "/case-studies", type: "Portfolio", desc: "Successful real estate advisory investments and client portfolio showcases." },
+    { name: "Admin Portal Sign-In", path: "/auth", type: "Authentication", desc: "Secure portal login for admin staff (`admin@saverra.com`)." },
+  ];
+
+  const adminPages = [
+    { name: "Admin Dashboard", path: "/admin", desc: "Central operational hub with metrics, inquiry trends, and quick access shortcuts." },
+    { name: "Master System Manual", path: "/admin/guide", desc: "Complete documentation, Hostinger server deployment instructions, and page map." },
+    { name: "Projects Management", path: "/admin/projects", desc: "Add, edit, or archive real estate listings, update prices, RERA IDs, and gallery photos." },
+    { name: "Floor Plans Desk", path: "/admin/floor-plans", desc: "Manage 2BHK/3BHK unit layouts, floor plan diagrams, and architectural specs." },
+    { name: "Inquiries & Leads Desk", path: "/admin/inquiries", desc: "Real-time leads repository from all contact forms with 1-click CSV export." },
+    { name: "Theme & Branding", path: "/admin/themes", desc: "Customize primary colors, brand palettes, and partner developer logos (MICL, Lodha)." },
+    { name: "Announcements Banner", path: "/admin/announcements", desc: "Publish top announcement bar alerts (e.g. Festival discounts, new project launches)." },
+    { name: "Social Wall Reels", path: "/admin/social", desc: "Manage property walkthrough video reels and social media integrations." },
+    { name: "Rental Shorts", path: "/admin/rentals", desc: "Publish short video shorts for rental properties and short-stay apartments." },
+    { name: "Careers Applications", path: "/admin/careers", desc: "Review candidate job applications, contact details, and resume attachments." },
+    { name: "Third-Party Integrations", path: "/admin/integrations", desc: "Manage CRM webhooks, WhatsApp API keys, and notification triggers." },
+    { name: "Marketing Analytics", path: "/admin/marketing", desc: "Track campaign performance, conversion rates, and traffic sources." },
+  ];
+
+  const filteredPublicPages = publicPages.filter(p =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.path.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.desc.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredAdminPages = adminPages.filter(p =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.path.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.desc.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="space-y-8 pb-16 print:p-0 print:space-y-4">
-      {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[color:var(--navy-deep)] via-[#034078] to-[#001f3f] p-8 text-white shadow-xl border border-gold/20">
-        <div className="absolute top-0 right-0 -mt-10 -mr-10 h-64 w-64 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div className="space-y-6 pb-12 print:p-0 print:space-y-4">
+      {/* Sleek Compact Header */}
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[color:var(--navy-deep)] via-[#022c54] to-[#011c38] p-6 text-white shadow-lg border border-gold/30">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <Badge className="bg-gold text-[color:var(--navy-deep)] font-semibold px-3 py-1 text-xs uppercase tracking-wider">
-                Official Manual & Master Documentation
+            <div className="flex items-center gap-2 mb-1.5">
+              <Badge className="bg-gold text-[color:var(--navy-deep)] font-semibold px-2.5 py-0.5 text-[11px] uppercase tracking-wide">
+                Master Administration Manual
               </Badge>
-              <Badge variant="outline" className="border-white/30 text-white/90 text-xs">
-                v2.5 Production Ready
+              <Badge variant="outline" className="border-white/30 text-white/90 text-[11px]">
+                Hostinger Node 22 SSR
               </Badge>
             </div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight text-white">
-              Saverra Realty — Complete Admin & System Guide
+            <h1 className="font-display text-2xl font-bold tracking-tight text-white">
+              Saverra Realty — System Documentation & Operations Manual
             </h1>
-            <p className="mt-2 max-w-2xl text-sm md:text-base text-white/80 leading-relaxed">
-              Pura website management, Hostinger server deployment, project updates, lead handling, aur Client handover manual. Sub-kuch ek hi jagah step-by-step detailed format me.
+            <p className="mt-1 text-xs md:text-sm text-white/80 max-w-3xl leading-relaxed">
+              Comprehensive reference guide for managing website content, property catalogs, customer leads, and Hostinger server deployments.
             </p>
           </div>
-          <div className="flex items-center gap-3 shrink-0 print:hidden">
+
+          <div className="flex items-center gap-2.5 shrink-0 print:hidden">
             <Button
               onClick={handlePrint}
               variant="outline"
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md"
+              size="sm"
+              className="bg-white/10 text-white border-white/20 hover:bg-white/20 text-xs backdrop-blur-md"
             >
-              <Printer className="mr-2 size-4" /> Save / Print PDF
+              <Printer className="mr-1.5 size-3.5" /> Export / Print PDF
             </Button>
             <Button
               asChild
-              className="bg-gold hover:bg-gold/90 text-[color:var(--navy-deep)] font-semibold shadow-lg"
+              size="sm"
+              className="bg-gold hover:bg-gold/90 text-[color:var(--navy-deep)] font-semibold text-xs shadow-md"
             >
               <a href="https://saverrarealty.com" target="_blank" rel="noreferrer">
-                Live Website <ExternalLink className="ml-2 size-4" />
+                Live Site <ExternalLink className="ml-1.5 size-3.5" />
               </a>
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Quick Search & Stats Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-card border border-border p-4 rounded-xl shadow-sm print:hidden">
-        <div className="relative w-full sm:w-96">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+      {/* Summary KPI Strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="rounded-lg border border-gold/30 bg-gold/5 p-3.5 flex items-center justify-between">
+          <div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Total Pages</div>
+            <div className="text-xl font-bold text-primary mt-0.5">29 Live Pages</div>
+          </div>
+          <div className="size-9 rounded-lg bg-gold/10 text-gold flex items-center justify-center">
+            <Layers className="size-5" />
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-3.5 flex items-center justify-between">
+          <div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Public Routes</div>
+            <div className="text-xl font-bold text-emerald-600 mt-0.5">17 Pages</div>
+          </div>
+          <div className="size-9 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
+            <Globe className="size-5" />
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-3.5 flex items-center justify-between">
+          <div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Admin Control</div>
+            <div className="text-xl font-bold text-blue-600 mt-0.5">12 Modules</div>
+          </div>
+          <div className="size-9 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center">
+            <ShieldCheck className="size-5" />
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-3.5 flex items-center justify-between">
+          <div>
+            <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Hosting Server</div>
+            <div className="text-xl font-bold text-purple-600 mt-0.5">Hostinger VPS</div>
+          </div>
+          <div className="size-9 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center">
+            <Server className="size-5" />
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Search & Filter Bar */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-card border border-border p-3 rounded-lg shadow-sm print:hidden">
+        <div className="relative w-full sm:w-80">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
           <Input
-            placeholder="Search guides (e.g. Hostinger, Projects, Leads, MICL logo)..."
+            placeholder="Search documentation (e.g., Hostinger, Projects, Leads)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 bg-background"
+            className="pl-8 text-xs h-8 bg-background"
           />
         </div>
-        <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground w-full sm:w-auto justify-end">
-          <span className="flex items-center gap-1.5"><Globe className="size-3.5 text-gold" /> Total Pages: <b>12+ Live Pages</b></span>
-          <span className="flex items-center gap-1.5"><Server className="size-3.5 text-blue-500" /> Hostinger Node 22 SSR</span>
-          <span className="flex items-center gap-1.5"><ShieldCheck className="size-3.5 text-emerald-500" /> Admin Auth Secured</span>
+
+        <div className="flex items-center gap-3 text-xs text-muted-foreground w-full sm:w-auto justify-end">
+          <span className="flex items-center gap-1"><Zap className="size-3 text-gold" /> Zero-Downtime Deploy</span>
+          <span className="flex items-center gap-1"><Database className="size-3 text-blue-500" /> MySQL DB</span>
+          <span className="flex items-center gap-1"><FileCode className="size-3 text-emerald-500" /> TanStack Start Engine</span>
         </div>
       </div>
 
       {/* Navigation Tabs */}
       <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-muted/60 p-1.5 rounded-xl print:hidden">
-          <TabsTrigger value="overview" className="gap-2 font-medium text-xs md:text-sm">
-            <Globe className="size-4" /> Website Map & Features
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-muted/60 p-1 rounded-lg print:hidden">
+          <TabsTrigger value="overview" className="gap-1.5 font-medium text-xs">
+            <Globe className="size-3.5" /> 1. Page Map (29 Pages)
           </TabsTrigger>
-          <TabsTrigger value="admin-manual" className="gap-2 font-medium text-xs md:text-sm">
-            <Building2 className="size-4" /> Admin Step-by-Step
+          <TabsTrigger value="admin-manual" className="gap-1.5 font-medium text-xs">
+            <Building2 className="size-3.5" /> 2. Admin Operations Guide
           </TabsTrigger>
-          <TabsTrigger value="hostinger" className="gap-2 font-medium text-xs md:text-sm">
-            <Server className="size-4" /> Hostinger & Deploy
+          <TabsTrigger value="hostinger" className="gap-1.5 font-medium text-xs">
+            <Server className="size-3.5" /> 3. Hostinger & Deployment
           </TabsTrigger>
-
-          <TabsTrigger value="handover" className="gap-2 font-medium text-xs md:text-sm">
-            <FileText className="size-4" /> Client Cheat Sheet
+          <TabsTrigger value="handover" className="gap-1.5 font-medium text-xs">
+            <FileText className="size-3.5" /> 4. Client Handover Sheet
           </TabsTrigger>
         </TabsList>
 
-        {/* TAB 1: WEBSITE OVERVIEW */}
-        <TabsContent value="overview" className="mt-6 space-y-6">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+        {/* TAB 1: COMPLETE 29 PAGES BREAKDOWN */}
+        <TabsContent value="overview" className="mt-5 space-y-6">
+          {/* Section: Public Pages (17 Pages) */}
+          <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div>
-                <h2 className="font-display text-xl font-bold text-primary flex items-center gap-2">
-                  <Globe className="size-5 text-gold" /> Complete Website Architecture & Pages Summary
+                <h2 className="font-display text-base font-bold text-primary flex items-center gap-2">
+                  <Globe className="size-4 text-emerald-600" /> Public Website Pages Catalog ({filteredPublicPages.length} of 17 Pages)
                 </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Website me dynamic pages, interactive modals, lead collection systems, aur catalog structure detail me list kiye gaye hain.
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Complete list of customer-facing pages accessible on SaverraRealty.com.
                 </p>
               </div>
-              <Badge className="bg-emerald-500/10 text-emerald-600 font-semibold border-emerald-500/20">
-                100% Fully Functional
+              <Badge variant="outline" className="text-emerald-600 border-emerald-500/30 text-xs">
+                17 Public Routes
               </Badge>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {/* Card 1: Homepage */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Sparkles className="size-4 text-gold" /> Home Page (`/`)
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredPublicPages.map((page, idx) => (
+                <div key={idx} className="rounded-lg border border-border/80 bg-secondary/15 p-3.5 space-y-2 hover:border-gold/50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="font-semibold text-xs text-primary flex items-center gap-1.5">
+                      <span className="size-1.5 rounded-full bg-emerald-500" />
+                      {page.name}
+                    </div>
+                    <Badge variant="secondary" className="text-[10px] px-1.5 py-0 font-mono">
+                      {page.path}
+                    </Badge>
                   </div>
-                  <Badge variant="outline" className="text-[10px]">Public</Badge>
+                  <p className="text-[11px] text-muted-foreground leading-normal">
+                    {page.desc}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Hero luxury slider, filterable project search, featured properties showcase, official developers marquee (MICL, Lodha, Godrej, Oberoi), core services, testimonials, & booking modal.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Dynamic hero banner & instant lead generation modals.
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              {/* Card 2: Projects Catalogue */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Building2 className="size-4 text-blue-600" /> Projects Catalog (`/projects`)
-                  </div>
-                  <Badge variant="outline" className="text-[10px]">Public Catalog</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Filterable real estate catalogue (All, Residential, Commercial, Luxury Villas), search bar by keyword & location, interactive project cards with status badges.
+          {/* Section: Admin Control Pages (12 Pages) */}
+          <div className="rounded-xl border border-gold/30 bg-card p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <div>
+                <h2 className="font-display text-base font-bold text-primary flex items-center gap-2">
+                  <ShieldCheck className="size-4 text-gold" /> Admin Dashboard & Operations Control ({filteredAdminPages.length} of 12 Modules)
+                </h2>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Password-protected administrative control modules under `/admin`.
                 </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Dynamic routing to individual property details page.
-                </div>
               </div>
+              <Badge className="bg-gold text-[color:var(--navy-deep)] text-xs font-semibold">
+                12 Admin Modules
+              </Badge>
+            </div>
 
-              {/* Card 3: Project Detail & Lightbox */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Layers className="size-4 text-purple-600" /> Property Detail Page (`/projects/$slug`)
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredAdminPages.map((page, idx) => (
+                <div key={idx} className="rounded-lg border border-border/80 bg-secondary/15 p-3.5 space-y-2 hover:border-gold/50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="font-semibold text-xs text-primary flex items-center gap-1.5">
+                      <span className="size-1.5 rounded-full bg-gold" />
+                      {page.name}
+                    </div>
+                    <Badge variant="outline" className="text-[10px] px-1.5 py-0 font-mono text-muted-foreground">
+                      {page.path}
+                    </Badge>
                   </div>
-                  <Badge variant="outline" className="text-[10px]">Dynamic Route</Badge>
+                  <p className="text-[11px] text-muted-foreground leading-normal">
+                    {page.desc}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Full project specs, high-res Lightbox image gallery, interactive Floor Plans selector, RERA number, Google location map, Brochure Download modal & Price Request form.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Direct lead capture for specific property inquiries.
-                </div>
-              </div>
-
-              {/* Card 4: Services & Financing */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Zap className="size-4 text-amber-500" /> Services & Financing (`/services`, `/financing`)
-                  </div>
-                  <Badge variant="outline" className="text-[10px]">Advisory</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Real Estate Consulting, NRI Investment desk, Home Loan Assistance calculator, Resale/Rental management, Legal & Documentation advisory services.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Home loan eligibility & consultation request form.
-                </div>
-              </div>
-
-              {/* Card 5: Careers */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Briefcase className="size-4 text-emerald-600" /> Careers & Jobs (`/careers`)
-                  </div>
-                  <Badge variant="outline" className="text-[10px]">Recruitment</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Open vacancies listing (Sales Manager, Real Estate Advisor, Marketing Executive), job application popups, direct resume upload & contact form.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Submissions saved directly to Admin Careers database.
-                </div>
-              </div>
-
-              {/* Card 6: Social Wall & Shorts */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <Video className="size-4 text-pink-600" /> Social Wall & Reels (`/social-wall`)
-                  </div>
-                  <Badge variant="outline" className="text-[10px]">Media & Reels</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Property walkthrough videos, Instagram/YouTube Reels player, rental shorts showcase, site visit highlights, and social media feed integrations.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Video popups & rental property inquiries.
-                </div>
-              </div>
-
-              {/* Card 7: Private Viewing & Contact */}
-              <div className="rounded-lg border border-border/80 bg-secondary/20 p-5 space-y-3 hover:border-gold/50 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <MessageSquare className="size-4 text-indigo-600" /> Contact & Site Visit (`/contact`, `/private-viewing`)
-                  </div>
-                  <Badge variant="outline" className="text-[10px]">Contact Desk</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  VIP Private Viewing scheduler, Site visit request form, Office address, phone numbers, email desk, and interactive embedded Google Map.
-                </p>
-                <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-                  <b>Key Action:</b> Automated lead email & DB entry.
-                </div>
-              </div>
-
-              {/* Card 8: Admin Dashboard */}
-              <div className="rounded-lg border border-gold/40 bg-gold/5 p-5 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 font-semibold text-primary">
-                    <ShieldCheck className="size-4 text-gold" /> Admin Portal (`/admin`)
-                  </div>
-                  <Badge className="bg-gold text-[color:var(--navy-deep)] text-[10px]">Protected</Badge>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Password protected operational dashboard to add/edit projects, view & export leads, customize theme colors, upload developer logos, and post announcements.
-                </p>
-                <div className="pt-2 border-t border-gold/20 text-[11px] text-primary font-medium">
-                  <b>Access URL:</b> <code>https://saverrarealty.com/admin</code>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </TabsContent>
 
-        {/* TAB 2: ADMIN STEP-BY-STEP MANUAL */}
-        <TabsContent value="admin-manual" className="mt-6 space-y-6">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+        {/* TAB 2: ADMIN OPERATIONS MANUAL */}
+        <TabsContent value="admin-manual" className="mt-5 space-y-5">
+          <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div>
-                <h2 className="font-display text-xl font-bold text-primary flex items-center gap-2">
-                  <Building2 className="size-5 text-gold" /> Step-by-Step Admin Management Guide
+                <h2 className="font-display text-base font-bold text-primary flex items-center gap-2">
+                  <Building2 className="size-4 text-gold" /> Admin Management Operations Guide
                 </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Har administrative module ko handle karne ka simple, user-friendly step-by-step tareeka yahan explain kiya gaya hai.
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Step-by-step procedures for managing listings, customer leads, branding, and media.
                 </p>
               </div>
-              <Button asChild size="sm" className="bg-primary text-white text-xs">
+              <Button asChild size="sm" className="bg-primary text-white text-xs h-7">
                 <Link to="/admin/projects">Go to Projects Panel <ChevronRight className="ml-1 size-3" /></Link>
               </Button>
             </div>
 
-            <Accordion type="single" collapsible defaultValue="item-projects" className="w-full space-y-3">
-              {/* Accordion 1: How to Add / Edit Projects */}
-              <AccordionItem value="item-projects" className="border border-border rounded-xl px-4 py-1 bg-secondary/10">
-                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-sm md:text-base">
+            <Accordion type="single" collapsible defaultValue="item-projects" className="w-full space-y-2.5">
+              {/* Step 1: Project Management */}
+              <AccordionItem value="item-projects" className="border border-border rounded-lg px-3.5 py-0 bg-secondary/10">
+                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-xs md:text-sm">
                   <span className="flex items-center gap-2 text-left">
-                    <Building2 className="size-5 text-gold shrink-0" />
-                    1. Projects & Properties Manage Kaise Karein? (`/admin/projects`)
+                    <Building2 className="size-4 text-gold shrink-0" />
+                    1. How to Add & Edit Property Listings (`/admin/projects`)
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pt-3 pb-5 space-y-4 text-xs md:text-sm text-foreground/90 leading-relaxed border-t border-border/60">
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-gold text-[color:var(--navy-deep)] mt-0.5 shrink-0">Step 1</Badge>
+                <AccordionContent className="pt-2.5 pb-4 space-y-2.5 text-xs text-foreground/90 leading-relaxed border-t border-border/60">
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-gold text-[color:var(--navy-deep)] shrink-0 text-[10px]">Step 1</Badge>
                       <div>
-                        <b>Admin Portal Open Karein:</b> Dashboard me left menu se <code>Projects</code> option par click karein ya directly <code>/admin/projects</code> URL kholein.
+                        <b>Access Projects Panel:</b> Navigate to <code>/admin/projects</code> or click <b>Projects</b> in the left sidebar menu.
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-gold text-[color:var(--navy-deep)] mt-0.5 shrink-0">Step 2</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-gold text-[color:var(--navy-deep)] shrink-0 text-[10px]">Step 2</Badge>
                       <div>
-                        <b>New Property Add Karne Ke Liye:</b> Top right corner me blue <code>+ Add Project</code> button par click karein.
+                        <b>Create New Property:</b> Click the blue <b>"+ Add Project"</b> button in the top right corner.
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-gold text-[color:var(--navy-deep)] mt-0.5 shrink-0">Step 3</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-gold text-[color:var(--navy-deep)] shrink-0 text-[10px]">Step 3</Badge>
                       <div>
-                        <b>Project Details Fill Karein:</b>
-                        <ul className="list-disc pl-5 mt-1.5 space-y-1 text-muted-foreground text-xs">
+                        <b>Fill Listing Metadata:</b>
+                        <ul className="list-disc pl-4 mt-1 space-y-0.5 text-muted-foreground text-[11px]">
                           <li><b>Title:</b> Property name (e.g. "MICL Monteverde", "Saverra Emerald Heights").</li>
-                          <li><b>Location:</b> Area/City (e.g. "Bandra West, Mumbai", "Thane West").</li>
-                          <li><b>Category:</b> Select from Residential, Commercial, or Luxury.</li>
-                          <li><b>Price:</b> (e.g. "₹1.85 Cr Onwards" or "Price on Request").</li>
-                          <li><b>Status:</b> Newly Launched / Under Construction / Ready to Move.</li>
-                          <li><b>RERA Number:</b> Official Maharashtra RERA ID.</li>
+                          <li><b>Location:</b> Area & City (e.g. "Bandra West, Mumbai").</li>
+                          <li><b>Category:</b> Select Residential, Commercial, or Luxury Villas.</li>
+                          <li><b>Pricing:</b> (e.g. "₹1.85 Cr Onwards" or "Price on Request").</li>
+                          <li><b>Status Flag:</b> Newly Launched / Under Construction / Ready to Move.</li>
+                          <li><b>RERA Registration:</b> Official MahaRERA Number.</li>
                         </ul>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-gold text-[color:var(--navy-deep)] mt-0.5 shrink-0">Step 4</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-gold text-[color:var(--navy-deep)] shrink-0 text-[10px]">Step 4</Badge>
                       <div>
-                        <b>Images & Gallery Upload:</b> Banner image URL add karein aur high-resolution gallery images URLs comma-separated enter karein. (Public images URL ya high quality property photos upload karein).
+                        <b>Upload Banner & Gallery Images:</b> Add primary cover image URL and comma-separated high-res gallery image URLs.
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-gold text-[color:var(--navy-deep)] mt-0.5 shrink-0">Step 5</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-gold text-[color:var(--navy-deep)] shrink-0 text-[10px]">Step 5</Badge>
                       <div>
-                        <b>Save / Publish:</b> Form Submit karte hi project website par live ho jayega aur `/projects` catalog me reflect karega!
+                        <b>Save & Publish:</b> Upon clicking Save, the project instantly reflects live in the public property catalog (`/projects`).
                       </div>
                     </div>
                   </div>
                 </AccordionContent>
               </AccordionItem>
 
-              {/* Accordion 2: Inquiries & Leads */}
-              <AccordionItem value="item-inquiries" className="border border-border rounded-xl px-4 py-1 bg-secondary/10">
-                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-sm md:text-base">
+              {/* Step 2: Leads & Inquiries */}
+              <AccordionItem value="item-inquiries" className="border border-border rounded-lg px-3.5 py-0 bg-secondary/10">
+                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-xs md:text-sm">
                   <span className="flex items-center gap-2 text-left">
-                    <MessageSquare className="size-5 text-blue-600 shrink-0" />
-                    2. Customer Leads & Inquiries Handle Kaise Karein? (`/admin/inquiries`)
+                    <MessageSquare className="size-4 text-blue-600 shrink-0" />
+                    2. Managing Customer Leads & Exporting CSV Reports (`/admin/inquiries`)
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pt-3 pb-5 space-y-4 text-xs md:text-sm text-foreground/90 leading-relaxed border-t border-border/60">
-                  <p className="text-muted-foreground">
-                    Jab bhi koi customer website ke Contact Form, Brochure Download, Site Visit Booking, ya Price Request Form ko bharta hai, to uski saari details automatic database me save ho jaati hain.
+                <AccordionContent className="pt-2.5 pb-4 space-y-2.5 text-xs text-foreground/90 leading-relaxed border-t border-border/60">
+                  <p className="text-muted-foreground text-[11px]">
+                    All client inquiries submitted via Contact Forms, Brochure Downloads, Booking Modals, or Site Visits are recorded in real-time.
                   </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-blue-600 text-white mt-0.5 shrink-0">Step 1</Badge>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-blue-600 text-white shrink-0 text-[10px]">Step 1</Badge>
                       <div>
-                        Left sidebar me <b>"Inquiries"</b> par click karein.
+                        Open <b>Inquiries</b> from the admin sidebar navigation menu.
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-blue-600 text-white mt-0.5 shrink-0">Step 2</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-blue-600 text-white shrink-0 text-[10px]">Step 2</Badge>
                       <div>
-                        Customer Name, Phone Number, Email, Interested Project, Message, aur Time Stamp verify karein.
+                        Review lead name, phone number, email address, property interested, message, and timestamp.
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-blue-600 text-white mt-0.5 shrink-0">Step 3</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-blue-600 text-white shrink-0 text-[10px]">Step 3</Badge>
                       <div>
-                        <b>Export to CSV:</b> Apni sales team ko leads dene ke liye top right me <code>Export CSV</code> button par click karke complete lead sheet download kar sakte hain!
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              {/* Accordion 3: Theme & Developer Logos */}
-              <AccordionItem value="item-theme" className="border border-border rounded-xl px-4 py-1 bg-secondary/10">
-                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-sm md:text-base">
-                  <span className="flex items-center gap-2 text-left">
-                    <Palette className="size-5 text-purple-600 shrink-0" />
-                    3. Developer Logos (MICL, Lodha, Godrej) & Theme Colors Change Kaise Karein? (`/admin/themes`)
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="pt-3 pb-5 space-y-4 text-xs md:text-sm text-foreground/90 leading-relaxed border-t border-border/60">
-                  <p className="text-muted-foreground">
-                    Homepage marquee me official developer logos display hote hain (e.g. MICL logo, Lodha, Oberoi, Godrej, Hiranandani).
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-purple-600 text-white mt-0.5 shrink-0">Logos</Badge>
-                      <div>
-                        Official high-res transparent logos directory location: <code>public/logos/micl-clean.png</code>, <code>public/logos/micl-official.png</code>. Automatic cache-busting system build me included hai.
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-purple-600 text-white mt-0.5 shrink-0">Colors</Badge>
-                      <div>
-                        <code>/admin/themes</code> page se website ke primary Navy Deep, Gold accents, aur theme settings customize kar sakte hain.
+                        <b>Export to CSV:</b> Click <code>Export CSV</code> to download the entire leads database into Excel format for your sales team.
                       </div>
                     </div>
                   </div>
                 </AccordionContent>
               </AccordionItem>
 
-              {/* Accordion 4: Announcements & Social Wall */}
-              <AccordionItem value="item-social" className="border border-border rounded-xl px-4 py-1 bg-secondary/10">
-                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-sm md:text-base">
+              {/* Step 3: Theme & Developer Logos */}
+              <AccordionItem value="item-theme" className="border border-border rounded-lg px-3.5 py-0 bg-secondary/10">
+                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-xs md:text-sm">
                   <span className="flex items-center gap-2 text-left">
-                    <Share2 className="size-5 text-pink-600 shrink-0" />
-                    4. Top Bar Announcements & Social Reels Manage Kaise Karein? (`/admin/announcements`, `/admin/social`)
+                    <Palette className="size-4 text-purple-600 shrink-0" />
+                    3. Managing Developer Logos (MICL, Lodha, Godrej) & Theme Colors (`/admin/themes`)
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pt-3 pb-5 space-y-4 text-xs md:text-sm text-foreground/90 leading-relaxed border-t border-border/60">
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-pink-600 text-white mt-0.5 shrink-0">Announcements</Badge>
+                <AccordionContent className="pt-2.5 pb-4 space-y-2.5 text-xs text-foreground/90 leading-relaxed border-t border-border/60">
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-purple-600 text-white shrink-0 text-[10px]">Logos</Badge>
                       <div>
-                        Top announcement banner message (e.g. "🎉 Special Festival Offer: Book MICL Bandra & Get ₹2 Lakh Gold Voucher") publish karne ke liye <code>/admin/announcements</code> me text fill karke toggle enable karein.
+                        Partner developer logos (e.g. MICL, Lodha, Godrej, Oberoi) are located under <code>public/logos/micl-clean.png</code> and <code>public/logos/micl-official.png</code> with automatic build cache-busting.
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
-                      <Badge className="bg-pink-600 text-white mt-0.5 shrink-0">Reels & Videos</Badge>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-purple-600 text-white shrink-0 text-[10px]">Colors</Badge>
                       <div>
-                        Instagram / YouTube Shorts links add karke <code>/social-wall</code> par real estate property walkthrough reels publish kar sakte hain.
+                        Customize website color palettes, Navy Deep background tones, and Gold accent highlights under <code>/admin/themes</code>.
+                      </div>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Step 4: Announcements & Social Wall */}
+              <AccordionItem value="item-social" className="border border-border rounded-lg px-3.5 py-0 bg-secondary/10">
+                <AccordionTrigger className="hover:no-underline font-semibold text-primary text-xs md:text-sm">
+                  <span className="flex items-center gap-2 text-left">
+                    <Share2 className="size-4 text-pink-600 shrink-0" />
+                    4. Publishing Top Bar Announcements & Social Video Reels (`/admin/announcements`, `/admin/social`)
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="pt-2.5 pb-4 space-y-2.5 text-xs text-foreground/90 leading-relaxed border-t border-border/60">
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-pink-600 text-white shrink-0 text-[10px]">Announcements</Badge>
+                      <div>
+                        Publish site-wide alert banners (e.g., "🎉 Special Festival Offer: Book MICL Bandra & Receive Gold Voucher") via <code>/admin/announcements</code>.
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-card p-2.5 rounded-md border border-border">
+                      <Badge className="bg-pink-600 text-white shrink-0 text-[10px]">Video Reels</Badge>
+                      <div>
+                        Add Instagram / YouTube Short video links under <code>/admin/social</code> to publish property walkthrough reels.
                       </div>
                     </div>
                   </div>
@@ -450,123 +468,123 @@ function AdminGuidePage() {
         </TabsContent>
 
         {/* TAB 3: HOSTINGER SERVER & DEPLOYMENT GUIDE */}
-        <TabsContent value="hostinger" className="mt-6 space-y-6">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+        <TabsContent value="hostinger" className="mt-5 space-y-5">
+          <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div>
-                <h2 className="font-display text-xl font-bold text-primary flex items-center gap-2">
-                  <Server className="size-5 text-gold" /> Hostinger Server Architecture & Zero-Downtime Deployment
+                <h2 className="font-display text-base font-bold text-primary flex items-center gap-2">
+                  <Server className="size-4 text-gold" /> Hostinger Infrastructure & Zero-Downtime Deployment
                 </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Website kis tarah Hostinger server par hosted hai, SSH details, database credentials, aur continuous deployment instructions yahan detailed hain.
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Production hosting environment, SSH credentials, file directory trees, and zero-downtime deployment execution.
                 </p>
               </div>
-              <Badge className="bg-blue-600 text-white font-semibold">
-                Node 22 SSR + LiteSpeed
+              <Badge className="bg-blue-600 text-white text-xs font-semibold">
+                Phusion Passenger Node 22
               </Badge>
             </div>
 
-            {/* Technical Server Specs Table */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
-              <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Live Domain</div>
-                <div className="mt-1 text-sm font-bold text-primary flex items-center gap-1.5">
-                  <Globe className="size-4 text-gold" /> saverrarealty.com
+            {/* Server Specs Table */}
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="p-3 rounded-lg bg-secondary/30 border border-border">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Live Domain</div>
+                <div className="mt-0.5 text-xs font-bold text-primary flex items-center gap-1">
+                  <Globe className="size-3.5 text-gold" /> saverrarealty.com
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1">SSL Certificate Active (HTTPS)</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">SSL Active (HTTPS)</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Hostinger Server IP</div>
-                <div className="mt-1 text-sm font-bold text-primary flex items-center gap-1.5">
-                  <Server className="size-4 text-blue-500" /> 145.223.17.106
+              <div className="p-3 rounded-lg bg-secondary/30 border border-border">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Hostinger IP</div>
+                <div className="mt-0.5 text-xs font-bold text-primary flex items-center gap-1">
+                  <Server className="size-3.5 text-blue-500" /> 145.223.17.106
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1">SSH Port: 65002</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">SSH Port: 65002</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Node.js Engine</div>
-                <div className="mt-1 text-sm font-bold text-primary flex items-center gap-1.5">
-                  <Zap className="size-4 text-emerald-500" /> Node.js 22.x SSR
+              <div className="p-3 rounded-lg bg-secondary/30 border border-border">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Node.js Engine</div>
+                <div className="mt-0.5 text-xs font-bold text-primary flex items-center gap-1">
+                  <Zap className="size-3.5 text-emerald-500" /> Node.js 22.x SSR
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1">Managed via Phusion Passenger</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">Passenger Server Engine</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-secondary/30 border border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Database</div>
-                <div className="mt-1 text-sm font-bold text-primary flex items-center gap-1.5">
-                  <Database className="size-4 text-purple-500" /> MySQL / MariaDB
+              <div className="p-3 rounded-lg bg-secondary/30 border border-border">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Database</div>
+                <div className="mt-0.5 text-xs font-bold text-primary flex items-center gap-1">
+                  <Database className="size-3.5 text-purple-500" /> MySQL / MariaDB
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1">u278286324_saverra</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">u278286324_saverra</div>
               </div>
             </div>
 
-            {/* Quick Copyable Credentials & Commands */}
-            <div className="space-y-6">
-              <h3 className="font-semibold text-base text-primary flex items-center gap-2">
-                <Terminal className="size-4 text-gold" /> Deployment Commands & Server Paths
+            {/* Terminal Commands */}
+            <div className="space-y-4 pt-2">
+              <h3 className="font-semibold text-xs text-primary flex items-center gap-1.5">
+                <Terminal className="size-3.5 text-gold" /> Deployment Commands & Server Paths
               </h3>
 
-              {/* Command Card 1: Deployment */}
-              <div className="rounded-xl border border-border bg-[color:var(--navy-deep)] p-5 text-white space-y-3">
+              {/* Command 1 */}
+              <div className="rounded-lg border border-border bg-[color:var(--navy-deep)] p-4 text-white space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-gold flex items-center gap-2">
-                    <RefreshCw className="size-3.5" /> Automatic Zero-Downtime Deployment Script
+                  <span className="font-mono text-[11px] text-gold flex items-center gap-1.5">
+                    <RefreshCw className="size-3" /> Execute Zero-Downtime Deployment
                   </span>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => copyToClipboard("python clean_and_deploy.py", "deploy-cmd")}
-                    className="h-7 text-xs text-white/80 hover:text-white hover:bg-white/10"
+                    className="h-6 text-[10px] text-white/80 hover:text-white hover:bg-white/10 px-2"
                   >
-                    {copiedId === "deploy-cmd" ? <Check className="size-3.5 text-emerald-400" /> : <Copy className="size-3.5" />}
-                    <span className="ml-1.5">{copiedId === "deploy-cmd" ? "Copied" : "Copy Command"}</span>
+                    {copiedId === "deploy-cmd" ? <Check className="size-3 text-emerald-400" /> : <Copy className="size-3" />}
+                    <span className="ml-1">{copiedId === "deploy-cmd" ? "Copied" : "Copy"}</span>
                   </Button>
                 </div>
-                <pre className="font-mono text-xs bg-black/40 p-3 rounded-lg overflow-x-auto text-emerald-400 border border-white/10">
+                <pre className="font-mono text-[11px] bg-black/50 p-2.5 rounded text-emerald-400 border border-white/10">
                   python clean_and_deploy.py
                 </pre>
-                <p className="text-xs text-white/70">
-                  Yeh script local `.output` build directory ko Hostinger server ke nodejs_temp directory me upload karti hai aur atomic folder swap execute karti hai jisse zero downtime build upload hota hai.
+                <p className="text-[11px] text-white/70">
+                  Uploads local `.output` build to Hostinger server and executes atomic folder swap for 0ms downtime.
                 </p>
               </div>
 
-              {/* Command Card 2: Server Restart */}
-              <div className="rounded-xl border border-border bg-[color:var(--navy-deep)] p-5 text-white space-y-3">
+              {/* Command 2 */}
+              <div className="rounded-lg border border-border bg-[color:var(--navy-deep)] p-4 text-white space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-gold flex items-center gap-2">
-                    <Zap className="size-3.5" /> Restart Node.js Server Command
+                  <span className="font-mono text-[11px] text-gold flex items-center gap-1.5">
+                    <Zap className="size-3" /> Restart Node.js Server
                   </span>
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => copyToClipboard("touch /home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs/tmp/restart.txt", "restart-cmd")}
-                    className="h-7 text-xs text-white/80 hover:text-white hover:bg-white/10"
+                    className="h-6 text-[10px] text-white/80 hover:text-white hover:bg-white/10 px-2"
                   >
-                    {copiedId === "restart-cmd" ? <Check className="size-3.5 text-emerald-400" /> : <Copy className="size-3.5" />}
-                    <span className="ml-1.5">{copiedId === "restart-cmd" ? "Copied" : "Copy Command"}</span>
+                    {copiedId === "restart-cmd" ? <Check className="size-3 text-emerald-400" /> : <Copy className="size-3" />}
+                    <span className="ml-1">{copiedId === "restart-cmd" ? "Copied" : "Copy"}</span>
                   </Button>
                 </div>
-                <pre className="font-mono text-xs bg-black/40 p-3 rounded-lg overflow-x-auto text-emerald-400 border border-white/10">
+                <pre className="font-mono text-[11px] bg-black/50 p-2.5 rounded text-emerald-400 border border-white/10">
                   touch /home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs/tmp/restart.txt
                 </pre>
-                <p className="text-xs text-white/70">
-                  Hostinger Phusion Passenger app engine <code>restart.txt</code> file to touch karte hi node process safely restart kar deta hai.
+                <p className="text-[11px] text-white/70">
+                  Triggers instant restart of Phusion Passenger application process on Hostinger.
                 </p>
               </div>
 
-              {/* Server File Directory Tree */}
-              <div className="rounded-xl border border-border bg-card p-5 space-y-3">
-                <h4 className="font-semibold text-sm text-primary">Hostinger Remote Directory Paths</h4>
-                <div className="space-y-2 font-mono text-xs text-muted-foreground">
-                  <div className="p-2.5 bg-muted/40 rounded-md border border-border/60">
+              {/* Server File Tree */}
+              <div className="rounded-lg border border-border bg-card p-4 space-y-2">
+                <h4 className="font-semibold text-xs text-primary">Hostinger Server Remote Directory Paths</h4>
+                <div className="space-y-1.5 font-mono text-[11px] text-muted-foreground">
+                  <div className="p-2 bg-muted/40 rounded border border-border/60">
                     <b className="text-primary">Public Web Root:</b> <code>/home/u278286324/domains/saverrarealty.com/public_html</code>
                   </div>
-                  <div className="p-2.5 bg-muted/40 rounded-md border border-border/60">
+                  <div className="p-2 bg-muted/40 rounded border border-border/60">
                     <b className="text-primary">Node.js Server App:</b> <code>/home/u278286324/domains/saverrarealty.com/hbuilds/current/nodejs</code>
                   </div>
-                  <div className="p-2.5 bg-muted/40 rounded-md border border-border/60">
-                    <b className="text-primary">Node Binary Path:</b> <code>/opt/alt/alt-nodejs22/root/bin/node</code>
+                  <div className="p-2 bg-muted/40 rounded border border-border/60">
+                    <b className="text-primary">Node Executable:</b> <code>/opt/alt/alt-nodejs22/root/bin/node</code>
                   </div>
                 </div>
               </div>
@@ -574,72 +592,67 @@ function AdminGuidePage() {
           </div>
         </TabsContent>
 
-        {/* TAB 4: CLIENT CHEAT SHEET & HANDOVER */}
-        <TabsContent value="handover" className="mt-6 space-y-6">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+        {/* TAB 4: CLIENT CHEAT SHEET */}
+        <TabsContent value="handover" className="mt-5 space-y-5">
+          <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-border pb-3">
               <div>
-                <h2 className="font-display text-xl font-bold text-primary flex items-center gap-2">
-                  <FileText className="size-5 text-gold" /> Client Self-Serve Quick Reference Manual
+                <h2 className="font-display text-base font-bold text-primary flex items-center gap-2">
+                  <FileText className="size-4 text-gold" /> Client Executive Handover Reference
                 </h2>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Yeh section client ko share karne ke liye optimized hai taki non-technical users bhi easily poori website manage kar sakein.
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Executive reference guide formatted for non-technical stakeholders and client handovers.
                 </p>
               </div>
-              <Button onClick={handlePrint} size="sm" className="bg-gold text-[color:var(--navy-deep)] font-semibold print:hidden">
-                <Printer className="mr-1.5 size-4" /> Print / Share Link
+              <Button onClick={handlePrint} size="sm" className="bg-gold text-[color:var(--navy-deep)] font-semibold text-xs h-7 print:hidden">
+                <Printer className="mr-1 size-3" /> Print Document
               </Button>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              {/* Box 1: How to Login */}
-              <div className="p-5 rounded-xl border border-border bg-card space-y-3">
-                <h3 className="font-bold text-base text-primary flex items-center gap-2">
-                  <ShieldCheck className="size-4 text-emerald-600" /> Admin Portal Login Quick Steps
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="p-4 rounded-lg border border-border bg-card space-y-2">
+                <h3 className="font-bold text-xs text-primary flex items-center gap-1.5">
+                  <ShieldCheck className="size-3.5 text-emerald-600" /> Admin Portal Login
                 </h3>
-                <ol className="list-decimal pl-5 text-xs text-muted-foreground space-y-2 leading-relaxed">
-                  <li>Browser me URL type karein: <b>https://saverrarealty.com/admin</b></li>
-                  <li>Sahi email address aur password se sign in karein.</li>
-                  <li>Login complete hote hi aap Admin Dashboard page par pahunch jaayenge.</li>
-                  <li>Kiski problem me <code>admin@saverra.com</code> admin access granted hai.</li>
+                <ol className="list-decimal pl-4 text-[11px] text-muted-foreground space-y-1 leading-relaxed">
+                  <li>Open <b>https://saverrarealty.com/admin</b> in browser.</li>
+                  <li>Sign in with admin credentials (<code>admin@saverra.com</code>).</li>
+                  <li>Access full dashboard metrics, lead management, and property controls.</li>
                 </ol>
               </div>
 
-              {/* Box 2: How to Add Project */}
-              <div className="p-5 rounded-xl border border-border bg-card space-y-3">
-                <h3 className="font-bold text-base text-primary flex items-center gap-2">
-                  <Building2 className="size-4 text-gold" /> Naya Project Ya Property Launch Karein
+              <div className="p-4 rounded-lg border border-border bg-card space-y-2">
+                <h3 className="font-bold text-xs text-primary flex items-center gap-1.5">
+                  <Building2 className="size-3.5 text-gold" /> Publishing New Properties
                 </h3>
-                <ol className="list-decimal pl-5 text-xs text-muted-foreground space-y-2 leading-relaxed">
-                  <li>Left Menu se <b>"Projects"</b> button dabayein.</li>
-                  <li>Top right corner me <b>"+ Add Project"</b> button click karein.</li>
-                  <li>Title, Location, Price, RERA, Banner Image fill karke <b>Save</b> karein.</li>
-                  <li>Submitting ke instant baad website par project automatic live ho jaata hai!</li>
+                <ol className="list-decimal pl-4 text-[11px] text-muted-foreground space-y-1 leading-relaxed">
+                  <li>Select <b>Projects</b> from the left menu.</li>
+                  <li>Click <b>"+ Add Project"</b> in top right.</li>
+                  <li>Enter title, location, pricing, RERA number, banner URL, and click <b>Save</b>.</li>
+                  <li>Property reflects live instantly on <b>/projects</b>.</li>
                 </ol>
               </div>
 
-              {/* Box 3: How to Download Leads */}
-              <div className="p-5 rounded-xl border border-border bg-card space-y-3">
-                <h3 className="font-bold text-base text-primary flex items-center gap-2">
-                  <MessageSquare className="size-4 text-blue-600" /> Customer Leads Download Karein
+              <div className="p-4 rounded-lg border border-border bg-card space-y-2">
+                <h3 className="font-bold text-xs text-primary flex items-center gap-1.5">
+                  <MessageSquare className="size-3.5 text-blue-600" /> Exporting Customer Leads
                 </h3>
-                <ol className="list-decimal pl-5 text-xs text-muted-foreground space-y-2 leading-relaxed">
-                  <li>Left Menu se <b>"Inquiries"</b> page kholein.</li>
-                  <li>Sabhie latest customer inquiries yahan date and time ke sath visible hoti hain.</li>
-                  <li><b>"Export CSV"</b> button par click karke poore month ki leads Excel sheet me download kar sakte hain.</li>
+                <ol className="list-decimal pl-4 text-[11px] text-muted-foreground space-y-1 leading-relaxed">
+                  <li>Navigate to <b>Inquiries</b> desk in admin sidebar.</li>
+                  <li>View lead details, phone numbers, and property interest.</li>
+                  <li>Click <b>"Export CSV"</b> to download Excel sheet for your sales team.</li>
                 </ol>
               </div>
 
-              {/* Box 4: Emergency Assistance */}
-              <div className="p-5 rounded-xl border border-gold/40 bg-gold/5 space-y-3">
-                <h3 className="font-bold text-base text-primary flex items-center gap-2">
-                  <HelpCircle className="size-4 text-gold" /> Technical Support & Backup
+              <div className="p-4 rounded-lg border border-gold/30 bg-gold/5 space-y-2">
+                <h3 className="font-bold text-xs text-primary flex items-center gap-1.5">
+                  <HelpCircle className="size-3.5 text-gold" /> Documentation & Support
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Yadi kisi tarah ka update failure, domain status inquiry, ya Hostinger account setup check karna ho to complete documentation link hamesha live admin panel me available rahega.
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  For website maintenance, developer logo updates, or server deployments, refer to this documentation at any time.
                 </p>
-                <div className="pt-2 text-xs font-semibold text-primary">
-                  Direct Shareable Link: <code className="bg-white/80 px-2 py-1 rounded border border-border">https://saverrarealty.com/admin/guide</code>
+                <div className="pt-1 text-[11px] font-semibold text-primary">
+                  Shareable Guide Link: <code className="bg-white/80 px-1.5 py-0.5 rounded border border-border">https://saverrarealty.com/admin/guide</code>
                 </div>
               </div>
             </div>
