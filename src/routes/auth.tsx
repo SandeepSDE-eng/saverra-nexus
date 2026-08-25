@@ -12,8 +12,8 @@ export const Route = createFileRoute("/auth")({ component: AuthPage });
 
 function AuthPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@saverra.com");
-  const [password, setPassword] = useState("Saverra@2026");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -73,15 +73,6 @@ function AuthPage() {
           <h2 className="font-display text-3xl font-bold text-primary">Welcome back</h2>
           <p className="mt-1 text-sm text-muted-foreground">Sign in to your SAVERRA admin account.</p>
 
-          <div className="mt-4 rounded-md border border-gold/40 bg-gold/10 p-3 text-xs">
-            <p className="font-semibold text-primary">Demo credentials</p>
-            <p className="mt-1 text-foreground/80">
-              Email: <code className="rounded bg-background/60 px-1">admin@saverra.com</code><br />
-              Password: <code className="rounded bg-background/60 px-1">Saverra@2026</code>
-            </p>
-            <p className="mt-1 text-muted-foreground">First time? Use the <b>Create account</b> tab with the same credentials.</p>
-          </div>
-
           <Tabs defaultValue="signin" className="mt-6">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">Sign in</TabsTrigger>
@@ -89,8 +80,8 @@ function AuthPage() {
             </TabsList>
             <TabsContent value="signin">
               <form onSubmit={signIn} className="mt-4 space-y-3">
-                <div><Label>Email</Label><Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 h-11" /></div>
-                <div><Label>Password</Label><Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="mt-1 h-11" /></div>
+                <div><Label>Email</Label><Input type="email" placeholder="admin@saverra.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 h-11" /></div>
+                <div><Label>Password</Label><Input type="password" placeholder="••••••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required className="mt-1 h-11" /></div>
                 <Button type="submit" variant="default" size="lg" className="w-full" disabled={loading}>
                   {loading ? "Signing in…" : "Sign in"}
                 </Button>
@@ -98,14 +89,11 @@ function AuthPage() {
             </TabsContent>
             <TabsContent value="signup">
               <form onSubmit={signUp} className="mt-4 space-y-3">
-                <div><Label>Email</Label><Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 h-11" /></div>
-                <div><Label>Password</Label><Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="mt-1 h-11" /></div>
+                <div><Label>Email</Label><Input type="email" placeholder="admin@saverra.com" value={email} onChange={(e) => setEmail(e.target.value)} required className="mt-1 h-11" /></div>
+                <div><Label>Password</Label><Input type="password" placeholder="••••••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="mt-1 h-11" /></div>
                 <Button type="submit" variant="gold" size="lg" className="w-full" disabled={loading}>
                   {loading ? "Creating…" : "Create account"}
                 </Button>
-                <p className="text-xs text-muted-foreground">
-                  Using <code>admin@saverra.com</code> auto-grants admin access.
-                </p>
               </form>
             </TabsContent>
           </Tabs>
