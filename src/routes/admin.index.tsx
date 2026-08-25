@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Building2, MessageSquare, TrendingUp, Users } from "lucide-react";
+import { Building2, MessageSquare, TrendingUp, Users, BookOpen, ArrowRight } from "lucide-react";
 import { getAdminProjectsFn } from "@/api/projects";
 import { getInquiriesFn } from "@/api/inquiries";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
@@ -57,10 +57,27 @@ function AdminDashboard() {
 
   return (
     <div>
-      <div className="mb-8">
-        <p className="eyebrow">Overview</p>
-        <h1 className="mt-1 font-display text-3xl font-bold text-primary">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Welcome to the SAVERRA admin portal.</p>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <p className="eyebrow">Overview</p>
+          <h1 className="mt-1 font-display text-3xl font-bold text-primary">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Welcome to the SAVERRA admin portal.</p>
+        </div>
+
+        <Link
+          to="/admin/guide"
+          className="inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[color:var(--navy-deep)] to-[#034078] p-4 text-white shadow-md hover:shadow-lg transition-all border border-gold/30"
+        >
+          <div className="rounded-lg bg-gold/20 p-2 text-gold">
+            <BookOpen className="size-5" />
+          </div>
+          <div>
+            <div className="font-semibold text-sm flex items-center gap-1.5 text-white">
+              Website Guide & Admin Manual <ArrowRight className="size-3.5 text-gold" />
+            </div>
+            <div className="text-xs text-white/70">Complete step-by-step instructions & Hostinger deployment details</div>
+          </div>
+        </Link>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">

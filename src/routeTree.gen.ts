@@ -30,6 +30,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminAnnouncementsRouteImport } from './routes/admin.announcements'
 import { Route as AdminCareersRouteImport } from './routes/admin.careers'
 import { Route as AdminFloorPlansRouteImport } from './routes/admin.floor-plans'
+import { Route as AdminGuideRouteImport } from './routes/admin.guide'
 import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
 import { Route as AdminIntegrationsRouteImport } from './routes/admin.integrations'
 import { Route as AdminMarketingRouteImport } from './routes/admin.marketing'
@@ -145,6 +146,11 @@ const AdminFloorPlansRoute = AdminFloorPlansRouteImport.update({
   path: '/floor-plans',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminGuideRoute = AdminGuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminInquiriesRoute = AdminInquiriesRouteImport.update({
   id: '/inquiries',
   path: '/inquiries',
@@ -212,6 +218,7 @@ export interface FileRoutesByFullPath {
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
+  '/admin/guide': typeof AdminGuideRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -242,6 +249,7 @@ export interface FileRoutesByTo {
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
+  '/admin/guide': typeof AdminGuideRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -275,6 +283,7 @@ export interface FileRoutesById {
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
+  '/admin/guide': typeof AdminGuideRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
   '/admin/integrations': typeof AdminIntegrationsRoute
   '/admin/marketing': typeof AdminMarketingRoute
@@ -309,6 +318,7 @@ export interface FileRouteTypes {
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
+    | '/admin/guide'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -339,6 +349,7 @@ export interface FileRouteTypes {
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
+    | '/admin/guide'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -371,6 +382,7 @@ export interface FileRouteTypes {
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
+    | '/admin/guide'
     | '/admin/inquiries'
     | '/admin/integrations'
     | '/admin/marketing'
@@ -552,6 +564,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminFloorPlansRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/guide': {
+      id: '/admin/guide'
+      path: '/guide'
+      fullPath: '/admin/guide'
+      preLoaderRoute: typeof AdminGuideRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/inquiries': {
       id: '/admin/inquiries'
       path: '/inquiries'
@@ -622,6 +641,7 @@ interface AdminRouteChildren {
   AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
   AdminCareersRoute: typeof AdminCareersRoute
   AdminFloorPlansRoute: typeof AdminFloorPlansRoute
+  AdminGuideRoute: typeof AdminGuideRoute
   AdminInquiriesRoute: typeof AdminInquiriesRoute
   AdminIntegrationsRoute: typeof AdminIntegrationsRoute
   AdminMarketingRoute: typeof AdminMarketingRoute
@@ -636,6 +656,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAnnouncementsRoute: AdminAnnouncementsRoute,
   AdminCareersRoute: AdminCareersRoute,
   AdminFloorPlansRoute: AdminFloorPlansRoute,
+  AdminGuideRoute: AdminGuideRoute,
   AdminInquiriesRoute: AdminInquiriesRoute,
   AdminIntegrationsRoute: AdminIntegrationsRoute,
   AdminMarketingRoute: AdminMarketingRoute,
