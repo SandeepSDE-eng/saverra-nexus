@@ -149,7 +149,7 @@ function AdminFloorPlans() {
       {isLoading ? (
         <p className="text-muted-foreground">Loading…</p>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-border bg-card">
+        <div className="overflow-x-auto rounded-xl border border-border bg-card">
           <table className="w-full text-sm">
             <thead className="bg-secondary/70 text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
