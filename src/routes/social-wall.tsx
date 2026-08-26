@@ -7,6 +7,14 @@ import { getRentalsFn } from "@/api/rentals";
 import { StatusStories } from "@/components/site/StatusStories";
 
 export const Route = createFileRoute("/social-wall")({
+  head: () => ({
+    meta: [
+      { title: "Social Gallery & Media | Saverra Realty" },
+      { name: "description", content: "Explore video property walkthroughs, client stories, and latest project updates on the Saverra Realty social wall." },
+      { property: "og:title", content: "Social Gallery & Media | Saverra Realty" },
+      { property: "og:description", content: "Property walkthroughs, customer testimonials, and real estate highlights from Saverra Realty." },
+    ],
+  }),
   component: SocialWall,
 });
 

@@ -1,7 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FeaturedProjects } from "@/components/site/FeaturedProjects";
 
-export const Route = createFileRoute("/projects/")({ component: ProjectsPage });
+export const Route = createFileRoute("/projects/")({
+  head: () => ({
+    meta: [
+      { title: "Luxury Projects & Properties for Sale | Saverra Realty" },
+      { name: "description", content: "Explore premium 1, 2 & 3 BHK luxury flats and commercial spaces in Ghatkopar East, Chembur, and Central Mumbai by Saverra Realty." },
+      { property: "og:title", content: "Luxury Projects & Properties for Sale | Saverra Realty" },
+      { property: "og:description", content: "Explore premium residential and commercial developments by Saverra Realty in Ghatkopar East & Mumbai." },
+    ],
+  }),
+  component: ProjectsPage,
+});
 
 function ProjectsPage() {
   return (

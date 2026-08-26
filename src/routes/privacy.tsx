@@ -1,7 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Shield, Lock, Eye, FileText } from "lucide-react";
 
-export const Route = createFileRoute("/privacy")({ component: PrivacyPolicy });
+export const Route = createFileRoute("/privacy")({
+  head: () => ({
+    meta: [
+      { title: "Privacy Policy | Saverra Realty" },
+      { name: "description", content: "Read the official Privacy Policy of Saverra Realty. Learn how we safeguard your personal information and maintain total transparency." },
+      { property: "og:title", content: "Privacy Policy | Saverra Realty" },
+    ],
+  }),
+  component: PrivacyPolicy,
+});
 
 function PrivacyPolicy() {
   return (

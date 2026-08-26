@@ -8,7 +8,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export const Route = createFileRoute("/contact")({ component: Contact });
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Contact Us | Saverra Realty — Ghatkopar East, Mumbai" },
+      { name: "description", content: "Get in touch with Saverra Realty in Ghatkopar East, Mumbai. Contact our property experts for luxury apartment inquiries, site visits, and consultation." },
+      { property: "og:title", content: "Contact Us | Saverra Realty — Ghatkopar East, Mumbai" },
+      { property: "og:description", content: "Get in touch with Saverra Realty in Ghatkopar East, Mumbai. Contact our property experts today." },
+    ],
+  }),
+  component: Contact,
+});
 
 function Contact() {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", message: "" });

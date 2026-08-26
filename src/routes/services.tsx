@@ -2,7 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { ChevronsRight } from "lucide-react";
 
-export const Route = createFileRoute("/services")({ component: Services });
+export const Route = createFileRoute("/services")({
+  head: () => ({
+    meta: [
+      { title: "Real Estate Advisory Services | Saverra Realty" },
+      { name: "description", content: "Saverra Realty offers end-to-end real estate consulting, property buying & selling, lease negotiations, and legal documentation in Ghatkopar East." },
+      { property: "og:title", content: "Real Estate Advisory Services | Saverra Realty" },
+      { property: "og:description", content: "End-to-end real estate consulting and property advisory services in Ghatkopar East, Mumbai." },
+    ],
+  }),
+  component: Services,
+});
 
 const SERVICES_DATA = [
   {

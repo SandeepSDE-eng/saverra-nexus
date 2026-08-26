@@ -1,7 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FileText, AlertCircle, ShieldAlert, Gavel } from "lucide-react";
 
-export const Route = createFileRoute("/terms")({ component: TermsConditions });
+export const Route = createFileRoute("/terms")({
+  head: () => ({
+    meta: [
+      { title: "Terms & Conditions | Saverra Realty" },
+      { name: "description", content: "Review the official Terms of Service and operational guidelines for Saverra Realty real estate advisory services." },
+      { property: "og:title", content: "Terms & Conditions | Saverra Realty" },
+    ],
+  }),
+  component: TermsConditions,
+});
 
 function TermsConditions() {
   return (

@@ -2,7 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Target, Trophy, Lightbulb, Users, ArrowRight, HeartHandshake, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/about")({ component: About });
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About Us | Saverra Realty — Premier Real Estate Firm in Mumbai" },
+      { name: "description", content: "Learn about Saverra Realty, Ghatkopar East's leading RERA-registered real estate consultancy. Delivering transparent property advisory and luxury solutions." },
+      { property: "og:title", content: "About Us | Saverra Realty — Premier Real Estate Firm in Mumbai" },
+      { property: "og:description", content: "Learn about Saverra Realty, Ghatkopar East's leading RERA-registered real estate consultancy." },
+    ],
+  }),
+  component: About,
+});
 
 function About() {
   return (

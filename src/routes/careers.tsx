@@ -18,7 +18,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-export const Route = createFileRoute("/careers")({ component: Careers });
+export const Route = createFileRoute("/careers")({
+  head: () => ({
+    meta: [
+      { title: "Careers & Opportunities | Saverra Realty" },
+      { name: "description", content: "Build your career with Saverra Realty. Explore job opportunities in real estate consulting, client relations, and property management in Mumbai." },
+      { property: "og:title", content: "Careers & Opportunities | Saverra Realty" },
+    ],
+  }),
+  component: Careers,
+});
 
 const formSchema = z.object({
   first_name: z.string().min(2, "First name is required"),
