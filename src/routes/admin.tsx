@@ -61,6 +61,7 @@ function AdminLayout() {
 
   const nav = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/admin/ai-studio", label: "AI Video Studio", icon: Video },
     { href: "/admin/guide", label: "Website Guide & Manual", icon: BookOpen },
     { href: "/admin/themes", label: "Theme & Colors", icon: Palette },
     { href: "/admin/announcements", label: "Announcements", icon: Share2 },

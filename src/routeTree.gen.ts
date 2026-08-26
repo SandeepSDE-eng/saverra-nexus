@@ -27,6 +27,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SocialWallRouteImport } from './routes/social-wall'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAiStudioRouteImport } from './routes/admin.ai-studio'
 import { Route as AdminAnnouncementsRouteImport } from './routes/admin.announcements'
 import { Route as AdminCareersRouteImport } from './routes/admin.careers'
 import { Route as AdminFloorPlansRouteImport } from './routes/admin.floor-plans'
@@ -131,6 +132,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAiStudioRoute = AdminAiStudioRouteImport.update({
+  id: '/ai-studio',
+  path: '/ai-studio',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminAnnouncementsRoute = AdminAnnouncementsRouteImport.update({
   id: '/announcements',
   path: '/announcements',
@@ -215,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-studio': typeof AdminAiStudioRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -246,6 +253,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-studio': typeof AdminAiStudioRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -280,6 +288,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/social-wall': typeof SocialWallRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-studio': typeof AdminAiStudioRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/careers': typeof AdminCareersRoute
   '/admin/floor-plans': typeof AdminFloorPlansRoute
@@ -315,6 +324,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/admin/ai-studio'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -346,6 +356,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/admin/ai-studio'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -379,6 +390,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/social-wall'
     | '/terms'
+    | '/admin/ai-studio'
     | '/admin/announcements'
     | '/admin/careers'
     | '/admin/floor-plans'
@@ -543,6 +555,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/ai-studio': {
+      id: '/admin/ai-studio'
+      path: '/ai-studio'
+      fullPath: '/admin/ai-studio'
+      preLoaderRoute: typeof AdminAiStudioRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/announcements': {
       id: '/admin/announcements'
       path: '/announcements'
@@ -638,6 +657,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAiStudioRoute: typeof AdminAiStudioRoute
   AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
   AdminCareersRoute: typeof AdminCareersRoute
   AdminFloorPlansRoute: typeof AdminFloorPlansRoute
@@ -653,6 +673,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAiStudioRoute: AdminAiStudioRoute,
   AdminAnnouncementsRoute: AdminAnnouncementsRoute,
   AdminCareersRoute: AdminCareersRoute,
   AdminFloorPlansRoute: AdminFloorPlansRoute,
