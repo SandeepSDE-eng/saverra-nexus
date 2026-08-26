@@ -25,7 +25,12 @@ import {
   Trash2,
   Instagram,
   Youtube,
-  Tv
+  Tv,
+  Upload,
+  Link as LinkIcon,
+  Image as ImageIcon,
+  FileVideo,
+  Edit3
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,8 +45,20 @@ export const Route = createFileRoute("/admin/ai-studio")({
   component: AIStudioPage,
 });
 
-// Sample properties with curated high-res interior/exterior gallery photos
-const PRESET_PROPERTIES = [
+interface PropertyConfig {
+  id: string;
+  name: string;
+  location: string;
+  type: string;
+  price: string;
+  rera: string;
+  highlights: string[];
+  images: string[];
+  customVideoUrl?: string;
+}
+
+// Preset catalog properties
+const PRESET_PROPERTIES: PropertyConfig[] = [
   {
     id: "orient-odyssey",
     name: "Orient Odyssey",
@@ -90,17 +107,29 @@ const PRESET_PROPERTIES = [
 ];
 
 function AIStudioPage() {
-  const [selectedProperty, setSelectedProperty] = useState(PRESET_PROPERTIES[0]);
+  const [propertiesList, setPropertiesList] = useState<PropertyConfig[]>(PRESET_PROPERTIES);
+  const [selectedProperty, setSelectedProperty] = useState<PropertyConfig>(PRESET_PROPERTIES[0]);
+  const [isCustomMode, setIsCustomMode] = useState(false);
+  
+  // Custom Property Form State
+  const [customName, setCustomName] = useState("");
+  const [customLocation, setCustomLocation] = useState("Ghatkopar East, Mumbai");
+  const [customType, setCustomType] = useState("Luxury 2 & 3 BHK");
+  const [customPrice, setCustomPrice] = useState("₹ 1.85 Cr Onwards");
+  const [customHighlights, setCustomHighlights] = useState("Prime Location, Balcony Deck, Rooftop Gym, RERA Verified");
+  const [customVideoUrl, setCustomVideoUrl] = useState("");
+  const [customImages, setCustomImages] = useState<string[]>([]);
+  
+  // Video & Editor Settings
   const [format, setFormat] = useState<'reel' | 'landscape'>('reel');
   const [language, setLanguage] = useState<'hinglish' | 'hindi' | 'english'>('hinglish');
-  const [activeTab, setActiveTab] = useState<'generator' | 'branding' | 'scenes' | 'preview'>('generator');
+  const [activeTab, setActiveTab] = useState<'generator' | 'upload' | 'branding' | 'scenes'>('generator');
   
   // Branding & Overlays Settings
   const [showWatermark, setShowWatermark] = useState(true);
   const [showCaptions, setShowCaptions] = useState(true);
   const [showContactBar, setShowContactBar] = useState(true);
   const [showReraBadge, setShowReraBadge] = useState(true);
-  const [audioEnabled, setAudioEnabled] = useState(true);
   const [speechEnabled, setSpeechEnabled] = useState(true);
   
   // Script and Scenes
@@ -116,6 +145,9 @@ function AIStudioPage() {
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
+  const videoElementRef = useRef<HTMLVideoElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const videoFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Initialize Sample Script on Load
   useEffect(() => {
@@ -134,11 +166,11 @@ function AIStudioPage() {
     try {
       const res = await generateAIScriptFn({
         data: {
-          propertyName: selectedProperty.name,
-          propertyType: selectedProperty.type,
-          location: selectedProperty.location,
-          price: selectedProperty.price,
-          highlights: selectedProperty.highlights,
+          propertyName: selectedProperty.name || "Luxury Property",
+          propertyType: selectedProperty.type || "Apartment",
+          location: selectedProperty.location || "Ghatkopar East, Mumbai",
+          price: selectedProperty.price || "Price on Request",
+          highlights: selectedProperty.highlights || [],
           language,
           format
         }
@@ -164,6 +196,7 @@ function AIStudioPage() {
           if (next >= totalDuration) {
             setIsPlaying(false);
             if (synthRef.current) synthRef.current.cancel();
+            if (videoElementRef.current) videoElementRef.current.pause();
             return 0;
           }
           return next;
@@ -172,6 +205,7 @@ function AIStudioPage() {
     } else {
       if (timerRef.current) clearInterval(timerRef.current);
       if (synthRef.current) synthRef.current.cancel();
+      if (videoElementRef.current) videoElementRef.current.pause();
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -189,13 +223,11 @@ function AIStudioPage() {
     
     if (idx !== currentSceneIdx) {
       setCurrentSceneIdx(idx);
-      // Speak the narration text for this scene if enabled
       if (isPlaying && speechEnabled && synthRef.current && script.scenes[idx]) {
         synthRef.current.cancel();
         const utterance = new SpeechSynthesisUtterance(script.scenes[idx].narrationText);
         utterance.rate = 1.0;
         utterance.pitch = 1.05;
-        // Try finding Indian English or Hindi voice
         const voices = synthRef.current.getVoices();
         const voice = voices.find(v => v.lang.includes("hi") || v.lang.includes("en-IN") || v.name.includes("India"));
         if (voice) utterance.voice = voice;
@@ -206,9 +238,13 @@ function AIStudioPage() {
 
   const togglePlay = () => {
     if (!isPlaying) {
-      if (currentTime >= totalDuration - 1) setCurrentTime(0);
+      if (currentTime >= totalDuration - 1) {
+        setCurrentTime(0);
+        if (videoElementRef.current) videoElementRef.current.currentTime = 0;
+      }
       setIsPlaying(true);
-      // Trigger voice for scene 0
+      if (videoElementRef.current) videoElementRef.current.play();
+
       if (speechEnabled && synthRef.current && script && script.scenes[currentSceneIdx]) {
         synthRef.current.cancel();
         const utterance = new SpeechSynthesisUtterance(script.scenes[currentSceneIdx].narrationText);
@@ -220,6 +256,7 @@ function AIStudioPage() {
       }
     } else {
       setIsPlaying(false);
+      if (videoElementRef.current) videoElementRef.current.pause();
       if (synthRef.current) synthRef.current.cancel();
     }
   };
@@ -228,7 +265,70 @@ function AIStudioPage() {
     setIsPlaying(false);
     setCurrentTime(0);
     setCurrentSceneIdx(0);
+    if (videoElementRef.current) {
+      videoElementRef.current.pause();
+      videoElementRef.current.currentTime = 0;
+    }
     if (synthRef.current) synthRef.current.cancel();
+  };
+
+  // Upload Local Video File
+  const handleVideoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const url = URL.createObjectURL(file);
+    setCustomVideoUrl(url);
+    setSelectedProperty(prev => ({
+      ...prev,
+      customVideoUrl: url
+    }));
+    toast.success(`Custom Video "${file.name}" loaded into AI Studio!`);
+  };
+
+  // Upload Local Photos Gallery
+  const handleImageFilesUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    const newUrls: string[] = [];
+    for (let i = 0; i < files.length; i++) {
+      newUrls.push(URL.createObjectURL(files[i]));
+    }
+
+    const updated = [...customImages, ...newUrls];
+    setCustomImages(updated);
+    setSelectedProperty(prev => ({
+      ...prev,
+      images: updated.length > 0 ? updated : prev.images
+    }));
+    toast.success(`${files.length} property photos uploaded successfully!`);
+  };
+
+  // Save Custom Property
+  const handleCreateCustomProperty = () => {
+    if (!customName.trim()) {
+      toast.error("Please enter a Property Name");
+      return;
+    }
+
+    const highlightsArr = customHighlights.split(",").map(s => s.trim()).filter(Boolean);
+    const newProp: PropertyConfig = {
+      id: `custom-${Date.now()}`,
+      name: customName.trim(),
+      location: customLocation.trim(),
+      type: customType.trim(),
+      price: customPrice.trim(),
+      rera: "Verified",
+      highlights: highlightsArr.length > 0 ? highlightsArr : ["Prime Location", "Luxury Balcony"],
+      images: customImages.length > 0 ? customImages : PRESET_PROPERTIES[0].images,
+      customVideoUrl: customVideoUrl || undefined
+    };
+
+    setPropertiesList([newProp, ...propertiesList]);
+    setSelectedProperty(newProp);
+    setIsCustomMode(false);
+    toast.success(`Custom property "${newProp.name}" created! Generating AI video script...`);
   };
 
   const handlePublishToSocial = async () => {
@@ -261,41 +361,40 @@ function AIStudioPage() {
     setTimeout(() => setCopiedCaption(false), 2500);
   };
 
-  const activeImage = selectedProperty.images[currentSceneIdx % selectedProperty.images.length];
+  const activeImage = selectedProperty.images[currentSceneIdx % selectedProperty.images.length] || selectedProperty.images[0];
   const activeScene = script?.scenes[currentSceneIdx];
 
   return (
     <div className="space-y-6 pb-20">
       
-      {/* Top Header */}
+      {/* Top Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[color:var(--navy-deep)] text-white p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/20 border border-gold/40 px-3 py-0.5 text-[11px] font-semibold text-gold uppercase tracking-wider">
-              <Sparkles className="size-3.5" /> AI Media Engine
+              <Sparkles className="size-3.5" /> AI Media & Video Editor
             </span>
             <Badge variant="outline" className="text-white border-white/20 text-[10px]">
-              v2.4 Pro
+              Custom Video + Auto Branding
             </Badge>
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
             AI Video & Reels Studio
           </h1>
           <p className="text-white/70 text-xs sm:text-sm mt-1 max-w-xl">
-            Generate high-converting luxury property walkthroughs, YouTube Shorts, and Instagram Reels with AI scriptwriting, voiceover & brand watermarks.
+            Upload custom videos or flat photos, and let AI edit them with auto Saverra branding, synchronized gold captions, Hindi/English speech, and 1-click publishing.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-2 relative z-10">
           <Button
             variant="gold"
-            onClick={handleGenerateScript}
-            disabled={isGenerating}
+            onClick={() => setActiveTab('upload')}
             className="shadow-lg font-semibold tracking-wider text-xs uppercase"
           >
-            <Wand2 className="size-3.5 mr-1.5" />
-            {isGenerating ? "Generating AI Reel..." : "Regenerate AI Reel"}
+            <Upload className="size-3.5 mr-1.5" />
+            Upload Custom Video / Photos
           </Button>
         </div>
       </div>
@@ -310,7 +409,7 @@ function AIStudioPage() {
           <div className="flex bg-white rounded-xl p-1.5 border border-border shadow-sm gap-1 overflow-x-auto">
             <button
               onClick={() => setActiveTab('generator')}
-              className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                 activeTab === 'generator'
                   ? 'bg-[color:var(--navy-deep)] text-white shadow-md'
                   : 'text-muted-foreground hover:bg-muted'
@@ -319,8 +418,18 @@ function AIStudioPage() {
               <Wand2 className="size-3.5" /> Property & Script
             </button>
             <button
+              onClick={() => setActiveTab('upload')}
+              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+                activeTab === 'upload'
+                  ? 'bg-[color:var(--navy-deep)] text-white shadow-md'
+                  : 'text-muted-foreground hover:bg-muted'
+              }`}
+            >
+              <Upload className="size-3.5" /> Custom Video / Photos
+            </button>
+            <button
               onClick={() => setActiveTab('branding')}
-              className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                 activeTab === 'branding'
                   ? 'bg-[color:var(--navy-deep)] text-white shadow-md'
                   : 'text-muted-foreground hover:bg-muted'
@@ -330,7 +439,7 @@ function AIStudioPage() {
             </button>
             <button
               onClick={() => setActiveTab('scenes')}
-              className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wide transition-all ${
                 activeTab === 'scenes'
                   ? 'bg-[color:var(--navy-deep)] text-white shadow-md'
                   : 'text-muted-foreground hover:bg-muted'
@@ -344,19 +453,31 @@ function AIStudioPage() {
           {activeTab === 'generator' && (
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-border/70 shadow-sm space-y-6">
               
-              {/* Quick Select Preset Properties */}
+              {/* Select Active Property or Add New */}
               <div>
-                <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 block">
-                  1. Select Property
-                </Label>
+                <div className="flex items-center justify-between mb-3">
+                  <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                    1. Choose Active Property
+                  </Label>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setActiveTab('upload')}
+                    className="h-7 text-[11px] gap-1 border-gold text-gold hover:bg-gold/10"
+                  >
+                    <Plus className="size-3" /> Create New Property Video
+                  </Button>
+                </div>
+
                 <div className="grid sm:grid-cols-3 gap-3">
-                  {PRESET_PROPERTIES.map((prop) => (
+                  {propertiesList.map((prop) => (
                     <button
                       key={prop.id}
                       onClick={() => {
                         setSelectedProperty(prop);
                         setCurrentTime(0);
                         setCurrentSceneIdx(0);
+                        if (prop.customVideoUrl) setCustomVideoUrl(prop.customVideoUrl);
                       }}
                       className={`text-left p-3.5 rounded-xl border transition-all ${
                         selectedProperty.id === prop.id
@@ -364,7 +485,14 @@ function AIStudioPage() {
                           : 'border-border hover:border-border/80 bg-muted/20'
                       }`}
                     >
-                      <p className="font-bold text-xs text-primary truncate">{prop.name}</p>
+                      <div className="flex items-center justify-between">
+                        <p className="font-bold text-xs text-primary truncate">{prop.name}</p>
+                        {prop.customVideoUrl && (
+                          <Badge variant="outline" className="text-[8px] bg-blue-50 text-blue-700 border-blue-200">
+                            Video
+                          </Badge>
+                        )}
+                      </div>
                       <p className="text-[11px] text-muted-foreground truncate mt-0.5">{prop.location}</p>
                       <p className="text-[10px] font-semibold text-gold mt-2">{prop.price}</p>
                     </button>
@@ -376,7 +504,7 @@ function AIStudioPage() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2 block">
-                    Video Format
+                    Video Aspect Ratio
                   </Label>
                   <div className="grid grid-cols-2 gap-2">
                     <button
@@ -437,9 +565,15 @@ function AIStudioPage() {
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold flex items-center gap-1.5">
                       <Sparkles className="size-3" /> AI Opening Hook
                     </span>
-                    <Badge variant="outline" className="text-[10px] bg-white">
-                      Instant Engagement
-                    </Badge>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={handleGenerateScript}
+                      disabled={isGenerating}
+                      className="h-6 text-[10px] text-primary"
+                    >
+                      {isGenerating ? "Regenerating..." : "Regenerate Script"}
+                    </Button>
                   </div>
                   <p className="text-sm font-medium text-primary italic">
                     "{script.hook}"
@@ -449,7 +583,198 @@ function AIStudioPage() {
             </div>
           )}
 
-          {/* Tab 2: Brand Overlays & Watermarking */}
+          {/* Tab 2: Custom Video & Photos Upload */}
+          {activeTab === 'upload' && (
+            <div className="bg-white p-6 md:p-8 rounded-2xl border border-border/70 shadow-sm space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-display text-base font-bold text-primary">
+                    Upload Custom Video or Photos
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    Upload your phone recorded property video or flat photos to edit with AI.
+                  </p>
+                </div>
+                <Badge variant="outline" className="bg-gold/10 text-gold border-gold/30 text-[10px]">
+                  Custom Mode
+                </Badge>
+              </div>
+
+              {/* Option A: Direct Video Upload / URL */}
+              <div className="p-5 rounded-2xl border-2 border-dashed border-border/80 bg-muted/20 space-y-4">
+                <div className="flex items-center gap-2">
+                  <FileVideo className="size-4 text-gold" />
+                  <Label className="text-xs font-bold uppercase tracking-wider text-primary">
+                    Option 1: Upload Raw Video File (MP4, MOV, WebM)
+                  </Label>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <input
+                    type="file"
+                    ref={videoFileInputRef}
+                    accept="video/*"
+                    onChange={handleVideoFileUpload}
+                    className="hidden"
+                  />
+                  <Button
+                    variant="outline"
+                    onClick={() => videoFileInputRef.current?.click()}
+                    className="w-full sm:w-auto text-xs font-semibold gap-2 border-primary/20 hover:bg-primary/5"
+                  >
+                    <Upload className="size-3.5" /> Select Video File From PC / Phone
+                  </Button>
+
+                  <span className="text-xs text-muted-foreground">or</span>
+
+                  <Input
+                    placeholder="Or paste Direct Video URL / MP4 link..."
+                    value={customVideoUrl}
+                    onChange={(e) => {
+                      setCustomVideoUrl(e.target.value);
+                      setSelectedProperty(prev => ({ ...prev, customVideoUrl: e.target.value }));
+                    }}
+                    className="flex-1 h-9 text-xs bg-white"
+                  />
+                </div>
+
+                {customVideoUrl && (
+                  <div className="flex items-center justify-between bg-emerald-50 text-emerald-800 p-2.5 rounded-lg text-xs">
+                    <span className="font-medium flex items-center gap-1.5">
+                      <Check className="size-3.5 text-emerald-600" /> Custom Video Loaded
+                    </span>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => {
+                        setCustomVideoUrl("");
+                        setSelectedProperty(prev => ({ ...prev, customVideoUrl: undefined }));
+                      }}
+                      className="h-6 text-red-600 hover:text-red-700 text-xs p-1"
+                    >
+                      Remove Video
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {/* Option B: Photo Gallery Upload */}
+              <div className="p-5 rounded-2xl border-2 border-dashed border-border/80 bg-muted/20 space-y-4">
+                <div className="flex items-center gap-2">
+                  <ImageIcon className="size-4 text-gold" />
+                  <Label className="text-xs font-bold uppercase tracking-wider text-primary">
+                    Option 2: Upload Property Photos (Creates Walkthrough)
+                  </Label>
+                </div>
+
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageFilesUpload}
+                  className="hidden"
+                />
+
+                <Button
+                  variant="outline"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="text-xs font-semibold gap-2 border-primary/20 hover:bg-primary/5"
+                >
+                  <Upload className="size-3.5" /> Upload Photos (Living Room, Bedroom, Balcony)
+                </Button>
+
+                {customImages.length > 0 && (
+                  <div className="grid grid-cols-4 gap-2 pt-2">
+                    {customImages.map((img, i) => (
+                      <div key={i} className="relative aspect-video rounded-lg overflow-hidden border border-border group">
+                        <img src={img} alt="Uploaded" className="w-full h-full object-cover" />
+                        <button
+                          onClick={() => {
+                            const filtered = customImages.filter((_, idx) => idx !== i);
+                            setCustomImages(filtered);
+                            setSelectedProperty(prev => ({ ...prev, images: filtered.length > 0 ? filtered : PRESET_PROPERTIES[0].images }));
+                          }}
+                          className="absolute top-1 right-1 p-1 bg-black/70 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="size-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Custom Property Details Input Form */}
+              <div className="border-t border-border pt-5 space-y-4">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-muted-foreground">
+                  Property Information for AI Scriptwriting
+                </h4>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Property / Project Name *</Label>
+                    <Input
+                      placeholder="e.g. Godrej Horizon / Luxury 3 BHK"
+                      value={customName}
+                      onChange={(e) => setCustomName(e.target.value)}
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Location</Label>
+                    <Input
+                      placeholder="e.g. Tilak Road, Ghatkopar East"
+                      value={customLocation}
+                      onChange={(e) => setCustomLocation(e.target.value)}
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Configuration</Label>
+                    <Input
+                      placeholder="e.g. 2 & 3 BHK Balcony Homes"
+                      value={customType}
+                      onChange={(e) => setCustomType(e.target.value)}
+                      className="h-10 text-xs"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Price</Label>
+                    <Input
+                      placeholder="e.g. ₹ 2.15 Cr Onwards"
+                      value={customPrice}
+                      onChange={(e) => setCustomPrice(e.target.value)}
+                      className="h-10 text-xs"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs">Key Selling Highlights (Comma Separated)</Label>
+                  <Input
+                    placeholder="e.g. Uninterrupted Views, Rooftop Deck, 5 Min Metro, Grand Lobby"
+                    value={customHighlights}
+                    onChange={(e) => setCustomHighlights(e.target.value)}
+                    className="h-10 text-xs"
+                  />
+                </div>
+
+                <Button
+                  variant="gold"
+                  onClick={handleCreateCustomProperty}
+                  className="w-full text-xs font-bold uppercase tracking-wider shadow-md"
+                >
+                  <Sparkles className="size-3.5 mr-2" /> Save & Generate AI Video Walkthrough
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 3: Brand Overlays & Watermarking */}
           {activeTab === 'branding' && (
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-border/70 shadow-sm space-y-5">
               <h3 className="font-display text-base font-bold text-primary">
@@ -535,14 +860,33 @@ function AIStudioPage() {
             </div>
           )}
 
-          {/* Tab 3: Storyboard & Scenes List */}
+          {/* Tab 4: Storyboard & Scenes Editor */}
           {activeTab === 'scenes' && script && (
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-border/70 shadow-sm space-y-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="font-display text-base font-bold text-primary">
-                  Storyboard Sequence ({script.scenes.length} Scenes)
-                </h3>
-                <span className="text-xs text-muted-foreground">Click scene to jump timeline</span>
+                <div>
+                  <h3 className="font-display text-base font-bold text-primary">
+                    Storyboard Sequence ({script.scenes.length} Scenes)
+                  </h3>
+                  <p className="text-xs text-muted-foreground">Edit narration text or click to jump timeline.</p>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => {
+                    const newScene = {
+                      time: "0:25 - 0:30",
+                      visualDescription: "Closing CTA Shot",
+                      narrationText: `Visit saverrarealty.com or call +91 86918 66691 to book your site visit for ${selectedProperty.name}!`,
+                      onScreenCaption: `Contact Saverra Realty`
+                    };
+                    setScript({ ...script, scenes: [...script.scenes, newScene] });
+                    toast.success("New scene added to storyboard!");
+                  }}
+                  className="h-8 text-xs gap-1 border-gold text-gold"
+                >
+                  <Plus className="size-3" /> Add Scene
+                </Button>
               </div>
 
               <div className="space-y-3">
@@ -560,13 +904,33 @@ function AIStudioPage() {
                         : 'border-border hover:bg-muted/30'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center justify-between mb-2">
                       <Badge variant="outline" className={`text-[10px] ${currentSceneIdx === i ? 'bg-gold text-black font-bold' : ''}`}>
                         Scene {i + 1} ({sc.time})
                       </Badge>
-                      <span className="text-[11px] text-gold font-semibold uppercase">{sc.onScreenCaption}</span>
+                      <Input
+                        value={sc.onScreenCaption}
+                        onChange={(e) => {
+                          const updated = [...script.scenes];
+                          updated[i].onScreenCaption = e.target.value;
+                          setScript({ ...script, scenes: updated });
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                        placeholder="On-Screen Caption"
+                        className="h-7 text-xs font-bold text-gold max-w-[220px] bg-white"
+                      />
                     </div>
-                    <p className="text-xs text-primary font-medium">{sc.narrationText}</p>
+                    <Textarea
+                      value={sc.narrationText}
+                      onChange={(e) => {
+                        const updated = [...script.scenes];
+                        updated[i].narrationText = e.target.value;
+                        setScript({ ...script, scenes: updated });
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      placeholder="Narration Text"
+                      className="text-xs text-primary font-medium resize-none min-h-[55px] bg-white"
+                    />
                   </div>
                 ))}
               </div>
@@ -576,7 +940,7 @@ function AIStudioPage() {
           {/* Video Actions & Copy Bar */}
           <div className="bg-white p-6 rounded-2xl border border-border/70 shadow-sm space-y-4">
             <h4 className="font-bold text-xs uppercase tracking-wider text-muted-foreground">
-              Publish & Distribution Actions
+              Publish & Social Distribution Actions
             </h4>
             <div className="flex flex-wrap gap-3">
               <Button
@@ -622,20 +986,31 @@ function AIStudioPage() {
                   : 'w-full aspect-[16/9]'
               }`}
             >
-              {/* Background Image with Ken-Burns Motion Animation */}
-              <div className="absolute inset-0 overflow-hidden">
-                <img
-                  src={activeImage}
-                  alt={selectedProperty.name}
-                  className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-out ${
-                    isPlaying ? 'scale-115 translate-x-1' : 'scale-100'
-                  }`}
-                  style={{
-                    filter: 'brightness(0.92) contrast(1.05)'
-                  }}
+              {/* Media Layer: Custom Video OR Smooth Image Slideshow */}
+              {selectedProperty.customVideoUrl ? (
+                <video
+                  ref={videoElementRef}
+                  src={selectedProperty.customVideoUrl}
+                  playsInline
+                  loop
+                  muted
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60 pointer-events-none" />
-              </div>
+              ) : (
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    src={activeImage}
+                    alt={selectedProperty.name}
+                    className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-out ${
+                      isPlaying ? 'scale-115 translate-x-1' : 'scale-100'
+                    }`}
+                    style={{
+                      filter: 'brightness(0.92) contrast(1.05)'
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60 pointer-events-none" />
+                </div>
+              )}
 
               {/* OVERLAY 1: Top Watermark & Saverra Logo */}
               {showWatermark && (
