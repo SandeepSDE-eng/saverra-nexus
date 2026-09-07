@@ -38,10 +38,7 @@ async function ensureSchemaUpgraded(pool: any) {
   if (hasUpgradedSchema) return;
   try {
     await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
-    const [check]: any = await pool.query("SELECT id FROM projects WHERE slug = 'sai-shankar-sai-life'");
-    if (!check || check.length === 0) {
-      await autoSyncProjects(pool);
-    }
+    await autoSyncProjects(pool);
     hasUpgradedSchema = true;
   } catch (err) {
     hasUpgradedSchema = true;

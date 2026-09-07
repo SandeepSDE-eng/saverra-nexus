@@ -351,7 +351,7 @@ export const MOCK_PROJECTS = [
     "price_display": "₹ 2.80 Cr Onwards",
     "price_numeric": 28000000,
     "status": "new-launch",
-    "cover_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
+    "cover_image": "https://www.miclaaradhyasonepark.com/assets/img/deskb1.webp",
     "bhk_options": "3, 4 & 5 BHK",
     "min_bhk": 3,
     "max_bhk": 5,
@@ -360,10 +360,11 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Ultra Luxury High-Rise on 60ft Road",
     "gallery": [
-      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+      "https://www.miclaaradhyasonepark.com/assets/img/deskb1.webp",
+      "https://www.miclaaradhyasonepark.com/assets/img/deskb2.webp",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80"
     ],
     "highlights": [
       "Rooftop Infinity Sky Pool",
