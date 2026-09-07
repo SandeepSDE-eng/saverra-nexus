@@ -11,7 +11,7 @@ const allProjects = [
     price_display: "₹ 1.65 Cr Onwards",
     price_numeric: 16500000,
     status: "under-construction",
-    cover_image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+    cover_image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
     bhk_options: "2, 3 BHK & Jodi Options (4, 5 BHK)",
     min_bhk: 2,
     max_bhk: 5,
@@ -20,10 +20,10 @@ const allProjects = [
     category: "Residential",
     tagline: "3 Magnificent Wings of Modern Luxury in Pant Nagar",
     gallery: JSON.stringify([
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
     ]),
     highlights: JSON.stringify([
       "3 Grand Wings Spanning a 0.77-Acre Land Parcel",
@@ -132,7 +132,7 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://silverhouse.business/assets/img/Silver-House.jpg",
       "https://silverhouse.business/assets/img/banner/desk1.jpg",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
     ]),
     highlights: JSON.stringify([
@@ -157,7 +157,7 @@ const allProjects = [
     price_display: "₹ 95 Lac Onwards",
     price_numeric: 9500000,
     status: "under-construction",
-    cover_image: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80",
+    cover_image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1200&q=80",
     bhk_options: "Smart Commercial Suites & Retail Outlets",
     min_bhk: 1,
     max_bhk: 1,
@@ -166,10 +166,10 @@ const allProjects = [
     category: "Commercial",
     tagline: "Next-Gen Commercial & Retail Hub by Alag Group",
     gallery: JSON.stringify([
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80"
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80"
     ]),
     highlights: JSON.stringify([
       "Grade-A Commercial Infrastructure by Reputed Alag Group",
@@ -203,9 +203,9 @@ const allProjects = [
     tagline: "20-Storey Architectural Wonder in Heart of Pant Nagar",
     gallery: JSON.stringify([
       "https://shubhamartesiaghatkopareast.in/assets/img/common/metaimage.jpg",
-      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80"
     ]),
     highlights: JSON.stringify([
       "Magnificent 20-Storey Architectural High-Rise",
@@ -231,7 +231,7 @@ const allProjects = [
     price_display: "₹ 2.80 Cr Onwards",
     price_numeric: 28000000,
     status: "new-launch",
-    cover_image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+    cover_image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
     bhk_options: "3, 4 & 5 BHK",
     min_bhk: 3,
     max_bhk: 5,
@@ -240,10 +240,10 @@ const allProjects = [
     category: "Residential",
     tagline: "Ultra Luxury High-Rise on 60ft Road",
     gallery: JSON.stringify([
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Rooftop Infinity Sky Pool", "Double-Height Grand Entrance Lobby", "Zen Garden & Yoga Pavilion", "Automated Smart Tower Parking"]),
     amenities: JSON.stringify(["Infinity Pool", "Gymnasium", "Concierge", "Sky Lounge", "24/7 Security"]),
@@ -269,10 +269,10 @@ const allProjects = [
     category: "Residential",
     tagline: "Signature 200-ft Skywalk & Podium Living",
     gallery: JSON.stringify([
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["200-foot Signature Skywalk", "Landscaped Podium Garden", "Adani Realty Build Quality Assurance", "10 Mins to Eastern Express Highway"]),
     amenities: JSON.stringify(["Skywalk", "Clubhouse", "Gymnasium", "Swimming Pool", "Kids Play Area"]),
@@ -416,7 +416,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80"
+      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80",
+      "https://images.unsplash.com/photo-1599423300746-b62533397364?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Grand Double-Height Entrance Lobby", "Indoor Games Room & Gymnasium", "Landscaped Podium & Kids Play Bay", "100% Vaastu-Compliant Layouts"]),
     amenities: JSON.stringify(["Gymnasium", "Kids Play Area", "Landscaped Garden", "Multi-Tier Security", "Power Backup"]),
@@ -444,7 +445,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80",
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
-      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80"
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Smart Home Automation Provisions", "Rooftop Terrace Garden & Sitout", "Toddlers Play Area & Fitness Center", "Advanced Multi-Level Fire Safety"]),
     amenities: JSON.stringify(["Fitness Center", "Kids Play Area", "Smart Biometric Access", "CCTV Surveillance", "Automated Parking"]),
@@ -472,7 +474,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80"
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Olympic-Length Sky Pool", "Palatial 25,000 Sq.Ft. Clubhouse", "Private Screening Mini-Theatre", "Direct Monorail & Freeway Connectivity"]),
     amenities: JSON.stringify(["Olympic Pool", "Mini Theatre", "State-of-the-art Gym", "Sky Lounge", "Tennis Court"]),
@@ -500,7 +503,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80"
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Double-Height Italian Marble Lobby", "Zero Space Wastage Floor Layouts", "Dedicated Senior Citizens Zone", "EV Charging Stations in Tower Parking"]),
     amenities: JSON.stringify(["Designer Lobby", "Zen Garden", "EV Charging", "Podium Parking", "24/7 Security"]),
@@ -528,7 +532,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80",
       "https://images.unsplash.com/photo-1600607688969-a5bfcd64bd40?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Walking Distance to Ghatkopar Station & Metro", "Terrace Garden & Acupressure Walkway", "High-Speed Branded Elevators", "Smart Intercom & Advanced CCTV Surveillance"]),
     amenities: JSON.stringify(["Fitness Center", "Multipurpose Hall", "Terrace Garden", "24/7 Security", "Power Backup"]),
@@ -556,7 +561,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Rooftop Stargazing Sky Deck & BBQ Area", "Automated Hydraulic Multi-Level Car Parking", "Double-Height Air-Conditioned Lobby", "European Sanitaryware & Designer Fittings"]),
     amenities: JSON.stringify(["Sky Deck", "Fitness Hub", "Automated Parking", "Security Surveillance", "EV Station"]),
@@ -584,7 +590,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
+      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Ready to Move In with OC Received", "Yoga & Meditation Sky Zone", "Manicured Landscaped Gardens", "24/7 Full Power Backup for Elevators & Common Areas"]),
     amenities: JSON.stringify(["Yoga Deck", "Community Hall", "Landscape Garden", "CCTV Security", "Power Backup"]),
@@ -612,7 +619,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80",
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Exclusive High-Rise Spanning Pristine Green Vistas", "Swimming Pool & Acupressure Jogging Track", "Integrated Co-Working Lounge & Business Pods", "Multi-Tier Modern Security & Valet Parking"]),
     amenities: JSON.stringify(["Swimming Pool", "Jogging Track", "Clubhouse", "Co-Working Lounge", "24/7 Security"]),
@@ -640,7 +648,8 @@ const allProjects = [
     gallery: JSON.stringify([
       "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80",
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80"
     ]),
     highlights: JSON.stringify(["Modern Standalone High-Rise on Wide Road", "Fitness Center & Indoor Recreation Room", "Landscaped Rooftop Garden with Sitout", "Reticulated Piped Gas & Dedicated Car Parking"]),
     amenities: JSON.stringify(["Fitness Center", "Rooftop Garden", "Indoor Games", "Car Parking", "24/7 Security"]),

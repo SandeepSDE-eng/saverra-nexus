@@ -24,7 +24,7 @@ function AdminDashboard() {
     queryKey: ["admin", "projects"],
     queryFn: async () => {
       try {
-        const response = await getAdminProjectsFn();
+        const response: any = await getAdminProjectsFn();
         if (!response.success) throw new Error(response.error);
         return response.data;
       } catch (error) {
@@ -38,7 +38,7 @@ function AdminDashboard() {
     queryKey: ["admin", "inquiries"],
     queryFn: async () => {
       try {
-        const response = await getInquiriesFn();
+        const response: any = await getInquiriesFn();
         if (!response.success) throw new Error(response.error);
         return response.data;
       } catch (error) {

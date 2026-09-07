@@ -19,16 +19,16 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "G+15 Storey Landmark of Luxury in Pant Nagar",
     "gallery": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80",
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80"
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
     ],
     "highlights": [
       "G+15 Storey Landmark Residential High-Rise",
       "Over 25+ World-Class Lifestyle Amenities",
       "Infinity Swimming Pool & Rooftop Horizon Cafe",
-      "1 BHK (457 Sq.Ft.) & 2 BHK (609\u2013657 Sq.Ft.) Layouts",
+      "1 BHK (457 Sq.Ft.) & 2 BHK (609–657 Sq.Ft.) Layouts",
       "Proximity to Eastern Express Highway & Pant Nagar Metro",
       "MahaRERA Approved: PR1180002600209"
     ],
@@ -55,10 +55,10 @@ export const MOCK_PROJECTS = [
     "location": "M.G. Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Sai Life Realtors",
-    "price_display": "\u20b9 2.84 Cr Onwards",
+    "price_display": "₹ 2.84 Cr Onwards",
     "price_numeric": 28400000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
     "bhk_options": "2, 3 BHK & Jodi Options (4, 5 BHK)",
     "carpet_area": "706 - 1,178 Sq.Ft.",
     "min_bhk": 2,
@@ -68,10 +68,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "3 Magnificent Wings of Modern Luxury in Pant Nagar",
     "gallery": [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
       "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80"
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
     ],
     "highlights": [
       "3 Grand Wings Spanning a 0.77-Acre Land Parcel",
@@ -217,8 +217,8 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "https://silverhouse.business/assets/img/Silver-House.jpg",
       "https://silverhouse.business/assets/img/banner/desk1.jpg",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80"
+      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
     ],
     "highlights": [
       "Iconic G+16 Storey Glass Facade Commercial Landmark",
@@ -252,10 +252,10 @@ export const MOCK_PROJECTS = [
     "location": "Central Chembur / Ghatkopar Link, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "\u20b9 95 Lac Onwards",
+    "price_display": "₹ 95 Lac Onwards",
     "price_numeric": 9500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1200&q=80",
     "bhk_options": "Smart Commercial Suites & Retail Outlets",
     "min_bhk": 1,
     "max_bhk": 1,
@@ -264,10 +264,10 @@ export const MOCK_PROJECTS = [
     "category": "Commercial",
     "tagline": "Next-Gen Commercial & Retail Hub by Alag Group",
     "gallery": [
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80"
     ],
     "highlights": [
       "Grade-A Commercial Infrastructure by Reputed Alag Group",
@@ -300,7 +300,7 @@ export const MOCK_PROJECTS = [
     "location": "328, Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "\u20b9 1.80 Cr Onwards",
+    "price_display": "₹ 1.80 Cr Onwards",
     "price_numeric": 18000000,
     "status": "under-construction",
     "cover_image": "https://shubhamartesiaghatkopareast.in/assets/img/common/metaimage.jpg",
@@ -313,9 +313,9 @@ export const MOCK_PROJECTS = [
     "tagline": "20-Storey Architectural Wonder in Heart of Pant Nagar",
     "gallery": [
       "https://shubhamartesiaghatkopareast.in/assets/img/common/metaimage.jpg",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200&q=80",
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"
+      "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80"
     ],
     "highlights": [
       "Magnificent 20-Storey Architectural High-Rise",
@@ -348,10 +348,10 @@ export const MOCK_PROJECTS = [
     "location": "60ft Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "MICL Group",
-    "price_display": "\u20b9 2.80 Cr Onwards",
+    "price_display": "₹ 2.80 Cr Onwards",
     "price_numeric": 28000000,
     "status": "new-launch",
-    "cover_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
     "bhk_options": "3, 4 & 5 BHK",
     "min_bhk": 3,
     "max_bhk": 5,
@@ -360,10 +360,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Ultra Luxury High-Rise on 60ft Road",
     "gallery": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80"
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
     ],
     "highlights": [
       "Rooftop Infinity Sky Pool",
@@ -392,10 +392,10 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Adani Realty",
-    "price_display": "\u20b9 1.99 Cr Onwards",
+    "price_display": "₹ 1.99 Cr Onwards",
     "price_numeric": 19900000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
     "bhk_options": "2, 3 & 4 BHK",
     "min_bhk": 2,
     "max_bhk": 4,
@@ -404,10 +404,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Signature 200-ft Skywalk & Podium Living",
     "gallery": [
-      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
-      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80"
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
     ],
     "highlights": [
       "200-foot Signature Skywalk",
@@ -436,10 +436,10 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Orient Corp",
-    "price_display": "\u20b9 1.91 Cr Onwards",
+    "price_display": "₹ 1.91 Cr Onwards",
     "price_numeric": 19100000,
     "status": "new-launch",
-    "cover_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80",
     "bhk_options": "1, 2, 3 & 4 BHK",
     "min_bhk": 1,
     "max_bhk": 4,
@@ -448,10 +448,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Modern Twin-Tower Landmark in Ghatkopar",
     "gallery": [
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80"
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80"
     ],
     "highlights": [
       "2 Towers Spanning 0.36 Acres",
@@ -480,10 +480,10 @@ export const MOCK_PROJECTS = [
     "location": "90 Feet Rd, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Anemone Homes LLP",
-    "price_display": "\u20b9 1.85 Cr Onwards",
+    "price_display": "₹ 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -492,10 +492,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Rise Above The Skyline on 90 Feet Road",
     "gallery": [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80"
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
     ],
     "highlights": [
       "Terrace Screening Zone & Cabanas",
@@ -524,10 +524,10 @@ export const MOCK_PROJECTS = [
     "location": "Central Avenue, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "House of Hiranandani",
-    "price_display": "\u20b9 2.65 Cr Onwards",
+    "price_display": "₹ 2.65 Cr Onwards",
     "price_numeric": 26500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
     "bhk_options": "2, 3 & 4 BHK",
     "min_bhk": 2,
     "max_bhk": 4,
@@ -536,10 +536,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Signature Neo-Classical Elegance in Chembur",
     "gallery": [
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80"
     ],
     "highlights": [
       "Signature Neo-Classical Architecture",
@@ -570,10 +570,10 @@ export const MOCK_PROJECTS = [
     "location": "Golf Link Enclave, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Rustomjee Group",
-    "price_display": "\u20b9 3.45 Cr Onwards",
+    "price_display": "₹ 3.45 Cr Onwards",
     "price_numeric": 34500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
     "bhk_options": "3, 4 & 5 BHK",
     "min_bhk": 3,
     "max_bhk": 5,
@@ -582,10 +582,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Palatial Golf-Facing Residences in Chembur",
     "gallery": [
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80"
     ],
     "highlights": [
       "Unobstructed Golf Course Views",
@@ -616,10 +616,10 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "\u20b9 1.95 Cr",
+    "price_display": "₹ 1.95 Cr",
     "price_numeric": 19500000,
     "status": "ready-to-move",
-    "cover_image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -628,9 +628,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Premium High-Rise Living in Pant Nagar",
     "gallery": [
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80",
+      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80",
+      "https://images.unsplash.com/photo-1599423300746-b62533397364?w=1200&q=80"
     ],
     "highlights": [
       "Grand Double-Height Entrance Lobby",
@@ -659,10 +660,10 @@ export const MOCK_PROJECTS = [
     "location": "Garodia Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Happy Home Group",
-    "price_display": "\u20b9 1.85 Cr Onwards",
+    "price_display": "₹ 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -671,9 +672,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Smart Luxury Homes in Garodia Nagar",
     "gallery": [
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80"
+      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
     ],
     "highlights": [
       "Smart Home Automation Provisions",
@@ -702,10 +704,10 @@ export const MOCK_PROJECTS = [
     "location": "Bhakti Park, Wadala / Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Ajmera Realty",
-    "price_display": "\u20b9 2.20 Cr Onwards",
+    "price_display": "₹ 2.20 Cr Onwards",
     "price_numeric": 22000000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
     "bhk_options": "2, 3 & 4 BHK",
     "min_bhk": 2,
     "max_bhk": 4,
@@ -714,9 +716,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Manhattan-Inspired Luxury Sky Living",
     "gallery": [
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80"
     ],
     "highlights": [
       "Olympic-Length Sky Pool",
@@ -745,10 +748,10 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "\u20b9 2.50 Cr Onwards",
+    "price_display": "₹ 2.50 Cr Onwards",
     "price_numeric": 25000000,
     "status": "ready-to-move",
-    "cover_image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
     "bhk_options": "3 & 4 BHK",
     "min_bhk": 3,
     "max_bhk": 4,
@@ -757,9 +760,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Architectural Elegance in Pant Nagar",
     "gallery": [
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80"
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
     ],
     "highlights": [
       "Double-Height Italian Marble Lobby",
@@ -788,10 +792,10 @@ export const MOCK_PROJECTS = [
     "location": "Near Station, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Yog Group",
-    "price_display": "\u20b9 1.70 Cr Onwards",
+    "price_display": "₹ 1.70 Cr Onwards",
     "price_numeric": 17000000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200&q=80",
     "bhk_options": "1, 2 & 3 BHK",
     "min_bhk": 1,
     "max_bhk": 3,
@@ -800,9 +804,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Unmatched Transit Connectivity in Ghatkopar",
     "gallery": [
-      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd64bd40?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80"
     ],
     "highlights": [
       "Walking Distance to Ghatkopar Station & Metro",
@@ -831,10 +836,10 @@ export const MOCK_PROJECTS = [
     "location": "MG Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "\u20b9 2.15 Cr Onwards",
+    "price_display": "₹ 2.15 Cr Onwards",
     "price_numeric": 21500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -843,8 +848,9 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Panoramic City Views on MG Road",
     "gallery": [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80",
       "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80"
     ],
     "highlights": [
@@ -874,10 +880,10 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Drushti Group",
-    "price_display": "\u20b9 1.80 Cr Onwards",
+    "price_display": "₹ 1.80 Cr Onwards",
     "price_numeric": 18000000,
     "status": "ready-to-move",
-    "cover_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -886,8 +892,9 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Boutique Community Living in Ghatkopar",
     "gallery": [
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
       "https://images.unsplash.com/photo-1598928506311-c55dd1b31043?w=1200&q=80"
     ],
     "highlights": [
@@ -917,10 +924,10 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Gurukrupa Group",
-    "price_display": "\u20b9 2.40 Cr Onwards",
+    "price_display": "₹ 2.40 Cr Onwards",
     "price_numeric": 24000000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
     "bhk_options": "3 & 4 BHK",
     "min_bhk": 3,
     "max_bhk": 4,
@@ -929,9 +936,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Grand Luxury Clubhouse Living",
     "gallery": [
-      "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80"
+      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80"
     ],
     "highlights": [
       "Exclusive High-Rise Spanning Pristine Green Vistas",
@@ -960,10 +968,10 @@ export const MOCK_PROJECTS = [
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Adityaraj Group",
-    "price_display": "\u20b9 1.45 Cr Onwards",
+    "price_display": "₹ 1.45 Cr Onwards",
     "price_numeric": 14500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1599423300746-b62533397364?w=1200&q=80",
     "bhk_options": "1 & 2 BHK",
     "min_bhk": 1,
     "max_bhk": 2,
@@ -972,9 +980,10 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Efficient Luxury Layouts in Pant Nagar",
     "gallery": [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80"
+      "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=1200&q=80"
     ],
     "highlights": [
       "Modern Standalone High-Rise on Wide Road",
@@ -1003,7 +1012,7 @@ export const MOCK_PROJECTS = [
     "location": "90ft Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "VK Developer",
-    "price_display": "\u20b9 1.85 Cr Onwards",
+    "price_display": "₹ 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "new-launch",
     "cover_image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
@@ -1048,7 +1057,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Fashion TV & Premier Developers",
-    "price_display": "\u20b9 2.10 Cr Onwards",
+    "price_display": "₹ 2.10 Cr Onwards",
     "price_numeric": 21000000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=1200&q=80",
@@ -1062,7 +1071,8 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
       "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80"
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80"
     ],
     "highlights": [
       "Fashion TV Branded Designer Lobbies & Interiors",
@@ -1091,7 +1101,7 @@ export const MOCK_PROJECTS = [
     "location": "Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Rising Group",
-    "price_display": "\u20b9 1.75 Cr Onwards",
+    "price_display": "₹ 1.75 Cr Onwards",
     "price_numeric": 17500000,
     "status": "under-construction",
     "cover_image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
@@ -1105,7 +1115,8 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80",
       "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80"
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
+      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80"
     ],
     "highlights": [
       "Multi-Acre Gated Integrated Township",
