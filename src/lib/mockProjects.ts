@@ -351,7 +351,7 @@ export const MOCK_PROJECTS = [
     "price_display": "₹ 2.80 Cr Onwards",
     "price_numeric": 28000000,
     "status": "new-launch",
-    "cover_image": "https://www.miclaaradhyasonepark.com/assets/img/deskb1.webp",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
     "bhk_options": "3, 4 & 5 BHK",
     "min_bhk": 3,
     "max_bhk": 5,
@@ -360,11 +360,11 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Ultra Luxury High-Rise on 60ft Road",
     "gallery": [
-      "https://www.miclaaradhyasonepark.com/assets/img/deskb1.webp",
-      "https://www.miclaaradhyasonepark.com/assets/img/deskb2.webp",
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
       "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1de2d96674?w=1200&q=80",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80"
     ],
     "highlights": [
       "Rooftop Infinity Sky Pool",
@@ -484,7 +484,7 @@ export const MOCK_PROJECTS = [
     "price_display": "₹ 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
-    "cover_image": "https://images.unsplash.com/photo-1613490900233-141c5560d75d?w=1200&q=80",
+    "cover_image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
     "bhk_options": "2 & 3 BHK",
     "min_bhk": 2,
     "max_bhk": 3,
@@ -493,10 +493,11 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Rise Above The Skyline on 90 Feet Road",
     "gallery": [
-      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200&q=80",
-      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80"
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80"
     ],
     "highlights": [
       "Terrace Screening Zone & Cabanas",

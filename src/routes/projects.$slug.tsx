@@ -68,7 +68,7 @@ function ProjectDetail() {
       {/* Hero Banner */}
       <div className="bg-[color:var(--navy-deep)] text-white relative h-[50vh] min-h-[400px] flex flex-col justify-center overflow-hidden pb-12">
         <div className="absolute inset-0">
-          <img src={coverImage} alt={name} className="h-full w-full object-cover opacity-30 filter mix-blend-overlay" />
+          <img src={coverImage} alt={name} className="h-full w-full object-cover opacity-30 filter mix-blend-overlay" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)] via-[color:var(--navy-deep)]/60 to-transparent opacity-90" />
         </div>
         <div className="relative z-10 container-luxe pt-10 animate-fade-up">
@@ -170,6 +170,7 @@ function ProjectDetail() {
                         alt={`Gallery image of ${name}`} 
                         className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" 
                         loading="lazy" 
+                        referrerPolicy="no-referrer"
                         onError={(e) => {
                           // Hide broken images completely rather than showing alt text
                           e.currentTarget.style.display = 'none';
