@@ -21,17 +21,23 @@ const MOCK_PROJECTS = [
     "tagline": "G+15 Storey Landmark of Luxury in Pant Nagar",
     "gallery": [
       "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-1.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-2.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-3.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-4.jpg",
-      "/images/projects/emperia-legacy-ghatkopar/gallery-5.jpg"
+      "/images/projects/emperia-legacy-ghatkopar/gallery-5.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-6.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-7.jpg"
     ],
     "images": [
       "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-1.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-2.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-3.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-4.jpg",
-      "/images/projects/emperia-legacy-ghatkopar/gallery-5.jpg"
+      "/images/projects/emperia-legacy-ghatkopar/gallery-5.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-6.jpg",
+      "/images/projects/emperia-legacy-ghatkopar/gallery-7.jpg"
     ],
     "highlights": [
       "G+15 Storey Landmark Residential High-Rise",
@@ -67,8 +73,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 2.84 Cr Onwards",
     "price_numeric": 28400000,
     "status": "under-construction",
-    "cover_image": "/images/projects/one-meraki-chembur/cover.webp",
-    "image_url": "/images/projects/one-meraki-chembur/cover.webp",
+    "cover_image": "/images/projects/sai-shankar-sai-life/cover.png",
+    "image_url": "/images/projects/sai-shankar-sai-life/cover.png",
     "bhk_options": "2, 3 BHK & Jodi Options (4, 5 BHK)",
     "carpet_area": "706 - 1,178 Sq.Ft.",
     "min_bhk": 2,
@@ -78,24 +84,10 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "3 Magnificent Wings of Modern Luxury in Pant Nagar",
     "gallery": [
-      "/images/projects/one-meraki-chembur/cover.webp",
-      "/images/projects/one-meraki-chembur/gallery-1.webp",
-      "/images/projects/one-meraki-chembur/gallery-2.webp",
-      "/images/projects/one-meraki-chembur/gallery-3.webp",
-      "/images/projects/one-meraki-chembur/gallery-4.webp",
-      "/images/projects/one-meraki-chembur/gallery-5.webp",
-      "/images/projects/one-meraki-chembur/gallery-6.webp",
-      "/images/projects/one-meraki-chembur/gallery-7.webp"
+      "/images/projects/sai-shankar-sai-life/cover.png"
     ],
     "images": [
-      "/images/projects/one-meraki-chembur/cover.webp",
-      "/images/projects/one-meraki-chembur/gallery-1.webp",
-      "/images/projects/one-meraki-chembur/gallery-2.webp",
-      "/images/projects/one-meraki-chembur/gallery-3.webp",
-      "/images/projects/one-meraki-chembur/gallery-4.webp",
-      "/images/projects/one-meraki-chembur/gallery-5.webp",
-      "/images/projects/one-meraki-chembur/gallery-6.webp",
-      "/images/projects/one-meraki-chembur/gallery-7.webp"
+      "/images/projects/sai-shankar-sai-life/cover.png"
     ],
     "highlights": [
       "3 Grand Wings Spanning a 0.77-Acre Land Parcel",
@@ -131,8 +123,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 2.18 Cr Onwards",
     "price_numeric": 21800000,
     "status": "under-construction",
-    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.png",
-    "image_url": "/images/projects/psk-aura-ghatkopar/cover.png",
+    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.jpg",
+    "image_url": "/images/projects/psk-aura-ghatkopar/cover.jpg",
     "bhk_options": "2, 3 & 4 BHK Luxury Residences",
     "carpet_area": "605 - 1,230 Sq.Ft.",
     "min_bhk": 2,
@@ -142,20 +134,20 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Boutique G+20 High-Rise Living in Prime Ghatkopar",
     "gallery": [
-      "/images/projects/psk-aura-ghatkopar/cover.png",
+      "/images/projects/psk-aura-ghatkopar/cover.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-3.png",
+      "/images/projects/psk-aura-ghatkopar/gallery-3.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/psk-aura-ghatkopar/cover.png",
+      "/images/projects/psk-aura-ghatkopar/cover.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-3.png",
+      "/images/projects/psk-aura-ghatkopar/gallery-3.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
@@ -273,8 +265,8 @@ const MOCK_PROJECTS = [
       "/images/projects/silver-house-ghatkopar/gallery-1.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-2.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-3.jpg",
-      "/images/projects/silver-house-ghatkopar/gallery-4.png",
-      "/images/projects/silver-house-ghatkopar/gallery-5.png",
+      "/images/projects/silver-house-ghatkopar/gallery-4.jpg",
+      "/images/projects/silver-house-ghatkopar/gallery-5.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-6.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-7.jpg"
     ],
@@ -283,8 +275,8 @@ const MOCK_PROJECTS = [
       "/images/projects/silver-house-ghatkopar/gallery-1.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-2.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-3.jpg",
-      "/images/projects/silver-house-ghatkopar/gallery-4.png",
-      "/images/projects/silver-house-ghatkopar/gallery-5.png",
+      "/images/projects/silver-house-ghatkopar/gallery-4.jpg",
+      "/images/projects/silver-house-ghatkopar/gallery-5.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-6.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-7.jpg"
     ],
@@ -382,14 +374,10 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "20-Storey Architectural Wonder in the Heart of Pant Nagar",
     "gallery": [
-      "/images/projects/shubham-artesia-ghatkopar/cover.png",
-      "/images/projects/shubham-artesia-ghatkopar/gallery-1.png",
-      "/images/projects/shubham-artesia-ghatkopar/gallery-2.png"
+      "/images/projects/shubham-artesia-ghatkopar/cover.png"
     ],
     "images": [
-      "/images/projects/shubham-artesia-ghatkopar/cover.png",
-      "/images/projects/shubham-artesia-ghatkopar/gallery-1.png",
-      "/images/projects/shubham-artesia-ghatkopar/gallery-2.png"
+      "/images/projects/shubham-artesia-ghatkopar/cover.png"
     ],
     "highlights": [
       "Magnificent 20-Storey Standalone Architectural High-Rise",
@@ -424,8 +412,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 4.15 Cr Onwards",
     "price_numeric": 41500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/micl-aaradhya-onepark/cover.jpg",
-    "image_url": "/images/projects/micl-aaradhya-onepark/cover.jpg",
+    "cover_image": "/images/projects/micl-aaradhya-onepark/cover.webp",
+    "image_url": "/images/projects/micl-aaradhya-onepark/cover.webp",
     "bhk_options": "3, 4 & 5 BHK Ultra Luxury Residences",
     "carpet_area": "1,020 - 2,150 Sq.Ft.",
     "min_bhk": 3,
@@ -435,23 +423,23 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Ultra-Luxury Parkside Residences on 60ft Road by MICL Group",
     "gallery": [
-      "/images/projects/micl-aaradhya-onepark/cover.jpg",
+      "/images/projects/micl-aaradhya-onepark/cover.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-1.jpg",
       "/images/projects/micl-aaradhya-onepark/gallery-2.jpg",
-      "/images/projects/micl-aaradhya-onepark/gallery-3.webp",
+      "/images/projects/micl-aaradhya-onepark/gallery-3.jpg",
       "/images/projects/micl-aaradhya-onepark/gallery-4.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-5.webp",
-      "/images/projects/micl-aaradhya-onepark/gallery-6.webp",
+      "/images/projects/micl-aaradhya-onepark/gallery-6.png",
       "/images/projects/micl-aaradhya-onepark/gallery-7.webp"
     ],
     "images": [
-      "/images/projects/micl-aaradhya-onepark/cover.jpg",
+      "/images/projects/micl-aaradhya-onepark/cover.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-1.jpg",
       "/images/projects/micl-aaradhya-onepark/gallery-2.jpg",
-      "/images/projects/micl-aaradhya-onepark/gallery-3.webp",
+      "/images/projects/micl-aaradhya-onepark/gallery-3.jpg",
       "/images/projects/micl-aaradhya-onepark/gallery-4.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-5.webp",
-      "/images/projects/micl-aaradhya-onepark/gallery-6.webp",
+      "/images/projects/micl-aaradhya-onepark/gallery-6.png",
       "/images/projects/micl-aaradhya-onepark/gallery-7.webp"
     ],
     "highlights": [
@@ -595,8 +583,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.25 Cr Onwards",
     "price_numeric": 12500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/9-anemone-heights/cover.jpg",
-    "image_url": "/images/projects/9-anemone-heights/cover.jpg",
+    "cover_image": "/images/projects/9-anemone-heights/cover.png",
+    "image_url": "/images/projects/9-anemone-heights/cover.png",
     "bhk_options": "1 & 2 BHK Modern Apartments",
     "carpet_area": "430 - 625 Sq.Ft.",
     "min_bhk": 2,
@@ -606,24 +594,24 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Rise Above The Skyline on 90 Feet Road",
     "gallery": [
-      "/images/projects/9-anemone-heights/cover.jpg",
-      "/images/projects/9-anemone-heights/gallery-1.jpg",
-      "/images/projects/9-anemone-heights/gallery-2.jpg",
+      "/images/projects/9-anemone-heights/cover.png",
+      "/images/projects/9-anemone-heights/gallery-1.png",
+      "/images/projects/9-anemone-heights/gallery-2.png",
       "/images/projects/9-anemone-heights/gallery-3.jpg",
       "/images/projects/9-anemone-heights/gallery-4.jpg",
-      "/images/projects/9-anemone-heights/gallery-5.png",
-      "/images/projects/9-anemone-heights/gallery-6.png",
-      "/images/projects/9-anemone-heights/gallery-7.png"
+      "/images/projects/9-anemone-heights/gallery-5.jpg",
+      "/images/projects/9-anemone-heights/gallery-6.jpg",
+      "/images/projects/9-anemone-heights/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/9-anemone-heights/cover.jpg",
-      "/images/projects/9-anemone-heights/gallery-1.jpg",
-      "/images/projects/9-anemone-heights/gallery-2.jpg",
+      "/images/projects/9-anemone-heights/cover.png",
+      "/images/projects/9-anemone-heights/gallery-1.png",
+      "/images/projects/9-anemone-heights/gallery-2.png",
       "/images/projects/9-anemone-heights/gallery-3.jpg",
       "/images/projects/9-anemone-heights/gallery-4.jpg",
-      "/images/projects/9-anemone-heights/gallery-5.png",
-      "/images/projects/9-anemone-heights/gallery-6.png",
-      "/images/projects/9-anemone-heights/gallery-7.png"
+      "/images/projects/9-anemone-heights/gallery-5.jpg",
+      "/images/projects/9-anemone-heights/gallery-6.jpg",
+      "/images/projects/9-anemone-heights/gallery-7.jpg"
     ],
     "highlights": [
       "Terrace Screening Zone & Cabanas",
@@ -654,8 +642,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 2.95 Cr Onwards",
     "price_numeric": 29500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/house-of-hiranandani-chembur/cover.png",
-    "image_url": "/images/projects/house-of-hiranandani-chembur/cover.png",
+    "cover_image": "/images/projects/house-of-hiranandani-chembur/cover.jpg",
+    "image_url": "/images/projects/house-of-hiranandani-chembur/cover.jpg",
     "bhk_options": "2, 3 & 4 BHK Luxury Suites",
     "carpet_area": "740 - 1,650 Sq.Ft.",
     "min_bhk": 2,
@@ -665,22 +653,22 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Signature Neo-Classical Elegance in Chembur",
     "gallery": [
-      "/images/projects/house-of-hiranandani-chembur/cover.png",
-      "/images/projects/house-of-hiranandani-chembur/gallery-1.webp",
+      "/images/projects/house-of-hiranandani-chembur/cover.jpg",
+      "/images/projects/house-of-hiranandani-chembur/gallery-1.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-2.webp",
       "/images/projects/house-of-hiranandani-chembur/gallery-3.png",
       "/images/projects/house-of-hiranandani-chembur/gallery-4.webp",
-      "/images/projects/house-of-hiranandani-chembur/gallery-5.jpg",
+      "/images/projects/house-of-hiranandani-chembur/gallery-5.webp",
       "/images/projects/house-of-hiranandani-chembur/gallery-6.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/house-of-hiranandani-chembur/cover.png",
-      "/images/projects/house-of-hiranandani-chembur/gallery-1.webp",
+      "/images/projects/house-of-hiranandani-chembur/cover.jpg",
+      "/images/projects/house-of-hiranandani-chembur/gallery-1.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-2.webp",
       "/images/projects/house-of-hiranandani-chembur/gallery-3.png",
       "/images/projects/house-of-hiranandani-chembur/gallery-4.webp",
-      "/images/projects/house-of-hiranandani-chembur/gallery-5.jpg",
+      "/images/projects/house-of-hiranandani-chembur/gallery-5.webp",
       "/images/projects/house-of-hiranandani-chembur/gallery-6.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-7.jpg"
     ],
@@ -775,12 +763,10 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Premium High-Rise Living in Pant Nagar",
     "gallery": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png",
-      "/images/projects/shubham-elegance-ghatkopar/gallery-1.png"
+      "/images/projects/shubham-elegance-ghatkopar/cover.png"
     ],
     "images": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png",
-      "/images/projects/shubham-elegance-ghatkopar/gallery-1.png"
+      "/images/projects/shubham-elegance-ghatkopar/cover.png"
     ],
     "highlights": [
       "Grand Double-Height Entrance Lobby",
@@ -823,11 +809,17 @@ const MOCK_PROJECTS = [
     "tagline": "Smart Luxury Homes in Garodia Nagar",
     "gallery": [
       "/images/projects/happy-home-heights/cover.jpg",
-      "/images/projects/happy-home-heights/gallery-1.jpg"
+      "/images/projects/happy-home-heights/gallery-1.jpg",
+      "/images/projects/happy-home-heights/gallery-2.jpg",
+      "/images/projects/happy-home-heights/gallery-3.jpg",
+      "/images/projects/happy-home-heights/gallery-4.jpg"
     ],
     "images": [
       "/images/projects/happy-home-heights/cover.jpg",
-      "/images/projects/happy-home-heights/gallery-1.jpg"
+      "/images/projects/happy-home-heights/gallery-1.jpg",
+      "/images/projects/happy-home-heights/gallery-2.jpg",
+      "/images/projects/happy-home-heights/gallery-3.jpg",
+      "/images/projects/happy-home-heights/gallery-4.jpg"
     ],
     "highlights": [
       "Smart Home Automation Provisions",
@@ -858,8 +850,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 2.30 Cr Onwards",
     "price_numeric": 23000000,
     "status": "under-construction",
-    "cover_image": "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
-    "image_url": "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
+    "cover_image": "/images/projects/ajmera-manhattan/cover.png",
+    "image_url": "/images/projects/ajmera-manhattan/cover.png",
     "bhk_options": "2, 3 & 4 BHK Manhattan Style Homes",
     "carpet_area": "654 - 1,480 Sq.Ft.",
     "min_bhk": 2,
@@ -869,12 +861,24 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Manhattan-Inspired Luxury Sky Living",
     "gallery": [
-      "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
-      "/images/projects/rustomjee-balmoral-golf-links/gallery-1.webp"
+      "/images/projects/ajmera-manhattan/cover.png",
+      "/images/projects/ajmera-manhattan/gallery-1.jpg",
+      "/images/projects/ajmera-manhattan/gallery-2.jpg",
+      "/images/projects/ajmera-manhattan/gallery-3.jpg",
+      "/images/projects/ajmera-manhattan/gallery-4.jpg",
+      "/images/projects/ajmera-manhattan/gallery-5.jpg",
+      "/images/projects/ajmera-manhattan/gallery-6.jpg",
+      "/images/projects/ajmera-manhattan/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
-      "/images/projects/rustomjee-balmoral-golf-links/gallery-1.webp"
+      "/images/projects/ajmera-manhattan/cover.png",
+      "/images/projects/ajmera-manhattan/gallery-1.jpg",
+      "/images/projects/ajmera-manhattan/gallery-2.jpg",
+      "/images/projects/ajmera-manhattan/gallery-3.jpg",
+      "/images/projects/ajmera-manhattan/gallery-4.jpg",
+      "/images/projects/ajmera-manhattan/gallery-5.jpg",
+      "/images/projects/ajmera-manhattan/gallery-6.jpg",
+      "/images/projects/ajmera-manhattan/gallery-7.jpg"
     ],
     "highlights": [
       "Olympic-Length Sky Pool",
@@ -905,8 +909,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/silver-stellar-ghatkopar/cover.webp",
-    "image_url": "/images/projects/silver-stellar-ghatkopar/cover.webp",
+    "cover_image": "/images/projects/silver-group-harmony/cover.jpg",
+    "image_url": "/images/projects/silver-group-harmony/cover.jpg",
     "bhk_options": "2 & 3 BHK Residences",
     "carpet_area": "620 - 980 Sq.Ft.",
     "min_bhk": 3,
@@ -916,24 +920,22 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Architectural Elegance in Pant Nagar",
     "gallery": [
-      "/images/projects/silver-stellar-ghatkopar/cover.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-1.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-2.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-3.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-4.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-5.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-6.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-7.webp"
+      "/images/projects/silver-group-harmony/cover.jpg",
+      "/images/projects/silver-group-harmony/gallery-1.jpg",
+      "/images/projects/silver-group-harmony/gallery-2.jpg",
+      "/images/projects/silver-group-harmony/gallery-3.jpg",
+      "/images/projects/silver-group-harmony/gallery-4.png",
+      "/images/projects/silver-group-harmony/gallery-5.png",
+      "/images/projects/silver-group-harmony/gallery-6.jpg"
     ],
     "images": [
-      "/images/projects/silver-stellar-ghatkopar/cover.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-1.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-2.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-3.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-4.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-5.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-6.webp",
-      "/images/projects/silver-stellar-ghatkopar/gallery-7.webp"
+      "/images/projects/silver-group-harmony/cover.jpg",
+      "/images/projects/silver-group-harmony/gallery-1.jpg",
+      "/images/projects/silver-group-harmony/gallery-2.jpg",
+      "/images/projects/silver-group-harmony/gallery-3.jpg",
+      "/images/projects/silver-group-harmony/gallery-4.png",
+      "/images/projects/silver-group-harmony/gallery-5.png",
+      "/images/projects/silver-group-harmony/gallery-6.jpg"
     ],
     "highlights": [
       "Double-Height Italian Marble Lobby",
@@ -964,8 +966,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.95 Cr Onwards",
     "price_numeric": 19500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/72-parksyde-ghatkopar/cover.webp",
-    "image_url": "/images/projects/72-parksyde-ghatkopar/cover.webp",
+    "cover_image": "/images/projects/yog-group-solitaire/cover.jpg",
+    "image_url": "/images/projects/yog-group-solitaire/cover.jpg",
     "bhk_options": "2 & 3 BHK Apartments",
     "carpet_area": "640 - 1,010 Sq.Ft.",
     "min_bhk": 1,
@@ -975,24 +977,16 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Unmatched Transit Connectivity in Ghatkopar",
     "gallery": [
-      "/images/projects/72-parksyde-ghatkopar/cover.webp",
-      "/images/projects/72-parksyde-ghatkopar/gallery-1.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-2.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-3.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-4.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-5.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-6.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-7.jpg"
+      "/images/projects/yog-group-solitaire/cover.jpg",
+      "/images/projects/yog-group-solitaire/gallery-1.jpg",
+      "/images/projects/yog-group-solitaire/gallery-2.jpg",
+      "/images/projects/yog-group-solitaire/gallery-3.jpg"
     ],
     "images": [
-      "/images/projects/72-parksyde-ghatkopar/cover.webp",
-      "/images/projects/72-parksyde-ghatkopar/gallery-1.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-2.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-3.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-4.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-5.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-6.jpg",
-      "/images/projects/72-parksyde-ghatkopar/gallery-7.jpg"
+      "/images/projects/yog-group-solitaire/cover.jpg",
+      "/images/projects/yog-group-solitaire/gallery-1.jpg",
+      "/images/projects/yog-group-solitaire/gallery-2.jpg",
+      "/images/projects/yog-group-solitaire/gallery-3.jpg"
     ],
     "highlights": [
       "Walking Distance to Ghatkopar Station & Metro",
@@ -1068,8 +1062,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.72 Cr Onwards",
     "price_numeric": 17200000,
     "status": "under-construction",
-    "cover_image": "/images/projects/drushti-sapphire/cover.jpg",
-    "image_url": "/images/projects/drushti-sapphire/cover.jpg",
+    "cover_image": "/images/projects/drushti-sapphire/cover.png",
+    "image_url": "/images/projects/drushti-sapphire/cover.png",
     "bhk_options": "2 & 3 BHK Luxury Apartments",
     "carpet_area": "615 - 950 Sq.Ft.",
     "min_bhk": 2,
@@ -1079,12 +1073,24 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Boutique Community Living in Ghatkopar",
     "gallery": [
-      "/images/projects/drushti-sapphire/cover.jpg",
-      "/images/projects/drushti-sapphire/gallery-1.png"
+      "/images/projects/drushti-sapphire/cover.png",
+      "/images/projects/drushti-sapphire/gallery-1.png",
+      "/images/projects/drushti-sapphire/gallery-2.png",
+      "/images/projects/drushti-sapphire/gallery-3.png",
+      "/images/projects/drushti-sapphire/gallery-4.png",
+      "/images/projects/drushti-sapphire/gallery-5.png",
+      "/images/projects/drushti-sapphire/gallery-6.png",
+      "/images/projects/drushti-sapphire/gallery-7.png"
     ],
     "images": [
-      "/images/projects/drushti-sapphire/cover.jpg",
-      "/images/projects/drushti-sapphire/gallery-1.png"
+      "/images/projects/drushti-sapphire/cover.png",
+      "/images/projects/drushti-sapphire/gallery-1.png",
+      "/images/projects/drushti-sapphire/gallery-2.png",
+      "/images/projects/drushti-sapphire/gallery-3.png",
+      "/images/projects/drushti-sapphire/gallery-4.png",
+      "/images/projects/drushti-sapphire/gallery-5.png",
+      "/images/projects/drushti-sapphire/gallery-6.png",
+      "/images/projects/drushti-sapphire/gallery-7.png"
     ],
     "highlights": [
       "Ready to Move In with OC Received",
@@ -1126,14 +1132,10 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Grand Luxury Clubhouse Living",
     "gallery": [
-      "/images/projects/gurukrupa-marina/cover.jpg",
-      "/images/projects/gurukrupa-marina/gallery-1.jpg",
-      "/images/projects/gurukrupa-marina/gallery-2.jpg"
+      "/images/projects/gurukrupa-marina/cover.jpg"
     ],
     "images": [
-      "/images/projects/gurukrupa-marina/cover.jpg",
-      "/images/projects/gurukrupa-marina/gallery-1.jpg",
-      "/images/projects/gurukrupa-marina/gallery-2.jpg"
+      "/images/projects/gurukrupa-marina/cover.jpg"
     ],
     "highlights": [
       "Exclusive High-Rise Spanning Pristine Green Vistas",
@@ -1164,8 +1166,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 79 Lac Onwards",
     "price_numeric": 7900000,
     "status": "under-construction",
-    "cover_image": "/images/projects/adityaraj-signature/cover.webp",
-    "image_url": "/images/projects/adityaraj-signature/cover.webp",
+    "cover_image": "/images/projects/adityaraj-signature/cover.png",
+    "image_url": "/images/projects/adityaraj-signature/cover.png",
     "bhk_options": "1 & 2 BHK High-Rise Homes",
     "carpet_area": "385 - 590 Sq.Ft.",
     "min_bhk": 1,
@@ -1175,12 +1177,24 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Efficient Luxury Layouts in Pant Nagar",
     "gallery": [
-      "/images/projects/adityaraj-signature/cover.webp",
-      "/images/projects/adityaraj-signature/gallery-1.webp"
+      "/images/projects/adityaraj-signature/cover.png",
+      "/images/projects/adityaraj-signature/gallery-1.webp",
+      "/images/projects/adityaraj-signature/gallery-2.webp",
+      "/images/projects/adityaraj-signature/gallery-3.webp",
+      "/images/projects/adityaraj-signature/gallery-4.webp",
+      "/images/projects/adityaraj-signature/gallery-5.webp",
+      "/images/projects/adityaraj-signature/gallery-6.webp",
+      "/images/projects/adityaraj-signature/gallery-7.webp"
     ],
     "images": [
-      "/images/projects/adityaraj-signature/cover.webp",
-      "/images/projects/adityaraj-signature/gallery-1.webp"
+      "/images/projects/adityaraj-signature/cover.png",
+      "/images/projects/adityaraj-signature/gallery-1.webp",
+      "/images/projects/adityaraj-signature/gallery-2.webp",
+      "/images/projects/adityaraj-signature/gallery-3.webp",
+      "/images/projects/adityaraj-signature/gallery-4.webp",
+      "/images/projects/adityaraj-signature/gallery-5.webp",
+      "/images/projects/adityaraj-signature/gallery-6.webp",
+      "/images/projects/adityaraj-signature/gallery-7.webp"
     ],
     "highlights": [
       "Modern Standalone High-Rise on Wide Road",
@@ -1211,8 +1225,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.24 Cr Onwards",
     "price_numeric": 12400000,
     "status": "under-construction",
-    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.png",
-    "image_url": "/images/projects/psk-aura-ghatkopar/cover.png",
+    "cover_image": "/images/projects/vk-elegance-ghatkopar/cover.png",
+    "image_url": "/images/projects/vk-elegance-ghatkopar/cover.png",
     "bhk_options": "1 & 2 BHK Boutique Homes",
     "carpet_area": "435 - 650 Sq.Ft.",
     "min_bhk": 2,
@@ -1222,24 +1236,18 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Boutique High-Rise Residences by VK Developer",
     "gallery": [
-      "/images/projects/psk-aura-ghatkopar/cover.png",
-      "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-3.png",
-      "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
+      "/images/projects/vk-elegance-ghatkopar/cover.png",
+      "/images/projects/vk-elegance-ghatkopar/gallery-1.jpg",
+      "/images/projects/vk-elegance-ghatkopar/gallery-2.jpg",
+      "/images/projects/vk-elegance-ghatkopar/gallery-3.png",
+      "/images/projects/vk-elegance-ghatkopar/gallery-4.jpg"
     ],
     "images": [
-      "/images/projects/psk-aura-ghatkopar/cover.png",
-      "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-3.png",
-      "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
+      "/images/projects/vk-elegance-ghatkopar/cover.png",
+      "/images/projects/vk-elegance-ghatkopar/gallery-1.jpg",
+      "/images/projects/vk-elegance-ghatkopar/gallery-2.jpg",
+      "/images/projects/vk-elegance-ghatkopar/gallery-3.png",
+      "/images/projects/vk-elegance-ghatkopar/gallery-4.jpg"
     ],
     "highlights": [
       "Boutique G+18 High-Rise Living on 90ft Road",
@@ -1271,8 +1279,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 2.65 Cr Onwards",
     "price_numeric": 26500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/f-residences/cover.jpg",
-    "image_url": "/images/projects/f-residences/cover.jpg",
+    "cover_image": "/images/projects/f-residences/cover.png",
+    "image_url": "/images/projects/f-residences/cover.png",
     "bhk_options": "2, 3 & 4 BHK Designer Suites",
     "carpet_area": "720 - 1,550 Sq.Ft.",
     "min_bhk": 2,
@@ -1282,12 +1290,24 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Fashion-Inspired Luxury High-Rise Living",
     "gallery": [
-      "/images/projects/f-residences/cover.jpg",
-      "/images/projects/f-residences/gallery-1.jpg"
+      "/images/projects/f-residences/cover.png",
+      "/images/projects/f-residences/gallery-1.png",
+      "/images/projects/f-residences/gallery-2.jpg",
+      "/images/projects/f-residences/gallery-3.jpg",
+      "/images/projects/f-residences/gallery-4.jpg",
+      "/images/projects/f-residences/gallery-5.jpg",
+      "/images/projects/f-residences/gallery-6.jpg",
+      "/images/projects/f-residences/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/f-residences/cover.jpg",
-      "/images/projects/f-residences/gallery-1.jpg"
+      "/images/projects/f-residences/cover.png",
+      "/images/projects/f-residences/gallery-1.png",
+      "/images/projects/f-residences/gallery-2.jpg",
+      "/images/projects/f-residences/gallery-3.jpg",
+      "/images/projects/f-residences/gallery-4.jpg",
+      "/images/projects/f-residences/gallery-5.jpg",
+      "/images/projects/f-residences/gallery-6.jpg",
+      "/images/projects/f-residences/gallery-7.jpg"
     ],
     "highlights": [
       "Fashion TV Branded Designer Lobbies & Interiors",
@@ -1330,11 +1350,23 @@ const MOCK_PROJECTS = [
     "tagline": "Integrated Township Living in Ghatkopar East",
     "gallery": [
       "/images/projects/rising-city/cover.jpg",
-      "/images/projects/rising-city/gallery-1.webp"
+      "/images/projects/rising-city/gallery-1.jpg",
+      "/images/projects/rising-city/gallery-2.webp",
+      "/images/projects/rising-city/gallery-3.webp",
+      "/images/projects/rising-city/gallery-4.webp",
+      "/images/projects/rising-city/gallery-5.webp",
+      "/images/projects/rising-city/gallery-6.webp",
+      "/images/projects/rising-city/gallery-7.webp"
     ],
     "images": [
       "/images/projects/rising-city/cover.jpg",
-      "/images/projects/rising-city/gallery-1.webp"
+      "/images/projects/rising-city/gallery-1.jpg",
+      "/images/projects/rising-city/gallery-2.webp",
+      "/images/projects/rising-city/gallery-3.webp",
+      "/images/projects/rising-city/gallery-4.webp",
+      "/images/projects/rising-city/gallery-5.webp",
+      "/images/projects/rising-city/gallery-6.webp",
+      "/images/projects/rising-city/gallery-7.webp"
     ],
     "highlights": [
       "Multi-Acre Gated Integrated Township",
@@ -1428,8 +1460,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.65 Cr Onwards",
     "price_numeric": 16500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/72-parksyde-ghatkopar/cover.webp",
-    "image_url": "/images/projects/72-parksyde-ghatkopar/cover.webp",
+    "cover_image": "/images/projects/72-parksyde-ghatkopar/cover.jpg",
+    "image_url": "/images/projects/72-parksyde-ghatkopar/cover.jpg",
     "bhk_options": "1, 2 & 3 BHK Modern Homes",
     "carpet_area": "420 - 950 Sq.Ft.",
     "min_bhk": 1,
@@ -1439,7 +1471,7 @@ const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Modern Parkside Living in Pant Nagar, Ghatkopar East",
     "gallery": [
-      "/images/projects/72-parksyde-ghatkopar/cover.webp",
+      "/images/projects/72-parksyde-ghatkopar/cover.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-1.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-2.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-3.jpg",
@@ -1449,7 +1481,7 @@ const MOCK_PROJECTS = [
       "/images/projects/72-parksyde-ghatkopar/gallery-7.jpg"
     ],
     "images": [
-      "/images/projects/72-parksyde-ghatkopar/cover.webp",
+      "/images/projects/72-parksyde-ghatkopar/cover.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-1.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-2.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-3.jpg",
@@ -1502,9 +1534,9 @@ const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-oneearth/cover.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-1.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-2.jpg",
-      "/images/projects/micl-aaradhya-oneearth/gallery-3.webp",
-      "/images/projects/micl-aaradhya-oneearth/gallery-4.webp",
-      "/images/projects/micl-aaradhya-oneearth/gallery-5.webp",
+      "/images/projects/micl-aaradhya-oneearth/gallery-3.jpg",
+      "/images/projects/micl-aaradhya-oneearth/gallery-4.jpg",
+      "/images/projects/micl-aaradhya-oneearth/gallery-5.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-6.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-7.jpg"
     ],
@@ -1512,9 +1544,9 @@ const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-oneearth/cover.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-1.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-2.jpg",
-      "/images/projects/micl-aaradhya-oneearth/gallery-3.webp",
-      "/images/projects/micl-aaradhya-oneearth/gallery-4.webp",
-      "/images/projects/micl-aaradhya-oneearth/gallery-5.webp",
+      "/images/projects/micl-aaradhya-oneearth/gallery-3.jpg",
+      "/images/projects/micl-aaradhya-oneearth/gallery-4.jpg",
+      "/images/projects/micl-aaradhya-oneearth/gallery-5.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-6.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-7.jpg"
     ],
@@ -1549,8 +1581,8 @@ const MOCK_PROJECTS = [
     "price_display": "\u20b9 1.75 Cr Onwards",
     "price_numeric": 17500000,
     "status": "under-construction",
-    "cover_image": "/images/projects/yog-aveer/media_1788939205229.jpg",
-    "image_url": "/images/projects/yog-aveer/media_1788939205229.jpg",
+    "cover_image": "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
+    "image_url": "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
     "bhk_options": "2 & 3 BHK Commercial & Luxury Residences",
     "carpet_area": "620 - 1,080 Sq.Ft.",
     "min_bhk": 2,
@@ -1560,16 +1592,16 @@ const MOCK_PROJECTS = [
     "category": "Mixed-Use",
     "tagline": "Iconic G+18 Storey Commercial & Luxury Tower in Pant Nagar",
     "gallery": [
-      "/images/projects/yog-aveer/media_1788939205229.jpg",
-      "/images/projects/yog-aveer/media_1788939208185.jpg",
-      "/images/projects/yog-aveer/media_1788939211764.jpg",
-      "/images/projects/yog-aveer/media_1788939214780.jpg"
+      "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939208185.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939211764.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939214780.jpg"
     ],
     "images": [
-      "/images/projects/yog-aveer/media_1788939205229.jpg",
-      "/images/projects/yog-aveer/media_1788939208185.jpg",
-      "/images/projects/yog-aveer/media_1788939211764.jpg",
-      "/images/projects/yog-aveer/media_1788939214780.jpg"
+      "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939208185.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939211764.jpg",
+      "/images/projects/yog-aveer-ghatkopar/media_1788939214780.jpg"
     ],
     "highlights": [
       "G+18 Storey Iconic Grand Architecture with High-Street Retail",
