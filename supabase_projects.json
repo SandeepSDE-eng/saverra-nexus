@@ -84,7 +84,7 @@
     "price_display": "₹ 2.18 Cr Onwards",
     "price_numeric": 21800000,
     "status": "under-construction",
-    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.jpg",
+    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.png",
     "bhk_options": "2, 3 & 4 BHK Luxury Residences",
     "carpet_area": "605 - 1,230 Sq.Ft.",
     "min_bhk": 2,
@@ -94,6 +94,7 @@
     "category": "Residential",
     "tagline": "Boutique G+20 High-Rise Living in Prime Ghatkopar",
     "gallery": [
+      "/images/projects/psk-aura-ghatkopar/cover.png",
       "/images/projects/psk-aura-ghatkopar/cover.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
@@ -108,8 +109,9 @@
     "description": "PSK Aura is an exclusive G+20 storey boutique residential tower situated on Hingwala Lane, Pant Nagar, Ghatkopar East. Offering ultra-luxurious 2, 3, and 4 BHK residences (605 - 1,230 Sq.Ft.), PSK Aura seamlessly combines modern glass architecture with premium lifestyle amenities including a fitness club, open-to-sky podium, sky lounge, and 3 basement parking tiers, all within walking distance of Ghatkopar station and metro transit.",
     "is_published": true,
     "is_featured": true,
-    "image_url": "/images/projects/psk-aura-ghatkopar/cover.jpg",
+    "image_url": "/images/projects/psk-aura-ghatkopar/cover.png",
     "images": [
+      "/images/projects/psk-aura-ghatkopar/cover.png",
       "/images/projects/psk-aura-ghatkopar/cover.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
@@ -534,7 +536,13 @@
     "category": "Residential",
     "tagline": "Premium High-Rise Living in Pant Nagar",
     "gallery": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png"
+      "/images/projects/shubham-elegance-ghatkopar/cover.png",
+      "/images/projects/shubham-elegance-ghatkopar/cover.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-1.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-2.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-3.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-4.jpg",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-5.webp"
     ],
     "highlights": "[\"Grand Double-Height Entrance Lobby\", \"Indoor Games Room & Gymnasium\", \"Landscaped Podium & Kids Play Bay\", \"100% Vaastu-Compliant Layouts\"]",
     "amenities": "[\"Gymnasium\", \"Kids Play Area\", \"Landscaped Garden\", \"Multi-Tier Security\", \"Power Backup\"]",
@@ -544,7 +552,13 @@
     "carpet_area": "425 - 635 Sq.Ft.",
     "image_url": "/images/projects/shubham-elegance-ghatkopar/cover.png",
     "images": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png"
+      "/images/projects/shubham-elegance-ghatkopar/cover.png",
+      "/images/projects/shubham-elegance-ghatkopar/cover.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-1.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-2.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-3.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-4.jpg",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-5.webp"
     ]
   },
   {

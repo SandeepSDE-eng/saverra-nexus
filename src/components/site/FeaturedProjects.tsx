@@ -12,7 +12,10 @@ export function FeaturedProjects({ limit, showHeading = true }: { limit?: number
   const itemsPerPage = 12;
 
   const { data: projects = [], isLoading } = useQuery({
-    queryKey: ["projects", "featured"],
+    queryKey: ["projects", "featured", limit || "all"],
+    staleTime: 0,
+    gcTime: 0,
+    refetchOnMount: "always",
     queryFn: async () => {
       try {
         const response = limit 

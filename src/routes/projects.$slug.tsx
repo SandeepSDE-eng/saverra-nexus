@@ -9,6 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/projects/$slug")({
+  loader: async ({ params }) => {
+    try {
+      const res = await getProjectBySlugFn({ data: params.slug });
+      if (res.success && res.data) return res.data;
+    } catch (e) {}
+    return MOCK_PROJECTS.find((m) => m.slug === params.slug) || null;
+  },
   component: ProjectDetail,
   errorComponent: ({ error }) => (
     <div className="grid min-h-screen place-items-center p-6 text-center">
@@ -29,33 +36,50 @@ export const Route = createFileRoute("/projects/$slug")({
   ),
 });
 
-import { MOCK_PROJECTS } from "@/lib/mockProjects";
-
 function ProjectDetail() {
   const { slug } = Route.useParams();
+  const initialData = Route.useLoaderData();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const { data: p, isLoading } = useQuery({
+  const { data: p = initialData } = useQuery({
     queryKey: ["project", slug],
+    initialData,
+    staleTime: 0,
+    gcTime: 0,
+    refetchOnMount: "always",
     queryFn: async () => {
       try {
         const response = await getProjectBySlugFn({ data: slug });
         if (!response.success || !response.data) throw new Error(response.error || "Not found");
         return response.data;
       } catch (error) {
-        // Fallback to mock data if DB has old schema (missing name) or error
         const mockP = MOCK_PROJECTS.find((m) => m.slug === slug);
-        if (mockP) {
-          return mockP;
-        } else {
-          throw notFound();
-        }
+        if (mockP) return mockP;
+        throw notFound();
       }
     },
   });
 
-  if (isLoading) return <div className="grid min-h-screen place-items-center">Loading…</div>;
-  if (!p) return null;
+  if (!p) return <div className="grid min-h-screen place-items-center">Loading…</div>;
+
+  // Safely parse JSON array fields if they come as string from MySQL DB
+  const parseJsonArray = (val: any) => {
+    if (Array.isArray(val)) return val;
+    if (typeof val === "string") {
+      try {
+        const parsed = JSON.parse(val);
+        if (Array.isArray(parsed)) return parsed;
+      } catch (e) {
+        // if single string URL
+        if (val.startsWith("http")) return [val];
+      }
+    }
+    return [];
+  };
+
+  const galleryList = parseJsonArray(p.gallery);
+  const highlightsList = parseJsonArray(p.highlights);
+  const amenitiesList = parseJsonArray(p.amenities);
 
   // Map MOCK_PROJECTS fields to what the UI expects if they differ
   const name = p.name || p.title;
@@ -96,7 +120,7 @@ function ProjectDetail() {
             <Fact label="Configuration" value={p.bhk_options ?? "—"} />
             <Fact label="Carpet Area" value={getCarpetArea(p)} />
             <Fact label="Starting Price" value={priceDisplay} icon={<IndianRupee className="size-4 text-gold" />} />
-            <Fact label="Possession" value={p.status ?? p.possession ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
+            <Fact label="Possession" value={p.possession ?? p.status ?? "—"} icon={<Calendar className="size-4 text-gold" />} />
           </div>
 
           {/* Overview */}
@@ -109,11 +133,11 @@ function ProjectDetail() {
                 </p>
               </div>
 
-              {p.highlights?.length ? (
+              {highlightsList.length ? (
                 <div>
                   <h3 className="font-display text-2xl font-light mb-6 text-primary">Project Highlights</h3>
                   <ul className="grid gap-4 sm:grid-cols-2">
-                    {p.highlights.map((h: any) => (
+                    {highlightsList.map((h: any) => (
                       <li key={h} className="flex items-start gap-3">
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold mt-0.5">
                           <CheckCircle2 className="size-3.5" />
@@ -125,11 +149,11 @@ function ProjectDetail() {
                 </div>
               ) : null}
 
-              {p.amenities?.length ? (
+              {amenitiesList.length ? (
                 <div>
                   <h3 className="font-display text-2xl font-light mb-6 text-primary">Amenities</h3>
                   <div className="flex flex-wrap gap-2.5">
-                    {p.amenities.map((a: any) => (
+                    {amenitiesList.map((a: any) => (
                       <span key={a} className="rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-secondary">
                         {a}
                       </span>
@@ -156,15 +180,15 @@ function ProjectDetail() {
           </div>
 
           {/* Gallery */}
-          {p.gallery?.length ? (
+          {galleryList.length ? (
             <div className="mt-16 pt-12 border-t border-border/40">
               <h2 className="font-display text-3xl font-light mb-8 text-primary">Life at {name}</h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                {p.gallery.map((rawUrl: any, i: number) => {
+                {galleryList.map((rawUrl: any, i: number) => {
                   const g = typeof rawUrl === 'string' ? rawUrl.replace(/^["'{\[]+|["'}\]]+$/g, '') : '';
                   if (!g) return null;
                   return (
-                    <div key={g + i} className="overflow-hidden rounded-xl cursor-pointer group relative bg-secondary" onClick={() => setLightboxIndex(i)}>
+                    <div key={g + i} className="gallery-card overflow-hidden rounded-xl cursor-pointer group relative bg-secondary" onClick={() => setLightboxIndex(i)}>
                       <img 
                         src={g} 
                         alt={`Gallery image of ${name}`} 
@@ -172,8 +196,8 @@ function ProjectDetail() {
                         loading="lazy" 
                         referrerPolicy="no-referrer"
                         onError={(e) => {
-                          // Hide broken images completely rather than showing alt text
-                          e.currentTarget.style.display = 'none';
+                          const card = e.currentTarget.closest('.gallery-card') as HTMLElement;
+                          if (card) card.style.display = 'none';
                         }}
                       />
                       <div className="absolute inset-0 bg-[color:var(--navy-deep)]/0 transition-colors duration-500 group-hover:bg-[color:var(--navy-deep)]/20 mix-blend-overlay" />

@@ -86,11 +86,17 @@ SetEnv VITE_API_URL https://saverrarealty.com
   RewriteRule ^social-gallery\\.php$ /social-wall [R=301,L]
   RewriteRule ^other-projects\\.php$ /projects [R=301,L]
   RewriteRule ^.*\\.php$ /projects [R=301,L]
+
+  # Serve existing static files directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
 </IfModule>
 """
 
     client.exec_command(f"mkdir -p {remote_nodejs}/tmp")
     client.exec_command(f"cat << 'EOF' > {remote_public_html}/.htaccess\n{htaccess_content}\nEOF")
+    client.exec_command("pkill -9 -f node 2>/dev/null || true")
     client.exec_command(f"touch {remote_nodejs}/tmp/restart.txt")
 
     print("Clean deployment & restart completed successfully!")

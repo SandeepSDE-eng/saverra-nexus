@@ -38,6 +38,9 @@ async function ensureSchemaUpgraded(pool: any) {
   if (hasUpgradedSchema) return;
   try {
     await pool.query("ALTER TABLE projects MODIFY cover_image LONGTEXT");
+    try {
+      await pool.query("ALTER TABLE projects ADD COLUMN carpet_area VARCHAR(255)");
+    } catch (e) {}
     await autoSyncProjects(pool);
     hasUpgradedSchema = true;
   } catch (err) {

@@ -1,16 +1,46 @@
-export const MOCK_PROJECTS = [
+export interface Project {
+  id: string | number;
+  name: string;
+  slug: string;
+  location: string;
+  city?: string;
+  builder: string;
+  price_display?: string;
+  price_numeric?: number;
+  price_range?: string;
+  status: string;
+  cover_image: string;
+  image_url: string;
+  bhk_options?: string;
+  carpet_area?: string;
+  min_bhk?: number;
+  max_bhk?: number;
+  possession?: string;
+  rera_number?: string;
+  category?: string;
+  tagline?: string;
+  gallery: string[];
+  images?: string[];
+  highlights?: string[];
+  amenities?: string[];
+  description?: string;
+  is_published?: boolean;
+  is_featured?: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export const MOCK_PROJECTS: Project[] = [
   {
-    "id": 100,
     "name": "Emperia Legacy",
     "slug": "emperia-legacy-ghatkopar",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Emperia Group",
-    "price_display": "\u20b9 1.22 Cr Onwards",
+    "price_display": "₹ 1.22 Cr Onwards",
     "price_numeric": 12200000,
     "status": "under-construction",
     "cover_image": "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
-    "image_url": "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
     "bhk_options": "1, 2 BHK & Jodi Options",
     "carpet_area": "457 - 657 Sq.Ft.",
     "min_bhk": 1,
@@ -29,6 +59,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/emperia-legacy-ghatkopar/gallery-6.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-7.jpg"
     ],
+    "highlights": "[\"G+15 Storey Landmark Residential High-Rise\", \"Over 25+ World-Class Lifestyle Amenities\", \"Infinity Swimming Pool & Rooftop Horizon Cafe\", \"1 BHK (457 Sq.Ft.) & 2 BHK (609\\u2013657 Sq.Ft.) Layouts\", \"Proximity to Eastern Express Highway & Pant Nagar Metro\", \"MahaRERA Approved: PR1180002600209\"]",
+    "amenities": "[\"Infinity Pool\", \"Rooftop Cafe\", \"Gymnasium\", \"Yoga Deck\", \"Kids Play Area\", \"Jogging Track\", \"Podium Parking\", \"24/7 Security\"]",
+    "description": "Emperia Legacy (One Legacy) by Emperia Group is a G+15 storey luxury residential tower situated in the prime hub of Pant Nagar, Ghatkopar East. Offering meticulously planned 1 and 2 BHK residences with custom Jodi combinations, the project features 25+ curated lifestyle amenities including an infinity swimming pool, rooftop cafe, gym, and seamless connectivity to Eastern Express Highway and Metro.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
     "images": [
       "/images/projects/emperia-legacy-ghatkopar/cover.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-1.jpg",
@@ -38,43 +74,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/emperia-legacy-ghatkopar/gallery-5.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-6.jpg",
       "/images/projects/emperia-legacy-ghatkopar/gallery-7.jpg"
-    ],
-    "highlights": [
-      "G+15 Storey Landmark Residential High-Rise",
-      "Over 25+ World-Class Lifestyle Amenities",
-      "Infinity Swimming Pool & Rooftop Horizon Cafe",
-      "1 BHK (457 Sq.Ft.) & 2 BHK (609\u2013657 Sq.Ft.) Layouts",
-      "Proximity to Eastern Express Highway & Pant Nagar Metro",
-      "MahaRERA Approved: PR1180002600209"
-    ],
-    "amenities": [
-      "Infinity Pool",
-      "Rooftop Cafe",
-      "Gymnasium",
-      "Yoga Deck",
-      "Kids Play Area",
-      "Jogging Track",
-      "Podium Parking",
-      "24/7 Security"
-    ],
-    "description": "Emperia Legacy (One Legacy) by Emperia Group is a G+15 storey luxury residential tower situated in the prime hub of Pant Nagar, Ghatkopar East. Offering meticulously planned 1 and 2 BHK residences with custom Jodi combinations, the project features 25+ curated lifestyle amenities including an infinity swimming pool, rooftop cafe, gym, and seamless connectivity to Eastern Express Highway and Metro.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 101,
     "name": "Sai Shankar by Sai Life",
     "slug": "sai-shankar-sai-life",
     "location": "Ramanand Society, M.G. Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Sai Life Realtors",
-    "price_display": "\u20b9 2.84 Cr Onwards",
+    "price_display": "₹ 2.84 Cr Onwards",
     "price_numeric": 28400000,
     "status": "under-construction",
     "cover_image": "/images/projects/sai-shankar-sai-life/cover.png",
-    "image_url": "/images/projects/sai-shankar-sai-life/cover.png",
     "bhk_options": "2, 3 BHK & Jodi Options (4, 5 BHK)",
     "carpet_area": "706 - 1,178 Sq.Ft.",
     "min_bhk": 2,
@@ -86,45 +97,26 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/sai-shankar-sai-life/cover.png"
     ],
-    "images": [
-      "/images/projects/sai-shankar-sai-life/cover.png"
-    ],
-    "highlights": [
-      "3 Grand Wings Spanning a 0.77-Acre Land Parcel",
-      "Spacious 2 & 3 BHK Layouts with Large Jodi Combinations",
-      "Private Mini-Theatre & Air-Conditioned Gymnasium",
-      "Double-Height Designer Reception Lobby",
-      "Podium-Level Multi-Level Car Parking Bay",
-      "Prime Strategic Location on M.G. Road, Pant Nagar"
-    ],
-    "amenities": [
-      "Gymnasium",
-      "Mini Theatre",
-      "Multipurpose Hall",
-      "Indoor Games Room",
-      "Podium Parking",
-      "Landscaped Gardens",
-      "24/7 Security",
-      "EV Charging"
-    ],
+    "highlights": "[\"3 Grand Wings Spanning a 0.77-Acre Land Parcel\", \"Spacious 2 & 3 BHK Layouts with Large Jodi Combinations\", \"Private Mini-Theatre & Air-Conditioned Gymnasium\", \"Double-Height Designer Reception Lobby\", \"Podium-Level Multi-Level Car Parking Bay\", \"Prime Strategic Location on M.G. Road, Pant Nagar\"]",
+    "amenities": "[\"Gymnasium\", \"Mini Theatre\", \"Multipurpose Hall\", \"Indoor Games Room\", \"Podium Parking\", \"Landscaped Gardens\", \"24/7 Security\", \"EV Charging\"]",
     "description": "Sai Shankar by Sai Life is a landmark residential development rising across 0.77 acres on M.G. Road in Pant Nagar, Ghatkopar East. Designed across three magnificent wings, it offers meticulously crafted 2 BHK and 3 BHK luxury residences along with expansive Jodi combinations. Featuring a private mini-theatre, state-of-the-art gymnasium, indoor recreational zone, and seamless connectivity to Eastern Express Highway, Metro, and railway transit.",
     "is_published": true,
     "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "image_url": "/images/projects/sai-shankar-sai-life/cover.png",
+    "images": [
+      "/images/projects/sai-shankar-sai-life/cover.png"
+    ]
   },
   {
-    "id": 102,
     "name": "PSK Aura",
     "slug": "psk-aura-ghatkopar",
     "location": "Hingwala Lane, Saibaba Nagar, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "PSK Group",
-    "price_display": "\u20b9 2.18 Cr Onwards",
+    "price_display": "₹ 2.18 Cr Onwards",
     "price_numeric": 21800000,
     "status": "under-construction",
-    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.jpg",
-    "image_url": "/images/projects/psk-aura-ghatkopar/cover.jpg",
+    "cover_image": "/images/projects/psk-aura-ghatkopar/cover.png",
     "bhk_options": "2, 3 & 4 BHK Luxury Residences",
     "carpet_area": "605 - 1,230 Sq.Ft.",
     "min_bhk": 2,
@@ -134,6 +126,7 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Boutique G+20 High-Rise Living in Prime Ghatkopar",
     "gallery": [
+      "/images/projects/psk-aura-ghatkopar/cover.png",
       "/images/projects/psk-aura-ghatkopar/cover.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
@@ -143,52 +136,34 @@ export const MOCK_PROJECTS = [
       "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
       "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
     ],
-    "images": [
-      "/images/projects/psk-aura-ghatkopar/cover.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-3.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
-      "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
-    ],
-    "highlights": [
-      "G+20 Storey Standalone Boutique High-Rise Tower",
-      "Open-to-Sky Landscaped Rooftop & Podium Amenities",
-      "3 Levels of Secure Basement Parking Tiers",
-      "Exclusive Fitness Gym, Sky Lounge & Children's Play Zone",
-      "450m from Proposed Pantnagar Metro & 600m from Ghatkopar Station",
-      "MahaRERA Approved Project: P51800080013"
-    ],
-    "amenities": [
-      "Fitness Centre",
-      "Open Podium Garden",
-      "Sky Lounge",
-      "Multipurpose Court",
-      "Reading Library",
-      "Kids Play Zone",
-      "Basement Parking",
-      "EV Charging"
-    ],
+    "highlights": "[\"G+20 Storey Standalone Boutique High-Rise Tower\", \"Open-to-Sky Landscaped Rooftop & Podium Amenities\", \"3 Levels of Secure Basement Parking Tiers\", \"Exclusive Fitness Gym, Sky Lounge & Children's Play Zone\", \"450m from Proposed Pantnagar Metro & 600m from Ghatkopar Station\", \"MahaRERA Approved Project: P51800080013\"]",
+    "amenities": "[\"Fitness Centre\", \"Open Podium Garden\", \"Sky Lounge\", \"Multipurpose Court\", \"Reading Library\", \"Kids Play Zone\", \"Basement Parking\", \"EV Charging\"]",
     "description": "PSK Aura is an exclusive G+20 storey boutique residential tower situated on Hingwala Lane, Pant Nagar, Ghatkopar East. Offering ultra-luxurious 2, 3, and 4 BHK residences (605 - 1,230 Sq.Ft.), PSK Aura seamlessly combines modern glass architecture with premium lifestyle amenities including a fitness club, open-to-sky podium, sky lounge, and 3 basement parking tiers, all within walking distance of Ghatkopar station and metro transit.",
     "is_published": true,
     "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "image_url": "/images/projects/psk-aura-ghatkopar/cover.png",
+    "images": [
+      "/images/projects/psk-aura-ghatkopar/cover.png",
+      "/images/projects/psk-aura-ghatkopar/cover.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-1.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-2.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-3.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-4.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-5.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-6.jpg",
+      "/images/projects/psk-aura-ghatkopar/gallery-7.jpg"
+    ]
   },
   {
-    "id": 103,
     "name": "Silver Stellar",
     "slug": "silver-stellar-ghatkopar",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "\u20b9 1.78 Cr Onwards",
+    "price_display": "₹ 1.78 Cr Onwards",
     "price_numeric": 17800000,
     "status": "under-construction",
     "cover_image": "/images/projects/silver-stellar-ghatkopar/cover.webp",
-    "image_url": "/images/projects/silver-stellar-ghatkopar/cover.webp",
     "bhk_options": "2 & 3 BHK Modern Residences",
     "carpet_area": "610 - 940 Sq.Ft.",
     "min_bhk": 2,
@@ -207,6 +182,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-stellar-ghatkopar/gallery-6.webp",
       "/images/projects/silver-stellar-ghatkopar/gallery-7.webp"
     ],
+    "highlights": "[\"Spacious Luxury 2 & 3 BHK Smart Residences (610 - 940 Sq.Ft.)\", \"Rooftop Sky Deck & Horizon Stargazing Lounge\", \"Grand Double-Height Italian Marble Entrance Lobby\", \"High-Speed Elevators with 100% Power Backup\", \"Located in Prestigious Pant Nagar, Ghatkopar East\", \"MahaRERA Registered Project: P51800049102\"]",
+    "amenities": "[\"Sky Lounge\", \"Infinity View Deck\", \"Gymnasium\", \"Italian Marble Lobby\", \"Yoga Pavilion\", \"Automated Parking\", \"24/7 Security\"]",
+    "description": "Silver Stellar by Silver Group represents the pinnacle of modern luxury living in Pant Nagar, Ghatkopar East. Offering meticulously planned 2 & 3 BHK residences featuring floor-to-ceiling panoramic glass windows, high-end interior finishes, rooftop sky lounge, fitness gymnasium, and state-of-the-art multi-tier biometric security.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/silver-stellar-ghatkopar/cover.webp",
     "images": [
       "/images/projects/silver-stellar-ghatkopar/cover.webp",
       "/images/projects/silver-stellar-ghatkopar/gallery-1.webp",
@@ -216,42 +197,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-stellar-ghatkopar/gallery-5.webp",
       "/images/projects/silver-stellar-ghatkopar/gallery-6.webp",
       "/images/projects/silver-stellar-ghatkopar/gallery-7.webp"
-    ],
-    "highlights": [
-      "Spacious Luxury 2 & 3 BHK Smart Residences (610 - 940 Sq.Ft.)",
-      "Rooftop Sky Deck & Horizon Stargazing Lounge",
-      "Grand Double-Height Italian Marble Entrance Lobby",
-      "High-Speed Elevators with 100% Power Backup",
-      "Located in Prestigious Pant Nagar, Ghatkopar East",
-      "MahaRERA Registered Project: P51800049102"
-    ],
-    "amenities": [
-      "Sky Lounge",
-      "Infinity View Deck",
-      "Gymnasium",
-      "Italian Marble Lobby",
-      "Yoga Pavilion",
-      "Automated Parking",
-      "24/7 Security"
-    ],
-    "description": "Silver Stellar by Silver Group represents the pinnacle of modern luxury living in Pant Nagar, Ghatkopar East. Offering meticulously planned 2 & 3 BHK residences featuring floor-to-ceiling panoramic glass windows, high-end interior finishes, rooftop sky lounge, fitness gymnasium, and state-of-the-art multi-tier biometric security.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 104,
     "name": "Silver House",
     "slug": "silver-house-ghatkopar",
     "location": "Tilak Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "\u20b9 1.32 Cr Onwards",
+    "price_display": "₹ 1.32 Cr Onwards",
     "price_numeric": 13200000,
     "status": "under-construction",
     "cover_image": "/images/projects/silver-house-ghatkopar/cover.jpg",
-    "image_url": "/images/projects/silver-house-ghatkopar/cover.jpg",
     "bhk_options": "Boutique Office Suites & High-Street Retail",
     "carpet_area": "420 - 640 Sq.Ft.",
     "min_bhk": 1,
@@ -270,6 +227,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-house-ghatkopar/gallery-6.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-7.jpg"
     ],
+    "highlights": "[\"Iconic G+16 Storey Glass Facade Commercial Landmark\", \"Boutique Office Suites (420 - 640 Sq.Ft.) & High-Street Retail\", \"Double-Height Grand Drop-Off Reception Lobby\", \"Rooftop Business Lounge, Cafeteria & Open-Air Screening\", \"2 Levels of Basement & Multi-Level Podium Parking\", \"Located on High-Footfall Tilak Road, Ghatkopar East\"]",
+    "amenities": "[\"Business Lounge\", \"High-Speed Elevators\", \"Paddle Ball Court\", \"Cafeteria\", \"Amphitheatre\", \"Conference Rooms\", \"Basement Parking\", \"24/7 Security\"]",
+    "description": "Silver House is a premier G+16 storey next-generation commercial landmark by Silver Group located on high-footfall Tilak Road, Ghatkopar East. Built to Grade-A corporate standards, it offers executive commercial suites and ground-floor retail outlets, double-height reception lobby, rooftop business lounge, and advanced smart building management systems.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/silver-house-ghatkopar/cover.jpg",
     "images": [
       "/images/projects/silver-house-ghatkopar/cover.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-1.jpg",
@@ -279,43 +242,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-house-ghatkopar/gallery-5.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-6.jpg",
       "/images/projects/silver-house-ghatkopar/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Iconic G+16 Storey Glass Facade Commercial Landmark",
-      "Boutique Office Suites (420 - 640 Sq.Ft.) & High-Street Retail",
-      "Double-Height Grand Drop-Off Reception Lobby",
-      "Rooftop Business Lounge, Cafeteria & Open-Air Screening",
-      "2 Levels of Basement & Multi-Level Podium Parking",
-      "Located on High-Footfall Tilak Road, Ghatkopar East"
-    ],
-    "amenities": [
-      "Business Lounge",
-      "High-Speed Elevators",
-      "Paddle Ball Court",
-      "Cafeteria",
-      "Amphitheatre",
-      "Conference Rooms",
-      "Basement Parking",
-      "24/7 Security"
-    ],
-    "description": "Silver House is a premier G+16 storey next-generation commercial landmark by Silver Group located on high-footfall Tilak Road, Ghatkopar East. Built to Grade-A corporate standards, it offers executive commercial suites and ground-floor retail outlets, double-height reception lobby, rooftop business lounge, and advanced smart building management systems.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 105,
     "name": "One Alag",
     "slug": "alag-one-chembur",
     "location": "Central Chembur / Ghatkopar Link Road, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "\u20b9 1.80 Cr Onwards",
+    "price_display": "₹ 1.80 Cr Onwards",
     "price_numeric": 18000000,
     "status": "under-construction",
     "cover_image": "/images/projects/alag-one-chembur/cover.jpg",
-    "image_url": "/images/projects/alag-one-chembur/cover.jpg",
     "bhk_options": "Grade-A Commercial Suites & High-Street Retail",
     "carpet_area": "600 - 3,025 Sq.Ft.",
     "min_bhk": 1,
@@ -327,44 +265,26 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/alag-one-chembur/cover.jpg"
     ],
-    "images": [
-      "/images/projects/alag-one-chembur/cover.jpg"
-    ],
-    "highlights": [
-      "Grade-A Commercial Suites (600 - 3,025 Sq.Ft.) by Alag Group",
-      "High-Visibility Frontage along Chembur-Ghatkopar Link Corridor",
-      "Double-Height Designer Reception Lobby & Concierge Desk",
-      "High-Speed Elevators, 100% Power Backup & BMS Security",
-      "Minutes from Eastern Freeway, BKC Connector & Ghatkopar Metro",
-      "MahaRERA Approved: P51800052341"
-    ],
-    "amenities": [
-      "Grade-A Lobby",
-      "High-Speed Elevators",
-      "Business Center",
-      "Power Backup",
-      "BMS Surveillance",
-      "Visitor Parking",
-      "EV Charging"
-    ],
+    "highlights": "[\"Grade-A Commercial Suites (600 - 3,025 Sq.Ft.) by Alag Group\", \"High-Visibility Frontage along Chembur-Ghatkopar Link Corridor\", \"Double-Height Designer Reception Lobby & Concierge Desk\", \"High-Speed Elevators, 100% Power Backup & BMS Security\", \"Minutes from Eastern Freeway, BKC Connector & Ghatkopar Metro\", \"MahaRERA Approved: P51800052341\"]",
+    "amenities": "[\"Grade-A Lobby\", \"High-Speed Elevators\", \"Business Center\", \"Power Backup\", \"BMS Surveillance\", \"Visitor Parking\", \"EV Charging\"]",
     "description": "One Alag by Alag Group is a high-profile commercial landmark situated along the prime Chembur-Ghatkopar growth corridor in Mumbai. Offering flexible Grade-A commercial office suites (600 to 3,025 Sq.Ft.) and prime ground-level high-street retail, One Alag offers superior transit connectivity, modern glass architecture, and robust corporate infrastructure.",
     "is_published": true,
     "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "image_url": "/images/projects/alag-one-chembur/cover.jpg",
+    "images": [
+      "/images/projects/alag-one-chembur/cover.jpg"
+    ]
   },
   {
-    "id": 106,
     "name": "Shubham Artesia",
     "slug": "shubham-artesia-ghatkopar",
     "location": "Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "\u20b9 1.88 Cr Onwards",
+    "price_display": "₹ 1.88 Cr Onwards",
     "price_numeric": 18800000,
     "status": "under-construction",
     "cover_image": "/images/projects/shubham-artesia-ghatkopar/cover.png",
-    "image_url": "/images/projects/shubham-artesia-ghatkopar/cover.png",
     "bhk_options": "2 & 3 BHK Luxury Residences",
     "carpet_area": "630 - 990 Sq.Ft.",
     "min_bhk": 2,
@@ -376,44 +296,26 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/shubham-artesia-ghatkopar/cover.png"
     ],
-    "images": [
-      "/images/projects/shubham-artesia-ghatkopar/cover.png"
-    ],
-    "highlights": [
-      "Magnificent 20-Storey Standalone Architectural High-Rise",
-      "Spacious 2 & 3 BHK Luxury Residences (630 - 990 Sq.Ft.)",
-      "Air-Conditioned Fitness Gymnasium & Wellness Studio",
-      "Grand Banquet Hall with Landscaped Party Lawn",
-      "Ground-Level High-Street Retail Boulevard",
-      "2 Minutes to Ghatkopar Railway Station & Metro"
-    ],
-    "amenities": [
-      "AC Gymnasium",
-      "Banquet Hall",
-      "Party Lawn",
-      "High-Street Retail",
-      "Kids Play Area",
-      "Smart Security",
-      "Podium Parking"
-    ],
+    "highlights": "[\"Magnificent 20-Storey Standalone Architectural High-Rise\", \"Spacious 2 & 3 BHK Luxury Residences (630 - 990 Sq.Ft.)\", \"Air-Conditioned Fitness Gymnasium & Wellness Studio\", \"Grand Banquet Hall with Landscaped Party Lawn\", \"Ground-Level High-Street Retail Boulevard\", \"2 Minutes to Ghatkopar Railway Station & Metro\"]",
+    "amenities": "[\"AC Gymnasium\", \"Banquet Hall\", \"Party Lawn\", \"High-Street Retail\", \"Kids Play Area\", \"Smart Security\", \"Podium Parking\"]",
     "description": "Shubham Artesia by Shubham Group is a 20-storey architectural landmark located on Ramanarayan Narkar Marg in Pant Nagar, Ghatkopar East. Offering lavish 2 and 3 BHK luxury residences, the project features ground-level high-street retail, an air-conditioned fitness club, a grand banquet hall with party lawn, and unmatched transit connectivity to Eastern Express Highway and metro station.",
     "is_published": true,
     "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "image_url": "/images/projects/shubham-artesia-ghatkopar/cover.png",
+    "images": [
+      "/images/projects/shubham-artesia-ghatkopar/cover.png"
+    ]
   },
   {
-    "id": 107,
     "name": "MICL Aaradhya OnePark",
     "slug": "micl-aaradhya-onepark",
     "location": "60ft Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "MICL Group",
-    "price_display": "\u20b9 4.15 Cr Onwards",
+    "price_display": "₹ 4.15 Cr Onwards",
     "price_numeric": 41500000,
     "status": "under-construction",
     "cover_image": "/images/projects/micl-aaradhya-onepark/cover.webp",
-    "image_url": "/images/projects/micl-aaradhya-onepark/cover.webp",
     "bhk_options": "3, 4 & 5 BHK Ultra Luxury Residences",
     "carpet_area": "1,020 - 2,150 Sq.Ft.",
     "min_bhk": 3,
@@ -432,6 +334,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-onepark/gallery-6.png",
       "/images/projects/micl-aaradhya-onepark/gallery-7.webp"
     ],
+    "highlights": "[\"Ultra-Luxury 3, 4 & 5 BHK Residences (1,020 - 2,150 Sq.Ft.)\", \"Rooftop Horizon Infinity Pool & Family Aqua Pods\", \"Double-Height Grand Entrance Lobby with Gold Accents\", \"Squash Court, Business Chamber & Private Mini Theatre\", \"Prime 60ft Road Parkside Location in Ghatkopar East\", \"MahaRERA Registered Project: P51800054477\"]",
+    "amenities": "[\"Infinity Pool\", \"Gymnasium\", \"Concierge\", \"Sky Lounge\", \"Squash Court\", \"Business Chamber\", \"24/7 Security\"]",
+    "description": "Aaradhya OnePark by MICL Group brings ultra-luxury parkside living to the prestigious 60ft Road in Ghatkopar East. Offering palatial 3, 4 & 5 BHK residences, the project features state-of-the-art glass architecture, rooftop infinity pool, squash court, business chambers, and panoramic park vistas.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/micl-aaradhya-onepark/cover.webp",
     "images": [
       "/images/projects/micl-aaradhya-onepark/cover.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-1.jpg",
@@ -441,42 +349,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-onepark/gallery-5.webp",
       "/images/projects/micl-aaradhya-onepark/gallery-6.png",
       "/images/projects/micl-aaradhya-onepark/gallery-7.webp"
-    ],
-    "highlights": [
-      "Ultra-Luxury 3, 4 & 5 BHK Residences (1,020 - 2,150 Sq.Ft.)",
-      "Rooftop Horizon Infinity Pool & Family Aqua Pods",
-      "Double-Height Grand Entrance Lobby with Gold Accents",
-      "Squash Court, Business Chamber & Private Mini Theatre",
-      "Prime 60ft Road Parkside Location in Ghatkopar East",
-      "MahaRERA Registered Project: P51800054477"
-    ],
-    "amenities": [
-      "Infinity Pool",
-      "Gymnasium",
-      "Concierge",
-      "Sky Lounge",
-      "Squash Court",
-      "Business Chamber",
-      "24/7 Security"
-    ],
-    "description": "Aaradhya OnePark by MICL Group brings ultra-luxury parkside living to the prestigious 60ft Road in Ghatkopar East. Offering palatial 3, 4 & 5 BHK residences, the project features state-of-the-art glass architecture, rooftop infinity pool, squash court, business chambers, and panoramic park vistas.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 108,
     "name": "Adani The Views",
     "slug": "adani-the-views",
     "location": "M.G. Road, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Adani Realty",
-    "price_display": "\u20b9 2.45 Cr Onwards",
+    "price_display": "₹ 2.45 Cr Onwards",
     "price_numeric": 24500000,
     "status": "under-construction",
     "cover_image": "/images/projects/adani-the-views/cover.jpg",
-    "image_url": "/images/projects/adani-the-views/cover.jpg",
     "bhk_options": "2 & 3 BHK Luxury Sundeck Residences",
     "carpet_area": "680 - 1,050 Sq.Ft.",
     "min_bhk": 2,
@@ -495,6 +379,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/adani-the-views/gallery-6.jpg",
       "/images/projects/adani-the-views/gallery-7.jpg"
     ],
+    "highlights": "[\"Signature 200-Foot Elevated Skywalk & Sky Lounge\", \"Spacious 2 & 3 BHK Luxury Residences with Private Sundecks\", \"Landscaped Podium Garden & Wellness Pavilion\", \"Adani Realty High-Quality Construction Assurance\", \"Prime Central Location on M.G. Road, Ghatkopar East\", \"MahaRERA Approved: P51800050858\"]",
+    "amenities": "[\"Skywalk\", \"Clubhouse\", \"Gymnasium\", \"Swimming Pool\", \"Kids Play Area\"]",
+    "description": "Adani The Views in Pant Nagar, Ghatkopar East offers premium 2 & 3 BHK luxury residences featuring private sundecks, a signature 200-foot elevated skywalk, expansive podium gardens, state-of-the-art club amenities, and 10-minute access to Eastern Express Highway and metro connections.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/adani-the-views/cover.jpg",
     "images": [
       "/images/projects/adani-the-views/cover.jpg",
       "/images/projects/adani-the-views/gallery-1.jpg",
@@ -504,40 +394,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/adani-the-views/gallery-5.jpg",
       "/images/projects/adani-the-views/gallery-6.jpg",
       "/images/projects/adani-the-views/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Signature 200-Foot Elevated Skywalk & Sky Lounge",
-      "Spacious 2 & 3 BHK Luxury Residences with Private Sundecks",
-      "Landscaped Podium Garden & Wellness Pavilion",
-      "Adani Realty High-Quality Construction Assurance",
-      "Prime Central Location on M.G. Road, Ghatkopar East",
-      "MahaRERA Approved: P51800050858"
-    ],
-    "amenities": [
-      "Skywalk",
-      "Clubhouse",
-      "Gymnasium",
-      "Swimming Pool",
-      "Kids Play Area"
-    ],
-    "description": "Adani The Views in Pant Nagar, Ghatkopar East offers premium 2 & 3 BHK luxury residences featuring private sundecks, a signature 200-foot elevated skywalk, expansive podium gardens, state-of-the-art club amenities, and 10-minute access to Eastern Express Highway and metro connections.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 109,
     "name": "Orient Odyssey",
     "slug": "orient-odyssey",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Orient Corp",
-    "price_display": "\u20b9 3.49 Cr Onwards",
+    "price_display": "₹ 3.49 Cr Onwards",
     "price_numeric": 34900000,
     "status": "under-construction",
     "cover_image": "/images/projects/orient-odyssey/cover.jpg",
-    "image_url": "/images/projects/orient-odyssey/cover.jpg",
     "bhk_options": "3 & 4 BHK Luxury Residences",
     "carpet_area": "750 - 1,450 Sq.Ft.",
     "min_bhk": 3,
@@ -549,44 +417,27 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/orient-odyssey/cover.jpg"
     ],
-    "images": [
-      "/images/projects/orient-odyssey/cover.jpg"
-    ],
-    "highlights": [
-      "Exclusive 3 & 4 BHK Luxury Residences (750 - 1,450 Sq.Ft.)",
-      "Twin-Tower Landmark Architecture Spanning 0.36 Acres",
-      "Yoga Deck, Air-Conditioned Gymnasium & Sky Deck",
-      "Proximity to Eastern Express Highway, Pant Nagar Metro & Railway",
-      "Vastu-Compliant Architectural Layouts",
-      "MahaRERA Approved: P51800051203"
-    ],
-    "amenities": [
-      "Gymnasium",
-      "Landscape Garden",
-      "Jogging Track",
-      "Yoga Deck",
-      "24/7 Security"
-    ],
+    "highlights": "[\"Exclusive 3 & 4 BHK Luxury Residences (750 - 1,450 Sq.Ft.)\", \"Twin-Tower Landmark Architecture Spanning 0.36 Acres\", \"Yoga Deck, Air-Conditioned Gymnasium & Sky Deck\", \"Proximity to Eastern Express Highway, Pant Nagar Metro & Railway\", \"Vastu-Compliant Architectural Layouts\", \"MahaRERA Approved: P51800051203\"]",
+    "amenities": "[\"Gymnasium\", \"Landscape Garden\", \"Jogging Track\", \"Yoga Deck\", \"24/7 Security\"]",
     "description": "Orient Odyssey by Orient Corp is a premium twin-tower residential landmark in Pant Nagar, Ghatkopar East. Offering lavish 3 & 4 BHK residences with expansive carpet areas (750 - 1,450 Sq.Ft.), the project provides modern luxury amenities including a rooftop sky deck, yoga lounge, gymnasium, and excellent transit connectivity.",
     "is_published": true,
     "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "image_url": "/images/projects/orient-odyssey/cover.jpg",
+    "images": [
+      "/images/projects/orient-odyssey/cover.jpg"
+    ]
   },
   {
-    "id": 110,
     "name": "9 Anemone Heights",
     "slug": "9-anemone-heights",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Anemone Developers",
-    "price_display": "\u20b9 1.25 Cr Onwards",
+    "price_display": "₹ 1.25 Cr Onwards",
     "price_numeric": 12500000,
     "status": "under-construction",
     "cover_image": "/images/projects/9-anemone-heights/cover.png",
-    "image_url": "/images/projects/9-anemone-heights/cover.png",
     "bhk_options": "1 & 2 BHK Modern Apartments",
-    "carpet_area": "430 - 625 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2026",
@@ -603,6 +454,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/9-anemone-heights/gallery-6.jpg",
       "/images/projects/9-anemone-heights/gallery-7.jpg"
     ],
+    "highlights": "[\"Terrace Screening Zone & Cabanas\", \"7 High-speed Lifts per Tower\", \"2,000 Sq.Ft. Grand Entrance Lobby\", \"Wellness Hub & In-house Salon\"]",
+    "amenities": "[\"Multipurpose Studio\", \"Banquet Hall\", \"Wellness Hub\", \"Business Zone\", \"Terrace Screening\"]",
+    "description": "Rising in the heart of Ghatkopar on 90 Feet Road, 9 Anemone Heights by Anemone Homes LLP offers premium city-view 2 & 3 BHK residences with curated amenities, grand lobbies, and high-speed elevator access.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "430 - 625 Sq.Ft.",
+    "image_url": "/images/projects/9-anemone-heights/cover.png",
     "images": [
       "/images/projects/9-anemone-heights/cover.png",
       "/images/projects/9-anemone-heights/gallery-1.png",
@@ -612,40 +470,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/9-anemone-heights/gallery-5.jpg",
       "/images/projects/9-anemone-heights/gallery-6.jpg",
       "/images/projects/9-anemone-heights/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Terrace Screening Zone & Cabanas",
-      "7 High-speed Lifts per Tower",
-      "2,000 Sq.Ft. Grand Entrance Lobby",
-      "Wellness Hub & In-house Salon"
-    ],
-    "amenities": [
-      "Multipurpose Studio",
-      "Banquet Hall",
-      "Wellness Hub",
-      "Business Zone",
-      "Terrace Screening"
-    ],
-    "description": "Rising in the heart of Ghatkopar on 90 Feet Road, 9 Anemone Heights by Anemone Homes LLP offers premium city-view 2 & 3 BHK residences with curated amenities, grand lobbies, and high-speed elevator access.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 111,
     "name": "House of Hiranandani Chembur",
     "slug": "house-of-hiranandani-chembur",
     "location": "Union Park, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "House of Hiranandani",
-    "price_display": "\u20b9 2.95 Cr Onwards",
+    "price_display": "₹ 2.95 Cr Onwards",
     "price_numeric": 29500000,
     "status": "under-construction",
     "cover_image": "/images/projects/house-of-hiranandani-chembur/cover.jpg",
-    "image_url": "/images/projects/house-of-hiranandani-chembur/cover.jpg",
     "bhk_options": "2, 3 & 4 BHK Luxury Suites",
-    "carpet_area": "740 - 1,650 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 4,
     "possession": "Dec 2028",
@@ -662,6 +499,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/house-of-hiranandani-chembur/gallery-6.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-7.jpg"
     ],
+    "highlights": "[\"Signature Neo-Classical Architecture\", \"Lush European Landscaped Gardens\", \"Grand Clubhouse & Swimming Pool\", \"5 Mins to BKC Connector & Eastern Freeway\"]",
+    "amenities": "[\"Swimming Pool\", \"Gymnasium\", \"Clubhouse\", \"Tennis Court\", \"Squash Court\", \"Banquet Hall\", \"Children's Play Area\"]",
+    "description": "House of Hiranandani Chembur brings signature Neo-Classical architecture, expansive open greenery, and timeless luxury residences to Chembur. Featuring majestic archways, classical pillars, world-class amenities, and strategic connectivity to BKC and South Mumbai.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "740 - 1,650 Sq.Ft.",
+    "image_url": "/images/projects/house-of-hiranandani-chembur/cover.jpg",
     "images": [
       "/images/projects/house-of-hiranandani-chembur/cover.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-1.jpg",
@@ -671,42 +515,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/house-of-hiranandani-chembur/gallery-5.webp",
       "/images/projects/house-of-hiranandani-chembur/gallery-6.jpg",
       "/images/projects/house-of-hiranandani-chembur/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Signature Neo-Classical Architecture",
-      "Lush European Landscaped Gardens",
-      "Grand Clubhouse & Swimming Pool",
-      "5 Mins to BKC Connector & Eastern Freeway"
-    ],
-    "amenities": [
-      "Swimming Pool",
-      "Gymnasium",
-      "Clubhouse",
-      "Tennis Court",
-      "Squash Court",
-      "Banquet Hall",
-      "Children's Play Area"
-    ],
-    "description": "House of Hiranandani Chembur brings signature Neo-Classical architecture, expansive open greenery, and timeless luxury residences to Chembur. Featuring majestic archways, classical pillars, world-class amenities, and strategic connectivity to BKC and South Mumbai.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 112,
     "name": "Rustomjee Balmoral Golf Links",
     "slug": "rustomjee-balmoral-golf-links",
     "location": "Golf Course Road, Chembur, Mumbai",
     "city": "Mumbai",
     "builder": "Rustomjee",
-    "price_display": "\u20b9 6.50 Cr Onwards",
+    "price_display": "₹ 6.50 Cr Onwards",
     "price_numeric": 65000000,
     "status": "under-construction",
     "cover_image": "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
-    "image_url": "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
     "bhk_options": "3, 4 & 5 BHK Golf View Residences",
-    "carpet_area": "1,350 - 2,800 Sq.Ft.",
     "min_bhk": 3,
     "max_bhk": 5,
     "possession": "Dec 2028",
@@ -717,45 +538,29 @@ export const MOCK_PROJECTS = [
       "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
       "/images/projects/rustomjee-balmoral-golf-links/gallery-1.webp"
     ],
-    "images": [
-      "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
-      "/images/projects/rustomjee-balmoral-golf-links/gallery-1.webp"
-    ],
-    "highlights": [
-      "Unobstructed Golf Course Views",
-      "Private Elevator Foyers for Every Residence",
-      "Rooftop Infinity Pool & Sky Lounge",
-      "Exclusive Cigar & Wine Pavilion"
-    ],
-    "amenities": [
-      "Golf Simulator",
-      "Infinity Pool",
-      "Sky Lounge",
-      "Private Theater",
-      "Fitness Center",
-      "Spa & Wellness Pavilion",
-      "Concierge Service"
-    ],
+    "highlights": "[\"Unobstructed Golf Course Views\", \"Private Elevator Foyers for Every Residence\", \"Rooftop Infinity Pool & Sky Lounge\", \"Exclusive Cigar & Wine Pavilion\"]",
+    "amenities": "[\"Golf Simulator\", \"Infinity Pool\", \"Sky Lounge\", \"Private Theater\", \"Fitness Center\", \"Spa & Wellness Pavilion\", \"Concierge Service\"]",
     "description": "Rustomjee Balmoral Golf Links presents an unrepeatable luxury living experience overlooking panoramic golf course greens. Featuring private elevator foyers, expansive wrap-around sundecks, white-glove concierge, and a rooftop sky lounge.",
     "is_published": true,
     "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "carpet_area": "1,350 - 2,800 Sq.Ft.",
+    "image_url": "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
+    "images": [
+      "/images/projects/rustomjee-balmoral-golf-links/cover.webp",
+      "/images/projects/rustomjee-balmoral-golf-links/gallery-1.webp"
+    ]
   },
   {
-    "id": 113,
     "name": "Shubham Elegance",
     "slug": "shubham-elegance-ghatkopar",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Shubham Group",
-    "price_display": "\u20b9 1.18 Cr Onwards",
+    "price_display": "₹ 1.18 Cr Onwards",
     "price_numeric": 11800000,
     "status": "under-construction",
     "cover_image": "/images/projects/shubham-elegance-ghatkopar/cover.png",
-    "image_url": "/images/projects/shubham-elegance-ghatkopar/cover.png",
     "bhk_options": "1 & 2 BHK Premium Homes",
-    "carpet_area": "425 - 635 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2027",
@@ -763,44 +568,42 @@ export const MOCK_PROJECTS = [
     "category": "Residential",
     "tagline": "Premium High-Rise Living in Pant Nagar",
     "gallery": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png"
+      "/images/projects/shubham-elegance-ghatkopar/cover.png",
+      "/images/projects/shubham-elegance-ghatkopar/cover.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-1.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-2.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-3.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-4.jpg",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-5.webp"
     ],
-    "images": [
-      "/images/projects/shubham-elegance-ghatkopar/cover.png"
-    ],
-    "highlights": [
-      "Grand Double-Height Entrance Lobby",
-      "Indoor Games Room & Gymnasium",
-      "Landscaped Podium & Kids Play Bay",
-      "100% Vaastu-Compliant Layouts"
-    ],
-    "amenities": [
-      "Gymnasium",
-      "Kids Play Area",
-      "Landscaped Garden",
-      "Multi-Tier Security",
-      "Power Backup"
-    ],
+    "highlights": "[\"Grand Double-Height Entrance Lobby\", \"Indoor Games Room & Gymnasium\", \"Landscaped Podium & Kids Play Bay\", \"100% Vaastu-Compliant Layouts\"]",
+    "amenities": "[\"Gymnasium\", \"Kids Play Area\", \"Landscaped Garden\", \"Multi-Tier Security\", \"Power Backup\"]",
     "description": "Shubham Elegance offers premium 2 & 3 BHK residences in the prime residential pocket of Pant Nagar, Ghatkopar East, providing excellent connectivity to key transit corridors and social infrastructure.",
     "is_published": true,
     "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "carpet_area": "425 - 635 Sq.Ft.",
+    "image_url": "/images/projects/shubham-elegance-ghatkopar/cover.png",
+    "images": [
+      "/images/projects/shubham-elegance-ghatkopar/cover.png",
+      "/images/projects/shubham-elegance-ghatkopar/cover.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-1.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-2.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-3.webp",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-4.jpg",
+      "/images/projects/shubham-elegance-ghatkopar/gallery-5.webp"
+    ]
   },
   {
-    "id": 114,
     "name": "Happy Home Heights",
     "slug": "happy-home-heights",
     "location": "Mira Road / Ghatkopar Extension, Mumbai",
     "city": "Mumbai",
     "builder": "Happy Home Group",
-    "price_display": "\u20b9 68 Lac Onwards",
+    "price_display": "₹ 68 Lac Onwards",
     "price_numeric": 6800000,
     "status": "ready-to-move",
     "cover_image": "/images/projects/happy-home-heights/cover.jpg",
-    "image_url": "/images/projects/happy-home-heights/cover.jpg",
     "bhk_options": "1 & 2 BHK Apartments",
-    "carpet_area": "395 - 580 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Ready to Move",
@@ -814,46 +617,32 @@ export const MOCK_PROJECTS = [
       "/images/projects/happy-home-heights/gallery-3.jpg",
       "/images/projects/happy-home-heights/gallery-4.jpg"
     ],
+    "highlights": "[\"Smart Home Automation Provisions\", \"Rooftop Terrace Garden & Sitout\", \"Toddlers Play Area & Fitness Center\", \"Advanced Multi-Level Fire Safety\"]",
+    "amenities": "[\"Fitness Center\", \"Kids Play Area\", \"Smart Biometric Access\", \"CCTV Surveillance\", \"Automated Parking\"]",
+    "description": "Experience modern living with smart home features at Happy Home Heights. Situated in the peaceful, elite enclave of Garodia Nagar, ensuring serenity amidst city connectivity.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "395 - 580 Sq.Ft.",
+    "image_url": "/images/projects/happy-home-heights/cover.jpg",
     "images": [
       "/images/projects/happy-home-heights/cover.jpg",
       "/images/projects/happy-home-heights/gallery-1.jpg",
       "/images/projects/happy-home-heights/gallery-2.jpg",
       "/images/projects/happy-home-heights/gallery-3.jpg",
       "/images/projects/happy-home-heights/gallery-4.jpg"
-    ],
-    "highlights": [
-      "Smart Home Automation Provisions",
-      "Rooftop Terrace Garden & Sitout",
-      "Toddlers Play Area & Fitness Center",
-      "Advanced Multi-Level Fire Safety"
-    ],
-    "amenities": [
-      "Fitness Center",
-      "Kids Play Area",
-      "Smart Biometric Access",
-      "CCTV Surveillance",
-      "Automated Parking"
-    ],
-    "description": "Experience modern living with smart home features at Happy Home Heights. Situated in the peaceful, elite enclave of Garodia Nagar, ensuring serenity amidst city connectivity.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 115,
     "name": "Ajmera Manhattan",
     "slug": "ajmera-manhattan",
     "location": "Bhakti Park, Wadala East, Mumbai",
     "city": "Mumbai",
     "builder": "Ajmera Group",
-    "price_display": "\u20b9 2.30 Cr Onwards",
+    "price_display": "₹ 2.30 Cr Onwards",
     "price_numeric": 23000000,
     "status": "under-construction",
     "cover_image": "/images/projects/ajmera-manhattan/cover.png",
-    "image_url": "/images/projects/ajmera-manhattan/cover.png",
     "bhk_options": "2, 3 & 4 BHK Manhattan Style Homes",
-    "carpet_area": "654 - 1,480 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 4,
     "possession": "Dec 2026",
@@ -870,6 +659,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/ajmera-manhattan/gallery-6.jpg",
       "/images/projects/ajmera-manhattan/gallery-7.jpg"
     ],
+    "highlights": "[\"Olympic-Length Sky Pool\", \"Palatial 25,000 Sq.Ft. Clubhouse\", \"Private Screening Mini-Theatre\", \"Direct Monorail & Freeway Connectivity\"]",
+    "amenities": "[\"Olympic Pool\", \"Mini Theatre\", \"State-of-the-art Gym\", \"Sky Lounge\", \"Tennis Court\"]",
+    "description": "Bringing iconic Manhattan lifestyle architecture to Mumbai. Ajmera Manhattan offers a premium living experience with expansive layouts and world-class sports and leisure amenities.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "654 - 1,480 Sq.Ft.",
+    "image_url": "/images/projects/ajmera-manhattan/cover.png",
     "images": [
       "/images/projects/ajmera-manhattan/cover.png",
       "/images/projects/ajmera-manhattan/gallery-1.jpg",
@@ -879,40 +675,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/ajmera-manhattan/gallery-5.jpg",
       "/images/projects/ajmera-manhattan/gallery-6.jpg",
       "/images/projects/ajmera-manhattan/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Olympic-Length Sky Pool",
-      "Palatial 25,000 Sq.Ft. Clubhouse",
-      "Private Screening Mini-Theatre",
-      "Direct Monorail & Freeway Connectivity"
-    ],
-    "amenities": [
-      "Olympic Pool",
-      "Mini Theatre",
-      "State-of-the-art Gym",
-      "Sky Lounge",
-      "Tennis Court"
-    ],
-    "description": "Bringing iconic Manhattan lifestyle architecture to Mumbai. Ajmera Manhattan offers a premium living experience with expansive layouts and world-class sports and leisure amenities.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 116,
     "name": "Silver Harmony",
     "slug": "silver-group-harmony",
     "location": "LBS Marg, Ghatkopar West, Mumbai",
     "city": "Mumbai",
     "builder": "Silver Group",
-    "price_display": "\u20b9 1.85 Cr Onwards",
+    "price_display": "₹ 1.85 Cr Onwards",
     "price_numeric": 18500000,
     "status": "under-construction",
     "cover_image": "/images/projects/silver-group-harmony/cover.jpg",
-    "image_url": "/images/projects/silver-group-harmony/cover.jpg",
     "bhk_options": "2 & 3 BHK Residences",
-    "carpet_area": "620 - 980 Sq.Ft.",
     "min_bhk": 3,
     "max_bhk": 4,
     "possession": "Dec 2027",
@@ -928,6 +703,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-group-harmony/gallery-5.png",
       "/images/projects/silver-group-harmony/gallery-6.jpg"
     ],
+    "highlights": "[\"Double-Height Italian Marble Lobby\", \"Zero Space Wastage Floor Layouts\", \"Dedicated Senior Citizens Zone\", \"EV Charging Stations in Tower Parking\"]",
+    "amenities": "[\"Designer Lobby\", \"Zen Garden\", \"EV Charging\", \"Podium Parking\", \"24/7 Security\"]",
+    "description": "Silver Harmony stands as a testament to architectural precision by Silver Group. Enjoy spacious living with premium Italian marble fittings and superb cross-ventilation.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "620 - 980 Sq.Ft.",
+    "image_url": "/images/projects/silver-group-harmony/cover.jpg",
     "images": [
       "/images/projects/silver-group-harmony/cover.jpg",
       "/images/projects/silver-group-harmony/gallery-1.jpg",
@@ -936,40 +718,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/silver-group-harmony/gallery-4.png",
       "/images/projects/silver-group-harmony/gallery-5.png",
       "/images/projects/silver-group-harmony/gallery-6.jpg"
-    ],
-    "highlights": [
-      "Double-Height Italian Marble Lobby",
-      "Zero Space Wastage Floor Layouts",
-      "Dedicated Senior Citizens Zone",
-      "EV Charging Stations in Tower Parking"
-    ],
-    "amenities": [
-      "Designer Lobby",
-      "Zen Garden",
-      "EV Charging",
-      "Podium Parking",
-      "24/7 Security"
-    ],
-    "description": "Silver Harmony stands as a testament to architectural precision by Silver Group. Enjoy spacious living with premium Italian marble fittings and superb cross-ventilation.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 117,
     "name": "Yogeshwar Solitaire",
     "slug": "yog-group-solitaire",
     "location": "Tilak Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Yogeshwar Group",
-    "price_display": "\u20b9 1.95 Cr Onwards",
+    "price_display": "₹ 1.95 Cr Onwards",
     "price_numeric": 19500000,
     "status": "under-construction",
     "cover_image": "/images/projects/yog-group-solitaire/cover.jpg",
-    "image_url": "/images/projects/yog-group-solitaire/cover.jpg",
     "bhk_options": "2 & 3 BHK Apartments",
-    "carpet_area": "640 - 1,010 Sq.Ft.",
     "min_bhk": 1,
     "max_bhk": 3,
     "possession": "March 2028",
@@ -982,45 +743,31 @@ export const MOCK_PROJECTS = [
       "/images/projects/yog-group-solitaire/gallery-2.jpg",
       "/images/projects/yog-group-solitaire/gallery-3.jpg"
     ],
+    "highlights": "[\"Walking Distance to Ghatkopar Station & Metro\", \"Terrace Garden & Acupressure Walkway\", \"High-Speed Branded Elevators\", \"Smart Intercom & Advanced CCTV Surveillance\"]",
+    "amenities": "[\"Fitness Center\", \"Multipurpose Hall\", \"Terrace Garden\", \"24/7 Security\", \"Power Backup\"]",
+    "description": "Strategically located near Ghatkopar Station, Yogeshwar Solitaire offers unmatched transit connectivity without compromising on the peaceful luxury of a private residence.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "640 - 1,010 Sq.Ft.",
+    "image_url": "/images/projects/yog-group-solitaire/cover.jpg",
     "images": [
       "/images/projects/yog-group-solitaire/cover.jpg",
       "/images/projects/yog-group-solitaire/gallery-1.jpg",
       "/images/projects/yog-group-solitaire/gallery-2.jpg",
       "/images/projects/yog-group-solitaire/gallery-3.jpg"
-    ],
-    "highlights": [
-      "Walking Distance to Ghatkopar Station & Metro",
-      "Terrace Garden & Acupressure Walkway",
-      "High-Speed Branded Elevators",
-      "Smart Intercom & Advanced CCTV Surveillance"
-    ],
-    "amenities": [
-      "Fitness Center",
-      "Multipurpose Hall",
-      "Terrace Garden",
-      "24/7 Security",
-      "Power Backup"
-    ],
-    "description": "Strategically located near Ghatkopar Station, Yogeshwar Solitaire offers unmatched transit connectivity without compromising on the peaceful luxury of a private residence.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 118,
     "name": "Alag Horizon",
     "slug": "alag-group-horizon",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Alag Group",
-    "price_display": "\u20b9 1.28 Cr Onwards",
+    "price_display": "₹ 1.28 Cr Onwards",
     "price_numeric": 12800000,
     "status": "under-construction",
     "cover_image": "/images/projects/alag-group-horizon/gallery-1.jpg",
-    "image_url": "/images/projects/alag-group-horizon/gallery-1.jpg",
     "bhk_options": "1 & 2 BHK Modern Homes",
-    "carpet_area": "440 - 660 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2027",
@@ -1030,42 +777,28 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/alag-group-horizon/gallery-1.jpg"
     ],
-    "images": [
-      "/images/projects/alag-group-horizon/gallery-1.jpg"
-    ],
-    "highlights": [
-      "Rooftop Stargazing Sky Deck & BBQ Area",
-      "Automated Hydraulic Multi-Level Car Parking",
-      "Double-Height Air-Conditioned Lobby",
-      "European Sanitaryware & Designer Fittings"
-    ],
-    "amenities": [
-      "Sky Deck",
-      "Fitness Hub",
-      "Automated Parking",
-      "Security Surveillance",
-      "EV Station"
-    ],
+    "highlights": "[\"Rooftop Stargazing Sky Deck & BBQ Area\", \"Automated Hydraulic Multi-Level Car Parking\", \"Double-Height Air-Conditioned Lobby\", \"European Sanitaryware & Designer Fittings\"]",
+    "amenities": "[\"Sky Deck\", \"Fitness Hub\", \"Automated Parking\", \"Security Surveillance\", \"EV Station\"]",
     "description": "Alag Horizon by Alag Group redefines high-rise luxury on MG Road, Ghatkopar East. With expansive sundecks offering panoramic vistas and world-class European fittings, it is crafted for discerning homeowners.",
     "is_published": true,
     "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "carpet_area": "440 - 660 Sq.Ft.",
+    "image_url": "/images/projects/alag-group-horizon/gallery-1.jpg",
+    "images": [
+      "/images/projects/alag-group-horizon/gallery-1.jpg"
+    ]
   },
   {
-    "id": 119,
     "name": "Drushti Sapphire",
     "slug": "drushti-sapphire",
     "location": "90 Feet Road, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Drushti Group",
-    "price_display": "\u20b9 1.72 Cr Onwards",
+    "price_display": "₹ 1.72 Cr Onwards",
     "price_numeric": 17200000,
     "status": "under-construction",
     "cover_image": "/images/projects/drushti-sapphire/cover.png",
-    "image_url": "/images/projects/drushti-sapphire/cover.png",
     "bhk_options": "2 & 3 BHK Luxury Apartments",
-    "carpet_area": "615 - 950 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2026",
@@ -1082,6 +815,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/drushti-sapphire/gallery-6.png",
       "/images/projects/drushti-sapphire/gallery-7.png"
     ],
+    "highlights": "[\"Ready to Move In with OC Received\", \"Yoga & Meditation Sky Zone\", \"Manicured Landscaped Gardens\", \"24/7 Full Power Backup for Elevators & Common Areas\"]",
+    "amenities": "[\"Yoga Deck\", \"Community Hall\", \"Landscape Garden\", \"CCTV Security\", \"Power Backup\"]",
+    "description": "Drushti Sapphire offers ready-to-move-in homes with a strong emphasis on natural sunlight and ventilation. Located in the peaceful heart of Ghatkopar East with established neighborhood conveniences.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "615 - 950 Sq.Ft.",
+    "image_url": "/images/projects/drushti-sapphire/cover.png",
     "images": [
       "/images/projects/drushti-sapphire/cover.png",
       "/images/projects/drushti-sapphire/gallery-1.png",
@@ -1091,40 +831,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/drushti-sapphire/gallery-5.png",
       "/images/projects/drushti-sapphire/gallery-6.png",
       "/images/projects/drushti-sapphire/gallery-7.png"
-    ],
-    "highlights": [
-      "Ready to Move In with OC Received",
-      "Yoga & Meditation Sky Zone",
-      "Manicured Landscaped Gardens",
-      "24/7 Full Power Backup for Elevators & Common Areas"
-    ],
-    "amenities": [
-      "Yoga Deck",
-      "Community Hall",
-      "Landscape Garden",
-      "CCTV Security",
-      "Power Backup"
-    ],
-    "description": "Drushti Sapphire offers ready-to-move-in homes with a strong emphasis on natural sunlight and ventilation. Located in the peaceful heart of Ghatkopar East with established neighborhood conveniences.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 120,
     "name": "Gurukrupa Marina",
     "slug": "gurukrupa-marina",
     "location": "Jankalyan Nagar, Malad West, Mumbai",
     "city": "Mumbai",
     "builder": "Gurukrupa Group",
-    "price_display": "\u20b9 98 Lac Onwards",
+    "price_display": "₹ 98 Lac Onwards",
     "price_numeric": 9800000,
     "status": "ready-to-move",
     "cover_image": "/images/projects/gurukrupa-marina/cover.jpg",
-    "image_url": "/images/projects/gurukrupa-marina/cover.jpg",
     "bhk_options": "1, 2 & 3 BHK Sea-View Towers",
-    "carpet_area": "420 - 910 Sq.Ft.",
     "min_bhk": 3,
     "max_bhk": 4,
     "possession": "Ready to Move",
@@ -1134,42 +853,28 @@ export const MOCK_PROJECTS = [
     "gallery": [
       "/images/projects/gurukrupa-marina/cover.jpg"
     ],
-    "images": [
-      "/images/projects/gurukrupa-marina/cover.jpg"
-    ],
-    "highlights": [
-      "Exclusive High-Rise Spanning Pristine Green Vistas",
-      "Swimming Pool & Acupressure Jogging Track",
-      "Integrated Co-Working Lounge & Business Pods",
-      "Multi-Tier Modern Security & Valet Parking"
-    ],
-    "amenities": [
-      "Swimming Pool",
-      "Jogging Track",
-      "Clubhouse",
-      "Co-Working Lounge",
-      "24/7 Security"
-    ],
+    "highlights": "[\"Exclusive High-Rise Spanning Pristine Green Vistas\", \"Swimming Pool & Acupressure Jogging Track\", \"Integrated Co-Working Lounge & Business Pods\", \"Multi-Tier Modern Security & Valet Parking\"]",
+    "amenities": "[\"Swimming Pool\", \"Jogging Track\", \"Clubhouse\", \"Co-Working Lounge\", \"24/7 Security\"]",
     "description": "Gurukrupa Marina presents expansive open spaces, exceptional privacy, and a grand luxury clubhouse in Ghatkopar East, offering an oasis of calm right in the city.",
     "is_published": true,
     "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    "carpet_area": "420 - 910 Sq.Ft.",
+    "image_url": "/images/projects/gurukrupa-marina/cover.jpg",
+    "images": [
+      "/images/projects/gurukrupa-marina/cover.jpg"
+    ]
   },
   {
-    "id": 121,
     "name": "Adityaraj Signature",
     "slug": "adityaraj-signature",
     "location": "Kannamwar Nagar 2, Vikhroli East, Mumbai",
     "city": "Mumbai",
     "builder": "Adityaraj Group",
-    "price_display": "\u20b9 79 Lac Onwards",
+    "price_display": "₹ 79 Lac Onwards",
     "price_numeric": 7900000,
     "status": "under-construction",
     "cover_image": "/images/projects/adityaraj-signature/cover.png",
-    "image_url": "/images/projects/adityaraj-signature/cover.png",
     "bhk_options": "1 & 2 BHK High-Rise Homes",
-    "carpet_area": "385 - 590 Sq.Ft.",
     "min_bhk": 1,
     "max_bhk": 2,
     "possession": "Dec 2026",
@@ -1186,6 +891,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/adityaraj-signature/gallery-6.webp",
       "/images/projects/adityaraj-signature/gallery-7.webp"
     ],
+    "highlights": "[\"Modern Standalone High-Rise on Wide Road\", \"Fitness Center & Indoor Recreation Room\", \"Landscaped Rooftop Garden with Sitout\", \"Reticulated Piped Gas & Dedicated Car Parking\"]",
+    "amenities": "[\"Fitness Center\", \"Rooftop Garden\", \"Indoor Games\", \"Car Parking\", \"24/7 Security\"]",
+    "description": "Adityaraj Signature provides an excellent entry point into the premium Ghatkopar East market. Featuring efficient space utilization, superior build quality, and unmatched transit access.",
+    "is_published": true,
+    "is_featured": false,
+    "carpet_area": "385 - 590 Sq.Ft.",
+    "image_url": "/images/projects/adityaraj-signature/cover.png",
     "images": [
       "/images/projects/adityaraj-signature/cover.png",
       "/images/projects/adityaraj-signature/gallery-1.webp",
@@ -1195,40 +907,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/adityaraj-signature/gallery-5.webp",
       "/images/projects/adityaraj-signature/gallery-6.webp",
       "/images/projects/adityaraj-signature/gallery-7.webp"
-    ],
-    "highlights": [
-      "Modern Standalone High-Rise on Wide Road",
-      "Fitness Center & Indoor Recreation Room",
-      "Landscaped Rooftop Garden with Sitout",
-      "Reticulated Piped Gas & Dedicated Car Parking"
-    ],
-    "amenities": [
-      "Fitness Center",
-      "Rooftop Garden",
-      "Indoor Games",
-      "Car Parking",
-      "24/7 Security"
-    ],
-    "description": "Adityaraj Signature provides an excellent entry point into the premium Ghatkopar East market. Featuring efficient space utilization, superior build quality, and unmatched transit access.",
-    "is_published": true,
-    "is_featured": false,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 122,
     "name": "VK Elegance",
     "slug": "vk-elegance-ghatkopar",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "VK Group",
-    "price_display": "\u20b9 1.24 Cr Onwards",
+    "price_display": "₹ 1.24 Cr Onwards",
     "price_numeric": 12400000,
     "status": "under-construction",
     "cover_image": "/images/projects/vk-elegance-ghatkopar/cover.png",
-    "image_url": "/images/projects/vk-elegance-ghatkopar/cover.png",
     "bhk_options": "1 & 2 BHK Boutique Homes",
-    "carpet_area": "435 - 650 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2027",
@@ -1242,47 +933,32 @@ export const MOCK_PROJECTS = [
       "/images/projects/vk-elegance-ghatkopar/gallery-3.png",
       "/images/projects/vk-elegance-ghatkopar/gallery-4.jpg"
     ],
+    "highlights": "[\"Boutique G+18 High-Rise Living on 90ft Road\", \"Spacious Vastu-Compliant 2 & 3 BHK Homes\", \"Air-Conditioned Fitness Studio & Yoga Lounge\", \"Double-Height Entrance Lobby with Concierge\", \"Multi-Tier Security & Biometric Access\"]",
+    "amenities": "[\"Gymnasium\", \"Yoga Deck\", \"Kids Play Zone\", \"Automated Parking\", \"24/7 Security\"]",
+    "description": "VK Elegance by VK Developer brings contemporary luxury living to 90ft Road, Ghatkopar East. Thoughtfully designed 2 and 3 BHK residences featuring floor-to-ceiling windows, high-speed elevators, and top-tier amenities.",
+    "is_published": true,
+    "is_featured": true,
+    "carpet_area": "435 - 650 Sq.Ft.",
+    "image_url": "/images/projects/vk-elegance-ghatkopar/cover.png",
     "images": [
       "/images/projects/vk-elegance-ghatkopar/cover.png",
       "/images/projects/vk-elegance-ghatkopar/gallery-1.jpg",
       "/images/projects/vk-elegance-ghatkopar/gallery-2.jpg",
       "/images/projects/vk-elegance-ghatkopar/gallery-3.png",
       "/images/projects/vk-elegance-ghatkopar/gallery-4.jpg"
-    ],
-    "highlights": [
-      "Boutique G+18 High-Rise Living on 90ft Road",
-      "Spacious Vastu-Compliant 2 & 3 BHK Homes",
-      "Air-Conditioned Fitness Studio & Yoga Lounge",
-      "Double-Height Entrance Lobby with Concierge",
-      "Multi-Tier Security & Biometric Access"
-    ],
-    "amenities": [
-      "Gymnasium",
-      "Yoga Deck",
-      "Kids Play Zone",
-      "Automated Parking",
-      "24/7 Security"
-    ],
-    "description": "VK Elegance by VK Developer brings contemporary luxury living to 90ft Road, Ghatkopar East. Thoughtfully designed 2 and 3 BHK residences featuring floor-to-ceiling windows, high-speed elevators, and top-tier amenities.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 123,
     "name": "F Residences",
     "slug": "f-residences",
     "location": "Eastern Express Highway, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "F Residences / Fashion TV",
-    "price_display": "\u20b9 2.65 Cr Onwards",
+    "price_display": "₹ 2.65 Cr Onwards",
     "price_numeric": 26500000,
     "status": "under-construction",
     "cover_image": "/images/projects/f-residences/cover.png",
-    "image_url": "/images/projects/f-residences/cover.png",
     "bhk_options": "2, 3 & 4 BHK Designer Suites",
-    "carpet_area": "720 - 1,550 Sq.Ft.",
     "min_bhk": 2,
     "max_bhk": 3,
     "possession": "Dec 2028",
@@ -1299,6 +975,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/f-residences/gallery-6.jpg",
       "/images/projects/f-residences/gallery-7.jpg"
     ],
+    "highlights": "[\"Fashion TV Branded Designer Lobbies & Interiors\", \"Rooftop Sky Lounge & Infinity Edge Pool\", \"State-of-the-Art Gymnasium & Wellness Center\", \"Prime Strategic Location with Transit Connectivity\"]",
+    "amenities": "[\"Infinity Pool\", \"Gymnasium\", \"Sky Lounge\", \"Clubhouse\", \"24/7 Security\"]",
+    "description": "F Residences brings world-class fashion-inspired luxury architecture to Ghatkopar East. Designed with bespoke interiors, panoramic sundecks, and curated lifestyle amenities.",
+    "is_published": true,
+    "is_featured": true,
+    "carpet_area": "720 - 1,550 Sq.Ft.",
+    "image_url": "/images/projects/f-residences/cover.png",
     "images": [
       "/images/projects/f-residences/cover.png",
       "/images/projects/f-residences/gallery-1.png",
@@ -1308,40 +991,19 @@ export const MOCK_PROJECTS = [
       "/images/projects/f-residences/gallery-5.jpg",
       "/images/projects/f-residences/gallery-6.jpg",
       "/images/projects/f-residences/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Fashion TV Branded Designer Lobbies & Interiors",
-      "Rooftop Sky Lounge & Infinity Edge Pool",
-      "State-of-the-Art Gymnasium & Wellness Center",
-      "Prime Strategic Location with Transit Connectivity"
-    ],
-    "amenities": [
-      "Infinity Pool",
-      "Gymnasium",
-      "Sky Lounge",
-      "Clubhouse",
-      "24/7 Security"
-    ],
-    "description": "F Residences brings world-class fashion-inspired luxury architecture to Ghatkopar East. Designed with bespoke interiors, panoramic sundecks, and curated lifestyle amenities.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 124,
     "name": "Rising City",
     "slug": "rising-city",
     "location": "Eastern Express Highway, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Hubtown Group",
-    "price_display": "\u20b9 2.10 Cr Onwards",
+    "price_display": "₹ 2.10 Cr Onwards",
     "price_numeric": 21000000,
     "status": "under-construction",
     "cover_image": "/images/projects/rising-city/cover.jpg",
-    "image_url": "/images/projects/rising-city/cover.jpg",
     "bhk_options": "2, 3 & 4 BHK Township Homes",
-    "carpet_area": "690 - 1,420 Sq.Ft.",
     "min_bhk": 1,
     "max_bhk": 3,
     "possession": "Under Construction",
@@ -1358,6 +1020,13 @@ export const MOCK_PROJECTS = [
       "/images/projects/rising-city/gallery-6.webp",
       "/images/projects/rising-city/gallery-7.webp"
     ],
+    "highlights": "[\"Multi-Acre Gated Integrated Township\", \"Podium Level Landscaped Gardens & Sports Courts\", \"Grand Air-Conditioned Entrance Lobby\", \"5 Mins to Eastern Express Highway & Railway Station\"]",
+    "amenities": "[\"Podium Garden\", \"Clubhouse\", \"Gymnasium\", \"Sports Court\", \"24/7 Security\"]",
+    "description": "Rising City is an expansive township project in Ghatkopar East offering modern 1, 2, and 3 BHK residences amidst lush podium gardens and high-end lifestyle facilities.",
+    "is_published": true,
+    "is_featured": true,
+    "carpet_area": "690 - 1,420 Sq.Ft.",
+    "image_url": "/images/projects/rising-city/cover.jpg",
     "images": [
       "/images/projects/rising-city/cover.jpg",
       "/images/projects/rising-city/gallery-1.jpg",
@@ -1367,38 +1036,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/rising-city/gallery-5.webp",
       "/images/projects/rising-city/gallery-6.webp",
       "/images/projects/rising-city/gallery-7.webp"
-    ],
-    "highlights": [
-      "Multi-Acre Gated Integrated Township",
-      "Podium Level Landscaped Gardens & Sports Courts",
-      "Grand Air-Conditioned Entrance Lobby",
-      "5 Mins to Eastern Express Highway & Railway Station"
-    ],
-    "amenities": [
-      "Podium Garden",
-      "Clubhouse",
-      "Gymnasium",
-      "Sports Court",
-      "24/7 Security"
-    ],
-    "description": "Rising City is an expansive township project in Ghatkopar East offering modern 1, 2, and 3 BHK residences amidst lush podium gardens and high-end lifestyle facilities.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 125,
     "name": "One Meraki",
     "slug": "one-meraki-chembur",
     "location": "Chembur West, Mumbai",
     "city": "Mumbai",
     "builder": "Meraki Group",
-    "price_display": "\u20b9 3.25 Cr Onwards",
+    "price_display": "₹ 3.25 Cr Onwards",
     "price_numeric": 32500000,
     "status": "under-construction",
     "cover_image": "/images/projects/one-meraki-chembur/cover.webp",
-    "image_url": "/images/projects/one-meraki-chembur/cover.webp",
     "bhk_options": "2, 3 & 4 BHK Luxury Residences",
     "carpet_area": "780 - 1,650 Sq.Ft.",
     "min_bhk": 2,
@@ -1417,6 +1066,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/one-meraki-chembur/gallery-6.webp",
       "/images/projects/one-meraki-chembur/gallery-7.webp"
     ],
+    "highlights": "[\"Ultra-Luxurious 2, 3 & 4 BHK Residences in Chembur West\", \"Infinity Sky Pool & Panoramic Horizon Deck\", \"World-Class Gymnasium, Squash Court & Spa\", \"Grand Double-Height Italian Marble Entrance Lobby\", \"Strategic Proximity to BKC Connector & Eastern Freeway\", \"MahaRERA Registered Project: P51800024905\"]",
+    "amenities": "[\"Infinity Pool\", \"Gymnasium\", \"Squash Court\", \"Spa & Wellness\", \"Sky Lounge\", \"24/7 Security\", \"EV Charging\"]",
+    "description": "One Meraki by Meraki Group is an iconic luxury residential landmark in Chembur West, Mumbai. Offering lavish 2, 3 & 4 BHK residences with expansive sundecks, floor-to-ceiling glass facades, rooftop sky deck, infinity pool, and seamless access to BKC Connector.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/one-meraki-chembur/cover.webp",
     "images": [
       "/images/projects/one-meraki-chembur/cover.webp",
       "/images/projects/one-meraki-chembur/gallery-1.webp",
@@ -1426,42 +1081,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/one-meraki-chembur/gallery-5.webp",
       "/images/projects/one-meraki-chembur/gallery-6.webp",
       "/images/projects/one-meraki-chembur/gallery-7.webp"
-    ],
-    "highlights": [
-      "Ultra-Luxurious 2, 3 & 4 BHK Residences in Chembur West",
-      "Infinity Sky Pool & Panoramic Horizon Deck",
-      "World-Class Gymnasium, Squash Court & Spa",
-      "Grand Double-Height Italian Marble Entrance Lobby",
-      "Strategic Proximity to BKC Connector & Eastern Freeway",
-      "MahaRERA Registered Project: P51800024905"
-    ],
-    "amenities": [
-      "Infinity Pool",
-      "Gymnasium",
-      "Squash Court",
-      "Spa & Wellness",
-      "Sky Lounge",
-      "24/7 Security",
-      "EV Charging"
-    ],
-    "description": "One Meraki by Meraki Group is an iconic luxury residential landmark in Chembur West, Mumbai. Offering lavish 2, 3 & 4 BHK residences with expansive sundecks, floor-to-ceiling glass facades, rooftop sky deck, infinity pool, and seamless access to BKC Connector.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 126,
     "name": "72 Parksyde",
     "slug": "72-parksyde-ghatkopar",
     "location": "Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Origin Corp",
-    "price_display": "\u20b9 1.65 Cr Onwards",
+    "price_display": "₹ 1.65 Cr Onwards",
     "price_numeric": 16500000,
     "status": "under-construction",
     "cover_image": "/images/projects/72-parksyde-ghatkopar/cover.jpg",
-    "image_url": "/images/projects/72-parksyde-ghatkopar/cover.jpg",
     "bhk_options": "1, 2 & 3 BHK Modern Homes",
     "carpet_area": "420 - 950 Sq.Ft.",
     "min_bhk": 1,
@@ -1480,6 +1111,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/72-parksyde-ghatkopar/gallery-6.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-7.jpg"
     ],
+    "highlights": "[\"Boutique High-Rise Overlooking Lush Pant Nagar Greenery\", \"Efficient 1, 2 & 3 BHK Space-Optimized Layouts\", \"Rooftop Sky Terrace & Fitness Gymnasium\", \"Minutes from Proposed Metro & Ghatkopar Railway Transit\", \"MahaRERA Approved: P51800051890\"]",
+    "amenities": "[\"Sky Terrace\", \"Gymnasium\", \"Kids Play Area\", \"Landscape Garden\", \"24/7 Security\"]",
+    "description": "72 Parksyde in Pant Nagar, Ghatkopar East offers contemporary 1, 2 & 3 BHK parkside residences. Combining serene green park views with modern amenities, automated parking, and high-speed elevators.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/72-parksyde-ghatkopar/cover.jpg",
     "images": [
       "/images/projects/72-parksyde-ghatkopar/cover.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-1.jpg",
@@ -1489,39 +1126,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/72-parksyde-ghatkopar/gallery-5.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-6.jpg",
       "/images/projects/72-parksyde-ghatkopar/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Boutique High-Rise Overlooking Lush Pant Nagar Greenery",
-      "Efficient 1, 2 & 3 BHK Space-Optimized Layouts",
-      "Rooftop Sky Terrace & Fitness Gymnasium",
-      "Minutes from Proposed Metro & Ghatkopar Railway Transit",
-      "MahaRERA Approved: P51800051890"
-    ],
-    "amenities": [
-      "Sky Terrace",
-      "Gymnasium",
-      "Kids Play Area",
-      "Landscape Garden",
-      "24/7 Security"
-    ],
-    "description": "72 Parksyde in Pant Nagar, Ghatkopar East offers contemporary 1, 2 & 3 BHK parkside residences. Combining serene green park views with modern amenities, automated parking, and high-speed elevators.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 127,
     "name": "MICL Aaradhya OneEarth",
     "slug": "micl-aaradhya-oneearth",
     "location": "Naidu Colony, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "MICL Group",
-    "price_display": "\u20b9 2.15 Cr Onwards",
+    "price_display": "₹ 2.15 Cr Onwards",
     "price_numeric": 21500000,
     "status": "under-construction",
     "cover_image": "/images/projects/micl-aaradhya-oneearth/cover.jpg",
-    "image_url": "/images/projects/micl-aaradhya-oneearth/cover.jpg",
     "bhk_options": "2, 3 & 4 BHK Eco-Luxury Homes",
     "carpet_area": "620 - 1,480 Sq.Ft.",
     "min_bhk": 2,
@@ -1540,6 +1156,12 @@ export const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-oneearth/gallery-6.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-7.jpg"
     ],
+    "highlights": "[\"Multi-Acre Eco-Luxury Gated Township in Naidu Colony\", \"Grand Central Podium Park & Swimming Pool Complex\", \"Exclusive Clubhouse, Gymnasium & Indoor Games Zone\", \"100% Vastu-Compliant 2, 3 & 4 BHK Floor Layouts\", \"MahaRERA Approved: P51800021623\"]",
+    "amenities": "[\"Swimming Pool\", \"Clubhouse\", \"Gymnasium\", \"Podium Park\", \"Kids Play Area\", \"24/7 Security\"]",
+    "description": "Aaradhya OneEarth by MICL Group is a flagship eco-luxury township located in Naidu Colony, Pant Nagar, Ghatkopar East. Built around lush central podium gardens, it features state-of-the-art sports facilities, swimming pool, luxury clubhouse, and excellent transit links.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/micl-aaradhya-oneearth/cover.jpg",
     "images": [
       "/images/projects/micl-aaradhya-oneearth/cover.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-1.jpg",
@@ -1549,40 +1171,18 @@ export const MOCK_PROJECTS = [
       "/images/projects/micl-aaradhya-oneearth/gallery-5.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-6.jpg",
       "/images/projects/micl-aaradhya-oneearth/gallery-7.jpg"
-    ],
-    "highlights": [
-      "Multi-Acre Eco-Luxury Gated Township in Naidu Colony",
-      "Grand Central Podium Park & Swimming Pool Complex",
-      "Exclusive Clubhouse, Gymnasium & Indoor Games Zone",
-      "100% Vastu-Compliant 2, 3 & 4 BHK Floor Layouts",
-      "MahaRERA Approved: P51800021623"
-    ],
-    "amenities": [
-      "Swimming Pool",
-      "Clubhouse",
-      "Gymnasium",
-      "Podium Park",
-      "Kids Play Area",
-      "24/7 Security"
-    ],
-    "description": "Aaradhya OneEarth by MICL Group is a flagship eco-luxury township located in Naidu Colony, Pant Nagar, Ghatkopar East. Built around lush central podium gardens, it features state-of-the-art sports facilities, swimming pool, luxury clubhouse, and excellent transit links.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   },
   {
-    "id": 128,
     "name": "Yog Aveer",
     "slug": "yog-aveer-ghatkopar",
     "location": "Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East, Mumbai",
     "city": "Mumbai",
     "builder": "Yog Group",
-    "price_display": "\u20b9 1.75 Cr Onwards",
+    "price_display": "₹ 1.75 Cr Onwards",
     "price_numeric": 17500000,
     "status": "under-construction",
     "cover_image": "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
-    "image_url": "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
     "bhk_options": "2 & 3 BHK Commercial & Luxury Residences",
     "carpet_area": "620 - 1,080 Sq.Ft.",
     "min_bhk": 2,
@@ -1597,32 +1197,17 @@ export const MOCK_PROJECTS = [
       "/images/projects/yog-aveer-ghatkopar/media_1788939211764.jpg",
       "/images/projects/yog-aveer-ghatkopar/media_1788939214780.jpg"
     ],
+    "highlights": "[\"G+18 Storey Iconic Grand Architecture with High-Street Retail\", \"Spacious 2 & 3 BHK Luxury Residences & Commercial Suites\", \"Air-Conditioned Fitness Centre & Sky Recreation Deck\", \"Double-Height Grand Entrance Lobby with Concierge\", \"2 Minutes from Ghatkopar Railway Station & Metro\", \"MahaRERA Approved Project: P51800053982\"]",
+    "amenities": "[\"High-Street Retail\", \"Fitness Centre\", \"Sky Deck\", \"Grand Lobby\", \"Automated Parking\", \"24/7 Security\"]",
+    "description": "Yog Aveer by Yog Group is an iconic G+18 storey commercial and residential landmark situated on Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East. Featuring high-street ground floor retail, boutique commercial suites, and lavish 2 & 3 BHK luxury residences, Yog Aveer brings world-class architectural design, automated multi-level parking, and premium lifestyle amenities.",
+    "is_published": true,
+    "is_featured": true,
+    "image_url": "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
     "images": [
       "/images/projects/yog-aveer-ghatkopar/media_1788939205229.jpg",
       "/images/projects/yog-aveer-ghatkopar/media_1788939208185.jpg",
       "/images/projects/yog-aveer-ghatkopar/media_1788939211764.jpg",
       "/images/projects/yog-aveer-ghatkopar/media_1788939214780.jpg"
-    ],
-    "highlights": [
-      "G+18 Storey Iconic Grand Architecture with High-Street Retail",
-      "Spacious 2 & 3 BHK Luxury Residences & Commercial Suites",
-      "Air-Conditioned Fitness Centre & Sky Recreation Deck",
-      "Double-Height Grand Entrance Lobby with Concierge",
-      "2 Minutes from Ghatkopar Railway Station & Metro",
-      "MahaRERA Approved Project: P51800053982"
-    ],
-    "amenities": [
-      "High-Street Retail",
-      "Fitness Centre",
-      "Sky Deck",
-      "Grand Lobby",
-      "Automated Parking",
-      "24/7 Security"
-    ],
-    "description": "Yog Aveer by Yog Group is an iconic G+18 storey commercial and residential landmark situated on Ramanarayan Narkar Marg, Pant Nagar, Ghatkopar East. Featuring high-street ground floor retail, boutique commercial suites, and lavish 2 & 3 BHK luxury residences, Yog Aveer brings world-class architectural design, automated multi-level parking, and premium lifestyle amenities.",
-    "is_published": true,
-    "is_featured": true,
-    "created_at": "2026-08-19T13:25:00.000Z",
-    "updated_at": "2026-08-19T13:25:00.000Z"
+    ]
   }
 ];
